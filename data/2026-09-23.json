@@ -117,23 +117,23 @@
   {
    "file": "daily_20260923_pm",
    "kind": "pm",
-   "label": "盘中刷新 14:56 ET",
-   "sort_key": "14:56",
-   "generated_at": "14:56 ET",
+   "label": "盘中刷新 15:56 ET",
+   "sort_key": "15:56",
+   "generated_at": "15:56 ET",
    "data_source": "tws_local",
-   "note": "2026-09-23 盘中方案（14:53 ET 例行刷新，尾盘窗口；数据获取 14:54 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件不可用；TWS 已恢复，实报正常）\n分时结构：午后在 740.2–741.3 区间收敛震荡（13:30 高 741.34，14:00/14:30 低点 740.19/740.22 微双底），\n现价 740.75（-0.90%），紧贴 VWAP（741.00）下方；日内仍为下跌趋势日 + 午后低位筑底。\n13:53 版点位至今未被触发（741.7 未破 / 740.0 未破），watcher 13:57 热加载后正常监控。\n支撑：S1 740.2（14:00/14:30 微双底）；S2 740.0–739.9（12:00 低 739.94 / 整数关口）；S3 738.8–738.9；S4 738.2（日低双底）。\n阻力：R1 741.0–741.2（VWAP + 14:30 高 741.18）；R2 741.3–741.6（13:30 高 741.34 / 11:30 高 741.64）；R3 742.5–742.6。\n防抖核查：本轮重推导点位与 13:53 版差距均 <0.1%（S1 740.2 vs 740.0；R1 741.2-741.4 vs 741.7），按规则③全部沿用。\n尾盘窗口评估（规则⑥）：四个触发位距现价 0.75–0.95 点，均为各自方向最近有效位；A/B/C/D 目标距离\n0.351%/0.351%/0.351%/0.364% 全部 ≥0.35%，双向覆盖保留全部四形态。\n行权价（14:54 实报复核，行权价不变）：A 741C/745C≈$50；B 740P/736P≈$31；C 740C/743C≈$102；D 741P/738P≈$68。\n事件：午后无新增重大事件（12:00 Goolsbee、13:00 5 年期拍卖均已落地）；今日无 FOMC。\nNQ 期货、IV/HV、Greeks、Put/Call 量比：降级模式无此数据。",
+   "note": "2026-09-23 盘中方案（15:53 ET 当日最后一次刷新，数据获取 15:54 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件不可用；TWS 实报正常）\n当日收官：QQQ 收 740.08（-0.99%），日高 747.13（9:30）/ 日低 738.19（10:26），VWAP 740.97，\n尾盘 15:00 段冲高 741.54 后回落至 740 关口，15:3x 单根收盘破 740.0 后最后 1 分钟收复（740.08）。\n触发复核（13:53 版点位全生命周期）：741.7 全天（加载后）未被收盘突破——A/D 未触发；\n740.0 在 15:3x 仅 1 根收盘跌破（B 需连续 2 根，未触发）；C 的收复发生在约 15:52，已在 15:30\n开仓窗口之外（watcher 日志无 trigger_hit，全天 IDLE 无成交，15:45 正常归档关机：705 根K线 + 34 个期权合约）。\n处置（规则⑥：15:53 刷新须确保 15:30 前可完成进出——现已过窗口，当日不再开新仓）：\nA / B / C / D 全部 enabled: false（时间窗口关闭，非数据故障），E 维持监控。\n事件：今日无 FOMC；午后无重大数据。\nNQ 期货、IV/HV、Greeks、Put/Call 量比：降级模式无此数据。",
    "market": {
-    "spot_premarket": 740.75,
+    "spot_premarket": 740.08,
     "daily_iv_pct": 0.99,
-    "expected_low": 739.5,
-    "expected_high": 742.0
+    "expected_low": 739.0,
+    "expected_high": 741.5
    },
    "regime_day": null,
    "scenarios": [
     {
      "name": "A-右侧突破买入",
      "pattern": "A",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": 741.7,
      "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
      "structure": "bull_call_spread",
@@ -153,7 +153,7 @@
     {
      "name": "B-右侧跌破追空",
      "pattern": "B",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": 740.0,
      "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
      "structure": "bear_put_spread",
@@ -173,7 +173,7 @@
     {
      "name": "C-左侧回踩确认买入",
      "pattern": "C",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": 740.0,
      "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
      "structure": "bull_call_spread",
@@ -193,7 +193,7 @@
     {
      "name": "D-假突破反手做空",
      "pattern": "D",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": 741.7,
      "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
      "structure": "bear_put_spread",
@@ -225,7 +225,7 @@
      "regime": null
     }
    ],
-   "enabled_count": 5
+   "enabled_count": 1
   }
  ],
  "order_events": [],
