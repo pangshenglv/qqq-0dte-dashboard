@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QQQ 0DTE 盯盘看板</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">📈</span>
+    <h1>QQQ 0DTE 盯盘看板</h1>
+  </div>
+  <div class="controls">
+    <label for="daySelect">交易日</label>
+    <select id="daySelect"></select>
+    <span id="updated" class="updated"></span>
+    <label class="auto"><input type="checkbox" id="autoRefresh" checked> 60s 自动刷新</label>
+  </div>
+</header>
+
+<section id="statusStrip" class="status-strip"></section>
+
+<main>
+  <section class="panel">
+    <h2>🧠 AI 策略方案时间线 <span id="snapCount" class="count"></span></h2>
+    <div id="timeline" class="timeline"></div>
+  </section>
+
+  <section class="panel">
+    <h2>📋 委托记录 <span id="pnlBadge" class="pnl-badge"></span></h2>
+    <div id="orders"></div>
+    <details class="raw-events">
+      <summary>原始事件流水</summary>
+      <table id="eventTable"><thead>
+        <tr><th>时间 (ET)</th><th>事件</th><th>状态</th><th>方向</th><th>形态</th><th>价格/限价</th><th>备注</th></tr>
+      </thead><tbody></tbody></table>
+    </details>
+  </section>
+</main>
+
+<footer id="foot"></footer>
+<script src="app.js"></script>
+</body>
+</html>
