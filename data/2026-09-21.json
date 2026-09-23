@@ -1,0 +1,403 @@
+{
+ "date": "2026-09-21",
+ "snapshots": [
+  {
+   "file": "daily_20260921",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "09:10",
+   "generated_at": "09:10 ET",
+   "data_source": "ibkr_plugin",
+   "note": "2026-09-21: IBKR OAuth 授权过期，行情工具不可用（authenticate 回调超时）。\nmarket 段为 9/18 周五收盘冻结值，仅供结构兼容，非今日盘前数据。\nA–D 全部 enabled: false —— 数据缺失日，盯盘脚本不应触发任何交易信号。",
+   "market": {
+    "spot_premarket": 722.05,
+    "daily_iv_pct": 1.03,
+    "expected_low": 714.7,
+    "expected_high": 729.5
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 721.9,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 722,
+      "short": 727
+     },
+     "max_debit": 200,
+     "target_zone": [
+      724.1,
+      728.0
+     ],
+     "target": 728.0,
+     "invalid_level": 721.9,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 715.1,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 715,
+      "short": 710
+     },
+     "max_debit": 200,
+     "target_zone": [
+      713.3,
+      711.9
+     ],
+     "target": 711.9,
+     "invalid_level": 718.1,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 718.1,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 718,
+      "short": 723
+     },
+     "max_debit": 200,
+     "target_zone": [
+      719.7,
+      721.7
+     ],
+     "target": 721.7,
+     "invalid_level": 718.1,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 721.9,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 721,
+      "short": 716
+     },
+     "max_debit": 200,
+     "target_zone": [
+      719.7,
+      718.1
+     ],
+     "target": 718.1,
+     "invalid_level": 721.9,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1
+  },
+  {
+   "file": "daily_20260921_pm",
+   "kind": "pm",
+   "label": "盘中刷新 15:53 ET",
+   "sort_key": "15:53",
+   "generated_at": "15:53 ET",
+   "data_source": "tws_local",
+   "note": "2026-09-21 盘中修正（15:53 ET 尾盘终版，降级模式）\n数据通道：IBKR 插件 OAuth 仍未完成（数据工具未注册），继续本地 TWS 实报（tws_snapshot.py，\nfetched 2026-09-21 15:53:55 EDT），data_source: tws_local。\n收盘定格：开 727.87 / 低 727.81 / 高 743.22 / 现 741.82（较周五收盘 721.45 +2.82%），\n成交 38.2M 为近一月最大量；单边趋势日收近高点，15:50 尾盘放量回抽 741.43 后收回 741.8。\n处置：开仓窗口（9:30–15:30 ET）已关闭，flat_by 15:30 ET 已过 —— 全部入场形态禁用，今日不再开新仓；\nA4（742.0 尾盘动量）已触发（日高 743.22，15:40–15:49 连续收于 742.3+），按规则①作废；\nA2 / A3 维持触发作废；盘前 A–D 与 C2 / D2 维持禁用。仅保留 E-横盘观望。\n降级模式无数据项：NQ 期货、IV/HV、期权 Greeks、Put/Call 量比 —— daily_iv_pct 置 null，禁止估算冒充。",
+   "market": {
+    "spot_premarket": 741.82,
+    "daily_iv_pct": null,
+    "expected_low": 727.8,
+    "expected_high": 743.2
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 721.9,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 722,
+      "short": 727
+     },
+     "max_debit": 200,
+     "target_zone": [
+      724.1,
+      728.0
+     ],
+     "target": 728.0,
+     "invalid_level": 721.9,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 715.1,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 715,
+      "short": 710
+     },
+     "max_debit": 200,
+     "target_zone": [
+      713.3,
+      711.9
+     ],
+     "target": 711.9,
+     "invalid_level": 718.1,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 718.1,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 718,
+      "short": 723
+     },
+     "max_debit": 200,
+     "target_zone": [
+      719.7,
+      721.7
+     ],
+     "target": 721.7,
+     "invalid_level": 718.1,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 721.9,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 721,
+      "short": 716
+     },
+     "max_debit": 200,
+     "target_zone": [
+      719.7,
+      718.1
+     ],
+     "target": 718.1,
+     "invalid_level": 721.9,
+     "regime": "any"
+    },
+    {
+     "name": "A2-午后突破日高",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 738.0,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 738,
+      "short": 741
+     },
+     "max_debit": 200,
+     "target_zone": [
+      739.5,
+      741.0
+     ],
+     "target": 741.0,
+     "invalid_level": 736.9,
+     "regime": "trend"
+    },
+    {
+     "name": "C2-回踩735确认买入",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 735.0,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 735,
+      "short": 738
+     },
+     "max_debit": 200,
+     "target_zone": [
+      738.0,
+      739.4
+     ],
+     "target": 739.4,
+     "invalid_level": 734.0,
+     "regime": "any"
+    },
+    {
+     "name": "D2-假突破738反手做空",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 738.0,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 738,
+      "short": 735
+     },
+     "max_debit": 200,
+     "target_zone": [
+      736.5,
+      735.0
+     ],
+     "target": 735.0,
+     "invalid_level": 738.0,
+     "regime": "any"
+    },
+    {
+     "name": "A3-午后突破新高续涨",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 740.5,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 741,
+      "short": 744
+     },
+     "max_debit": 200,
+     "target_zone": [
+      742.0,
+      743.5
+     ],
+     "target": 743.5,
+     "invalid_level": 738.4,
+     "regime": "trend"
+    },
+    {
+     "name": "A4-尾盘动量突破",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 742.0,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 742,
+      "short": 745
+     },
+     "max_debit": 200,
+     "target_zone": [
+      743.5,
+      745.0
+     ],
+     "target": 745.0,
+     "invalid_level": 740.9,
+     "regime": "trend"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1
+  }
+ ],
+ "order_events": [
+  {
+   "ts": "2026-09-21T12:40:06.954368-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 738.53,
+   "side": "BUY",
+   "limit": 1.08,
+   "attempt": 1,
+   "tag": "A"
+  },
+  {
+   "ts": "2026-09-21T12:40:16.966005-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 738.5599,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.08,
+   "cost": 108.0
+  },
+  {
+   "ts": "2026-09-21T13:25:22.532556-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 738.64,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 0.98
+  },
+  {
+   "ts": "2026-09-21T13:25:26.537052-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 738.64,
+   "side": "close",
+   "pattern": "A",
+   "proceeds": 100.0,
+   "pnl": -8.0,
+   "realized": -8.0
+  }
+ ],
+ "roundtrips": [
+  {
+   "pattern": "A",
+   "open": {
+    "ts": "2026-09-21T12:40:16.966005-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 738.5599,
+    "side": "open",
+    "pattern": "A",
+    "price": 1.08,
+    "cost": 108.0
+   },
+   "close": {
+    "ts": "2026-09-21T13:25:26.537052-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 738.64,
+    "side": "close",
+    "pattern": "A",
+    "proceeds": 100.0,
+    "pnl": -8.0,
+    "realized": -8.0
+   },
+   "pnl": -8.0,
+   "open_ts": "2026-09-21T12:40:16.966005-04:00",
+   "close_ts": "2026-09-21T13:25:26.537052-04:00"
+  }
+ ],
+ "realized_pnl": -8.0
+}

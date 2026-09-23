@@ -5,7 +5,9 @@ const DATA = "data/";
 let currentDay = null;
 
 async function fetchJSON(url) {
-  const r = await fetch(url, { cache: "no-store" });
+  // 加时间戳穿透 GitHub Pages CDN 缓存，保证拿到最新推送的数据
+  const sep = url.includes("?") ? "&" : "?";
+  const r = await fetch(`${url}${sep}_=${Date.now()}`, { cache: "no-store" });
   if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`);
   return r.json();
 }

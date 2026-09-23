@@ -1,0 +1,254 @@
+{
+ "date": "2026-09-22",
+ "snapshots": [
+  {
+   "file": "daily_20260922",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "12:51",
+   "generated_at": "12:51 ET",
+   "data_source": "tws_local",
+   "note": "",
+   "market": {
+    "spot_premarket": 744.69,
+    "daily_iv_pct": 1.01,
+    "expected_low": 737.15,
+    "expected_high": 752.23
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 746.6,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 746,
+      "short": 751
+     },
+     "max_debit": 200,
+     "target_zone": [
+      748.0,
+      750.0
+     ],
+     "target": 750.0,
+     "invalid_level": 745.8,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 740.9,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 741,
+      "short": 736
+     },
+     "max_debit": 200,
+     "target_zone": [
+      738.0,
+      737.5
+     ],
+     "target": 737.5,
+     "invalid_level": 741.8,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 743.2,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 743,
+      "short": 748
+     },
+     "max_debit": 200,
+     "target_zone": [
+      745.5,
+      746.6
+     ],
+     "target": 746.6,
+     "invalid_level": 742.0,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 746.6,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 746,
+      "short": 741
+     },
+     "max_debit": 200,
+     "target_zone": [
+      744.0,
+      743.2
+     ],
+     "target": 743.2,
+     "invalid_level": 747.6,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  },
+  {
+   "file": "daily_20260922_pm",
+   "kind": "pm",
+   "label": "盘中刷新 15:56 ET",
+   "sort_key": "15:56",
+   "generated_at": "15:56 ET",
+   "data_source": "tws_local",
+   "note": "2026-09-22 盘中修正（15:53 ET 例行刷新，当日最后一次，数据获取 15:54–15:56 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件不在本会话可用工具列表中，OAuth 通道不可用）\n盘面更新：尾盘加速上行，15:16 起连续收于 747.0 上方，日高 748.35（15:53），现价约 748.0（+0.88%），\nVWAP 745.52，收在全日最高区域，趋势日确认。\n重要复核：A2（747.0）的触发条件在 15:17 ET 已满足（15:16 起连续 2 根 1 分钟收盘站上 747.0，\n在开仓窗口内），但盯盘日志无对应 trigger_hit 记录，watcher 全程 IDLE 未开仓；\n疑与午后实时 bar 服务异常（tick 降级聚合）有关，建议盘后复盘检查 watcher 触发链路。\n处置概要（已过 15:30 开仓截止与强制平仓时点，当日不再开新仓）：\nA  禁用 —— 14:23 已触发（规则①作废）。\nD  禁用 —— 14:29 假突破条件已触发（规则①作废）。\nB  禁用 —— 维持 14:53 尾盘瘦身处置。\nC  禁用 —— 维持 14:53 尾盘瘦身处置。\nA2 禁用 —— 开仓窗口已于 15:30 关闭，尾盘不再开新仓（规则⑤）。\nE  维持 —— 仅监控。\n事件：今日无 FOMC；下午无重大数据（货币供应量 17:00 ET 在收盘后）。\nNQ 期货、IV/HV、Greeks、Put/Call 量比：降级模式无此数据。",
+   "market": {
+    "spot_premarket": 744.69,
+    "daily_iv_pct": 1.01,
+    "expected_low": 737.15,
+    "expected_high": 752.23
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 746.6,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 746,
+      "short": 751
+     },
+     "max_debit": 200,
+     "target_zone": [
+      748.0,
+      750.0
+     ],
+     "target": 750.0,
+     "invalid_level": 744.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 740.9,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 741,
+      "short": 736
+     },
+     "max_debit": 200,
+     "target_zone": [
+      738.0,
+      737.5
+     ],
+     "target": 737.5,
+     "invalid_level": 741.8,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 743.2,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 743,
+      "short": 748
+     },
+     "max_debit": 200,
+     "target_zone": [
+      745.5,
+      746.6
+     ],
+     "target": 746.6,
+     "invalid_level": 742.0,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 746.6,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 746,
+      "short": 741
+     },
+     "max_debit": 200,
+     "target_zone": [
+      744.0,
+      743.2
+     ],
+     "target": 743.2,
+     "invalid_level": 747.6,
+     "regime": "any"
+    },
+    {
+     "name": "A2-尾盘突破日高",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 747.0,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 747,
+      "short": 750
+     },
+     "max_debit": 200,
+     "target_zone": [
+      748.5,
+      750.0
+     ],
+     "target": 750.0,
+     "invalid_level": 745.9,
+     "regime": "trend"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1
+  }
+ ],
+ "order_events": [],
+ "roundtrips": [],
+ "realized_pnl": 0
+}
