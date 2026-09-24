@@ -288,7 +288,28 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-09-24T14:14:03.495798-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 739.2284,
+   "side": "BUY",
+   "limit": 1.41,
+   "attempt": 1,
+   "tag": "C"
+  },
+  {
+   "ts": "2026-09-24T14:14:35.524083-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 739.36,
+   "side": "BUY",
+   "limit": 1.46,
+   "attempt": 2,
+   "tag": "C"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
