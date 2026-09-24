@@ -117,23 +117,23 @@
   {
    "file": "daily_20260924_pm",
    "kind": "pm",
-   "label": "盘中刷新 12:58 ET",
-   "sort_key": "12:58",
-   "generated_at": "12:58 ET",
+   "label": "盘中刷新 13:58 ET",
+   "sort_key": "13:58",
+   "generated_at": "13:58 ET",
    "data_source": "tws_local",
-   "note": "2026-09-24 盘中修正（12:53 ET 例行刷新，数据获取 12:54–12:57 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件不可用，TWS 实报正常）\n期权墙摘要（12:54 ET，spot 740.98，P/C 量比 0.79 偏多）：top3 墙 = 735P 33.5 万 / 736P 31.5 万 / 738C 30.5 万；\n突破后墙位重排：738C 旧压制墙已被价格翻越转为脚下支撑区，740C 30.0 万 + 741C 20.7 万构成 740–741 新压制带，\n735–736 put 厚墙为下方远端支撑。墙与分时结构一致，无冲突。\n盘面：12:15 垂直拉升（正是规则⑦引用的教训行情）——12:00 段自 735.0 放量 258 万股拉升，12:17 连续收盘突破\n738.2/738.4（A 触发位被触发，但因 10:53 版按旧规则⑤禁用未开仓——规则⑦已据此修订），日高 742.37（12:42），\n现价 740.88（-0.04%），VWAP 上移至 737.47，价格在其上方。市况翻 trend（watcher 闸门 12:18 已自动确认 trend）。\n新结构：S1 739.5–739.9（突破整理平台/整数关 740）；S2 738.2–738.4（旧阻力+738C 墙转支撑）；S3 736.8–737.5（736P 墙/VWAP）。\nR1 741.2–741.6（741C 墙 + 12:51 高 741.63）；R2 742.4（日高 742.37）；R3 743.7–744（整数关）。\n处置概要（规则①②⑦综合）：\nA 修正 —— 原 738.4 已于 12:17 触发（规则①作废旧点位）；按新结构重标 R1 上方 741.7 → target 744.3（0.351%✓），\ninvalid 740.0（S1 平台）；legs 742C/745C（实报 0.99/0.29，约 $70）。regime: trend。\nB 修正 —— 原 735.0 距现价 -0.79% 且中间形成多重支撑，结构失效；重标至 736P 厚墙下方 736.7\n（与 C 夹缝 0.312%✓）→ target 734.1（0.352%✓），invalid 738.0；legs 737P/734P（实报 0.33/0.11，约 $22）。\nC 修正 —— 原 734.6 远离现价（-0.80%）；重标至 S1 平台下沿 739.0（跌破收复做多，与 D 夹缝 0.366%✓）→\ntarget 741.6（0.352%✓），invalid 738.0（S2 下方）；legs 739C/741C（实报 3.20/1.44，约 $176）。\nD 修正 —— 原 738.2 突破后未回落（fade 未触发），点位失效；重标至与 A 共用 R1 741.7（收盘突破后 15 分钟跌回）→\ntarget 739.1（0.351%✓），invalid 742.5（日高上方）；legs 741P/738P（实报 1.48/0.50，约 $98）。\nE 维持。\n双向覆盖：多侧 A+C、空侧 B+D 全 enabled；A/D 共用 741.7 阻力（规则允许，触发互斥）。\n事件风险（规则③）：13:00 ET 7 年期国债拍卖（440 亿）即在数分钟后——12:30–13:00 窗口已过新开仓高风险段，\n拍卖落地若引发利率波动放大，13:53 刷新视市场反应重估。今日无 FOMC。\nNQ 期货、IV/HV、Greeks：降级模式无此数据。",
+   "note": "2026-09-24 盘中修正（13:53 ET 例行刷新，数据获取 13:55–13:57 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件不可用，TWS 实报正常）\n期权墙摘要（13:55 ET，spot 739.16，P/C 量比 0.8）：top3 墙 = 735P 35.9 万 / 740C 35.5 万 / 736P 33.5 万；\n740C/741C（29.3 万）构成 740–741 厚重压制带（与午后回落高点区重合），738C 31.2 万压在 VWAP 上，\n735P/736P 为下方远端强支撑。墙与分时结构一致：740–741 压制、738 VWAP 中枢、736.7–737 Shelf、735–736 墙底。\n盘面：13:00 七年期国债拍卖落地后冲高 742.66（13:05 日高）随后持续回落至 738.81，现价 739.1 守在 VWAP 738.08 上方，\n形成「冲高失败回落」结构；日内区间 734.62–742.66（1.09%），缺口 -0.80%。watcher 13:31 判定 trend。\n触发核查（watcher 日志实记）：A@741.7 已于 12:59 confirmed 触发 → 规则①作废；C@739.0 已于 13:44 confirmed 触发 → 规则①作废；\nD@741.7 全程未触发但 741.7 已被反复穿越 10 次且回落行情已走完 → 规则①作废；B@736.7 自 12:58 后未被触及（最低 738.71）。\n处置概要：\nA → 禁用（已触发）+ 新增 A2-午后突破740关口：R1 740.0（740C 厚墙+整数关+13:00 段低点 739.62）上方 740.2，\ntarget 742.9（0.365%✓，日高 742.66 上方），invalid 739.0（S1 平台下沿），legs 739C/745C（实报 1.20/0.045≈$116，窗口内✓）。regime: trend。\nB 修正 —— 旧 736.7 结构偏远且 legs $22 低于规则⑥ $100 下限（会被 G3 拒单）；重标至 VWAP/738C 墙下方 737.9\n（跌破 738.0 VWAP+墙 即回抽确认失败），target 735.0（0.393%✓，735P 厚墙前沿止盈），invalid 738.7（S1 下沿上方），\nlegs 740P/737P（实报 1.46/0.40≈$106✓）。regime: trend。\nC → 禁用（已触发）+ 新增 C2-回踩VWAP确认买入：738C 墙+VWAP+上午 Shelf 顶三重支撑 738.1（跌破 738.0 后 1 分钟收盘收复），\ntarget 740.8（0.366%✓，R2 墙带内），invalid 737.4（Shelf 下方），legs 738C/741C（实报 1.83/0.41≈$142✓）。regime: any。\nD → 禁用（点位失效）+ 新增 D2-740关口假突破反手：与 A2 共用 740.2 阻力（收盘突破后 15 分钟内收盘跌回 739.9 下方），\ntarget 737.3（0.351%✓），invalid 740.9（突破证实），legs 740P/737P（≈$106✓）。regime: any。\nE 维持。\n夹缝说明：A2(740.2) 对 B(737.9) 间距 0.31%✓；C2(738.1) 与 B(737.9) 同处 738 Shelf 两侧，触发逻辑互斥\n（C2 需跌破后收复、B 需连续 2 根收盘跌破且放量），沿用 12:58 版 A/D 共位先例，watcher 无夹缝校验。\n事件：13:00 七年期拍卖已落地（冲高回落反应完毕）；下午无 FOMC/经济数据；Fed 官员讲话（Barkin/Hammack/Paulson）\n时间未定+Trump-Xi 会面 headline 风险——属突发型，无法预埋点位，触发后下轮 14:53 重估。\n尾盘提示：下一轮 14:53 刷新进入尾盘窗口，将按盈亏比收紧形态。NQ 期货、IV/HV、Greeks：降级模式无此数据。",
    "market": {
-    "spot_premarket": 740.88,
-    "daily_iv_pct": 1.02,
-    "expected_low": 737.4,
-    "expected_high": 744.4
+    "spot_premarket": 739.1,
+    "daily_iv_pct": 1.09,
+    "expected_low": 736.0,
+    "expected_high": 742.7
    },
    "regime_day": null,
    "scenarios": [
     {
      "name": "A-右侧突破买入",
      "pattern": "A",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": 741.7,
      "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
      "structure": "bull_call_spread",
@@ -151,29 +151,49 @@
      "regime": "trend"
     },
     {
-     "name": "B-右侧跌破追空",
-     "pattern": "B",
+     "name": "A2-午后突破740关口",
+     "pattern": "A",
      "enabled": true,
-     "trigger_level": 736.7,
-     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
-     "structure": "bear_put_spread",
+     "trigger_level": 740.2,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
      "legs": {
-      "long": 737,
-      "short": 734
+      "long": 739,
+      "short": 745
      },
      "max_debit": 200,
      "target_zone": [
-      735.0,
-      734.1
+      742.0,
+      742.9
      ],
-     "target": 734.1,
-     "invalid_level": 738.0,
+     "target": 742.9,
+     "invalid_level": 739.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 737.9,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 740,
+      "short": 737
+     },
+     "max_debit": 200,
+     "target_zone": [
+      736.0,
+      735.0
+     ],
+     "target": 735.0,
+     "invalid_level": 738.7,
      "regime": "trend"
     },
     {
      "name": "C-左侧回踩确认买入",
      "pattern": "C",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": 739.0,
      "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
      "structure": "bull_call_spread",
@@ -191,9 +211,29 @@
      "regime": "any"
     },
     {
+     "name": "C2-回踩VWAP确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 738.1,
+     "trigger_rule": "价格跌破 738.0 后1分钟K线收盘重新站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 738,
+      "short": 741
+     },
+     "max_debit": 200,
+     "target_zone": [
+      739.9,
+      740.8
+     ],
+     "target": 740.8,
+     "invalid_level": 737.4,
+     "regime": "any"
+    },
+    {
      "name": "D-假突破反手做空",
      "pattern": "D",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": 741.7,
      "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
      "structure": "bear_put_spread",
@@ -208,6 +248,26 @@
      ],
      "target": 739.1,
      "invalid_level": 742.5,
+     "regime": "any"
+    },
+    {
+     "name": "D2-740关口假突破反手",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 739.9,
+     "trigger_rule": "价格收盘突破 740.2 后15分钟内1分钟K线收盘跌回 trigger_level 下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 740,
+      "short": 737
+     },
+     "max_debit": 200,
+     "target_zone": [
+      738.1,
+      737.3
+     ],
+     "target": 737.3,
+     "invalid_level": 740.9,
      "regime": "any"
     },
     {
