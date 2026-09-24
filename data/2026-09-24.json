@@ -336,6 +336,15 @@
    "pattern": "A",
    "price": 1.92,
    "cost": 192.0
+  },
+  {
+   "ts": "2026-09-24T14:35:51.111397-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 739.7499,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 1.28
   }
  ],
  "roundtrips": [],

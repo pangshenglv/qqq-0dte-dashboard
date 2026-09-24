@@ -1,19 +1,20 @@
 {
- "generated_at_et": "2026-09-24 14:27:21 ET",
- "generated_at_bj": "2026-09-25 02:27:21",
+ "generated_at_et": "2026-09-24 14:35:52 ET",
+ "generated_at_bj": "2026-09-25 02:35:52",
  "watcher": {
   "alive": true,
   "pid": 76824,
-  "uptime": "56:54",
+  "uptime": "01:05:25",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 9,
+  "last_event_age_s": 1,
   "last_event": {
-   "ts": "2026-09-24T14:27:11.710568-04:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "info",
-   "summary": "A 开仓成交 @ 1.92（成本 $192）"
+   "ts": "2026-09-24T14:35:51.111397-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 739.7499,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 1.28
   }
  },
  "gateway": {
@@ -29,6 +30,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 740.4805,
- "git_head": "4d29e0c"
+ "last_spot": 740.03,
+ "git_head": "2bdaac6"
 }
