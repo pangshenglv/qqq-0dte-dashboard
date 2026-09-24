@@ -316,6 +316,26 @@
    "spot": 739.46,
    "note": "改价后仍未成交，放弃",
    "pattern": "C"
+  },
+  {
+   "ts": "2026-09-24T14:27:01.705165-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 740.647,
+   "side": "BUY",
+   "limit": 1.95,
+   "attempt": 1,
+   "tag": "A"
+  },
+  {
+   "ts": "2026-09-24T14:27:11.710048-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 740.55,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.92,
+   "cost": 192.0
   }
  ],
  "roundtrips": [],
