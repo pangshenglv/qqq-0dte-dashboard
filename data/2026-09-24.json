@@ -345,8 +345,47 @@
    "side": "SELL",
    "ladder": "L2",
    "limit": 1.28
+  },
+  {
+   "ts": "2026-09-24T14:35:55.115270-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 739.7499,
+   "side": "close",
+   "pattern": "A",
+   "proceeds": 130.0,
+   "pnl": -62.0,
+   "realized": -62.0
   }
  ],
- "roundtrips": [],
- "realized_pnl": 0
+ "roundtrips": [
+  {
+   "pattern": "A",
+   "open": {
+    "ts": "2026-09-24T14:27:11.710048-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 740.55,
+    "side": "open",
+    "pattern": "A",
+    "price": 1.92,
+    "cost": 192.0
+   },
+   "close": {
+    "ts": "2026-09-24T14:35:55.115270-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 739.7499,
+    "side": "close",
+    "pattern": "A",
+    "proceeds": 130.0,
+    "pnl": -62.0,
+    "realized": -62.0
+   },
+   "pnl": -62.0,
+   "open_ts": "2026-09-24T14:27:11.710048-04:00",
+   "close_ts": "2026-09-24T14:35:55.115270-04:00"
+  }
+ ],
+ "realized_pnl": -62.0
 }
