@@ -308,6 +308,14 @@
    "limit": 1.46,
    "attempt": 2,
    "tag": "C"
+  },
+  {
+   "ts": "2026-09-24T14:15:07.555554-04:00",
+   "event": "order_cancel",
+   "state": "IDLE",
+   "spot": 739.46,
+   "note": "改价后仍未成交，放弃",
+   "pattern": "C"
   }
  ],
  "roundtrips": [],
