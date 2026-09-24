@@ -1,6 +1,120 @@
 {
  "date": "2026-09-24",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20260924",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "08:56",
+   "generated_at": "08:56 ET",
+   "data_source": "tws_local",
+   "note": "",
+   "market": {
+    "spot_premarket": 734.12,
+    "daily_iv_pct": 1.02,
+    "expected_low": 726.63,
+    "expected_high": 741.61
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 738.4,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 739,
+      "short": 744
+     },
+     "max_debit": 200,
+     "target_zone": [
+      740.0,
+      741.2
+     ],
+     "target": 741.2,
+     "invalid_level": 737.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 730.0,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 730,
+      "short": 725
+     },
+     "max_debit": 200,
+     "target_zone": [
+      728.5,
+      727.4
+     ],
+     "target": 727.4,
+     "invalid_level": 731.2,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 727.8,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 728,
+      "short": 733
+     },
+     "max_debit": 200,
+     "target_zone": [
+      729.5,
+      730.5
+     ],
+     "target": 730.5,
+     "invalid_level": 726.5,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 738.2,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 738,
+      "short": 733
+     },
+     "max_debit": 200,
+     "target_zone": [
+      736.5,
+      735.0
+     ],
+     "target": 735.0,
+     "invalid_level": 739.4,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
