@@ -1,6 +1,96 @@
 {
  "date": "2026-09-26",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20260926",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "08:53",
+   "generated_at": "08:53 ET",
+   "data_source": "tws_local",
+   "note": "数据获取: 2026-09-26 08:53 ET | 数据源: tws_local（IBKR 插件不可用，降级通道）——今日为周六休市日，行情为 9/25 收盘数据\n期权墙: 无墙数据（option_wall_scan.py 返回「今日无到期链」，休市日无 0DTE 合约）\n当日事件: 无重大事件（周六，美国无经济数据发布）；下周前瞻：9/29 JOLTS、9/30 GDP三估+PCE（一级）、10/2 非农",
+   "market": {
+    "spot_premarket": 744.5,
+    "daily_iv_pct": 0.99,
+    "expected_low": 737.15,
+    "expected_high": 751.85
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
