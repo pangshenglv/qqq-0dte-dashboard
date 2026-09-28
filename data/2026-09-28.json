@@ -5,56 +5,56 @@
    "file": "daily_20260928",
    "kind": "premarket",
    "label": "盘前方案",
-   "sort_key": "09:31",
-   "generated_at": "09:31 ET",
+   "sort_key": "09:47",
+   "generated_at": "09:47 ET",
    "data_source": "tws_local",
-   "note": "数据获取: 2026-09-28 09:29-09:31 ET | 数据源: tws_local（IBKR 插件不可用，降级通道）\n期权墙: 无墙数据（脚本运行正常，盘前 0DTE 成交量为零：walls 全部 vol=0、P/C 比 null，需盘中成交积累后重扫）\n当日事件: 无一级事件；周末地缘冲击（Trump 拒绝伊朗 Hormuz 提案，原油 +3.6%、10Y 5.18%、VIX +9.7%）为盘前低开主因；Dallas Fed 制造业 10:30 ET（次级）；Goolsbee 讲话",
+   "note": "数据获取: 2026-09-28 09:46-09:47 ET（盘中刷新版，替代 09:31 盘前版）| 数据源: tws_local（IBKR 插件不可用，降级通道）\n期权墙（实报 09:47 ET）: top3 = 738P 55524 / 741C 29051 / 740C 26530（另 742C 26525、737P 26487、739P 25142）；P/C 量比 1.24；738 put 厚墙已被跌破→转为压制区；740-742 call 墙集群压制上方\n当日事件: 无一级事件；Dallas Fed 制造业 10:30 ET（次级）；伊朗/Hormuz 地缘头条敏感（Brent >$106、10Y 曾破 5.2%）",
    "market": {
-    "spot_premarket": 740.41,
-    "daily_iv_pct": 0.99,
-    "expected_low": 733.1,
-    "expected_high": 747.72
+    "spot_premarket": 737.85,
+    "daily_iv_pct": 0.49,
+    "expected_low": 734.23,
+    "expected_high": 741.47
    },
    "regime_day": null,
    "scenarios": [
     {
      "name": "A-右侧突破买入",
      "pattern": "A",
-     "enabled": true,
-     "trigger_level": 741.5,
+     "enabled": false,
+     "trigger_level": 740.2,
      "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
      "structure": "bull_call_spread",
      "legs": {
-      "long": 742,
-      "short": 747
+      "long": 740,
+      "short": 745
      },
      "max_debit": 200,
      "target_zone": [
-      743.2,
-      744.5
+      741.0,
+      741.5
      ],
-     "target": 744.5,
-     "invalid_level": 740.2,
+     "target": 741.0,
+     "invalid_level": 739.0,
      "regime": "trend"
     },
     {
      "name": "B-右侧跌破追空",
      "pattern": "B",
      "enabled": true,
-     "trigger_level": 738.2,
+     "trigger_level": 737.4,
      "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
      "structure": "bear_put_spread",
      "legs": {
-      "long": 738,
-      "short": 733
+      "long": 737,
+      "short": 732
      },
      "max_debit": 200,
      "target_zone": [
-      736.5,
+      735.5,
       734.6
      ],
      "target": 734.6,
-     "invalid_level": 739.4,
+     "invalid_level": 738.6,
      "regime": "trend"
     },
     {
@@ -70,10 +70,10 @@
      },
      "max_debit": 200,
      "target_zone": [
-      736.5,
-      738.2
+      736.0,
+      737.4
      ],
-     "target": 738.2,
+     "target": 737.4,
      "invalid_level": 733.3,
      "regime": "any"
     },
@@ -81,20 +81,20 @@
      "name": "D-假突破反手做空",
      "pattern": "D",
      "enabled": true,
-     "trigger_level": 741.5,
+     "trigger_level": 739.6,
      "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
      "structure": "bear_put_spread",
      "legs": {
-      "long": 741,
-      "short": 736
+      "long": 739,
+      "short": 734
      },
      "max_debit": 200,
      "target_zone": [
-      739.6,
-      738.2
+      738.2,
+      737.0
      ],
-     "target": 738.2,
-     "invalid_level": 742.8,
+     "target": 737.0,
+     "invalid_level": 740.6,
      "regime": "any"
     },
     {
@@ -112,7 +112,7 @@
      "regime": null
     }
    ],
-   "enabled_count": 5
+   "enabled_count": 4
   }
  ],
  "order_events": [],
