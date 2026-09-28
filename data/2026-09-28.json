@@ -113,6 +113,119 @@
     }
    ],
    "enabled_count": 4
+  },
+  {
+   "file": "daily_20260928_pm",
+   "kind": "pm",
+   "label": "盘中刷新 09:58 ET",
+   "sort_key": "09:58",
+   "generated_at": "09:58 ET",
+   "data_source": "tws_local",
+   "note": "2026-09-28 盘中修正（9:53 ET 首轮刷新，数据获取 09:54–09:57 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件不可用，TWS 实报正常）\n期权墙摘要（09:54 ET，spot 738.61，P/C 量比 1.17 偏空）：top3 墙 = 738P 7.1 万（正压现价脚下、开盘已被跌破后收复）/\n737P 4.3 万 / 740C 4.2 万；739C–741C（3.4/4.2/4.1 万）连成上方压制带，735P 3.3 万 / 736P 3.1 万下方承接。无异常量。\n盘面：周末 Trump 拒绝伊朗 Hormuz 停火提案，油价大涨（WTI ~$94–96、Brent ~$106–108）、10Y 重回 5.2% 上方，\n低开 -0.54%（开 740.46）；开盘冲高 741.42（09:32）失败后急挫至日低 737.22（09:51），现反抽 738.7，VWAP 739.05 在头顶。\n【实盘事件记录】B 形态于 09:52 confirmed 触发（旧 09:31 盘前版触发位 738.2，G1–G4 全过），09:52:11 成交开仓 $1.56（$156，paper 账户 DUQ402112）。\n⚠️ 09:53:44 watcher 重启（24h 常驻模式），重启后 state=IDLE——持仓状态疑似丢失，若 737.4 再破可能二次开仓，请复盘时核对账户实际持仓。\n⚠️ 09:53:52 实时 bar 服务异常，已切换 tick 降级聚合（watcher 自保，本分析走独立 clientId 不受影响）。\n当前持仓随反抽浮亏中但无止损事件（规则④不触发）。\n处置概要：\nA@740.2 禁用维持 —— 开盘冲高已两度穿越 740.2（09:32/09:35），盘前 09:47 版禁用判断正确；上方 739C–741C 墙带压制。\nB@737.4 维持点位 +【规则⑥换 legs】—— 新触发位 737.4 仅 1 根收盘跌破（需 2 根+放量，未触发）；旧 legs 737P/732P\n实报仅 $89 低于 $100 硬下限 → 换 739P/734P（实报 1.97/0.44≈$153✓ 目标区间，触发时约 $160–180 仍合规，\n739P 距触发位 1.6 价内属轻度 ITM，周五 $128→$315 的深 ITM 膨胀教训已控制腿长）。\nC@734.6 维持 —— 零穿越、距现价 0.55% 在限内；legs 735C/740C 当前标价 $310 超顶系 735C 深价内失真\n（现价高于触发位 4.1），触发时（回踩 734.6）双腿回落近平值 debit 约 $145✓，G3 触发时复检，不换仓。\nD@739.6 维持 —— 开盘已在 739.6 上方收盘后于 09:34 回落（脚本检测到 fade 形态），但 watcher 未 confirmed 触发、\n穿越仅 1 次，规则①不适用；现价距 -0.12%，保留用于「再上 739.6 假突破」场景。\n事件：Dallas Fed 制造业 10:30 ET（次级）；伊朗/Hormuz 头条全日敏感（谈判本周重启，双向突发风险）；\n本周大事为周三 PCE 与周五非农。无 FOMC/拍卖。\nNQ 期货、IV/HV、Greeks：降级模式无此数据。",
+   "market": {
+    "spot_premarket": 738.61,
+    "daily_iv_pct": 0.49,
+    "expected_low": 736.0,
+    "expected_high": 740.5
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 740.2,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 740,
+      "short": 745
+     },
+     "max_debit": 200,
+     "target_zone": [
+      741.0,
+      741.5
+     ],
+     "target": 741.0,
+     "invalid_level": 739.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 737.4,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 739,
+      "short": 734
+     },
+     "max_debit": 200,
+     "target_zone": [
+      735.5,
+      734.6
+     ],
+     "target": 734.6,
+     "invalid_level": 738.6,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 734.6,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 735,
+      "short": 740
+     },
+     "max_debit": 200,
+     "target_zone": [
+      736.0,
+      737.4
+     ],
+     "target": 737.4,
+     "invalid_level": 733.3,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 739.6,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 739,
+      "short": 734
+     },
+     "max_debit": 200,
+     "target_zone": [
+      738.2,
+      737.0
+     ],
+     "target": 737.0,
+     "invalid_level": 740.6,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 4
   }
  ],
  "order_events": [
