@@ -1,6 +1,120 @@
 {
  "date": "2026-09-28",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20260928",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "09:31",
+   "generated_at": "09:31 ET",
+   "data_source": "tws_local",
+   "note": "数据获取: 2026-09-28 09:29-09:31 ET | 数据源: tws_local（IBKR 插件不可用，降级通道）\n期权墙: 无墙数据（脚本运行正常，盘前 0DTE 成交量为零：walls 全部 vol=0、P/C 比 null，需盘中成交积累后重扫）\n当日事件: 无一级事件；周末地缘冲击（Trump 拒绝伊朗 Hormuz 提案，原油 +3.6%、10Y 5.18%、VIX +9.7%）为盘前低开主因；Dallas Fed 制造业 10:30 ET（次级）；Goolsbee 讲话",
+   "market": {
+    "spot_premarket": 740.41,
+    "daily_iv_pct": 0.99,
+    "expected_low": 733.1,
+    "expected_high": 747.72
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 741.5,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 742,
+      "short": 747
+     },
+     "max_debit": 200,
+     "target_zone": [
+      743.2,
+      744.5
+     ],
+     "target": 744.5,
+     "invalid_level": 740.2,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 738.2,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 738,
+      "short": 733
+     },
+     "max_debit": 200,
+     "target_zone": [
+      736.5,
+      734.6
+     ],
+     "target": 734.6,
+     "invalid_level": 739.4,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 734.6,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 735,
+      "short": 740
+     },
+     "max_debit": 200,
+     "target_zone": [
+      736.5,
+      738.2
+     ],
+     "target": 738.2,
+     "invalid_level": 733.3,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 741.5,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 741,
+      "short": 736
+     },
+     "max_debit": 200,
+     "target_zone": [
+      739.6,
+      738.2
+     ],
+     "target": 738.2,
+     "invalid_level": 742.8,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
