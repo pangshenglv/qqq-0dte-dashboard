@@ -248,6 +248,26 @@
    "pattern": "B",
    "price": 1.56,
    "cost": 156.0
+  },
+  {
+   "ts": "2026-09-28T10:07:01.313360-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 737.28,
+   "side": "BUY",
+   "limit": 2.04,
+   "attempt": 1,
+   "tag": "B"
+  },
+  {
+   "ts": "2026-09-28T10:07:11.325483-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 737.33,
+   "side": "open",
+   "pattern": "B",
+   "price": 2.04,
+   "cost": 204.0
   }
  ],
  "roundtrips": [],
