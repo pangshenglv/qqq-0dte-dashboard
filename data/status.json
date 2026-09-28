@@ -1,20 +1,19 @@
 {
- "generated_at_et": "2026-09-28 09:26:57 ET",
- "generated_at_bj": "2026-09-28 21:26:57",
+ "generated_at_et": "2026-09-28 09:29:05 ET",
+ "generated_at_bj": "2026-09-28 21:29:05",
  "watcher": {
   "alive": true,
-  "pid": 3368,
-  "uptime": "01:45",
+  "pid": 4306,
+  "uptime": "00:37",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 5,
+  "last_event_age_s": 28,
   "last_event": {
-   "ts": "2026-09-28T09:26:51.605454-04:00",
-   "event": "error",
-   "state": "IDLE",
+   "ts": "2026-09-28T09:28:37.209377-04:00",
+   "event": "notification_sent",
+   "state": "-",
    "spot": null,
-   "type": "AttributeError",
-   "detail": "'Watcher' object has no attribute 'rt'",
-   "traceback": "Traceback (most recent call last):\n  File \"/Users/lps/kimi/workspace/qqq-0dte-watcher/watcher.py\", line 973, in session_loop\n    self.agg_bars()\n  File \"/Users/lps/kimi/workspace/qqq-0dte-watcher/watcher.py\", line 324, in agg_bars\n    new = [rb for rb in self.rt\n                        ^^^^^^^\nAttributeError: 'Watcher' object has no attribute 'rt'\n"
+   "level": "alert",
+   "summary": "实时bar服务异常，已切换 tick 降级聚合"
   }
  },
  "gateway": {
@@ -31,5 +30,5 @@
   "15:30"
  ],
  "last_spot": null,
- "git_head": "5f310d3"
+ "git_head": "2a727b9"
 }
