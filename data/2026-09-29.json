@@ -248,8 +248,56 @@
    "pattern": "C",
    "price": 1.65,
    "cost": 165.0
+  },
+  {
+   "ts": "2026-09-29T09:59:11.272028-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 737.99,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 1.93
+  },
+  {
+   "ts": "2026-09-29T09:59:13.275216-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 737.99,
+   "side": "close",
+   "pattern": "C",
+   "proceeds": 193.0,
+   "pnl": 28.0,
+   "realized": 28.0
   }
  ],
- "roundtrips": [],
- "realized_pnl": 0
+ "roundtrips": [
+  {
+   "pattern": "C",
+   "open": {
+    "ts": "2026-09-29T09:46:29.827178-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 737.13,
+    "side": "open",
+    "pattern": "C",
+    "price": 1.65,
+    "cost": 165.0
+   },
+   "close": {
+    "ts": "2026-09-29T09:59:13.275216-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 737.99,
+    "side": "close",
+    "pattern": "C",
+    "proceeds": 193.0,
+    "pnl": 28.0,
+    "realized": 28.0
+   },
+   "pnl": 28.0,
+   "open_ts": "2026-09-29T09:46:29.827178-04:00",
+   "close_ts": "2026-09-29T09:59:13.275216-04:00"
+  }
+ ],
+ "realized_pnl": 28.0
 }
