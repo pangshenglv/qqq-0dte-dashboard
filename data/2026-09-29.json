@@ -1,6 +1,233 @@
 {
  "date": "2026-09-29",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20260929",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "09:32",
+   "generated_at": "09:32 ET",
+   "data_source": "tws_local",
+   "note": "数据获取: 2026-09-29 09:23-09:31 ET | 数据源: tws_local（盘前主任务 08:53 ET dispatch 失败，由补跑检查兜底产出）\n盘前: QQQ 739.32 (bid 739.32 / ask 739.37) @09:31 ET | 昨收 736.53 → 跳空 +2.79 (+0.38%)\n9/28 RTH: O 740.46 / H 741.42(09:32) / L 731.63(10:48) / C 736.43；VWAP 736.69；振幅 1.33%\n（注: 9/28 盘前 08:06 曾见 745.05，仅 9,785 股，非 RTH 有效高点）\n期权链: 09:31 ET 实报 49/50 合约有双边报价；ATM 739 跨式 mid 4.14 → 隐含 1σ ±4.14 (±0.56%)\n反解 IV: Call 26-29% / Put 20-26%（有 put skew）。以下两腿 debit 均由该实报链推得，非估算值。\n事件: 10:00 ET JOLTs 职位空缺 + 9月谘商会消费者信心（一级）；13:00/13:30/14:00 ET 美联储\nGoolsbee / Musalem / Williams 讲话；特朗普 AI 会议（待定）。无 FOMC/CPI/非农。\n背景: 周一(9/28) QQQ 自 744.5 跌至 736.53（-1.07%），纳指期货今日走平，QQQ 盘前跳空高开\n回到 9/28 开盘区(740.46)/RTH 高点(741.42)下方，形成「跳空回补 vs 突破延续」的分歧位。\n护栏: G3 有效上限取 system.yaml max_debit=250（本文件 max_debit=200 为契约固定值）；\n实测触发位 debit 均 ≤200，四项最大止损 $38.8-$48.4，日熔断 $100 约容两次止损。",
+   "market": {
+    "spot_premarket": 739.32,
+    "daily_iv_pct": 0.56,
+    "expected_low": 735.18,
+    "expected_high": 743.46
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 741.5,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 741,
+      "short": 745
+     },
+     "max_debit": 200,
+     "target_zone": [
+      744.0,
+      745.2
+     ],
+     "target": 744.5,
+     "invalid_level": 739.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 736.3,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 736,
+      "short": 731
+     },
+     "max_debit": 200,
+     "target_zone": [
+      733.2,
+      734.0
+     ],
+     "target": 733.6,
+     "invalid_level": 738.6,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 736.5,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 737,
+      "short": 742
+     },
+     "max_debit": 200,
+     "target_zone": [
+      739.6,
+      740.6
+     ],
+     "target": 740.0,
+     "invalid_level": 734.4,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 741.4,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 741,
+      "short": 736
+     },
+     "max_debit": 200,
+     "target_zone": [
+      737.2,
+      738.2
+     ],
+     "target": 737.6,
+     "invalid_level": 742.8,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  },
+  {
+   "file": "daily_20260929_pm",
+   "kind": "pm",
+   "label": "盘中刷新 09:32 ET",
+   "sort_key": "09:32",
+   "generated_at": "09:32 ET",
+   "data_source": "tws_local",
+   "note": "数据获取: 2026-09-29 09:23-09:31 ET | 数据源: tws_local（盘前主任务 08:53 ET dispatch 失败，由补跑检查兜底产出）\n盘前: QQQ 739.32 (bid 739.32 / ask 739.37) @09:31 ET | 昨收 736.53 → 跳空 +2.79 (+0.38%)\n9/28 RTH: O 740.46 / H 741.42(09:32) / L 731.63(10:48) / C 736.43；VWAP 736.69；振幅 1.33%\n（注: 9/28 盘前 08:06 曾见 745.05，仅 9,785 股，非 RTH 有效高点）\n期权链: 09:31 ET 实报 49/50 合约有双边报价；ATM 739 跨式 mid 4.14 → 隐含 1σ ±4.14 (±0.56%)\n反解 IV: Call 26-29% / Put 20-26%（有 put skew）。以下两腿 debit 均由该实报链推得，非估算值。\n事件: 10:00 ET JOLTs 职位空缺 + 9月谘商会消费者信心（一级）；13:00/13:30/14:00 ET 美联储\nGoolsbee / Musalem / Williams 讲话；特朗普 AI 会议（待定）。无 FOMC/CPI/非农。\n背景: 周一(9/28) QQQ 自 744.5 跌至 736.53（-1.07%），纳指期货今日走平，QQQ 盘前跳空高开\n回到 9/28 开盘区(740.46)/RTH 高点(741.42)下方，形成「跳空回补 vs 突破延续」的分歧位。\n护栏: G3 有效上限取 system.yaml max_debit=250（本文件 max_debit=200 为契约固定值）；\n实测触发位 debit 均 ≤200，四项最大止损 $38.8-$48.4，日熔断 $100 约容两次止损。",
+   "market": {
+    "spot_premarket": 739.32,
+    "daily_iv_pct": 0.56,
+    "expected_low": 735.18,
+    "expected_high": 743.46
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 741.5,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 741,
+      "short": 745
+     },
+     "max_debit": 200,
+     "target_zone": [
+      744.0,
+      745.2
+     ],
+     "target": 744.5,
+     "invalid_level": 739.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 736.3,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 736,
+      "short": 731
+     },
+     "max_debit": 200,
+     "target_zone": [
+      733.2,
+      734.0
+     ],
+     "target": 733.6,
+     "invalid_level": 738.6,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 736.5,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 737,
+      "short": 742
+     },
+     "max_debit": 200,
+     "target_zone": [
+      739.6,
+      740.6
+     ],
+     "target": 740.0,
+     "invalid_level": 734.4,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 741.4,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 741,
+      "short": 736
+     },
+     "max_debit": 200,
+     "target_zone": [
+      737.2,
+      738.2
+     ],
+     "target": 737.6,
+     "invalid_level": 742.8,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
