@@ -228,7 +228,28 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-09-29T09:46:03.808779-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 737.14,
+   "side": "BUY",
+   "limit": 1.65,
+   "attempt": 1,
+   "tag": "C"
+  },
+  {
+   "ts": "2026-09-29T09:46:29.827178-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 737.13,
+   "side": "open",
+   "pattern": "C",
+   "price": 1.65,
+   "cost": 165.0
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
