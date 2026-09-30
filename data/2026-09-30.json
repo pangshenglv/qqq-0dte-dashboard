@@ -1,6 +1,233 @@
 {
  "date": "2026-09-30",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20260930_pm",
+   "kind": "pm",
+   "label": "盘中刷新 08:53 ET",
+   "sort_key": "08:53",
+   "generated_at": "08:53 ET",
+   "data_source": "tws_local",
+   "note": "数据获取: 2026-09-30 08:53-09:0x ET | 数据源: tws_local（DSH 盘前任务，clientId 7 只读）\n盘前: QQQ 740.33 (bid 740.41 / ask 740.48) @08:53 ET | 昨收 737.93 → 跳空 +2.40 (+0.325%)\n9/29 RTH: O 740.13 / H 740.58 / L 735.34 / C 737.99；量 15.3M\n期权墙: **无墙数据** —— 盘前（09:30 前）期权无市场，tools/option_wall_scan.py 全部合约 vol=0/bid=-1\n事件: **事件日历核查失败**（web_search 无 API key；forexfactory 返回 403）。\n本条不构成「无重大事件」的结论 —— 09:53 盘中刷新必须用可用渠道重新核查。\n已知（推断、非查证）: 9/30 周三非 FOMC/CPI/非农常规发布日。\n⚠️ 期权报价时效: 08:53 盘前期权无市场（bid/ask 全 -1，仅 9/29 收盘冻结价）。\n本文件所有 debit / expected_debit 均为**模型估算**（BS 定价，IV 由 9/29 09:31 实报\nATM739 跨式 mid 4.14 反解 = 年化 25.8%），**非实盘报价**。\n09:53 盘中刷新必须按实报链复核并覆盖；G3 的 expected_debit 闸门会按实报自行纠正。\n结构判断: 9/28(736.53)、9/29(737.93) 连续两日下跌后今日跳空高开至 740.33，\n正落在 9/29 高点 740.58 与 9/28 高点 741.42 之间 —— 属「跳空回补 vs 突破延续」分歧位，\n上下两侧均有明确锚点，适合双向挂形态。\n1σ 预期区间: QQQ 740.33 ± 0.735% = 734.89 ~ 745.77（session 口径，derived from IV 25.8%）",
+   "market": {
+    "spot_premarket": 740.33,
+    "daily_iv_pct": 0.74,
+    "expected_low": 734.89,
+    "expected_high": 745.77
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 741.42,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 741,
+      "short": 746
+     },
+     "max_debit": 200,
+     "target_zone": [
+      744.0,
+      745.9
+     ],
+     "target": 744.5,
+     "invalid_level": 739.3,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 735.34,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 735,
+      "short": 730
+     },
+     "max_debit": 200,
+     "target_zone": [
+      732.0,
+      731.6
+     ],
+     "target": 731.63,
+     "invalid_level": 737.2,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 737.93,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 738,
+      "short": 742
+     },
+     "max_debit": 200,
+     "target_zone": [
+      741.0,
+      741.42
+     ],
+     "target": 741.42,
+     "invalid_level": 735.0,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 744.5,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 744,
+      "short": 739
+     },
+     "max_debit": 200,
+     "target_zone": [
+      741.5,
+      741.42
+     ],
+     "target": 741.42,
+     "invalid_level": 746.3,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  },
+  {
+   "file": "daily_20260930",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "08:57",
+   "generated_at": "08:57 ET",
+   "data_source": "tws_local",
+   "note": "数据获取: 2026-09-30 08:53-08:57 ET | 数据源: tws_local（DSH 盘前独立任务，clientId 7 只读，未用 42）\n盘前: QQQ 740.98 (bid 740.85 / ask 740.90) @08:56 ET | 昨收 737.93 → 跳空 +3.05 (+0.41%)\n9/29 RTH: O 740.13 / H 740.58 / L 735.34 / C 737.99；量 15.3M\n期权墙: **无墙数据** —— 盘前（09:30 前）0DTE 无成交，成交量全为 0，pc_ratio 不可得。\n（注: 已用 FROZEN 模式重扫，仍全 0；非工具失败，是盘前无成交的客观事实。）\n事件: **事件日历核查失败**（web_search 无 API key；web_fetch/curl 全网络出口不通，curl 返回 000）。\n本条不构成「无重大事件」的结论 —— 09:53 盘中刷新必须用可用渠道重新核查。\n已知（推断、非查证）: 9/30 周三非 FOMC/CPI/非农常规发布日；非季度四巫日。\n⚠️ 期权报价时效（本次关键修正）: 08:53 盘前 0DTE 无实时市场。市场数据类型 1(实时) 全部返回\nbid/ask=-1；改用 **marketDataType=2 (FROZEN 冻结)** 后取回 62/62 合约的有效双边报价\n（即 9/29 16:00 ET 收盘冻结价）。本文件 legs/expected_debit 均由该 FROZEN 实报链标定。\n⚠️ 仍属**模型估值**而非\"当前可成交报价\"：触发发生在盘中（剩余 6.0h / 冻结时 24h），\n故按 BS + 该链反解 IV 曲面做时间衰减外推。09:53 盘中刷新须按实时链复核覆盖；\nG3 的 expected_debit 闸门（容差 15%）会在触发时按实测 mid 自动纠正/拒单。\nIV 标定: 冻结链 put-call 平价反解合成现货 = 738.35（29 档标准差 <0.1，链内部高度自洽），\n该现货下 Call/Put 逐档 IV 一致（无异常 skew），微笑 20.9%(735) → 18.3%(748)；\n6.5h session 口径 1σ ≈ 0.58%。\n结构判断: 9/28(736.53)、9/29(737.93) 连续两日下跌后今日跳空高开至 740.98（+0.41%），\n已站上 9/29 高点 740.58，但仍在 9/28 高点 741.42 下方 —— 「突破延续 vs 假突破回补」分歧位。\n上方: 741.42(9/28高) / 743.22(9/22高) / 744.5(9/25收)；下方: 737.93(9/29收) / 736.53(9/28收) / 735.34(9/29低)。\n1σ 预期区间: QQQ 740.98 ± 0.58% = 736.59 ~ 745.37（ATM740 跨式冻结 mid 4.308 → 1σ≈4.31 点）\n本次修正（对 08:56 ET 同会话前次产出）:\n① A 的 expected_debit 由 $172 修正为 $170 —— 其原值按触发位 741.42 得模型 $211（偏低 23%），\nG3 会在触发当日即以 $172×1.15=$198 压回上限；现按 740.9 触发位重算 $170。\n② 本次用 FROZEN 链反解的真实 IV 曲面（20% 附近）标定，替代前次 25.8% 的旧 IV 假设。\n③ 全部启用的 A/B/C 两两夹缝已校验 ≥0.3%（最小 B<->C 0.340%）。\n④ D 未启用（原因见下），前次产出的 D 禁用不采用。",
+   "market": {
+    "spot_premarket": 740.98,
+    "daily_iv_pct": 0.58,
+    "expected_low": 736.59,
+    "expected_high": 745.37
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 740.9,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 741,
+      "short": 745
+     },
+     "max_debit": 200,
+     "target_zone": [
+      743.1,
+      743.6
+     ],
+     "target": 743.6,
+     "invalid_level": 739.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 735.2,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 735,
+      "short": 730
+     },
+     "max_debit": 200,
+     "target_zone": [
+      731.8,
+      732.4
+     ],
+     "target": 731.8,
+     "invalid_level": 737.4,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 737.7,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 738,
+      "short": 742
+     },
+     "max_debit": 200,
+     "target_zone": [
+      740.9,
+      741.4
+     ],
+     "target": 741.4,
+     "invalid_level": 735.9,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 743.2,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 743,
+      "short": 738
+     },
+     "max_debit": 200,
+     "target_zone": [
+      740.9,
+      741.5
+     ],
+     "target": 741.4,
+     "invalid_level": 745.5,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 4
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
