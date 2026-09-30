@@ -255,6 +255,15 @@
     "long_conid": 895596723,
     "short_conid": 895596836
    }
+  },
+  {
+   "ts": "2026-09-30T10:10:24.308060-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 743.44,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 2.58
   }
  ],
  "roundtrips": [],
