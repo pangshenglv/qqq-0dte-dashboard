@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-10-01 10:31:59 ET",
- "generated_at_bj": "2026-10-01 22:31:59",
+ "generated_at_et": "2026-10-01 10:34:09 ET",
+ "generated_at_bj": "2026-10-01 22:34:09",
  "watcher": {
   "alive": true,
   "pid": 87125,
-  "uptime": "00:37",
+  "uptime": "02:47",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 9,
+  "last_event_age_s": 111,
   "last_event": {
-   "ts": "2026-10-01T10:31:49.518122-04:00",
+   "ts": "2026-10-01T10:32:18.161579-04:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "level": "alert",
-   "summary": "实时bar服务异常，已切换 tick 降级聚合"
+   "level": "info",
+   "summary": "B 开仓成交 @ 1.28（成本 $128）"
   }
  },
  "gateway": {

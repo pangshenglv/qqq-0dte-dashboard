@@ -320,6 +320,49 @@
    "spot": 738.64,
    "note": "改价后仍未成交，放弃",
    "pattern": "B"
+  },
+  {
+   "ts": "2026-10-01T10:32:00.146346-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 738.515,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.24,
+   "attempt": 1,
+   "tag": "B",
+   "ask": 1.24,
+   "cap": 137.5
+  },
+  {
+   "ts": "2026-10-01T10:32:12.155875-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 738.4,
+   "side": "BUY",
+   "ladder": "L2",
+   "limit": 1.31,
+   "attempt": 2,
+   "tag": "B",
+   "ask": 1.3,
+   "cap": 137.5
+  },
+  {
+   "ts": "2026-10-01T10:32:18.160414-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 738.33,
+   "side": "open",
+   "pattern": "B",
+   "price": 1.28,
+   "cost": 128.0,
+   "legs": {
+    "long": 738.0,
+    "short": 734.0,
+    "right": "P",
+    "long_conid": 925766921,
+    "short_conid": 925766898
+   }
   }
  ],
  "roundtrips": [
