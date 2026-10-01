@@ -312,6 +312,14 @@
    "limit": 1.35,
    "attempt": 2,
    "tag": "B"
+  },
+  {
+   "ts": "2026-10-01T10:04:07.295304-04:00",
+   "event": "order_cancel",
+   "state": "IDLE",
+   "spot": 738.64,
+   "note": "改价后仍未成交，放弃",
+   "pattern": "B"
   }
  ],
  "roundtrips": [
