@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-10-01 00:06:39 ET",
- "generated_at_bj": "2026-10-01 12:06:39",
+ "generated_at_et": "2026-10-01 00:16:45 ET",
+ "generated_at_bj": "2026-10-01 12:16:46",
  "watcher": {
   "alive": true,
-  "pid": 22802,
-  "uptime": "14:27:27",
+  "pid": 61706,
+  "uptime": "03:40",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 29160,
+  "last_event_age_s": 219,
   "last_event": {
-   "ts": "2026-09-30T16:00:38.335303-04:00",
-   "event": "notification_sent",
+   "ts": "2026-10-01T00:13:06.061655-04:00",
+   "event": "startup",
    "state": "-",
    "spot": null,
-   "level": "alert",
-   "summary": "收盘归档失败，数据可能丢失"
+   "note": "24h 常驻模式启动",
+   "mode": "paper_auto"
   }
  },
  "gateway": {
@@ -29,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 743.39,
- "git_head": "12c316d"
+ "last_spot": null,
+ "git_head": "813556a"
 }
