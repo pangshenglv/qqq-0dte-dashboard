@@ -271,6 +271,38 @@
     "long_conid": 911003876,
     "short_conid": 911004143
    }
+  },
+  {
+   "ts": "2026-10-02T11:24:56.414107-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 748.04,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 1.08
+  },
+  {
+   "ts": "2026-10-02T11:25:14.430893-04:00",
+   "event": "order_escalate",
+   "state": "EXITING",
+   "spot": 748.04,
+   "step": "L1→L2"
+  },
+  {
+   "ts": "2026-10-02T11:25:14.434419-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 748.04,
+   "side": "SELL",
+   "ladder": "L3",
+   "limit": null
+  },
+  {
+   "ts": "2026-10-02T11:25:29.165326-04:00",
+   "event": "order_escalate",
+   "state": "EXITING",
+   "spot": 748.04,
+   "step": "L2→L3"
   }
  ],
  "roundtrips": [],
