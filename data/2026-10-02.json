@@ -303,8 +303,68 @@
    "state": "EXITING",
    "spot": 748.04,
    "step": "L2→L3"
+  },
+  {
+   "ts": "2026-10-02T11:25:31.966687-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 748.04,
+   "side": "close",
+   "pattern": "C",
+   "proceeds": 114.0,
+   "pnl": -38.0,
+   "realized": -38.0,
+   "legs": {
+    "long": 749.0,
+    "short": 754.0,
+    "right": "C",
+    "long_conid": 911003876,
+    "short_conid": 911004143
+   }
   }
  ],
- "roundtrips": [],
- "realized_pnl": 0
+ "roundtrips": [
+  {
+   "pattern": "C",
+   "open": {
+    "ts": "2026-10-02T11:22:22.400416-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 749.11,
+    "side": "open",
+    "pattern": "C",
+    "price": 1.52,
+    "cost": 152.0,
+    "legs": {
+     "long": 749.0,
+     "short": 754.0,
+     "right": "C",
+     "long_conid": 911003876,
+     "short_conid": 911004143
+    }
+   },
+   "close": {
+    "ts": "2026-10-02T11:25:31.966687-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 748.04,
+    "side": "close",
+    "pattern": "C",
+    "proceeds": 114.0,
+    "pnl": -38.0,
+    "realized": -38.0,
+    "legs": {
+     "long": 749.0,
+     "short": 754.0,
+     "right": "C",
+     "long_conid": 911003876,
+     "short_conid": 911004143
+    }
+   },
+   "pnl": -38.0,
+   "open_ts": "2026-10-02T11:22:22.400416-04:00",
+   "close_ts": "2026-10-02T11:25:31.966687-04:00"
+  }
+ ],
+ "realized_pnl": -38.0
 }
