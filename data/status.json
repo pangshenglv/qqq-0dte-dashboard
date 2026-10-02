@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-10-02 09:21:05 ET",
- "generated_at_bj": "2026-10-02 21:21:05",
+ "generated_at_et": "2026-10-02 09:23:11 ET",
+ "generated_at_bj": "2026-10-02 21:23:11",
  "watcher": {
   "alive": true,
   "pid": 99724,
-  "uptime": "19:12:04",
+  "uptime": "19:14:10",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 2,
+  "last_event_age_s": 26,
   "last_event": {
-   "ts": "2026-10-02T09:21:03.043319-04:00",
+   "ts": "2026-10-02T09:22:45.203373-04:00",
    "event": "error",
    "state": "-",
    "spot": null,
-   "type": "ConnectionError",
-   "detail": "连接失败: Socket disconnect"
+   "type": "ValueError",
+   "detail": "连接失败: Contract Option(symbol='QQQ', lastTradeDateOrContractMonth='20261002', strike=755.8, right='P', exchange='SMART', tradingClass='QQQ') can't be h"
   }
  },
  "gateway": {
