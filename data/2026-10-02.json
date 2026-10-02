@@ -228,7 +228,51 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-02T11:22:08.381692-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 748.87,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.52,
+   "attempt": 1,
+   "tag": "C",
+   "ask": 1.52,
+   "cap": 183.8
+  },
+  {
+   "ts": "2026-10-02T11:22:20.398366-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 749.09,
+   "side": "BUY",
+   "ladder": "L2",
+   "limit": 1.55,
+   "attempt": 2,
+   "tag": "C",
+   "ask": 1.54,
+   "cap": 183.8
+  },
+  {
+   "ts": "2026-10-02T11:22:22.400416-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 749.11,
+   "side": "open",
+   "pattern": "C",
+   "price": 1.52,
+   "cost": 152.0,
+   "legs": {
+    "long": 749.0,
+    "short": 754.0,
+    "right": "C",
+    "long_conid": 911003876,
+    "short_conid": 911004143
+   }
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
