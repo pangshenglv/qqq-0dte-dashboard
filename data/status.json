@@ -1,25 +1,19 @@
 {
- "generated_at_et": "2026-10-02 10:15:34 ET",
- "generated_at_bj": "2026-10-02 22:15:34",
+ "generated_at_et": "2026-10-02 10:17:39 ET",
+ "generated_at_bj": "2026-10-02 22:17:39",
  "watcher": {
   "alive": true,
-  "pid": 50765,
-  "uptime": "35:13",
+  "pid": 53683,
+  "uptime": "01:29",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 152,
+  "last_event_age_s": 47,
   "last_event": {
-   "ts": "2026-10-02T10:13:01.796597-04:00",
-   "event": "gate_result",
-   "state": "IDLE",
-   "spot": 752.98,
-   "gate": "G5d",
-   "passed": false,
-   "pattern": "A",
-   "target": 755.4,
-   "level": 752.7,
-   "entry_ref": 752.98,
-   "remaining_pct": 0.321,
-   "reason": "入场后剩余目标空间不足"
+   "ts": "2026-10-02T10:16:51.956956-04:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "alert",
+   "summary": "实时bar服务异常，已切换 tick 降级聚合"
   }
  },
  "gateway": {
@@ -35,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 752.795,
- "git_head": "bca9ed6"
+ "last_spot": 753.19,
+ "git_head": "744c607"
 }
