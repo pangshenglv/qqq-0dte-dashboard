@@ -1,33 +1,32 @@
 {
- "generated_at_et": "2026-10-03 09:26:08 ET",
- "generated_at_bj": "2026-10-03 21:26:08",
+ "generated_at_et": "2026-10-04 08:21:14 ET",
+ "generated_at_bj": "2026-10-04 20:21:14",
  "watcher": {
-  "alive": true,
-  "pid": 58824,
-  "uptime": "21:49:57",
-  "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 112,
+  "alive": false,
+  "pid": 41570,
+  "last_event_age_s": 145167,
   "last_event": {
-   "ts": "2026-10-03T09:24:15.478759-04:00",
-   "event": "wake_late",
+   "ts": "2026-10-02T16:01:46.934624-04:00",
+   "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "note": "错过唤醒点 09:05，仍在交易时段，补进当日会话"
+   "level": "info",
+   "summary": "当日数据已归档（QQQ 721 根 + 34 个期权合约）（收盘后终版）"
   }
  },
  "gateway": {
   "host": "127.0.0.1",
   "port": 7497,
-  "online": true,
+  "online": false,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "5589"
+  "pid": "50303"
  },
  "mode": "paper_auto",
  "entry_window": [
   "09:30",
   "15:30"
  ],
- "last_spot": null,
- "git_head": "2b87738"
+ "last_spot": 749.5901,
+ "git_head": "114d086"
 }
