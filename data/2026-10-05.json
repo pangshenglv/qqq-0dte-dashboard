@@ -342,6 +342,19 @@
     "long_conid": 926766178,
     "short_conid": 926242821
    }
+  },
+  {
+   "ts": "2026-10-05T12:42:02.223873-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 754.11,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.46,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.46,
+   "cap": 200.0
   }
  ],
  "roundtrips": [
