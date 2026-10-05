@@ -90,3 +90,7 @@ footer { padding: 12px 22px 28px; color: var(--dim); font-size: 12px; }
   table.scen { display: block; overflow-x: auto; }
   .topbar { position: static; }
 }
+
+/* 2026-10-05：委托记录里的「移动止盈武装」标记（用户要求留痕，用于优化止盈规则） */
+.rt .arm { color: #b8860b; font-size: 12px; }
+.rt .arm b { color: #d97706; }

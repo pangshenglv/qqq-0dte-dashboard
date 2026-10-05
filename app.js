@@ -107,9 +107,24 @@ function renderDay(day) {
         const op = r.open || {}, cl = r.close || {};
         const clPx = cl.price ?? (cl.proceeds != null ? (cl.proceeds / 100).toFixed(2) : null);
         const opPx = op.price ?? (op.cost != null ? (op.cost / 100).toFixed(2) : null);
+        // 2026-10-05：显示「开仓点位」（触发位）+ 腿构成 + 追价%，以及移动止盈「武装」事件
+        // ⚠️ 本文件是看板前端的**源头**：launchd 的 sync_public() 每 2 分钟把它覆盖到看板仓库，
+        //    所以改前端必须改这里，改镜像仓库会被立刻冲掉 ✗
+        const lgs = op.legs ? `${op.legs.long}/${op.legs.short}${op.legs.right}` : "";
+        const lvl = (r.level != null || lgs)
+          ? `<span>开仓点位 <b>${r.level ?? "-"}</b>${lgs ? `（${lgs}）` : ""}` +
+            `${r.chase_pct != null ? ` · 追价 ${(r.chase_pct * 100).toFixed(2)}%` : ""}</span>`
+          : "";
+        const arm = r.armed
+          ? `<span class="arm">移动止盈武装 <b>+${r.armed.peak_pct}%</b>` +
+            ` → 回吐线 <b>+${r.armed.line_pct}%</b>（≈$${r.armed.floor_value}）` +
+            `${r.armed.hold_min != null ? ` · 开仓 ${r.armed.hold_min} 分钟后武装` : ""}</span>`
+          : "";
         return `<div class="rt">
           <span class="pat">形态 ${esc(r.pattern)}</span>
           <span>开仓 ${fmtTs(r.open_ts)} @ <b>${opPx ?? "-"}</b>（成本 $${op.cost ?? "-"}）</span>
+          ${lvl}
+          ${arm}
           <span>平仓 ${fmtTs(r.close_ts)} @ <b>${clPx ?? "-"}</b>（回收 $${cl.proceeds ?? "-"}）</span>
           <span class="big ${pnlCls}">${fmt$(r.pnl)}</span>
         </div>`;
