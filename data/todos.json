@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-05 16:03 ET",
+ "generated_at": "2026-10-05 16:05 ET",
  "items": [
   {
    "id": "B-01",
@@ -182,6 +182,13 @@
    "status": "open",
    "priority": "P2 · 功能补齐",
    "note": "2026-10-05 讨论产出"
+  },
+  {
+   "id": "B-33",
+   "title": "裸单腿 vs 垂直价差：系统性对比",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-05 用户提出"
   },
   {
    "id": "B-30",
