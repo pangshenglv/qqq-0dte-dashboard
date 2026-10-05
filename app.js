@@ -107,9 +107,16 @@ function renderDay(day) {
         const op = r.open || {}, cl = r.close || {};
         const clPx = cl.price ?? (cl.proceeds != null ? (cl.proceeds / 100).toFixed(2) : null);
         const opPx = op.price ?? (op.cost != null ? (op.cost / 100).toFixed(2) : null);
+        // 2026-10-05：显示「开仓点位」（触发位）与腿的构成 —— 之前只有成交价，看不出是在哪个点位进的 ✗
+        const lgs = op.legs ? `${op.legs.long}/${op.legs.short}${op.legs.right}` : "";
+        const lvl = (r.level != null || lgs)
+          ? `<span>开仓点位 <b>${r.level ?? "-"}</b>${lgs ? `（${lgs}）` : ""}` +
+            `${r.chase_pct != null ? ` · 追价 ${(r.chase_pct * 100).toFixed(2)}%` : ""}</span>`
+          : "";
         return `<div class="rt">
           <span class="pat">形态 ${esc(r.pattern)}</span>
           <span>开仓 ${fmtTs(r.open_ts)} @ <b>${opPx ?? "-"}</b>（成本 $${op.cost ?? "-"}）</span>
+          ${lvl}
           <span>平仓 ${fmtTs(r.close_ts)} @ <b>${clPx ?? "-"}</b>（回收 $${cl.proceeds ?? "-"}）</span>
           <span class="big ${pnlCls}">${fmt$(r.pnl)}</span>
         </div>`;
