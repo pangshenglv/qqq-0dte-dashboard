@@ -228,7 +228,38 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-05T09:33:01.926199-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 750.93,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.4,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.4,
+   "cap": 166.2
+  },
+  {
+   "ts": "2026-10-05T09:33:05.929753-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 750.83,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.4,
+   "cost": 140.0,
+   "legs": {
+    "long": 750.0,
+    "short": 753.0,
+    "right": "C",
+    "long_conid": 926242795,
+    "short_conid": 926766198
+   }
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
