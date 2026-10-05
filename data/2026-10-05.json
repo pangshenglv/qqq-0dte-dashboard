@@ -285,6 +285,36 @@
     "long_conid": 926242795,
     "short_conid": 926766198
    }
+  },
+  {
+   "ts": "2026-10-05T10:17:02.873133-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 752.95,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.42,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.42,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-05T10:17:08.880509-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 753.0,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.42,
+   "cost": 142.0,
+   "legs": {
+    "long": 752.0,
+    "short": 755.0,
+    "right": "C",
+    "long_conid": 926766178,
+    "short_conid": 926242821
+   }
   }
  ],
  "roundtrips": [
