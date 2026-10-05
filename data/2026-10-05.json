@@ -412,6 +412,64 @@
     "long_conid": 926766178,
     "short_conid": 926766214
    }
+  },
+  {
+   "ts": "2026-10-05T15:02:01.105906-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 755.96,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.55,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.55,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-05T15:02:03.108288-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 755.9606,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.54,
+   "cost": 154.0,
+   "legs": {
+    "long": 754.0,
+    "short": 756.0,
+    "right": "C",
+    "long_conid": 926766214,
+    "short_conid": 926766231
+   },
+   "_metrics": {
+    "ts": "2026-10-05T15:02:03.109366-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 755.9606,
+    "cost": 154.0,
+    "legs": {
+     "long": 754.0,
+     "short": 756.0,
+     "right": "C",
+     "long_conid": 926766214,
+     "short_conid": 926766231
+    },
+    "pattern": "A",
+    "level": 755.73,
+    "trig_close": 755.96,
+    "chase_pct": 0.0304,
+    "vwap": 753.41,
+    "vwap_dev_pct": 0.339,
+    "day_regime": "trend",
+    "combo_bid": 1.49,
+    "combo_ask": 1.54,
+    "combo_mid": 1.51,
+    "leg_spread": 0.040000000000000036,
+    "bar_vol": 146789.0,
+    "vol_mult": 5.81,
+    "level_cross": null
+   }
   }
  ],
  "roundtrips": [
