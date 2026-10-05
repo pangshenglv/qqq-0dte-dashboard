@@ -189,9 +189,17 @@ function renderTodos(d) {
 }
 function bindTabs() {
   const a = $("#tabTrade"), b = $("#tabTodo");
-  const go = (t) => { a.classList.toggle("active", !t); b.classList.toggle("active", t);
-                      $("#viewTrade").hidden = t; $("#viewTodo").hidden = !t; };
-  a.onclick = () => go(false); b.onclick = () => go(true);
+  if (!a || !b) return;
+  const go = (todo) => {
+    a.classList.toggle("active", !todo);
+    b.classList.toggle("active", todo);
+    // 用 class 而不是 hidden —— main 的 display 会压过 [hidden] ✗
+    $("#viewTrade").classList.toggle("view-off", todo);
+    $("#viewTodo").classList.toggle("view-off", !todo);
+  };
+  a.onclick = () => go(false);
+  b.onclick = () => go(true);
+  go(false);
 }
 async function loadTodos() {
   try { renderTodos(await fetchJSON(DATA + "todos.json")); }

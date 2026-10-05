@@ -110,3 +110,7 @@ footer { padding: 12px 22px 28px; color: var(--dim); font-size: 12px; }
 .tst { font-size: 12px; padding: 1px 7px; border-radius: 9px; background: #eee; color: #555; }
 .tst.neg { background: #fee2e2; color: #b91c1c; } .tst.pos { background: #dcfce7; color: #15803d; }
 .tnote { font-size: 12px; color: #888; }
+
+/* ---------- Tab 视图切换（2026-10-05 修：hidden 被 main 的 display 覆盖 ✗） ---------- */
+[hidden] { display: none !important; }
+.view-off { display: none !important; }
