@@ -168,7 +168,37 @@ async function refresh() {
   }
 }
 
+
+/* ---------- 待优化 Tab（2026-10-05 用户要求） ---------- */
+const ST_CLS = { open: "neg", reopened: "neg", done: "pos", superseded: "zero", blocked: "neg" };
+function renderTodos(d) {
+  const items = (d && d.items) || [];
+  const alive = items.filter((x) => x.status !== "done" && x.status !== "superseded");
+  $("#todoCount").textContent = `· ${alive.length}`;
+  if (!items.length) { $("#todos").innerHTML = '<div class="empty">backlog.md 暂无条目</div>'; return; }
+  const g = {};
+  items.forEach((x) => { (g[x.priority] = g[x.priority] || []).push(x); });
+  $("#todos").innerHTML = Object.keys(g).sort().map((k) =>
+    `<div class="tgroup"><h3>${esc(k)}</h3>` + g[k].map((x) => {
+      const c = ST_CLS[x.status] || "zero";
+      return `<div class="todo ${c}"><span class="tid">${esc(x.id)}</span>` +
+             `<span class="ttitle">${esc(x.title)}</span>` +
+             `<span class="tst ${c}">${esc(x.status)}</span>` +
+             (x.note ? `<span class="tnote">${esc(x.note)}</span>` : "") + `</div>`;
+    }).join("") + `</div>`).join("");
+}
+function bindTabs() {
+  const a = $("#tabTrade"), b = $("#tabTodo");
+  const go = (t) => { a.classList.toggle("active", !t); b.classList.toggle("active", t);
+                      $("#viewTrade").hidden = t; $("#viewTodo").hidden = !t; };
+  a.onclick = () => go(false); b.onclick = () => go(true);
+}
+async function loadTodos() {
+  try { renderTodos(await fetchJSON(DATA + "todos.json")); }
+  catch (e) { $("#todos").innerHTML = '<div class="empty">待优化数据未就绪</div>'; }
+}
 async function boot() {
+  bindTabs(); loadTodos(); setInterval(loadTodos, 60000);
   const param = new URLSearchParams(location.search).get("day");
   if (param) currentDay = param;
   try {

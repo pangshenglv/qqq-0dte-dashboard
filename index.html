@@ -22,7 +22,12 @@
 
 <section id="statusStrip" class="status-strip"></section>
 
-<main>
+<nav class="tabs">
+    <button id="tabTrade" class="tab active">📋 交易</button>
+    <button id="tabTodo" class="tab">🛠 待优化 <span id="todoCount" class="count"></span></button>
+  </nav>
+
+  <main id="viewTrade">
   <section class="panel">
     <h2>🧠 AI 策略方案时间线 <span id="snapCount" class="count"></span></h2>
     <div id="timeline" class="timeline"></div>
@@ -39,6 +44,13 @@
     </details>
   </section>
 </main>
+
+  <main id="viewTodo" hidden>
+    <section class="panel">
+      <h2>🛠 待优化清单 <span class="count">数据源 docs/backlog.md</span></h2>
+      <div id="todos"></div>
+    </section>
+  </main>
 
 <footer id="foot"></footer>
 <script src="app.js"></script>

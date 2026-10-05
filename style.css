@@ -94,3 +94,19 @@ footer { padding: 12px 22px 28px; color: var(--dim); font-size: 12px; }
 /* 2026-10-05：委托记录里的「移动止盈武装」标记（用户要求留痕，用于优化止盈规则） */
 .rt .arm { color: #b8860b; font-size: 12px; }
 .rt .arm b { color: #d97706; }
+
+/* ---------- 待优化 Tab（2026-10-05） ---------- */
+.tabs { display: flex; gap: 8px; padding: 0 24px; margin: 4px 0 0; }
+.tab { padding: 8px 18px; border: 1px solid #d5d5d5; background: #f4f4f4; border-radius: 8px 8px 0 0;
+       font-size: 14px; cursor: pointer; color: #444; }
+.tab.active { background: #fff; font-weight: 600; color: #1a56db; }
+.tgroup { margin: 0 0 18px; }
+.tgroup h3 { font-size: 13px; color: #666; margin: 0 0 8px; font-weight: 600; }
+.todo { display: flex; align-items: baseline; gap: 10px; padding: 8px 12px; margin-bottom: 6px;
+        background: #fafafa; border-left: 3px solid #d0d0d0; border-radius: 4px; font-size: 14px; }
+.todo.neg { border-left-color: #dc2626; } .todo.pos { border-left-color: #16a34a; }
+.tid { font-family: ui-monospace, monospace; color: #1a56db; font-size: 13px; min-width: 52px; }
+.ttitle { flex: 1; color: #222; }
+.tst { font-size: 12px; padding: 1px 7px; border-radius: 9px; background: #eee; color: #555; }
+.tst.neg { background: #fee2e2; color: #b91c1c; } .tst.pos { background: #dcfce7; color: #15803d; }
+.tnote { font-size: 12px; color: #888; }

@@ -1,0 +1,208 @@
+{
+ "generated_at": "2026-10-05 12:10 ET",
+ "items": [
+  {
+   "id": "B-01",
+   "title": "_cum_v 未初始化 → tick 降级的 VWAP 失真",
+   "status": "reopened",
+   "priority": "P0 · 影响当日交易正确性",
+   "note": "⚠️ 上一轮修复**无效**"
+  },
+  {
+   "id": "B-02",
+   "title": "期权订阅泄漏：重建形态时订新的不取消旧的",
+   "status": "done",
+   "priority": "P0 · 影响当日交易正确性",
+   "note": "2026-09-30 复盘修"
+  },
+  {
+   "id": "B-03",
+   "title": "盘前任务被重复执行（同一会话内两次）",
+   "status": "open",
+   "priority": "P0 · 影响当日交易正确性",
+   "note": "根因未明"
+  },
+  {
+   "id": "B-12",
+   "title": "entry_metrics 的 spot 键与 log() 位置参数撞名",
+   "status": "done",
+   "priority": "P0 · 影响当日交易正确性",
+   "note": "2026-09-30 复盘重启生效"
+  },
+  {
+   "id": "B-04",
+   "title": "expected_debit 应取自真实报价，而非 BS 模型",
+   "status": "done",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": "2026-10-01，用户决策「用 B」"
+  },
+  {
+   "id": "B-05",
+   "title": "实时 5 秒 bar 服务静默（tick_fallback）",
+   "status": "open",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": ""
+  },
+  {
+   "id": "B-06",
+   "title": "VWAP 口径与富途存在系统性差异",
+   "status": "open",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": ""
+  },
+  {
+   "id": "B-13",
+   "title": "Error 162：账户在异 IP 有活跃交易会话",
+   "status": "open",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": "2026-09-30 复盘新增"
+  },
+  {
+   "id": "B-14",
+   "title": "_archive_after_close 失败应自动重试",
+   "status": "open",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": "2026-09-30 复盘新增"
+  },
+  {
+   "id": "B-15",
+   "title": "成交量被双路径重复累加（约 1.8~2.0×）",
+   "status": "open",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": "2026-10-01 新增"
+  },
+  {
+   "id": "B-16",
+   "title": "tick_fallback 每日假警报（启动竞态）",
+   "status": "open",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": "2026-10-01 新增"
+  },
+  {
+   "id": "B-17",
+   "title": "A/B 的触发是「状态」而非「事件」→ 冷却一过就重复触发",
+   "status": "done",
+   "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
+   "note": "2026-10-01 当日修复"
+  },
+  {
+   "id": "B-07",
+   "title": "归档兜底缺口：15:45–16:00 之间崩溃重启则不补终版",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-08",
+   "title": "盘后复盘模块化（SPEC §5 至今「待实现」）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-18",
+   "title": "daily_rerun 判据过宽：改 risk 段也会让当日方案被旧点位替换",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-01 新增"
+  },
+  {
+   "id": "B-19",
+   "title": "幂等保护尚未自动化（10/01 连续三次重复执行）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-20",
+   "title": "tick_fallback 假警报仍在发 alert 级通知",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-21",
+   "title": "成交量双路径重复累加（约 1.8~2.0×）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-22",
+   "title": "开仓阶梯的 L3 市价档从未实盘触发",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-23",
+   "title": "「价格已持续在另一侧」时的目标空间挤压",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-26",
+   "title": "C 在 trend 日且价格位于 VWAP 下方时是否该禁",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-27",
+   "title": "任务侧仍会产出非法值（需\"写文件前自检\"）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-28",
+   "title": "pm_reload_failed 日志噪声过大",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-24b",
+   "title": "space / RR 都经不起与实际盈亏的对照 —— 两者皆非准确的盈亏比",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-04 新增"
+  },
+  {
+   "id": "B-25",
+   "title": "入场择时专项：信号在价格层面几乎无边际，而「延迟入场」未通过验证",
+   "status": "reopened",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-04 实做"
+  },
+  {
+   "id": "B-09",
+   "title": "午盘死区（假设，未定论）",
+   "status": "open",
+   "priority": "P3 · 待样本积累后再判",
+   "note": ""
+  },
+  {
+   "id": "B-10",
+   "title": "结构出场 vs 五层阶梯（未决）",
+   "status": "open",
+   "priority": "P3 · 待样本积累后再判",
+   "note": ""
+  },
+  {
+   "id": "B-11",
+   "title": "触发率 42%（已确认非缺陷，仅记录）",
+   "status": "open",
+   "priority": "P3 · 待样本积累后再判",
+   "note": "低优先"
+  },
+  {
+   "id": "B-24",
+   "title": "G5d「目标空间百分比」是弱代理 —— 应改用真实盈亏比",
+   "status": "open",
+   "priority": "P3 · 待样本积累后再判",
+   "note": "2026-10-02 新增"
+  }
+ ]
+}
