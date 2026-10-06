@@ -2,7 +2,7 @@
  "date": "2026-10-05",
  "snapshots": [
   {
-   "file": "daily_20261005",
+   "file": "daily_20261005_0858_e26acb6b75",
    "kind": "premarket",
    "label": "盘前方案",
    "sort_key": "08:58",
@@ -115,7 +115,7 @@
    "enabled_count": 5
   },
   {
-   "file": "daily_20261005_pm",
+   "file": "daily_20261005_1602_a23808c8ba_pm",
    "kind": "pm",
    "label": "盘中刷新 16:02 ET",
    "sort_key": "16:02",
