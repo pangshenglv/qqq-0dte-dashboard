@@ -331,6 +331,52 @@
     "long_conid": 927857514,
     "short_conid": 927857252
    }
+  },
+  {
+   "ts": "2026-10-06T09:59:06.504745-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 761.38,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 761.32,
+   "level": 761.0
+  },
+  {
+   "ts": "2026-10-06T09:59:06.507236-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 761.38,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.39,
+   "cap": 183.8,
+   "live_expected": 124.5,
+   "iv": 19.6
+  },
+  {
+   "ts": "2026-10-06T09:59:08.005540-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 761.38,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-06T09:59:08.006878-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 761.38,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.4,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.4,
+   "cap": 183.8
   }
  ],
  "roundtrips": [
