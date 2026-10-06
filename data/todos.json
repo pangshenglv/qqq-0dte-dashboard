@@ -1,12 +1,12 @@
 {
- "generated_at": "2026-10-06 05:59 ET",
+ "generated_at": "2026-10-06 06:10 ET",
  "items": [
   {
    "id": "B-01",
    "title": "_cum_v 未初始化 → tick 降级的 VWAP 失真",
-   "status": "reopened",
+   "status": "done",
    "priority": "P0 · 影响当日交易正确性",
-   "note": "⚠️ 上一轮修复**无效**"
+   "note": "2026-10-06 按正确修法闭环 ✓"
   },
   {
    "id": "B-02",
@@ -18,9 +18,9 @@
   {
    "id": "B-03",
    "title": "盘前任务被重复执行（同一会话内两次）",
-   "status": "open",
+   "status": "done",
    "priority": "P0 · 影响当日交易正确性",
-   "note": "根因未明"
+   "note": "2026-10-06 根因定位 ✓：迁移期双调度器并存"
   },
   {
    "id": "B-12",
@@ -224,6 +224,13 @@
    "status": "done",
    "priority": "P2 · 功能补齐",
    "note": "2026-10-05 结案：**不是 bug** ✓"
+  },
+  {
+   "id": "B-36",
+   "title": "盘前仍有「第二个写者/触达者」：加载后 21 秒出现点位未变的 config_reload",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-06 新立，B-03 遗留"
   },
   {
    "id": "B-09",
