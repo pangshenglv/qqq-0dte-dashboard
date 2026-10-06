@@ -194,8 +194,13 @@ function bindTabs() {
     a.classList.toggle("active", !todo);
     b.classList.toggle("active", todo);
     // 用 class 而不是 hidden —— main 的 display 会压过 [hidden] ✗
-    $("#viewTrade").classList.toggle("view-off", todo);
-    $("#viewTodo").classList.toggle("view-off", !todo);
+    const vt = $("#viewTrade"), vd = $("#viewTodo");
+    vt.classList.toggle("view-off", todo);
+    vd.classList.toggle("view-off", !todo);
+    // 🔴 必须同时改 hidden 属性本身：HTML 里 <main id="viewTodo" hidden>，
+    // 而 CSS 有 [hidden]{display:none!important} —— 只切 class 会被它压住 ✗
+    vt.hidden = !!todo;
+    vd.hidden = !todo;
   };
   a.onclick = () => go(false);
   b.onclick = () => go(true);
