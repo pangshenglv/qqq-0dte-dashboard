@@ -228,7 +228,670 @@
    "enabled_count": 3
   }
  ],
- "order_events": [],
- "roundtrips": [],
- "realized_pnl": 0
+ "order_events": [
+  {
+   "ts": "2026-10-05T09:33:00.024747-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 750.93,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 750.93,
+   "level": 749.58
+  },
+  {
+   "ts": "2026-10-05T09:33:00.026499-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 750.93,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.4,
+   "cap": 166.2,
+   "live_expected": 103.2,
+   "iv": 23.2
+  },
+  {
+   "ts": "2026-10-05T09:33:01.924721-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 750.93,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-05T09:33:01.926199-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 750.93,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.4,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.4,
+   "cap": 166.2
+  },
+  {
+   "ts": "2026-10-05T09:33:05.929753-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 750.83,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.4,
+   "cost": 140.0,
+   "legs": {
+    "long": 750.0,
+    "short": 753.0,
+    "right": "C",
+    "long_conid": 926242795,
+    "short_conid": 926766198
+   }
+  },
+  {
+   "ts": "2026-10-05T09:36:01.960386-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 751.84,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 751.81,
+   "vol": 318185.0,
+   "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-05T09:46:17.226840-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 752.15,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 1.75
+  },
+  {
+   "ts": "2026-10-05T09:46:27.237843-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 752.15,
+   "side": "close",
+   "pattern": "A",
+   "proceeds": 175.0,
+   "pnl": 35.0,
+   "realized": 35.0,
+   "legs": {
+    "long": 750.0,
+    "short": 753.0,
+    "right": "C",
+    "long_conid": 926242795,
+    "short_conid": 926766198
+   }
+  },
+  {
+   "ts": "2026-10-05T10:17:01.711870-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 752.95,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "A",
+   "target": 755.05,
+   "level": 752.57,
+   "entry_ref": 752.99,
+   "remaining_pct": 0.274,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-10-05T10:17:01.713845-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 752.95,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 752.99,
+   "level": 752.57
+  },
+  {
+   "ts": "2026-10-05T10:17:01.714772-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 752.95,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.4,
+   "cap": 200.0,
+   "live_expected": 120.3,
+   "iv": 18.9
+  },
+  {
+   "ts": "2026-10-05T10:17:02.870987-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 752.95,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-05T10:17:02.873133-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 752.95,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.42,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.42,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-05T10:17:08.880509-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 753.0,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.42,
+   "cost": 142.0,
+   "legs": {
+    "long": 752.0,
+    "short": 755.0,
+    "right": "C",
+    "long_conid": 926766178,
+    "short_conid": 926242821
+   }
+  },
+  {
+   "ts": "2026-10-05T10:29:01.319471-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 753.4,
+   "pattern": "D",
+   "result": "confirmed",
+   "close": 753.4,
+   "level": 753.46
+  },
+  {
+   "ts": "2026-10-05T10:29:05.916874-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 753.4,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.96,
+   "leg_spread": 0.010000000000000009,
+   "cap": 200.0,
+   "live_expected": 107.6,
+   "iv": 18.2,
+   "note": "低于min_debit(摩擦占比过高)，recenter 失败"
+  },
+  {
+   "ts": "2026-10-05T10:54:00.015432-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 753.7,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 753.46,
+   "vol": 119412.0,
+   "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-05T10:55:22.911551-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 753.46,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 1.59
+  },
+  {
+   "ts": "2026-10-05T10:55:26.914933-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 753.46,
+   "side": "close",
+   "pattern": "A",
+   "proceeds": 159.0,
+   "pnl": 17.0,
+   "realized": 52.0,
+   "legs": {
+    "long": 752.0,
+    "short": 755.0,
+    "right": "C",
+    "long_conid": 926766178,
+    "short_conid": 926242821
+   }
+  },
+  {
+   "ts": "2026-10-05T12:42:01.129775-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 754.11,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 754.11,
+   "level": 754.1
+  },
+  {
+   "ts": "2026-10-05T12:42:01.131092-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.11,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.44,
+   "cap": 200.0,
+   "live_expected": 137.0,
+   "iv": 15.1
+  },
+  {
+   "ts": "2026-10-05T12:42:02.221957-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.11,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-05T12:42:02.223873-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 754.11,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.46,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.46,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-05T12:42:14.237119-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 754.16,
+   "side": "BUY",
+   "ladder": "L2",
+   "limit": 1.49,
+   "attempt": 2,
+   "tag": "A",
+   "ask": 1.48,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-05T12:42:16.239262-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 754.15,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.48,
+   "cost": 148.0,
+   "legs": {
+    "long": 752.0,
+    "short": 754.0,
+    "right": "C",
+    "long_conid": 926766178,
+    "short_conid": 926766214
+   }
+  },
+  {
+   "ts": "2026-10-05T13:45:01.670627-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 755.48,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 755.0,
+   "vol": 464670.0,
+   "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-05T14:05:42.106756-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 754.87,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 1.61
+  },
+  {
+   "ts": "2026-10-05T14:05:48.111938-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 754.87,
+   "side": "close",
+   "pattern": "A",
+   "proceeds": 172.0,
+   "pnl": 24.0,
+   "realized": 76.0,
+   "legs": {
+    "long": 752.0,
+    "short": 754.0,
+    "right": "C",
+    "long_conid": 926766178,
+    "short_conid": 926766214
+   }
+  },
+  {
+   "ts": "2026-10-05T15:01:01.898392-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 755.89,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 755.73,
+   "vol": 49911.0,
+   "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-05T15:02:00.078889-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 755.96,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "A",
+   "target": 756.9,
+   "level": 755.73,
+   "entry_ref": 755.96,
+   "remaining_pct": 0.124,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-10-05T15:02:00.080988-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 755.96,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 755.96,
+   "level": 755.73
+  },
+  {
+   "ts": "2026-10-05T15:02:00.081674-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 755.96,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.51,
+   "cap": 200.0,
+   "live_expected": 136.1,
+   "iv": 18.1
+  },
+  {
+   "ts": "2026-10-05T15:02:01.103775-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 755.96,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-05T15:02:01.105906-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 755.96,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.55,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.55,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-05T15:02:03.108288-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 755.9606,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.54,
+   "cost": 154.0,
+   "legs": {
+    "long": 754.0,
+    "short": 756.0,
+    "right": "C",
+    "long_conid": 926766214,
+    "short_conid": 926766231
+   }
+  },
+  {
+   "ts": "2026-10-05T15:30:02.757492-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 756.55,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 1.73
+  },
+  {
+   "ts": "2026-10-05T15:30:12.765969-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 756.55,
+   "side": "close",
+   "pattern": "A",
+   "proceeds": 176.0,
+   "pnl": 22.0,
+   "realized": 98.0,
+   "legs": {
+    "long": 754.0,
+    "short": 756.0,
+    "right": "C",
+    "long_conid": 926766214,
+    "short_conid": 926766231
+   }
+  }
+ ],
+ "roundtrips": [
+  {
+   "pattern": "A",
+   "open": {
+    "ts": "2026-10-05T09:33:05.929753-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 750.83,
+    "side": "open",
+    "pattern": "A",
+    "price": 1.4,
+    "cost": 140.0,
+    "legs": {
+     "long": 750.0,
+     "short": 753.0,
+     "right": "C",
+     "long_conid": 926242795,
+     "short_conid": 926766198
+    }
+   },
+   "close": {
+    "ts": "2026-10-05T09:46:27.237843-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 752.15,
+    "side": "close",
+    "pattern": "A",
+    "proceeds": 175.0,
+    "pnl": 35.0,
+    "realized": 35.0,
+    "legs": {
+     "long": 750.0,
+     "short": 753.0,
+     "right": "C",
+     "long_conid": 926242795,
+     "short_conid": 926766198
+    }
+   },
+   "pnl": 35.0,
+   "open_ts": "2026-10-05T09:33:05.929753-04:00",
+   "close_ts": "2026-10-05T09:46:27.237843-04:00",
+   "armed": null,
+   "level": 749.58,
+   "target": null,
+   "chase_pct": 0.1801,
+   "vwap": 749.93
+  },
+  {
+   "pattern": "A",
+   "open": {
+    "ts": "2026-10-05T10:17:08.880509-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 753.0,
+    "side": "open",
+    "pattern": "A",
+    "price": 1.42,
+    "cost": 142.0,
+    "legs": {
+     "long": 752.0,
+     "short": 755.0,
+     "right": "C",
+     "long_conid": 926766178,
+     "short_conid": 926242821
+    }
+   },
+   "close": {
+    "ts": "2026-10-05T10:55:26.914933-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 753.46,
+    "side": "close",
+    "pattern": "A",
+    "proceeds": 159.0,
+    "pnl": 17.0,
+    "realized": 52.0,
+    "legs": {
+     "long": 752.0,
+     "short": 755.0,
+     "right": "C",
+     "long_conid": 926766178,
+     "short_conid": 926242821
+    }
+   },
+   "pnl": 17.0,
+   "open_ts": "2026-10-05T10:17:08.880509-04:00",
+   "close_ts": "2026-10-05T10:55:26.914933-04:00",
+   "armed": null,
+   "level": 752.57,
+   "target": null,
+   "chase_pct": 0.0558,
+   "vwap": 751.43
+  },
+  {
+   "pattern": "A",
+   "open": {
+    "ts": "2026-10-05T12:42:16.239262-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 754.15,
+    "side": "open",
+    "pattern": "A",
+    "price": 1.48,
+    "cost": 148.0,
+    "legs": {
+     "long": 752.0,
+     "short": 754.0,
+     "right": "C",
+     "long_conid": 926766178,
+     "short_conid": 926766214
+    }
+   },
+   "close": {
+    "ts": "2026-10-05T14:05:48.111938-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 754.87,
+    "side": "close",
+    "pattern": "A",
+    "proceeds": 172.0,
+    "pnl": 24.0,
+    "realized": 76.0,
+    "legs": {
+     "long": 752.0,
+     "short": 754.0,
+     "right": "C",
+     "long_conid": 926766178,
+     "short_conid": 926766214
+    }
+   },
+   "pnl": 24.0,
+   "open_ts": "2026-10-05T12:42:16.239262-04:00",
+   "close_ts": "2026-10-05T14:05:48.111938-04:00",
+   "armed": null,
+   "level": 754.1,
+   "target": null,
+   "chase_pct": 0.008,
+   "vwap": 753.14
+  },
+  {
+   "pattern": "A",
+   "open": {
+    "ts": "2026-10-05T15:02:03.108288-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 755.9606,
+    "side": "open",
+    "pattern": "A",
+    "price": 1.54,
+    "cost": 154.0,
+    "legs": {
+     "long": 754.0,
+     "short": 756.0,
+     "right": "C",
+     "long_conid": 926766214,
+     "short_conid": 926766231
+    }
+   },
+   "close": {
+    "ts": "2026-10-05T15:30:12.765969-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 756.55,
+    "side": "close",
+    "pattern": "A",
+    "proceeds": 176.0,
+    "pnl": 22.0,
+    "realized": 98.0,
+    "legs": {
+     "long": 754.0,
+     "short": 756.0,
+     "right": "C",
+     "long_conid": 926766214,
+     "short_conid": 926766231
+    }
+   },
+   "pnl": 22.0,
+   "open_ts": "2026-10-05T15:02:03.108288-04:00",
+   "close_ts": "2026-10-05T15:30:12.765969-04:00",
+   "armed": null,
+   "level": 755.73,
+   "target": null,
+   "chase_pct": 0.0304,
+   "vwap": 753.41
+  }
+ ],
+ "realized_pnl": 98.0
 }
