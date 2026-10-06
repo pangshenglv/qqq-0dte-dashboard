@@ -137,9 +137,10 @@ function renderDay(day) {
         <td>${fmtTs(e.ts)}</td><td>${esc(e.event)}</td><td>${esc(e.state || "")}</td>
         <td>${esc(e.side || "")}</td><td>${esc(e.pattern || e.tag || "")}</td>
         <td>${e.price ?? e.limit ?? "-"}</td>
+          <td><b>${e.level ?? e.entry_ref ?? "-"}</b>${e.remaining_pct != null ? `<span class="dim"> · 剩${e.remaining_pct}%</span>` : ""}</td>
         <td class="dim">${esc(e.note || e.ladder || e.attempt && "第" + e.attempt + "次" || "")}</td>
       </tr>`).join("")
-    : `<tr><td colspan="7" class="empty">无委托事件</td></tr>`;
+    : `<tr><td colspan="8" class="empty">无委托事件</td></tr>`;
 }
 
 /* ---------- 加载 ---------- */
