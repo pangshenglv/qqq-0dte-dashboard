@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-06 06:10 ET",
+ "generated_at": "2026-10-06 06:20 ET",
  "items": [
   {
    "id": "B-01",
@@ -39,9 +39,9 @@
   {
    "id": "B-05",
    "title": "实时 5 秒 bar 服务静默（tick_fallback）",
-   "status": "open",
+   "status": "done",
    "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
-   "note": ""
+   "note": "2026-10-06 缓解闭环 ✓；TWS 侧根因属外部"
   },
   {
    "id": "B-06",
@@ -67,16 +67,16 @@
   {
    "id": "B-15",
    "title": "成交量被双路径重复累加（约 1.8~2.0×）",
-   "status": "open",
+   "status": "done",
    "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
-   "note": "2026-10-01 新增"
+   "note": "2026-10-06 修复 ✓"
   },
   {
    "id": "B-16",
    "title": "tick_fallback 每日假警报（启动竞态）",
-   "status": "open",
+   "status": "done",
    "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
-   "note": "2026-10-01 新增"
+   "note": "2026-10-06 修复 ✓"
   },
   {
    "id": "B-17",
@@ -231,6 +231,13 @@
    "status": "open",
    "priority": "P2 · 功能补齐",
    "note": "2026-10-06 新立，B-03 遗留"
+  },
+  {
+   "id": "B-37",
+   "title": "重订阅冷却判据在 _rt_resub_at = None 时抛 TypeError（潜在，未触发）",
+   "status": "done",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-06 预防性修复 ✓"
   },
   {
    "id": "B-09",
