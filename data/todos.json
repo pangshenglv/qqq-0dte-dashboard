@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-06 06:20 ET",
+ "generated_at": "2026-10-06 06:30 ET",
  "items": [
   {
    "id": "B-01",
@@ -60,9 +60,9 @@
   {
    "id": "B-14",
    "title": "_archive_after_close 失败应自动重试",
-   "status": "open",
+   "status": "done",
    "priority": "P1 · 数据质量（修好后可让闸门重新收紧）",
-   "note": "2026-09-30 复盘新增"
+   "note": "2026-10-06 接管修复 ✓"
   },
   {
    "id": "B-15",
