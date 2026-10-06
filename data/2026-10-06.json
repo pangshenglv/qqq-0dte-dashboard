@@ -1,6 +1,233 @@
 {
  "date": "2026-10-06",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20261006_0856_e1c960a3e8",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "08:56",
+   "generated_at": "08:56 ET",
+   "data_source": "tws_local",
+   "note": "QQQ 0DTE 盘前方案 · 美东交易日 2026-10-06（周二）\n数据获取时间：2026-10-06 08:53:29 ET（tws_snapshot.py，clientId 7）\n数据源：tws_local（DSH 侧无 IBKR 插件 → 降级通道）；快照 last=759.89（盘前实时）\n期权链价格：**FROZEN 冻结价（上一交易日 10/05 收盘，F=756.11），非实时** —— 62/62 双边报价有效\n期权墙：无墙数据（option_wall_scan.py 08:54 ET 运行成功，盘前 call_vol=0/put_vol=0，P/C 比 null）\nIV/Greeks/NQ 期货/Put-Call 量比：降级模式无此数据（IV 由实报链反解，非 IBKR 官方字段）\n当日事件：非事件日（无 FOMC —— 2026 会议 10/27-28；无 CPI/PPI/PCE；无非农；无四巫日）\n仅 Low 级 Fed 讲话：Bowman 10:45 ET、Schmid 13:15 ET；FOMC 纪要在 10/07\n事件日历来源：web_search 失败（fetch failed）→ 按降级契约改用 curl 直取权威源\n· FOMC 官方日历 federalreserve.gov/monetarypolicy/fomccalendars.htm  HTTP 200\n· 经济日历 nfs.faireconomy.media/ff_calendar_thisweek.json          HTTP 200",
+   "market": {
+    "spot_premarket": 759.89,
+    "daily_iv_pct": 0.64,
+    "expected_low": 755.25,
+    "expected_high": 764.53
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 761,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 761,
+      "short": 765
+     },
+     "max_debit": 200,
+     "target_zone": [
+      762,
+      764.5
+     ],
+     "target": 764.5,
+     "invalid_level": 759,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 754,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 755,
+      "short": 751
+     },
+     "max_debit": 200,
+     "target_zone": [
+      751,
+      749
+     ],
+     "target": 749,
+     "invalid_level": 756.5,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 757,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 758,
+      "short": 762
+     },
+     "max_debit": 200,
+     "target_zone": [
+      760,
+      761
+     ],
+     "target": 761,
+     "invalid_level": 755,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 760,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 759,
+      "short": 753
+     },
+     "max_debit": 200,
+     "target_zone": [
+      755,
+      754.5
+     ],
+     "target": 754.5,
+     "invalid_level": 762,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  },
+  {
+   "file": "daily_20261006_0856_e1c960a3e8_pm",
+   "kind": "pm",
+   "label": "盘中刷新 08:56 ET",
+   "sort_key": "08:56",
+   "generated_at": "08:56 ET",
+   "data_source": "tws_local",
+   "note": "QQQ 0DTE 盘前方案 · 美东交易日 2026-10-06（周二）\n数据获取时间：2026-10-06 08:53:29 ET（tws_snapshot.py，clientId 7）\n数据源：tws_local（DSH 侧无 IBKR 插件 → 降级通道）；快照 last=759.89（盘前实时）\n期权链价格：**FROZEN 冻结价（上一交易日 10/05 收盘，F=756.11），非实时** —— 62/62 双边报价有效\n期权墙：无墙数据（option_wall_scan.py 08:54 ET 运行成功，盘前 call_vol=0/put_vol=0，P/C 比 null）\nIV/Greeks/NQ 期货/Put-Call 量比：降级模式无此数据（IV 由实报链反解，非 IBKR 官方字段）\n当日事件：非事件日（无 FOMC —— 2026 会议 10/27-28；无 CPI/PPI/PCE；无非农；无四巫日）\n仅 Low 级 Fed 讲话：Bowman 10:45 ET、Schmid 13:15 ET；FOMC 纪要在 10/07\n事件日历来源：web_search 失败（fetch failed）→ 按降级契约改用 curl 直取权威源\n· FOMC 官方日历 federalreserve.gov/monetarypolicy/fomccalendars.htm  HTTP 200\n· 经济日历 nfs.faireconomy.media/ff_calendar_thisweek.json          HTTP 200",
+   "market": {
+    "spot_premarket": 759.89,
+    "daily_iv_pct": 0.64,
+    "expected_low": 755.25,
+    "expected_high": 764.53
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 761,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 761,
+      "short": 765
+     },
+     "max_debit": 200,
+     "target_zone": [
+      762,
+      764.5
+     ],
+     "target": 764.5,
+     "invalid_level": 759,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 754,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 755,
+      "short": 751
+     },
+     "max_debit": 200,
+     "target_zone": [
+      751,
+      749
+     ],
+     "target": 749,
+     "invalid_level": 756.5,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 757,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 758,
+      "short": 762
+     },
+     "max_debit": 200,
+     "target_zone": [
+      760,
+      761
+     ],
+     "target": 761,
+     "invalid_level": 755,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 760,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 759,
+      "short": 753
+     },
+     "max_debit": 200,
+     "target_zone": [
+      755,
+      754.5
+     ],
+     "target": 754.5,
+     "invalid_level": 762,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
