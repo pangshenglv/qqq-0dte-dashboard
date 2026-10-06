@@ -547,6 +547,18 @@
    "crossings": 7,
    "age_min": 98,
    "reason": "点位失效(穿越过多)"
+  },
+  {
+   "ts": "2026-10-06T11:07:06.103712-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 762.65,
+   "gate": "G5b",
+   "passed": false,
+   "pattern": "A",
+   "regime": "trend",
+   "day_regime": "range",
+   "reason": "震荡日禁突破"
   }
  ],
  "roundtrips": [
