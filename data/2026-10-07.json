@@ -339,6 +339,119 @@
     }
    ],
    "enabled_count": 5
+  },
+  {
+   "file": "daily_20261007_1000_1328d8b3e9_pm",
+   "kind": "pm",
+   "label": "盘中刷新 10:00 ET",
+   "sort_key": "10:00",
+   "generated_at": "10:00 ET",
+   "data_source": "tws_local",
+   "note": "QQQ 0DTE 盘中刷新方案 · 美东交易日 2026-10-07（周三）· 09:53 档（本轮为当日第 1 次盘中刷新）\n数据获取时间：2026-10-07 09:53–10:00 ET（只读通道，未触碰 watcher 的 clientId 42）\n数据源：tws_local（DSH 侧无 IBKR 插件 → 降级通道）\n· QQQ 快照 09:53:17 ET（tools/tws_snapshot.py clientId 7）：last=753.40 / open=753.80 / high=754.83 / low=751.75 / prev_close=759.66 / vol=5,246,770\n· 1 分钟全量 K 线（tools/bars_dump.py clientId 8）09:30–09:54，25 根；VWAP=753.27（tools/pm_analysis.py clientId 8）\n· 0DTE 实报链：quote_type=REALTIME（**非冻结**，ATM±12，741–765 共 50 条双边报价）\n· IV/Greeks/NQ 期货/Put-Call 量比：**降级模式无 IBKR 官方字段**；IV 由实报链反解（非官方值）\nIV 标定：由实报链 752/753/754/755 四档 C/P 中值反解，取中位数 IV_ann=22.45%\n→ ATM(753) 跨式 mid = 3.55 点 → 剩余时段 1σ = 3.55/0.7979 = **4.45 点 = 0.591%**\n→ 剩余时段 ~1σ 区间 = [748.96, 757.86]（到期 16:00 ET，日历时间年化，与 watcher.bs_price 同口径）\n期权墙（tools/option_wall_scan.py，09:53 ET 实测）：P/C=1.33（put 偏重）\n厚 put 墙（支撑锚）：752 vol=58,494 / 750 vol=53,674 / 753 vol=46,045 / 751 vol=30,776\n厚 call 墙（压制锚）：755 vol=47,396 / 754 vol=33,810 / 753 vol=30,521 / 756 vol=23,482\n本次重推要点（口径 2026-10-01 对齐 SPEC §4.2 第 14 条）：**从零独立推导**，未沿用任何早盘点位。\n① 步骤 A.d 摆动位清单（5 根窗口极值 + 0.3~0.5 聚类，均取自当日 09:30–09:54 实盘 K 线）：\n阻力 R1=753.76(753.72–753.80,3次/开盘破位下沿) R2=754.37(754.19–754.37,2次)\nR3=754.50(754.46–754.54,2次) R4=754.77(754.71–754.83,3次,主阻力/当日最高簇)\n支撑 S1=751.77(751.75–751.82,3次,主支撑/当日最低簇) S2=752.28(752.14–752.33,6次)\nS3=752.86(752.83–752.90,2次) S4=753.23(752.90–753.56,4次,摆动高转支撑)\n② 夹缝校验：看涨侧 A/D=754.40 vs 看跌侧 C=751.77 → 2.63 点 = 0.349% ≥ 0.3% ✓\n③ 可达性 ①-b：A |754.40−753.41| = 0.99 ≤ 当日振幅 3.08/3 = 1.027 ✓（严格档，非 1σ 兜底）\n其余 B 1.66 / C 1.64 / D 0.99 点均 ≤ 剩余 1σ 4.45 ✓\n④ 目标空间（触发位口径，非最坏追价口径）：A 0.398% / B 0.353% / C 0.403% / D 0.636%，全部 ≥ 0.35% ✓\n⑤ 真实盈亏比（tools/g5d_rr_analysis.py 口径，两腿重定价）：A 0.60 / B 0.39 / C 1.97 / D 1.31\n⑥ expected_debit 口径 = 该形态在「最坏追价点」的组合理论价值（多头 level×1.0025 / 空头 level×0.9975 / C level×1.0010）\n与 watcher.live_expected_debit（按 trigger_level 定价）取较大者决定 G3 上限 → 本栏为安全下界，不会误拦合规入场\n⑦ 规则①（点位失效）：本轮新建点位的 G5a 宽限期起点 = 09:57，早盘对 754.40 的 4 次穿越不计入（见 system.yaml stale_cross_grace_min=30）\n当日事件（剩余时段）：FOMC 会议纪要 14:00 ET（High，非决议日）· 原油库存 10:30 ET（Low）\n· 特朗普讲话 13:00 ET（Medium）· 10 年期国债拍卖 13:01 ET（Low）· 消费者信贷 15:00 ET（Low）\n事件日历来源：web_search 本次运行**失败（DeepSeek 搜索 fetch failed）** → 按降级契约改用 curl 直取权威源：\n· nfs.faireconomy.media/ff_calendar_thisweek.json  HTTP 200（11,199 B）\n· federalreserve.gov/monetarypolicy/fomccalendars.htm  HTTP 200（165,460 B）\n在场持仓：无（logs/20261007.jsonl 全天无 position/entry 事件，watcher state=IDLE）；data/g3_rejects.jsonl 当日无新增拒单",
+   "market": {
+    "spot_premarket": 753.41,
+    "daily_iv_pct": 0.59,
+    "expected_low": 748.96,
+    "expected_high": 757.86
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破 754.40",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 754.4,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 755,
+      "short": 760
+     },
+     "max_debit": 200,
+     "target_zone": [
+      756.6,
+      757.4
+     ],
+     "target": 757.4,
+     "invalid_level": 754.2,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破 751.75",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 751.75,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 750,
+      "short": 744
+     },
+     "max_debit": 200,
+     "target_zone": [
+      750,
+      749.1
+     ],
+     "target": 749.1,
+     "invalid_level": 752.4,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认 751.77",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 751.77,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 752,
+      "short": 757
+     },
+     "max_debit": 200,
+     "target_zone": [
+      754,
+      754.8
+     ],
+     "target": 754.8,
+     "invalid_level": 751.2,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手 754.40",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 754.4,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 753,
+      "short": 747
+     },
+     "max_debit": 200,
+     "target_zone": [
+      750.5,
+      749.6
+     ],
+     "target": 749.6,
+     "invalid_level": 755.6,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
   }
  ],
  "order_events": [],
