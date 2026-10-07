@@ -1,23 +1,23 @@
 {
- "generated_at_et": "2026-10-07 13:01:53 ET",
- "generated_at_bj": "2026-10-08 01:01:53",
+ "generated_at_et": "2026-10-07 13:03:57 ET",
+ "generated_at_bj": "2026-10-08 01:03:57",
  "watcher": {
   "alive": true,
   "pid": 14589,
-  "uptime": "02:00:24",
+  "uptime": "02:02:28",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 47,
+  "last_event_age_s": 50,
   "last_event": {
-   "ts": "2026-10-07T13:01:05.884720-04:00",
-   "event": "market_snapshot",
+   "ts": "2026-10-07T13:03:06.447606-04:00",
+   "event": "gate_result",
    "state": "IDLE",
-   "spot": 756.38,
-   "pattern_quotes": {
-    "A": 1.0,
-    "B": 0.42,
-    "C": 3.14,
-    "D": 1.74
-   }
+   "spot": 756.9601,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 756.87,
+   "vol": 150505.0,
+   "reason": "爆量突破非假突破，D 不武装"
   }
  },
  "gateway": {
