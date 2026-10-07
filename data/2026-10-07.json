@@ -232,7 +232,112 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-07T10:23:06.401675-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 754.59,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 754.6,
+   "level": 754.4
+  },
+  {
+   "ts": "2026-10-07T10:23:06.404301-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.59,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.16,
+   "cap": 200.0,
+   "live_expected": 109.9,
+   "iv": 19.6
+  },
+  {
+   "ts": "2026-10-07T10:23:08.235387-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.59,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-07T10:23:08.237970-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 754.59,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.13,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.13,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-07T10:23:20.255294-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 754.6499,
+   "side": "BUY",
+   "ladder": "L2",
+   "limit": 1.21,
+   "attempt": 2,
+   "tag": "A",
+   "ask": 1.2,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-07T10:23:22.259333-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 754.62,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.2,
+   "cost": 120.0,
+   "legs": {
+    "long": 755.0,
+    "short": 760.0,
+    "right": "C",
+    "long_conid": 927397112,
+    "short_conid": 927397166
+   },
+   "_metrics": {
+    "ts": "2026-10-07T10:23:22.260276-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 754.62,
+    "cost": 120.0,
+    "legs": {
+     "long": 755.0,
+     "short": 760.0,
+     "right": "C",
+     "long_conid": 927397112,
+     "short_conid": 927397166
+    },
+    "pattern": "A",
+    "level": 754.4,
+    "trig_close": 754.6,
+    "chase_pct": 0.0265,
+    "vwap": 753.39,
+    "vwap_dev_pct": 0.1632,
+    "day_regime": "unknown",
+    "combo_bid": 1.15,
+    "combo_ask": 1.17,
+    "combo_mid": 1.16,
+    "leg_spread": 0.010000000000000009,
+    "bar_vol": 47099.0,
+    "vol_mult": 1.06,
+    "level_cross": null
+   }
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
