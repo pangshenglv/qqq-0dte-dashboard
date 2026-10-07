@@ -74,16 +74,16 @@
   },
   {
    "date": "2026-10-06",
-   "snapshots": 8,
+   "snapshots": 7,
    "orders": 26,
    "realized_pnl": 2.0
   },
   {
    "date": "2026-10-07",
-   "snapshots": 4,
+   "snapshots": 2,
    "orders": 0,
    "realized_pnl": 0
   }
  ],
- "updated": "2026-10-07 10:10:38 ET"
+ "updated": "2026-10-07 10:12:47 ET"
 }
