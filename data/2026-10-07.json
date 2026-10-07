@@ -1538,6 +1538,113 @@
    "level": 757.49,
    "vol": 52253.0,
    "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-07T14:29:06.844327-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 757.495,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "D",
+   "target": 755.4,
+   "level": 757.49,
+   "entry_ref": 757.48,
+   "remaining_pct": 0.275,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-10-07T14:29:06.846407-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 757.495,
+   "pattern": "D",
+   "result": "confirmed",
+   "close": 757.48,
+   "level": 757.49
+  },
+  {
+   "ts": "2026-10-07T14:29:06.847235-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 757.495,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.59,
+   "cap": 200.0,
+   "live_expected": 163.8,
+   "iv": 17.6
+  },
+  {
+   "ts": "2026-10-07T14:29:08.181937-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 757.495,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-07T14:29:08.183704-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 757.495,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.62,
+   "attempt": 1,
+   "tag": "D",
+   "ask": 1.62,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-07T14:29:16.196390-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 757.49,
+   "side": "open",
+   "pattern": "D",
+   "price": 1.62,
+   "cost": 162.0,
+   "legs": {
+    "long": 759.0,
+    "short": 755.0,
+    "right": "P",
+    "long_conid": 927870082,
+    "short_conid": 927398597
+   },
+   "_metrics": {
+    "ts": "2026-10-07T14:29:16.197967-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 757.49,
+    "cost": 162.0,
+    "legs": {
+     "long": 759.0,
+     "short": 755.0,
+     "right": "P",
+     "long_conid": 927870082,
+     "short_conid": 927398597
+    },
+    "pattern": "D",
+    "level": 757.49,
+    "trig_close": 757.48,
+    "chase_pct": -0.0013,
+    "vwap": 754.93,
+    "vwap_dev_pct": 0.3386,
+    "day_regime": "trend",
+    "combo_bid": 1.56,
+    "combo_ask": 1.62,
+    "combo_mid": 1.59,
+    "leg_spread": 0.050000000000000044,
+    "bar_vol": 9947.0,
+    "vol_mult": 0.66,
+    "level_cross": null
+   }
   }
  ],
  "roundtrips": [
