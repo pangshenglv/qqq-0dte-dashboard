@@ -626,6 +626,97 @@
    "level": 755.1,
    "vol": 122876.0,
    "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-07T11:15:06.589699-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 755.19,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 755.13,
+   "level": 755.1
+  },
+  {
+   "ts": "2026-10-07T11:15:06.591037-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 755.19,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.22,
+   "cap": 200.0,
+   "live_expected": 118.9,
+   "iv": 19.2
+  },
+  {
+   "ts": "2026-10-07T11:15:07.765366-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 755.19,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-07T11:15:07.766419-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 755.19,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.22,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.22,
+   "cap": 200.0
+  },
+  {
+   "ts": "2026-10-07T11:15:15.774174-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 755.245,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.2,
+   "cost": 120.0,
+   "legs": {
+    "long": 755.0,
+    "short": 759.0,
+    "right": "C",
+    "long_conid": 927397112,
+    "short_conid": 927865290
+   },
+   "_metrics": {
+    "ts": "2026-10-07T11:15:15.775163-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 755.245,
+    "cost": 120.0,
+    "legs": {
+     "long": 755.0,
+     "short": 759.0,
+     "right": "C",
+     "long_conid": 927397112,
+     "short_conid": 927865290
+    },
+    "pattern": "A",
+    "level": 755.1,
+    "trig_close": 755.13,
+    "chase_pct": 0.004,
+    "vwap": 753.69,
+    "vwap_dev_pct": 0.2069,
+    "day_regime": "trend",
+    "combo_bid": 1.21,
+    "combo_ask": 1.23,
+    "combo_mid": 1.22,
+    "leg_spread": 0.010000000000000009,
+    "bar_vol": 34124.0,
+    "vol_mult": 1.16,
+    "level_cross": null
+   }
   }
  ],
  "roundtrips": [
