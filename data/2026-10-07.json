@@ -359,6 +359,30 @@
     "long_conid": 927397112,
     "short_conid": 927397166
    }
+  },
+  {
+   "ts": "2026-10-07T10:44:06.361714-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 754.29,
+   "pattern": "D",
+   "result": "confirmed",
+   "close": 754.25,
+   "level": 754.4
+  },
+  {
+   "ts": "2026-10-07T10:44:14.433860-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.29,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.82,
+   "leg_spread": 0.010000000000000009,
+   "cap": 200.0,
+   "live_expected": 85.4,
+   "iv": 20.1,
+   "note": "低于min_debit(摩擦占比过高)，recenter 失败"
   }
  ],
  "roundtrips": [
