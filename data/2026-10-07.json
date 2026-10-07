@@ -614,6 +614,18 @@
    "live_expected": 85.4,
    "iv": 20.1,
    "note": "低于min_debit(摩擦占比过高)，recenter 失败"
+  },
+  {
+   "ts": "2026-10-07T11:14:05.470171-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 755.44,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 755.1,
+   "vol": 122876.0,
+   "reason": "爆量突破非假突破，D 不武装"
   }
  ],
  "roundtrips": [
