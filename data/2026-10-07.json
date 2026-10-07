@@ -1526,6 +1526,18 @@
     "long_conid": 927865134,
     "short_conid": 927397166
    }
+  },
+  {
+   "ts": "2026-10-07T14:06:06.026295-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 757.53,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 757.49,
+   "vol": 52253.0,
+   "reason": "爆量突破非假突破，D 不武装"
   }
  ],
  "roundtrips": [
