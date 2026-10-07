@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-07 10:29 ET",
+ "generated_at": "2026-10-07 10:31 ET",
  "items": [
   {
    "id": "B-01",
@@ -294,6 +294,13 @@
    "status": "done",
    "priority": "P2 · 功能补齐",
    "note": "2026-10-07 修复 ✓"
+  },
+  {
+   "id": "B-46",
+   "title": "G3 的 min_debit=$100 拦掉了 2026-10-07 那笔 D —— 而那正是当次 whipsaw 的正确一侧",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-07 用户问\"为什么没触发D而是A\""
   },
   {
    "id": "B-09",
