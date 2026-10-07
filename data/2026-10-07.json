@@ -461,6 +461,122 @@
     }
    ],
    "enabled_count": 5
+  },
+  {
+   "file": "daily_20261007_1153_b5c76f4a6a_pm",
+   "kind": "pm",
+   "label": "盘中刷新 11:53 ET",
+   "sort_key": "11:53",
+   "generated_at": "11:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "QQQ 0DTE 盘中刷新方案 · 美东交易日 2026-10-07（周三）· 10:53 档（本轮为当日第 2 次盘中刷新）\n数据获取时间：2026-10-07 10:53:26–10:58 ET（只读通道；未触碰 watcher 的 clientId 42）\n数据源：tws_local（DSH 侧无 IBKR 插件 → 降级通道）\n· QQQ 快照 10:53:26 ET（tools/tws_snapshot.py clientId 7）：last=753.56 / bid=753.53 / ask=753.55\nopen=753.80 / high=755.09 / low=751.75 / prev_close=759.66\n· 1 分钟 K 线 09:30–10:54 共 85 根 + VWAP=753.59（tools/pm_analysis.py clientId 8）\n⚠️ 快照 volume 字段 9,467,964 与 K 线累计 5,156,098 口径不一致 → 本文件一律以 K 线累计为准\n· 0DTE 实报链：quote_type=REALTIME（**非冻结**），ATM±12（742–766）共 50 条双边有效报价\n· IV/Greeks/NQ 期货：**降级模式无 IBKR 官方字段**；IV 由实报链逐档反解（非官方值）\nIV 标定：ATM±4（750–757）16 档 C/P 中值反解，中位数 IV_ann=19.75%（档位区间 16.8%(757P)~23.5%(750C)，认沽偏斜明显）\n→ ATM 跨式（753/754 插值至现价 753.53）mid=2.88 点 → 剩余时段 1σ = 2.88/0.7979 = 3.61 点 = 0.479%\n→ 剩余时段 ~1σ 区间 = [749.95, 757.17]（到期 16:00 ET，日历时间年化，与 watcher.bs_price 同口径）\n→ 模型自检：BS 重定价 752C/753C/755P = $233.6/$172.0/$225.9 vs 实报 $236/$177/$215（最大偏差 5%，模型可信）\n期权墙（tools/option_wall_scan.py clientId 9，10:53 ET 实测）：P/C=1.11（put 略偏重）\n厚 call 墙（压制锚）：755C 166,139 / 754C 134,685 / 756C 87,418 / 753C 74,237\n厚 put 墙（支撑锚）：753P 134,980 / 752P 127,319 / 750P 99,086 / 754P 98,993\n本次重推要点（口径 2026-10-01 对齐 SPEC §4.2 第 14 条）：**从零独立推导**，未沿用早盘/上一版任何点位。\n① 步骤 A.d 摆动位清单（5 根窗口极值 + 0.4 聚类，全部取自当日 09:30–10:54 实盘 K 线）：\n阻力 R1=754.84 区间[754.65,755.09] 摆动高5次(09:33/10:25/10:32/10:36/10:41) ±0.12内高点触及7次 = 主阻力/当日最高簇\nR2=754.50 区间[754.37,754.65] 高点触及12次 低点触及5次 = 成交密集供应带\nR3=754.19 区间[754.19,754.37] 摆动高1次(09:59) 高点触及8次 低点触及14次\nR4=753.97 区间[753.85,754.14] 低点触及10次（10:30/10:34 摆动低转压力）\n支撑 S1=753.30 区间[753.22,753.36] 高/低点触及8/6次（含 10:53 摆动低 753.22）\nS2=753.08 区间[752.86,753.08] 低点触及15次 = 次级主支撑（10:02/10:08/10:12/10:16 摆动低簇）\nS3=752.86 区间[752.86,753.04] 摆动低10:08 低点触及5次\nS4=752.33 区间[752.14,752.47] 低点触及6次（09:41–09:49 低点簇）\nS5=751.77 区间[751.75,751.82] 摆动低3次(09:39/09:47/09:48) = 主支撑/当日最低簇\n② 夹缝校验：看涨侧 A/D=755.10 vs 看跌侧 B=752.80 → 2.30 点 = 0.305% ≥ 0.3% ✓\nA/D=755.10 vs C=751.77 → 3.33 点 = 0.442% ≥ 0.3% ✓\n③ 可达性规则①-b：B |752.80−753.56| = 0.76 ≤ 当日已实现振幅 3.34/3 = 1.113 ✓（严格档，非 1σ 兜底）\nA/D 1.54 点、C 1.79 点 ≤ 剩余 1σ 3.61 ✓（现价已离开上一版全部触发位所在区间 → 属实质重布点）\n④ 目标空间（触发位口径，非最坏追价口径）：A 0.358% / B 0.359% / C 0.363% / D 0.358%，全部 ≥ 0.35% ✓\n⑤ 真实盈亏比（tools/g5d_rr_analysis.py 口径，两腿重定价）：C 1.81 > A 0.39 > B 0.33 > D 0.32\n⑥ expected_debit 口径 = 该形态在「最坏追价点」的组合理论价值（与 watcher.anti_chase_limit 同向）：\n多头 A level×1.0025 / 空头 B-D level×0.9975 / C 类 level×1.0010；\n触发位处成本（模型值）：A $122 / B $126 / C $119 / D $116 —— 全部落在 $120–200 目标区间 ✓\n⑦ 规则①（点位失效）：A/D 755.10 全天 0 次收盘穿越（当日最高 755.09，从未收上）✓；\nB 752.80 全天 6 次穿越（cross_up 3/cross_down 3），但**全部落在 09:31–09:49 开盘震荡段**；\nC 751.77 全天 0 次穿越 ✓。按规则①自带的 G5a 口径（点位创建后 +stale_cross_grace_min 30 分钟起计数，\n见 watcher._cross_cutoff），三点位创建于 10:59、计数起点 11:29，起点前穿越一律不计 → 无形态因规则①作废\n⑧ 规则⑧（拒单闭环）：本日 10:28 / 10:44 两笔 D@754.40（腿 753/747）被 G3 以「低于min_debit(摩擦占比过高)，\nrecenter 失败」拒单（实测 mid $82–88 < 下限 $100）。本轮 D 改 755.10 触发 + 腿 755/751（触发位处理论成本\n$116，两腿贴价、debit 回到区间）→ 闭环 ✓；不再原样照抄旧腿。\n⑨ B 的声明 expected_debit：最坏追价点模型值 $204，略高于 watcher 的提示阈值（声明值×(1+25%)>250 ⇔ 声明值>200）。\n按 ⑥-c「实时数据缺失时的兜底 / 安全下界」定位取保守值 199；G3 实际上限 = min(形态 max_debit 200, 全局 250)\n= 200，两种取值对闸门无功能差异，仅避免每次热加载误报 debit_over_cap 提示。\n当日事件（剩余时段）：FOMC 会议纪要 14:00 ET（High，非决议日）· 特朗普讲话 13:00 ET（Medium）\n· 10 年期国债拍卖 13:01 ET（Low）· 消费者信贷 15:00 ET（Low）；原油库存 10:30 ET 已过\n事件日历来源：web_search（本次运行**成功**）＋ curl 直取权威源复核（记录 HTTP 状态码）：\n· nfs.faireconomy.media/ff_calendar_thisweek.json  HTTP 200（11,199 B）\n· federalreserve.gov/monetarypolicy/fomccalendars.htm  HTTP 200（165,460 B）\n（2026 全年会议：1/27-28、3/17-18、4/28-29、6/16-17、7/28-29、9/15-16、10/27-28、12/08-09 → 今日非决议日）\n在场持仓：无。10:23:22 A@754.40 曾开仓（755C/760C，成本 $120），10:28:36 触及 −25% 硬止损平仓（价值 $90，pnl −$25）；\n此后 watcher state=IDLE，至 10:58 无新持仓、无挂单（logs/20261007.jsonl；data/g3_rejects.jsonl 当日 2 条 D 拒单见 ⑧）",
+   "market": {
+    "spot_premarket": 753.56,
+    "daily_iv_pct": 0.48,
+    "expected_low": 749.95,
+    "expected_high": 757.17
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破 755.10",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 755.1,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 755,
+      "short": 759
+     },
+     "max_debit": 200,
+     "target_zone": [
+      757,
+      757.8
+     ],
+     "target": 757.8,
+     "invalid_level": 754.8,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破 752.80",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 752.8,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 753,
+      "short": 749
+     },
+     "max_debit": 200,
+     "target_zone": [
+      751,
+      750.1
+     ],
+     "target": 750.1,
+     "invalid_level": 753.6,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认 751.77",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 751.77,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 752,
+      "short": 757
+     },
+     "max_debit": 200,
+     "target_zone": [
+      753.7,
+      754.5
+     ],
+     "target": 754.5,
+     "invalid_level": 751.2,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手 755.10",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 755.1,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 755,
+      "short": 751
+     },
+     "max_debit": 200,
+     "target_zone": [
+      753.3,
+      752.4
+     ],
+     "target": 752.4,
+     "invalid_level": 756,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5,
+   "placeholder": true
   }
  ],
  "order_events": [
