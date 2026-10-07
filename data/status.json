@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-10-07 11:35:39 ET",
- "generated_at_bj": "2026-10-07 23:35:39",
+ "generated_at_et": "2026-10-07 11:37:44 ET",
+ "generated_at_bj": "2026-10-07 23:37:44",
  "watcher": {
   "alive": true,
   "pid": 14589,
-  "uptime": "34:10",
+  "uptime": "36:15",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 187,
+  "last_event_age_s": 38,
   "last_event": {
-   "ts": "2026-10-07T11:32:31.366307-04:00",
+   "ts": "2026-10-07T11:37:05.768298-04:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
    "level": "alert",
-   "summary": "已平仓 D：-30（当日 -73）"
+   "summary": "判定为震荡日：突破型触发（A/B 及 trend 形态）已禁用"
   }
  },
  "gateway": {
@@ -29,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 754.88,
+ "last_spot": 755.77,
  "git_head": "0a91c78"
 }
