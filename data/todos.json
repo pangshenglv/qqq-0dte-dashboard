@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-07 00:37 ET",
+ "generated_at": "2026-10-07 00:47 ET",
  "items": [
   {
    "id": "B-01",
@@ -249,23 +249,30 @@
   {
    "id": "B-39",
    "title": "盘中刷新「假成功」：09:53 那趟 8 分钟跑偏造工具，从未写 pm.yaml",
-   "status": "open",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": "2026-10-06 当日发现"
+   "note": "2026-10-07 加固 ✓"
   },
   {
    "id": "B-40",
    "title": "归档初版阻塞 31 分钟 + 返回 0 根仍被当成功",
-   "status": "open",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": "2026-10-06 复盘新增"
+   "note": "2026-10-07 修复 ✓"
   },
   {
    "id": "B-41",
    "title": "prompt 里的 python3 指向系统解释器（缺 ib_async）＋ plan 的 peak_recording 已过期",
+   "status": "done",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-07 修复 ✓"
+  },
+  {
+   "id": "B-42",
+   "title": "③层回吐线被瞬时报价触发：C 单在标的仍上行时被平掉，少赚 $48",
    "status": "open",
    "priority": "P2 · 功能补齐",
-   "note": "2026-10-06 复盘新增"
+   "note": "2026-10-06 复盘发现"
   },
   {
    "id": "B-09",
