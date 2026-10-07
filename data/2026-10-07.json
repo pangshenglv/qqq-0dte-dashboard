@@ -1177,6 +1177,68 @@
    "level": 756.87,
    "vol": 150505.0,
    "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-07T13:08:06.227178-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 757.0501,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "A",
+   "target": 758.8,
+   "level": 756.97,
+   "entry_ref": 757.0,
+   "remaining_pct": 0.238,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-10-07T13:08:06.229605-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 757.0501,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 757.0,
+   "level": 756.97
+  },
+  {
+   "ts": "2026-10-07T13:08:06.230925-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 757.0501,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.42,
+   "cap": 175.2,
+   "live_expected": 140.1,
+   "iv": 17.6
+  },
+  {
+   "ts": "2026-10-07T13:08:08.287142-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 757.0501,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-07T13:08:08.288715-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 757.0501,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.44,
+   "attempt": 1,
+   "tag": "A",
+   "ask": 1.44,
+   "cap": 175.8
   }
  ],
  "roundtrips": [
