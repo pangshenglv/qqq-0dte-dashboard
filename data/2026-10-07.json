@@ -226,6 +226,119 @@
     }
    ],
    "enabled_count": 5
+  },
+  {
+   "file": "daily_20261007_0953_a0fc1e90e3_pm",
+   "kind": "pm",
+   "label": "盘中刷新 09:53 ET",
+   "sort_key": "09:53",
+   "generated_at": "09:53 ET",
+   "data_source": "tws_local",
+   "note": "QQQ 0DTE 盘前方案 · 美东交易日 2026-10-07（周三）\n数据获取时间：2026-10-07 08:53:09 ET（tools/tws_snapshot.py，clientId 7，只读）\n数据源：tws_local（DSH 侧无 IBKR 插件 → 降级通道）\n· QQQ 快照 last=754.4603 / bid=754.46 / ask=754.50 / prev_close=759.66 / vol=1,297,361（盘前实时）\n· 今日分钟线/日线为 10/06 完整交易日（open 760.50 high 762.86 low 759.10 close 759.64）\n· 期权链：quote_type=FROZEN（上一交易日收盘冻结价，50/50 合约双边有效，非实时）\n· IV/Greeks/NQ 期货/Put-Call 量比：降级模式无此数据（IV 由实报链反解，非 IBKR 官方字段）\nIV 标定：FROZEN 链 put-call parity 交点 S≈754.4 处 ATM 跨式 mid≈5.05 点\n→ 反解 IV_ann=29.5%、跨式隐含日 σ=0.84%（＝5.05/0.7979/754.46），1σ 绝对幅度 6.33 点\n⚠️ 冻结链报价为收盘瞬时快照，与本机实时现价存在锚定漂移：用冻结 bid/ask 直接算价差会系统性高估\n（A 757C/761C 冻结自然价 $256 / 中值 $249 vs 标定价 $149），故 expected_debit 一律取标定模型值。\n期权墙：无墙数据（option_wall_scan.py 08:55 ET 运行成功；盘前 call_vol=0 / put_vol=0，P/C 比 null）\n当日事件：**事件日** —— FOMC 会议纪要（9/15-16 会议）14:00 ET 发布（High 冲击，非决议日）；\n其余：特朗普讲话 13:00 ET（Medium）、原油库存 10:30 ET（Low）、10 年期国债拍卖 13:01 ET（Low）、\n消费者信贷 15:00 ET（Low）。无 CPI/PPI/PCE、无非农、无四巫日（季度到期在 12 月）。\n事件日历来源：web_search 调用超时（60s 无返回）→ 按降级契约改用 curl 直取权威源：\n· 经济日历 nfs.faireconomy.media/ff_calendar_thisweek.json  HTTP 200\n· FOMC 官方日历 federalreserve.gov/monetarypolicy/fomccalendars.htm  HTTP 200\n（核对 2026 全部会议：9/15-16 已开、10/27-28、12/08-09；今日非决议日，为纪要及时点）",
+   "market": {
+    "spot_premarket": 754.46,
+    "daily_iv_pct": 0.84,
+    "expected_low": 748.13,
+    "expected_high": 760.79
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 756.92,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 757,
+      "short": 761
+     },
+     "max_debit": 200,
+     "target_zone": [
+      759.66,
+      762
+     ],
+     "target": 759.66,
+     "invalid_level": 754.5,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 750,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 749,
+      "short": 745
+     },
+     "max_debit": 200,
+     "target_zone": [
+      747.5,
+      745.5
+     ],
+     "target": 747.5,
+     "invalid_level": 752.5,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 751,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 751,
+      "short": 755
+     },
+     "max_debit": 200,
+     "target_zone": [
+      755,
+      756.5
+     ],
+     "target": 755,
+     "invalid_level": 749.5,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 756.92,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 756,
+      "short": 752
+     },
+     "max_debit": 200,
+     "target_zone": [
+      753,
+      751
+     ],
+     "target": 753,
+     "invalid_level": 758.5,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
   }
  ],
  "order_events": [],
