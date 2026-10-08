@@ -1970,6 +1970,101 @@
    "spot": 750.28,
    "note": "改价后仍未成交，放弃",
    "pattern": "B"
+  },
+  {
+   "ts": "2026-10-08T13:16:05.980863-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 748.17,
+   "pattern": "D",
+   "result": "confirmed",
+   "close": 748.18,
+   "level": 748.2
+  },
+  {
+   "ts": "2026-10-08T13:16:05.981453-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 748.17,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.02,
+   "cap": 218.8,
+   "live_expected": 100.9,
+   "iv": 29.1
+  },
+  {
+   "ts": "2026-10-08T13:16:05.997779-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 748.17,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-08T13:16:05.999541-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 748.17,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.03,
+   "attempt": 1,
+   "tag": "D",
+   "ask": 1.03,
+   "cap": 218.8
+  },
+  {
+   "ts": "2026-10-08T13:16:08.001781-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 748.12,
+   "side": "open",
+   "pattern": "D",
+   "price": 1.03,
+   "cost": 103.0,
+   "qty": 1,
+   "legs": {
+    "long": 747.0,
+    "short": null,
+    "right": "P",
+    "single": true,
+    "long_conid": 928271853,
+    "short_conid": null
+   },
+   "_metrics": {
+    "ts": "2026-10-08T13:16:08.002627-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 748.12,
+    "cost": 103.0,
+    "qty": 1,
+    "legs": {
+     "long": 747.0,
+     "short": null,
+     "right": "P",
+     "single": true,
+     "long_conid": 928271853,
+     "short_conid": null
+    },
+    "pattern": "D",
+    "level": 748.2,
+    "trig_close": 748.18,
+    "chase_pct": -0.0027,
+    "vwap": 751.76,
+    "vwap_dev_pct": -0.4837,
+    "day_regime": "trend",
+    "combo_bid": 1.01,
+    "combo_ask": 1.03,
+    "combo_mid": 1.02,
+    "leg_spread": 0.02,
+    "bar_vol": 214394.0,
+    "vol_mult": 1.0,
+    "level_cross": null
+   }
   }
  ],
  "roundtrips": [
