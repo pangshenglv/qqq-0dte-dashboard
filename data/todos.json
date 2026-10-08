@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-08 10:12 ET",
+ "generated_at": "2026-10-08 10:14 ET",
  "items": [
   {
    "id": "B-01",
@@ -350,6 +350,13 @@
    "status": "done",
    "priority": "P2 · 功能补齐",
    "note": "2026-10-08 用户决策，当日实现 ✓"
+  },
+  {
+   "id": "B-54",
+   "title": "换腿新腿拿不到行情（conId 有效、bid/ask 恒 NaN）—— 每天都在拦掉本该成交的单",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-08 现场证据"
   },
   {
    "id": "B-09",
