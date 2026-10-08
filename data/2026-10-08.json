@@ -117,7 +117,20 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-08T09:35:06.657689-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 754.53,
+   "gate": "P3",
+   "passed": false,
+   "pattern": "D",
+   "level": 754.54,
+   "vol": 188507.0,
+   "reason": "爆量突破非假突破，D 不武装"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
