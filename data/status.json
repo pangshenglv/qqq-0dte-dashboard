@@ -1,23 +1,19 @@
 {
- "generated_at_et": "2026-10-08 10:01:55 ET",
- "generated_at_bj": "2026-10-08 22:01:56",
+ "generated_at_et": "2026-10-08 10:04:01 ET",
+ "generated_at_bj": "2026-10-08 22:04:02",
  "watcher": {
   "alive": true,
   "pid": 40614,
-  "uptime": "07:35:05",
+  "uptime": "07:37:11",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 49,
+  "last_event_age_s": 80,
   "last_event": {
-   "ts": "2026-10-08T10:01:06.475560-04:00",
-   "event": "market_snapshot",
-   "state": "IDLE",
-   "spot": 753.18,
-   "pattern_quotes": {
-    "A": 0.72,
-    "B": 0.63,
-    "C": 2.96,
-    "D": 1.58
-   }
+   "ts": "2026-10-08T10:02:41.325693-04:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "alert",
+   "summary": "⚠️ debit 超上限形态：B exp$225→上限需$281>全局$250；D exp$228→上限需$285>全局$250"
   }
  },
  "gateway": {
