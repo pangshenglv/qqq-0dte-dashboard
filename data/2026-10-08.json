@@ -513,6 +513,30 @@
    "legs": "753.0C/NoneC",
    "debit": 135.0,
    "leg_spread": 0.02
+  },
+  {
+   "ts": "2026-10-08T10:11:06.115472-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 754.19,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 754.31,
+   "level": 754.25
+  },
+  {
+   "ts": "2026-10-08T10:11:31.734260-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.19,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.97,
+   "leg_spread": 0.010000000000000009,
+   "cap": 200.0,
+   "live_expected": 101.9,
+   "iv": 18.7,
+   "note": "低于min_debit(摩擦占比过高)，recenter 失败"
   }
  ],
  "roundtrips": [],

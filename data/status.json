@@ -1,23 +1,25 @@
 {
- "generated_at_et": "2026-10-08 10:10:24 ET",
- "generated_at_bj": "2026-10-08 22:10:24",
+ "generated_at_et": "2026-10-08 10:12:30 ET",
+ "generated_at_bj": "2026-10-08 22:12:30",
  "watcher": {
   "alive": true,
   "pid": 40614,
-  "uptime": "07:43:34",
+  "uptime": "07:45:40",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 159,
+  "last_event_age_s": 58,
   "last_event": {
-   "ts": "2026-10-08T10:07:45.800017-04:00",
+   "ts": "2026-10-08T10:11:31.734260-04:00",
    "event": "gate_result",
    "state": "PRE_CHECK",
-   "spot": 754.0,
-   "gate": "G3-recenter",
-   "attempt": 1,
-   "direction": "ITM",
-   "legs": "753.0C/NoneC",
-   "debit": 135.0,
-   "leg_spread": 0.02
+   "spot": 754.19,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.97,
+   "leg_spread": 0.010000000000000009,
+   "cap": 200.0,
+   "live_expected": 101.9,
+   "iv": 18.7,
+   "note": "低于min_debit(摩擦占比过高)，recenter 失败"
   }
  },
  "gateway": {
@@ -33,6 +35,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 753.97,
+ "last_spot": 754.19,
  "git_head": "b67f312"
 }
