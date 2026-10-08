@@ -115,6 +115,122 @@
     }
    ],
    "enabled_count": 5
+  },
+  {
+   "file": "daily_20261008_0953_5dd50de809_pm",
+   "kind": "pm",
+   "label": "盘中刷新 09:53 ET",
+   "sort_key": "09:53",
+   "generated_at": "09:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "QQQ 0DTE 盘前方案 · 美东交易日 2026-10-08（周四）\n数据获取时间/数据源：2026-10-08 08:53:14 ET / tws_local（tools/tws_snapshot.py，clientId 7，只读；DSH 侧无 IBKR 插件 → 降级通道）\n· QQQ 快照（盘前实时）：last=752.46 / bid=752.46 / ask=752.52 / prev_close=757.73 / vol=1,244,633 → 较前收 -5.27（-0.70%）\n· 今日分钟线/日线为 10/07 完整交易日（open 753.80 / high 758.30 / low 751.75 / close 757.73 / vol 13,411,745）\n· 期权链：quote_type=FROZEN（上一交易日 16:00 收盘冻结价，50/50 合约双边有效，**非实时**）\n· IV 官方字段 / Greeks / NQ 期货 / Put-Call 量比：降级模式无此数据（IV 由冻结链反解，非 IBKR 官方字段）\nIV 标定：冻结链 put-call parity 交点中位数 S≈757.87（与 10/07 前收 757.73 一致 → 锚点可信）\nATM(757/758) 反解 IV_ann=14.01%（T=24h）→ 跨式隐含 1 日 σ=0.734%；K=758 跨式 mid=4.44 点\n⚠️ 冻结链锚在 757.87，比本机盘前现价 752.46 高 5.41 点 → 直接用冻结 bid/ask 算价差会系统性高估\n→ expected_debit 一律用「冻结链标定 σ_move=0.734% 重定价到触发位」的模型值（沿用 10/07 口径）\n期权墙摘要：无墙数据（tools/option_wall_scan.py 08:54 ET 运行成功；盘前 call_vol=0 / put_vol=0，P/C 比 null）→ 本次支撑阻力全部由近一月日线推导\n当日事件：非 FOMC 决议日、非 CPI/PPI/PCE、非非农、非四巫日 —— 08:30 ET 初请失业金（Medium，预期 200K vs 前值 197K，**已发布**）；\n04:30 ET Waller 讲话（Medium，已过）；10:00 批发库存（Low）、10:30 天然气库存（Low）、13:01 30 年期国债拍卖（Low）、13:40 Musalem 讲话（Low）\n事件日历来源：web_search 调用失败（fetch failed，DeepSeek 搜索端点不可达）→ 按工具降级契约改用 curl 直取权威源：\n· 经济日历 https://nfs.faireconomy.media/ff_calendar_thisweek.json HTTP 200 ✓\n· FOMC 官方日历 https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm HTTP 200 ✓\n（核对 2026 全部会议：1/27-28、3/17-18*、4/28-29、6/16-17*、7/28-29、9/15-16*、10/27-28、12/8-9* → 今日非决议日，下次 10/27-28）",
+   "market": {
+    "spot_premarket": 752.46,
+    "daily_iv_pct": 0.73,
+    "expected_low": 746.97,
+    "expected_high": 757.95
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 754.54,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 755,
+      "short": 760
+     },
+     "max_debit": 200,
+     "target_zone": [
+      756.92,
+      758.3
+     ],
+     "target": 757.73,
+     "invalid_level": 753.4,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 751.75,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 751,
+      "short": 746
+     },
+     "max_debit": 200,
+     "target_zone": [
+      749.08,
+      747.53
+     ],
+     "target": 749.08,
+     "invalid_level": 752.2,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 749.08,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "bull_call_spread",
+     "legs": {
+      "long": 750,
+      "short": 755
+     },
+     "max_debit": 200,
+     "target_zone": [
+      751.75,
+      753.8
+     ],
+     "target": 751.75,
+     "invalid_level": 747.5,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 754.54,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "bear_put_spread",
+     "legs": {
+      "long": 754,
+      "short": 749
+     },
+     "max_debit": 200,
+     "target_zone": [
+      751.75,
+      749.08
+     ],
+     "target": 751.75,
+     "invalid_level": 756.1,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5,
+   "placeholder": true
   }
  ],
  "order_events": [
