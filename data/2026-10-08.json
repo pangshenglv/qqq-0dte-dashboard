@@ -477,6 +477,42 @@
    "level": 754.54,
    "vol": 188507.0,
    "reason": "爆量突破非假突破，D 不武装"
+  },
+  {
+   "ts": "2026-10-08T10:06:46.884909-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.0,
+   "gate": "G3-recenter",
+   "attempt": 1,
+   "direction": "ITM",
+   "legs": "753.0C/NoneC",
+   "debit": 135.0,
+   "leg_spread": 0.02
+  },
+  {
+   "ts": "2026-10-08T10:06:50.966206-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.0,
+   "gate": "G3-recenter",
+   "attempt": 1,
+   "direction": "ITM",
+   "legs": "753.0C/NoneC",
+   "debit": 135.0,
+   "leg_spread": 0.02
+  },
+  {
+   "ts": "2026-10-08T10:07:45.800017-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 754.0,
+   "gate": "G3-recenter",
+   "attempt": 1,
+   "direction": "ITM",
+   "legs": "753.0C/NoneC",
+   "debit": 135.0,
+   "leg_spread": 0.02
   }
  ],
  "roundtrips": [],
