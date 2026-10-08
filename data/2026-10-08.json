@@ -1626,6 +1626,14 @@
    "tag": "B",
    "ask": 2.32,
    "cap": 250.0
+  },
+  {
+   "ts": "2026-10-08T12:49:42.338343-04:00",
+   "event": "order_cancel",
+   "state": "IDLE",
+   "spot": 750.28,
+   "note": "改价后仍未成交，放弃",
+   "pattern": "B"
   }
  ],
  "roundtrips": [
