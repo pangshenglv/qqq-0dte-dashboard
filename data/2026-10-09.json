@@ -749,6 +749,27 @@
     "long_conid": 918954043,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-10-09T11:14:05.936286-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 749.73,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 749.76,
+   "level": 749.7
+  },
+  {
+   "ts": "2026-10-09T11:14:05.939699-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 749.73,
+   "gate": "G2",
+   "passed": false,
+   "debit": 102.0,
+   "planned_loss": 25.5,
+   "remaining": 10.0
   }
  ],
  "roundtrips": [
