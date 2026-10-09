@@ -114,3 +114,28 @@ footer { padding: 12px 22px 28px; color: var(--dim); font-size: 12px; }
 /* ---------- Tab 视图切换（2026-10-05 修：hidden 被 main 的 display 覆盖 ✗） ---------- */
 [hidden] { display: none !important; }
 .view-off { display: none !important; }
+
+/* ---------- 2026-10-09 可读性优化：默认只给数字，依据折叠 ✓ ---------- */
+table.scen { table-layout: fixed; }
+table.scen col.c-st { width: 64px; }
+table.scen col.c-nm { width: auto; }
+table.scen col.c-tg { width: 108px; }
+table.scen col.c-lg { width: 150px; }
+table.scen col.c-tgt { width: 96px; }
+table.scen col.c-inv { width: 76px; }
+table.scen tbody tr:hover { background: rgba(88, 166, 255, .06); }
+table.scen td.nm { line-height: 1.5; }
+.chip.reg { color: var(--dim); margin-left: 6px; font-size: 11px; padding: 0 6px; }
+
+details.why { margin-top: 4px; }
+details.why > summary, details.snap-note-wrap > summary {
+  cursor: pointer; color: var(--dim); font-size: 11px; list-style: none; user-select: none; }
+details.why > summary::-webkit-details-marker,
+details.snap-note-wrap > summary::-webkit-details-marker { display: none; }
+details.why > summary::before, details.snap-note-wrap > summary::before { content: "▸ "; }
+details.why[open] > summary::before, details.snap-note-wrap[open] > summary::before { content: "▾ "; }
+details.why > div {
+  margin-top: 4px; color: var(--dim); font-size: 12px; line-height: 1.55;
+  white-space: pre-wrap; max-width: 760px; }
+details.snap-note-wrap { margin: 6px 0 10px; }
+details.snap-note-wrap > .snap-note { margin-top: 6px; max-height: 220px; overflow: auto; }

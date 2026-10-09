@@ -49,6 +49,30 @@ function renderStatus(st) {
 }
 
 /* ---------- 策略时间线 ---------- */
+/* 2026-10-09 看板可读性优化 ✓
+   实测：盘前档 name 6~10 字 ✓，而**盘中档 208~328 字** ✗（AI 把整段推理塞进 name ✓）
+   ⇒ 渲染层必须自己拆：**只显示短标签，依据折叠** ✓（数据侧同时定规矩，见 SPEC §3.1 ✓） */
+function splitName(name) {
+  const s = String(name || "");
+  const i = s.search(/[（(]/);
+  let label = i > 0 ? s.slice(0, i) : s;
+  let why = i > 0 ? s.slice(i) : "";
+  if (!why && label.length > 26) {
+    const m = label.match(/^(\S+\s+[\d.]+)\s+(.*)$/);
+    if (m) { label = m[1]; why = m[2]; }
+  }
+  if (label.length > 30) { why = label.slice(30) + (why ? " " + why : ""); label = label.slice(0, 30) + "…"; }
+  return { label: label.trim(), why: why.trim() };
+}
+
+/* 方案说明（note）常含 ==== / ---- 分隔线（AI 的排版习惯 ✗）⇒ 清掉并折叠 ✓ */
+function cleanNote(note) {
+  return String(note || "")
+    .replace(/^[=\-—─·.\s]{4,}$/gm, "")   // 实测 AI 常用 4~5 个 = / - 当分隔线 ✓
+    .replace(/\n{2,}/g, "\n")
+    .trim();
+}
+
 function renderDay(day) {
   currentDay = day.date;
   const tl = $("#timeline");
@@ -58,15 +82,24 @@ function renderDay(day) {
   } else {
     tl.innerHTML = day.snapshots.map((s) => {
       const m = s.market || {};
-      const rows = (s.scenarios || []).map((c) => `
+      const rows = (s.scenarios || []).map((c) => {
+        const nm = splitName(c.name || c.pattern);
+        const why = c.rationale || nm.why;          // 优先用结构化字段（新口径 ✓），回退到拆名字 ✓
+        const legs = c.legs ? (c.legs.short == null
+            ? `买 ${c.legs.long}${c.structure === "single_put" ? "P" : "C"}（单腿）`
+            : `买 ${c.legs.long} / 卖 ${c.legs.short}`) : "";
+        return `
         <tr>
           <td><span class="badge ${c.enabled ? "on" : "off"}">${c.enabled ? "启用" : "禁用"}</span></td>
-          <td>${esc(c.name || c.pattern)}<br><span class="dim">${esc(c.regime || "")}</span></td>
+          <td class="nm"><b>${esc(nm.label)}</b>
+            <span class="chip reg">${esc(c.regime || "-")}</span>
+            ${why ? `<details class="why"><summary>依据</summary><div>${esc(why)}</div></details>` : ""}</td>
           <td><b>${c.trigger_level ?? "-"}</b><br><span class="dim">${esc(c.trigger_rule || "")}</span></td>
-          <td class="legs">${esc(c.structure || "")}<br>${c.legs ? `买${c.legs.long} / 卖${c.legs.short}` : ""}</td>
+          <td class="legs">${esc(c.structure || "")}<br>${esc(legs)}</td>
           <td>${c.target ?? "-"}<br><span class="dim">${c.target_zone ? "区间 " + c.target_zone.join("–") : ""}</span></td>
           <td>${c.invalid_level ?? "-"}</td>
-        </tr>`).join("");
+        </tr>`;
+      }).join("");
       const err = s.error ? `<div class="err">⚠ ${esc(s.error)}</div>` : "";
       return `
       <div class="snap">
@@ -83,10 +116,11 @@ function renderDay(day) {
           ${m.expected_low ? `· 预期区间 ${m.expected_low}–${m.expected_high}` : ""}
         </div>
         ${err}
-        ${s.note ? `<div class="snap-note">${esc(s.note)}</div>` : ""}
-        <table class="scen"><thead><tr>
-          <th>状态</th><th>形态</th><th>触发</th><th>结构 / 行权价</th><th>目标</th><th>失效</th>
-        </tr></thead><tbody>${rows}</tbody></table>
+        ${cleanNote(s.note) ? `<details class="snap-note-wrap"><summary>方案说明 / 数据来源</summary><div class="snap-note">${esc(cleanNote(s.note))}</div></details>` : ""}
+        <table class="scen">
+          <colgroup><col class="c-st"><col class="c-nm"><col class="c-tg"><col class="c-lg"><col class="c-tgt"><col class="c-inv"></colgroup>
+          <thead><tr><th>状态</th><th>形态</th><th>触发</th><th>结构 / 行权价</th><th>目标</th><th>失效</th></tr></thead>
+          <tbody>${rows}</tbody></table>
       </div>`;
     }).join("");
   }
