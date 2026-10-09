@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-08 22:24 ET",
+ "generated_at": "2026-10-08 22:35 ET",
  "items": [
   {
    "id": "B-01",
@@ -378,6 +378,13 @@
    "status": "open",
    "priority": "P2 · 功能补齐",
    "note": "2026-10-08 用户问\"D 为何被拦\""
+  },
+  {
+   "id": "B-58",
+   "title": "看门狗被「占位版」骗过（只看 mtime ✗）+ pm 的 expected_debit 越上限应生成时拦",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-08 复盘新发现"
   },
   {
    "id": "B-09",
