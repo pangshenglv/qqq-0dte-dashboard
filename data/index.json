@@ -3,13 +3,13 @@
   {
    "date": "2026-09-21",
    "snapshots": 2,
-   "orders": 4,
+   "orders": 310,
    "realized_pnl": -8.0
   },
   {
    "date": "2026-09-22",
    "snapshots": 2,
-   "orders": 0,
+   "orders": 12,
    "realized_pnl": 0
   },
   {
@@ -21,13 +21,13 @@
   {
    "date": "2026-09-24",
    "snapshots": 2,
-   "orders": 7,
+   "orders": 51,
    "realized_pnl": -62.0
   },
   {
    "date": "2026-09-25",
    "snapshots": 2,
-   "orders": 0,
+   "orders": 2,
    "realized_pnl": 0
   },
   {
@@ -39,31 +39,31 @@
   {
    "date": "2026-09-28",
    "snapshots": 2,
-   "orders": 6,
+   "orders": 16,
    "realized_pnl": 39.0
   },
   {
    "date": "2026-09-29",
    "snapshots": 2,
-   "orders": 8,
+   "orders": 42,
    "realized_pnl": -29.0
   },
   {
    "date": "2026-09-30",
    "snapshots": 2,
-   "orders": 4,
+   "orders": 14,
    "realized_pnl": 64.0
   },
   {
    "date": "2026-10-01",
    "snapshots": 2,
-   "orders": 13,
+   "orders": 25,
    "realized_pnl": -72.0
   },
   {
    "date": "2026-10-02",
    "snapshots": 2,
-   "orders": 12,
+   "orders": 23,
    "realized_pnl": -82.0
   },
   {
@@ -80,7 +80,7 @@
   },
   {
    "date": "2026-10-07",
-   "snapshots": 12,
+   "snapshots": 10,
    "orders": 52,
    "realized_pnl": -88.0
   },
@@ -97,5 +97,5 @@
    "realized_pnl": 0
   }
  ],
- "updated": "2026-10-09 03:21:32 ET"
+ "updated": "2026-10-09 03:22:48 ET"
 }

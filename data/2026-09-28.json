@@ -2,12 +2,14 @@
  "date": "2026-09-28",
  "snapshots": [
   {
-   "file": "daily_20260928",
+   "file": "daily_20260928_0947_d359380a86",
    "kind": "premarket",
    "label": "盘前方案",
    "sort_key": "09:47",
    "generated_at": "09:47 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "数据获取: 2026-09-28 09:46-09:47 ET（盘中刷新版，替代 09:31 盘前版）| 数据源: tws_local（IBKR 插件不可用，降级通道）\n期权墙（实报 09:47 ET）: top3 = 738P 55524 / 741C 29051 / 740C 26530（另 742C 26525、737P 26487、739P 25142）；P/C 量比 1.24；738 put 厚墙已被跌破→转为压制区；740-742 call 墙集群压制上方\n当日事件: 无一级事件；Dallas Fed 制造业 10:30 ET（次级）；伊朗/Hormuz 地缘头条敏感（Brent >$106、10Y 曾破 5.2%）",
    "market": {
     "spot_premarket": 737.85,
@@ -19,6 +21,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": false,
      "trigger_level": 740.2,
@@ -39,6 +42,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 737.4,
@@ -59,6 +63,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 734.6,
@@ -79,6 +84,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 739.6,
@@ -99,6 +105,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -115,12 +122,14 @@
    "enabled_count": 4
   },
   {
-   "file": "daily_20260928_pm",
+   "file": "daily_20260928_1600_89ff473af3_pm",
    "kind": "pm",
    "label": "盘中刷新 16:00 ET",
    "sort_key": "16:00",
    "generated_at": "16:00 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "盘中修正版 2026-09-28 16:00 ET（15:53 末轮，收盘最终处置）| 数据源: tws_local（IBKR 插件不可用，降级通道）\n期权墙（实报 ~15:53 ET, spot 736.17）: top3 = 738C 52.8万 / 735P 46.4万 / 740C 44.5万（另 739C 43.9万、737P 42.1万）；P/C 量比 0.88——末日钉墙格局维持到收盘\n收盘盘面: last 736.14，VWAP 736.69；全日区间 731.63(10:48)-741.42(09:32)，收 -1.12%（前收 744.50）\n全日轨迹: 低开 -0.54% → 上午趋势跌至 731.63（10:48 恐慌量）→ 12:0x 谈判头条 V 型急涨至 740.38 → 午后 736-739 钉墙横盘至收盘\n当日执行汇总（watcher 日志实记）: B@737.4 两度成交（09:52 @$1.56 / 10:07 @$2.04），10:17 平仓第二笔 proceeds $243，当日 realized +$39；D2@734.6 11:11 触发但 G3 拒单($97<min)；B3/C4 全天未触发；无止损\n⚠️ 收盘警示（最急）: B 第一笔 @$1.56($156) 至收盘仍无平仓记录，疑似孤儿单在 paper 账户 DUQ402112——0DTE 今日到期，若为实仓将按到期处置（ITM/OTM 自动行权或作废），请立即登录 TWS 核对\n⚠️ watcher 异常（全日持续）: 实时 bar tick 降级聚合 + bar_duplicate_dropped 全日 20+ 次；15:45 watcher 已转入休眠并归档（QQQ 705 根 1分钟bar + 34 个期权合约）\n处置总原则: 开仓窗口 9:30-15:30 已关闭，watcher 已休眠，全部 enabled 形态置 false（窗口关闭=结构失效），仅 E 观望保留至次日盘前方案",
    "market": {
     "spot_premarket": 736.14,
@@ -132,6 +141,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": false,
      "trigger_level": 740.2,
@@ -152,6 +162,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 737.4,
@@ -172,6 +183,7 @@
     },
     {
      "name": "B3-跌破日低追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 731.5,
@@ -192,6 +204,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 734.6,
@@ -212,6 +225,7 @@
     },
     {
      "name": "C3-日低弹簧收复买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 731.7,
@@ -232,6 +246,7 @@
     },
     {
      "name": "C4-VWAP回踩买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 736.0,
@@ -252,6 +267,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": false,
      "trigger_level": 739.6,
@@ -272,6 +288,7 @@
     },
     {
      "name": "D2-反弹假突破反手",
+     "rationale": null,
      "pattern": "D",
      "enabled": false,
      "trigger_level": 734.6,
@@ -292,6 +309,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -309,6 +327,36 @@
   }
  ],
  "order_events": [
+  {
+   "ts": "2026-09-28T09:52:01.799516-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 737.3216,
+   "pattern": "B",
+   "result": "confirmed",
+   "close": 737.39,
+   "level": 738.2
+  },
+  {
+   "ts": "2026-09-28T09:52:01.800712-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 737.3216,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.61
+  },
+  {
+   "ts": "2026-09-28T09:52:03.795696-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 737.3216,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
   {
    "ts": "2026-09-28T09:52:03.797211-04:00",
    "event": "order_submit",
@@ -328,6 +376,36 @@
    "pattern": "B",
    "price": 1.56,
    "cost": 156.0
+  },
+  {
+   "ts": "2026-09-28T10:07:00.063306-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 737.28,
+   "pattern": "B",
+   "result": "confirmed",
+   "close": 737.18,
+   "level": 737.4
+  },
+  {
+   "ts": "2026-09-28T10:07:00.064284-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 737.28,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 2.04
+  },
+  {
+   "ts": "2026-09-28T10:07:01.312590-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 737.28,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
   },
   {
    "ts": "2026-09-28T10:07:01.313360-04:00",
@@ -368,6 +446,53 @@
    "proceeds": 243.0,
    "pnl": 39.0,
    "realized": 39.0
+  },
+  {
+   "ts": "2026-09-28T10:48:01.557455-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 731.91,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "B",
+   "level": 737.4,
+   "crossings": 3,
+   "age_min": 51,
+   "reason": "点位失效(穿越过多)"
+  },
+  {
+   "ts": "2026-09-28T11:11:01.801473-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 734.57,
+   "pattern": "D",
+   "result": "confirmed",
+   "close": 734.58,
+   "level": 734.6
+  },
+  {
+   "ts": "2026-09-28T11:11:07.262649-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 734.57,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.97,
+   "leg_spread": 0.010000000000000009,
+   "note": "低于min_debit(摩擦占比过高)，recenter 失败"
+  },
+  {
+   "ts": "2026-09-28T11:42:01.853376-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 734.4801,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "D",
+   "level": 734.6,
+   "crossings": 9,
+   "age_min": 42,
+   "reason": "点位失效(穿越过多)"
   }
  ],
  "roundtrips": [
@@ -396,7 +521,12 @@
    },
    "pnl": 39.0,
    "open_ts": "2026-09-28T10:07:11.325483-04:00",
-   "close_ts": "2026-09-28T10:17:29.895017-04:00"
+   "close_ts": "2026-09-28T10:17:29.895017-04:00",
+   "armed": null,
+   "level": null,
+   "target": null,
+   "chase_pct": null,
+   "vwap": null
   }
  ],
  "realized_pnl": 39.0

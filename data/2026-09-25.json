@@ -2,12 +2,14 @@
  "date": "2026-09-25",
  "snapshots": [
   {
-   "file": "daily_20260925",
+   "file": "daily_20260925_0857_22cc11351a",
    "kind": "premarket",
    "label": "盘前方案",
    "sort_key": "08:57",
    "generated_at": "08:57 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "数据获取: 2026-09-25 08:55-08:57 ET | 数据源: tws_local（IBKR 插件不可用，降级通道）\n期权墙: 无墙数据（脚本运行正常，但盘前 0DTE 成交量为零：walls 全部 vol=0、P/C 比 null，开盘前无有效墙锚点）\n当日事件: 无一级事件；耐用品订单 8:30 ET 已发布（预期 -0.3%~-0.5%）；密大消费者信心终值 10:00 ET（预期 47.8）；Fed Hammack 讲话 14:00 ET",
    "market": {
     "spot_premarket": 744.15,
@@ -19,6 +21,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 747.2,
@@ -39,6 +42,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 741.1,
@@ -59,6 +63,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 738.2,
@@ -79,6 +84,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 747.2,
@@ -99,6 +105,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -115,12 +122,14 @@
    "enabled_count": 5
   },
   {
-   "file": "daily_20260925_pm",
+   "file": "daily_20260925_1557_54bfc63738_pm",
    "kind": "pm",
    "label": "盘中刷新 15:57 ET",
    "sort_key": "15:57",
    "generated_at": "15:57 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "2026-09-25 盘中修正（15:53 ET 最后一波刷新·收官版，数据获取 15:54–15:56 ET）——维持不变\n数据源：本地 TWS 降级（IBKR MCP 插件全天不可用，TWS 实报正常）\n期权墙终版摘要（15:54 ET，spot 745.23，P/C 量比 0.86）：top3 墙 = 745C 73.6 万（全日最大、压日高 745.92）/\n744C 50.5 万 / 744P 48.7 万；744 对锁钉住维持到尾盘，15:30 段竞价放量 192 万股小幅上破至 745.26 收于全日上段。\n收盘盘面：last 745.26（较前收 741.10 +0.56%），日内区间 739.64–745.92（0.85%），VWAP 743.57，量 1852 万股。\n全天路径：高开 +0.24% → 早盘 745.42 高点 → 密大信心急挫至 739.64（10:19）→ 修复并刷新日高 745.92（12:17）→\n午后 744±1 墙带钉住 2.5 小时 → 尾盘竞价上收。市况 trend（watcher 13:19）。\n当日交易小结：全天零成交。B@741.1 于 10:17 触发但 G3 拒单（745P/740P debit $315 超顶，教训已记录：\n远端触发位的 nearer-the-money 长腿触发时 ITM 膨胀）；其余形态 A/D@747.2、B2@739.5、C/C2 全程未触发。无止损（规则④不适用）。\n收官处置：15:30 开仓截止已过，watcher 已于 15:46 归档当日数据（705 根分钟线 + 34 个期权合约）并结束交易时段；\n配置维持现状仅作收盘记录（无规则①②④事由，不动 enabled 状态）。\n事件：Hammack 14:00 落地无冲击；今日事件全部消化完毕。盘后无持仓、无风险敞口。\nNQ 期货、IV/HV、Greeks：降级模式无此数据。",
    "market": {
     "spot_premarket": 745.26,
@@ -132,6 +141,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 747.2,
@@ -152,6 +162,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 741.1,
@@ -172,6 +183,7 @@
     },
     {
      "name": "B2-跌破日内低点追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 739.5,
@@ -192,6 +204,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 738.2,
@@ -212,6 +225,7 @@
     },
     {
      "name": "C2-回踩743Shelf确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 743.3,
@@ -232,6 +246,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 747.2,
@@ -252,6 +267,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -268,7 +284,29 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-09-25T10:17:01.631112-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.41,
+   "pattern": "B",
+   "result": "confirmed",
+   "close": 740.33,
+   "level": 741.1
+  },
+  {
+   "ts": "2026-09-25T10:17:01.632875-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 740.41,
+   "gate": "G3",
+   "passed": false,
+   "mid": 3.15,
+   "leg_spread": 0.09999999999999964,
+   "note": "超上限"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }

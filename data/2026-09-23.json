@@ -2,12 +2,14 @@
  "date": "2026-09-23",
  "snapshots": [
   {
-   "file": "daily_20260923",
+   "file": "daily_20260923_0857_3eb7329008",
    "kind": "premarket",
    "label": "盘前方案",
    "sort_key": "08:57",
    "generated_at": "08:57 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "",
    "market": {
     "spot_premarket": 745.79,
@@ -19,6 +21,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 748.4,
@@ -39,6 +42,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 743.2,
@@ -59,6 +63,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 743.2,
@@ -79,6 +84,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 748.4,
@@ -99,6 +105,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -115,12 +122,14 @@
    "enabled_count": 4
   },
   {
-   "file": "daily_20260923_pm",
+   "file": "daily_20260923_1556_eec8765c12_pm",
    "kind": "pm",
    "label": "盘中刷新 15:56 ET",
    "sort_key": "15:56",
    "generated_at": "15:56 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "2026-09-23 盘中方案（15:53 ET 当日最后一次刷新，数据获取 15:54 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件不可用；TWS 实报正常）\n当日收官：QQQ 收 740.08（-0.99%），日高 747.13（9:30）/ 日低 738.19（10:26），VWAP 740.97，\n尾盘 15:00 段冲高 741.54 后回落至 740 关口，15:3x 单根收盘破 740.0 后最后 1 分钟收复（740.08）。\n触发复核（13:53 版点位全生命周期）：741.7 全天（加载后）未被收盘突破——A/D 未触发；\n740.0 在 15:3x 仅 1 根收盘跌破（B 需连续 2 根，未触发）；C 的收复发生在约 15:52，已在 15:30\n开仓窗口之外（watcher 日志无 trigger_hit，全天 IDLE 无成交，15:45 正常归档关机：705 根K线 + 34 个期权合约）。\n处置（规则⑥：15:53 刷新须确保 15:30 前可完成进出——现已过窗口，当日不再开新仓）：\nA / B / C / D 全部 enabled: false（时间窗口关闭，非数据故障），E 维持监控。\n事件：今日无 FOMC；午后无重大数据。\nNQ 期货、IV/HV、Greeks、Put/Call 量比：降级模式无此数据。",
    "market": {
     "spot_premarket": 740.08,
@@ -132,6 +141,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": false,
      "trigger_level": 741.7,
@@ -152,6 +162,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 740.0,
@@ -172,6 +183,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 740.0,
@@ -192,6 +204,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": false,
      "trigger_level": 741.7,
@@ -212,6 +225,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,

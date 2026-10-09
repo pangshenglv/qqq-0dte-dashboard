@@ -21,6 +21,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 761,
@@ -41,6 +42,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 754,
@@ -61,6 +63,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 757,
@@ -81,6 +84,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 760,
@@ -101,6 +105,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -136,6 +141,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入 762.30（贴线突破：母体=当日高 762.20；空间 0.354%）",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 762.3,
@@ -156,6 +162,7 @@
     },
     {
      "name": "B-右侧跌破追空 759.10（跌破当日最低点）",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 759.1,
@@ -176,6 +183,7 @@
     },
     {
      "name": "C-左侧回踩确认买入 759.94（主支撑：7 次触及簇 759.59–760.24）",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 759.94,
@@ -196,6 +204,7 @@
     },
     {
      "name": "D-假突破反手做空 763.00（当日高上方 + 763C 厚墙 144.5k）",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 763.0,
@@ -216,6 +225,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -251,6 +261,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入 762.90（母体=当日高 762.86；空间 0.354%）",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 762.9,
@@ -271,6 +282,7 @@
     },
     {
      "name": "B-右侧跌破追空 759.10（跌破当日最低点 + 759P 墙 126.8k）",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 759.1,
@@ -291,6 +303,7 @@
     },
     {
      "name": "C-左侧回踩确认买入 759.94（主支撑：7 次触及簇 759.59–760.24）",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 759.94,
@@ -311,6 +324,7 @@
     },
     {
      "name": "D-假突破反手做空 764.00（当日高上方 + 764C 厚墙 142.5k）",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 764.0,
@@ -331,6 +345,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -366,6 +381,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入 762.90（母体=当日高 762.86；空间 0.354%）",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 762.9,
@@ -386,6 +402,7 @@
     },
     {
      "name": "B-右侧跌破追空 759.10（跌破当日最低点 + 759P 墙 153.9k）",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 759.1,
@@ -406,6 +423,7 @@
     },
     {
      "name": "C-左侧回踩确认买入 760.20（主支撑簇 760.13–760.30 十三触 + 最厚 760P 墙 266.1k）",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 760.2,
@@ -426,6 +444,7 @@
     },
     {
      "name": "D-假突破反手做空 764.00（当日高上方 + 764C 厚墙 167.5k）",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 764.0,
@@ -446,6 +465,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -481,6 +501,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入 762.40（母体=11:30 箱顶 762.36 +八触；空间 0.407%）",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 762.4,
@@ -501,6 +522,7 @@
     },
     {
      "name": "B-右侧跌破追空 759.70（13:00 段放量洗盘低点 +四触；空间 0.355%）",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 759.7,
@@ -521,6 +543,7 @@
     },
     {
      "name": "C-左侧回踩确认买入 760.00（主支撑簇 759.90–760.20 +最厚 760P 墙 366.1k；空间 0.395%）",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 760.0,
@@ -541,6 +564,7 @@
     },
     {
      "name": "D-假突破反手做空 762.90（当日高 762.86 上方 + 762C 最厚墙 456.9k；空间 0.354%）",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 762.9,
@@ -561,6 +585,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -596,6 +621,7 @@
    "scenarios": [
     {
      "name": "C-左侧回踩确认买入 760.30（主支撑簇 760.30–760.70 下沿 +九触、13:53 后 0 穿越；空间 0.355%）",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 760.3,
@@ -616,6 +642,7 @@
     },
     {
      "name": "A-右侧突破买入 761.60（14:07 高点 761.56 / 箱体上沿 6 触）· 本档禁用：与低侧夹缝 0.171%<0.30%",
+     "rationale": null,
      "pattern": "A",
      "enabled": false,
      "trigger_level": 761.6,
@@ -636,6 +663,7 @@
     },
     {
      "name": "B-右侧跌破追空 759.90（次级支撑带 759.90–760.20 下沿 + 最厚 760P 墙 448.9k）· 本档禁用：尾盘 RR 0.07",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 759.9,
@@ -656,6 +684,7 @@
     },
     {
      "name": "D-假突破反手做空 761.60（同 A 触发位；762C 最厚墙 535.0k 锚点）· 本档禁用：与低侧夹缝 0.171%<0.30%",
+     "rationale": null,
      "pattern": "D",
      "enabled": false,
      "trigger_level": 761.6,
@@ -676,6 +705,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -711,6 +741,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入 760.43（主阻力簇 760.07-760.43 上沿，触及17/收盘穿越18）· 本档禁用：0DTE 已摘牌不可成交 + 夹缝0.067%<0.30% + 目标763.10>当日最高762.86 不可达",
+     "rationale": null,
      "pattern": "A",
      "enabled": false,
      "trigger_level": 760.43,
@@ -731,6 +762,7 @@
     },
     {
      "name": "B-右侧跌破追空 759.00（当日低点759.10下方0.10；距收盘0.64≤振幅/3 1.253 可达）· 本档禁用：0DTE 已摘牌不可成交 + 剩余时段=0（触发需先破当日低点）",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 759.0,
@@ -751,6 +783,7 @@
     },
     {
      "name": "C-左侧回踩确认买入 759.59（主支撑簇 759.59-759.89 下沿，触及5/收盘穿越3）· 本档禁用：0DTE 已摘牌不可成交 + 与看涨侧夹缝0.067-0.150%<0.30%",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 759.59,
@@ -771,6 +804,7 @@
     },
     {
      "name": "D-假突破反手做空 760.43（同 A 触发位；760/761/762 为 14:53 档实报厚 call 墙 535k/515k 区）· 本档禁用：0DTE 已摘牌不可成交 + 夹缝<0.30%",
+     "rationale": null,
      "pattern": "D",
      "enabled": false,
      "trigger_level": 760.43,
@@ -791,6 +825,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,

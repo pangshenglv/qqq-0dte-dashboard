@@ -2,12 +2,14 @@
  "date": "2026-09-24",
  "snapshots": [
   {
-   "file": "daily_20260924",
+   "file": "daily_20260924_0856_bad3f32bdc",
    "kind": "premarket",
    "label": "盘前方案",
    "sort_key": "08:56",
    "generated_at": "08:56 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "",
    "market": {
     "spot_premarket": 734.12,
@@ -19,6 +21,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": true,
      "trigger_level": 738.4,
@@ -39,6 +42,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": true,
      "trigger_level": 730.0,
@@ -59,6 +63,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": true,
      "trigger_level": 727.8,
@@ -79,6 +84,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": true,
      "trigger_level": 738.2,
@@ -99,6 +105,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -115,12 +122,14 @@
    "enabled_count": 5
   },
   {
-   "file": "daily_20260924_pm",
+   "file": "daily_20260924_1557_b759bfb317_pm",
    "kind": "pm",
    "label": "盘中刷新 15:57 ET",
    "sort_key": "15:57",
    "generated_at": "15:57 ET",
    "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
    "note": "2026-09-24 盘中修正（15:53 ET 最后一波刷新·收官版，数据获取 15:53–15:55 ET）\n数据源：本地 TWS 降级（IBKR MCP 插件全天不可用，TWS 实报正常）\n期权墙终版摘要（15:53 ET，spot 741.71，P/C 量比 0.81）：top3 墙 = 741C 49.8 万 / 740C 49.0 万 / 742C 39.1 万；\n尾盘价格如预期收敛于 740C–742C 墙带夹层内（15:00 段 740.22–741.61、15:30 段 740.78–741.86）。\n【收官处置】维持 14:58 版全禁开（规则④）：今日已发生 1 次真实止损（A2@740.2，14:27 开仓 $1.92 → 14:35 止损 $1.30，\nrealized -$62，达当日熔断 $100 的 62%）；15:30 开仓截止已过，A–D 全部 enabled: false 不变，仅 E 观望。\nwatcher 已于 14:58:02 热加载全禁版（scenarios 清空），此后零触发；15:46 自动归档当日数据\n（705 根 QQQ 分钟线 + 34 个期权合约）并广播「当日交易时段结束」。\n收盘盘面：last 741.8（较前收 741.21 +0.08%），日内区间 734.62–742.66（1.09%），VWAP 738.60，量能 1700 万股。\n全天形态：低开 -0.80% → 上午 734.6–738.2 震荡 → 12:15 垂直拉升 → 13:05 拍卖后冲高 742.66 →\n回落至 738.8 二次企稳 → 尾盘墙带夹层震荡收于全日上段。市况 trend，缺口全部收复。\n当日账户小结：成交 1 笔（A2，-$62）；C2 触发未成交（两次改价放弃）；B/D2 未成交。净 realized -$62。\n事件：盘后 16:15 Fed H.4.1、18:05 Barr 讲话；COST 盘后财报。均不影响本日 0DTE（已到期/将到期）。\nNQ 期货、IV/HV、Greeks：降级模式无此数据。",
    "market": {
     "spot_premarket": 741.8,
@@ -132,6 +141,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破买入",
+     "rationale": null,
      "pattern": "A",
      "enabled": false,
      "trigger_level": 741.7,
@@ -152,6 +162,7 @@
     },
     {
      "name": "A2-午后突破740关口",
+     "rationale": null,
      "pattern": "A",
      "enabled": false,
      "trigger_level": 740.2,
@@ -172,6 +183,7 @@
     },
     {
      "name": "B-右侧跌破追空",
+     "rationale": null,
      "pattern": "B",
      "enabled": false,
      "trigger_level": 737.9,
@@ -192,6 +204,7 @@
     },
     {
      "name": "C-左侧回踩确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 739.0,
@@ -212,6 +225,7 @@
     },
     {
      "name": "C2-回踩VWAP确认买入",
+     "rationale": null,
      "pattern": "C",
      "enabled": false,
      "trigger_level": 738.1,
@@ -232,6 +246,7 @@
     },
     {
      "name": "D-假突破反手做空",
+     "rationale": null,
      "pattern": "D",
      "enabled": false,
      "trigger_level": 741.7,
@@ -252,6 +267,7 @@
     },
     {
      "name": "D2-740关口假突破反手",
+     "rationale": null,
      "pattern": "D",
      "enabled": false,
      "trigger_level": 739.9,
@@ -272,6 +288,7 @@
     },
     {
      "name": "E-横盘观望",
+     "rationale": null,
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -289,6 +306,90 @@
   }
  ],
  "order_events": [
+  {
+   "ts": "2026-09-24T12:59:00.299796-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 742.02,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 742.0003,
+   "level": 741.7
+  },
+  {
+   "ts": "2026-09-24T12:59:00.301862-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 742.02,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.99,
+   "leg_spread": 0.010000000000000009,
+   "note": "低于min_debit(摩擦占比过高)"
+  },
+  {
+   "ts": "2026-09-24T13:11:01.813766-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 741.2732,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "D",
+   "level": 741.7,
+   "crossings": 3,
+   "reason": "点位失效(穿越过多)"
+  },
+  {
+   "ts": "2026-09-24T13:44:00.894074-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 739.16,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 739.16,
+   "level": 739.0
+  },
+  {
+   "ts": "2026-09-24T13:44:00.896538-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 739.16,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.81,
+   "leg_spread": 0.010000000000000009,
+   "note": "低于min_debit(摩擦占比过高)"
+  },
+  {
+   "ts": "2026-09-24T14:14:01.702184-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 739.2284,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 739.2284,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:14:01.704193-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 739.2284,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.41
+  },
+  {
+   "ts": "2026-09-24T14:14:03.493498-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 739.2284,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
   {
    "ts": "2026-09-24T14:14:03.495798-04:00",
    "event": "order_submit",
@@ -316,6 +417,57 @@
    "spot": 739.46,
    "note": "改价后仍未成交，放弃",
    "pattern": "C"
+  },
+  {
+   "ts": "2026-09-24T14:19:01.778347-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 739.82,
+   "pattern": "D",
+   "result": "confirmed",
+   "close": 739.88,
+   "level": 739.9
+  },
+  {
+   "ts": "2026-09-24T14:19:01.780204-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 739.82,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.88,
+   "leg_spread": 0.010000000000000009,
+   "note": "低于min_debit(摩擦占比过高)"
+  },
+  {
+   "ts": "2026-09-24T14:27:00.561851-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.647,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 740.64,
+   "level": 740.2
+  },
+  {
+   "ts": "2026-09-24T14:27:00.563716-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 740.647,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.95
+  },
+  {
+   "ts": "2026-09-24T14:27:01.704236-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 740.647,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
   },
   {
    "ts": "2026-09-24T14:27:01.705165-04:00",
@@ -356,6 +508,316 @@
    "proceeds": 130.0,
    "pnl": -62.0,
    "realized": -62.0
+  },
+  {
+   "ts": "2026-09-24T14:46:01.828431-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.65,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.67,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:47:00.913832-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.72,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.75,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:47:01.916720-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.72,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.72,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:47:02.918879-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.72,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.72,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:48:02.001803-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.665,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.66,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:49:00.087372-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.7701,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.76,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:49:01.090264-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.7701,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.7701,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:49:02.092740-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.7701,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.77,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:50:00.192990-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.73,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.73,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:50:01.198335-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.73,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.73,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:50:02.201560-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.675,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.73,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:51:00.316993-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.09,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.1,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:51:01.318969-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.09,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.09,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:51:02.321570-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.01,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.09,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:52:00.456024-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.99,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.99,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:52:01.458395-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 740.99,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.99,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:52:02.460961-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.01,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 740.99,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:53:00.575036-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.29,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.28,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:53:01.578366-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.29,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.29,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:53:02.581258-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.26,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.33,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:54:01.714592-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.1907,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.22,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:55:00.850530-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.18,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.16,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:55:01.853705-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.18,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.18,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:55:02.856038-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.18,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.18,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:56:01.997298-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.41,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.41,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:57:00.089323-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.6599,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.6599,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:57:01.094148-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.6599,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.6599,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:57:02.097609-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.6599,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.66,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:58:00.191939-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.74,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.74,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:58:01.195529-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.74,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.74,
+   "level": 738.1
+  },
+  {
+   "ts": "2026-09-24T14:58:02.198044-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 741.715,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 741.74,
+   "level": 738.1
   }
  ],
  "roundtrips": [
@@ -384,7 +846,12 @@
    },
    "pnl": -62.0,
    "open_ts": "2026-09-24T14:27:11.710048-04:00",
-   "close_ts": "2026-09-24T14:35:55.115270-04:00"
+   "close_ts": "2026-09-24T14:35:55.115270-04:00",
+   "armed": null,
+   "level": null,
+   "target": null,
+   "chase_pct": null,
+   "vwap": null
   }
  ],
  "realized_pnl": -62.0
