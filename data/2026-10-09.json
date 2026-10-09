@@ -770,6 +770,44 @@
    "debit": 102.0,
    "planned_loss": 25.5,
    "remaining": 10.0
+  },
+  {
+   "ts": "2026-10-09T11:46:06.866226-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 749.9,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "C",
+   "target": 752.4,
+   "level": 749.7,
+   "entry_ref": 749.88,
+   "remaining_pct": 0.336,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-10-09T11:46:06.866738-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 749.9,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 749.88,
+   "level": 749.7
+  },
+  {
+   "ts": "2026-10-09T11:46:33.084005-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 749.9,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.97,
+   "leg_spread": 0.01,
+   "cap": 176.2,
+   "note": "低于min_debit 且多张补齐不可行（每张 $97 × 0 = $0 > 上限 $176），recenter 失败"
   }
  ],
  "roundtrips": [
