@@ -124,7 +124,7 @@
   {
    "file": "daily_20261008_0953_ce70a4be60_pm",
    "kind": "pm",
-   "label": "盘中刷新 09:53 ET（第 3 次）",
+   "label": "盘中刷新 09:53 ET",
    "sort_key": "09:53",
    "generated_at": "09:53 ET",
    "data_source": "tws_local",
@@ -592,7 +592,7 @@
   {
    "file": "daily_20261008_1302_9258dc98d2_pm",
    "kind": "pm",
-   "label": "盘中刷新 13:02 ET（第 3 次）",
+   "label": "盘中刷新 13:02 ET",
    "sort_key": "13:02",
    "generated_at": "13:02 ET",
    "data_source": "tws_local",
@@ -708,7 +708,7 @@
   {
    "file": "daily_20261008_1358_9d5d35c113_pm",
    "kind": "pm",
-   "label": "盘中刷新 13:58 ET（第 2 次）",
+   "label": "盘中刷新 13:58 ET",
    "sort_key": "13:58",
    "generated_at": "13:58 ET",
    "data_source": "tws_local",
@@ -940,7 +940,7 @@
   {
    "file": "daily_20261008_1553_7d111f2c63_pm",
    "kind": "pm",
-   "label": "盘中刷新 15:53 ET（第 2 次）",
+   "label": "盘中刷新 15:53 ET",
    "sort_key": "15:53",
    "generated_at": "15:53 ET",
    "data_source": "tws_local",
