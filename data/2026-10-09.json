@@ -210,12 +210,49 @@
     "single": true,
     "long_conid": 918960498,
     "short_conid": null
-   },
-   "_metrics": {
-    "ts": "2026-10-09T09:38:21.438116-04:00",
-    "event": "entry_metrics",
+   }
+  },
+  {
+   "ts": "2026-10-09T09:40:01.153864-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 751.57,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 1.14
+  },
+  {
+   "ts": "2026-10-09T09:40:03.156561-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 751.57,
+   "side": "close",
+   "pattern": "B",
+   "proceeds": 119.0,
+   "pnl": -41.0,
+   "realized": -41.0,
+   "qty": 1,
+   "legs": {
+    "long": 750.0,
+    "short": null,
+    "right": "P",
+    "single": true,
+    "long_conid": 918960498,
+    "short_conid": null
+   }
+  }
+ ],
+ "roundtrips": [
+  {
+   "pattern": "B",
+   "open": {
+    "ts": "2026-10-09T09:38:21.437500-04:00",
+    "event": "order_fill",
     "state": "POSITION",
     "spot": 750.8,
+    "side": "open",
+    "pattern": "B",
+    "price": 1.6,
     "cost": 160.0,
     "qty": 1,
     "legs": {
@@ -225,24 +262,37 @@
      "single": true,
      "long_conid": 918960498,
      "short_conid": null
-    },
+    }
+   },
+   "close": {
+    "ts": "2026-10-09T09:40:03.156561-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 751.57,
+    "side": "close",
     "pattern": "B",
-    "level": 750.9,
-    "trig_close": 750.85,
-    "chase_pct": -0.0067,
-    "vwap": 751.7,
-    "vwap_dev_pct": -0.1194,
-    "day_regime": "unknown",
-    "combo_bid": 1.48,
-    "combo_ask": 1.5,
-    "combo_mid": 1.49,
-    "leg_spread": 0.02,
-    "bar_vol": 84627.0,
-    "vol_mult": 2.12,
-    "level_cross": 1
-   }
+    "proceeds": 119.0,
+    "pnl": -41.0,
+    "realized": -41.0,
+    "qty": 1,
+    "legs": {
+     "long": 750.0,
+     "short": null,
+     "right": "P",
+     "single": true,
+     "long_conid": 918960498,
+     "short_conid": null
+    }
+   },
+   "pnl": -41.0,
+   "open_ts": "2026-10-09T09:38:21.437500-04:00",
+   "close_ts": "2026-10-09T09:40:03.156561-04:00",
+   "armed": null,
+   "level": 750.9,
+   "target": null,
+   "chase_pct": -0.0067,
+   "vwap": 751.7
   }
  ],
- "roundtrips": [],
- "realized_pnl": 0
+ "realized_pnl": -41.0
 }
