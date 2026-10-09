@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-08 23:46 ET",
+ "generated_at": "2026-10-08 23:56 ET",
  "items": [
   {
    "id": "B-01",
@@ -115,17 +115,17 @@
   },
   {
    "id": "B-20",
-   "title": "tick_fallback 假警报仍在发 alert 级通知",
-   "status": "open",
+   "title": "tick_fallback 假警报仍在发 alert 级",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": ""
+   "note": "核实：**已是 info 级** ✓ 2026-10-09"
   },
   {
    "id": "B-21",
-   "title": "成交量双路径重复累加（约 1.8~2.0×）",
-   "status": "open",
+   "title": "成交量双路径重复累加",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": ""
+   "note": "与 B-15 同源、B-15 已修 ✓ 2026-10-09 合并关闭"
   },
   {
    "id": "B-22",
@@ -157,10 +157,10 @@
   },
   {
    "id": "B-28",
-   "title": "pm_reload_failed 日志噪声过大",
-   "status": "open",
+   "title": "pm_reload_failed 日志噪声",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": ""
+   "note": "核实：当日 **0 次** ✓ 2026-10-09"
   },
   {
    "id": "B-24b",
@@ -193,9 +193,9 @@
   {
    "id": "B-34",
    "title": "自动导出任务把生成物提交到「当前所在分支」",
-   "status": "open",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": "2026-10-06 发现"
+   "note": "2026-10-09 修 ✓ 分支守卫"
   },
   {
    "id": "B-33",
@@ -206,17 +206,17 @@
   },
   {
    "id": "B-30",
-   "title": "看板「原始事件流水」未显示触发点位",
-   "status": "open",
+   "title": "看板事件流水显示触发点位",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": "2026-10-05 用户提出"
+   "note": "核实：**已实现** ✓ 2026-10-09"
   },
   {
    "id": "B-31",
-   "title": "AI 策略时间线快照缺失（10/05 仅 2 个版本：08:58 / 14:02）",
-   "status": "open",
+   "title": "AI 策略时间线快照缺失",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": ""
+   "note": "内容哈希归档 ✓ + B-45 展示修正 ✓ 2026-10-09 核实"
   },
   {
    "id": "B-32",
@@ -381,10 +381,10 @@
   },
   {
    "id": "B-58",
-   "title": "看门狗被「占位版」骗过（只看 mtime ✗）+ pm 的 expected_debit 越上限应生成时拦",
-   "status": "open",
+   "title": "看门狗「占位版」盲区（已判为非缺陷 ✓）+ pm 的 expected_debit 越上限",
+   "status": "done",
    "priority": "P2 · 功能补齐",
-   "note": "2026-10-08 复盘新发现"
+   "note": "2026-10-09 处理 ✓"
   },
   {
    "id": "B-59",
