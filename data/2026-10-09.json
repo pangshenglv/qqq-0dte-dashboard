@@ -1,6 +1,123 @@
 {
  "date": "2026-10-09",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20261009_0858_7c5a885121",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "08:58",
+   "generated_at": "08:58 ET",
+   "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
+   "note": "QQQ 0DTE 盘前方案 · 美东交易日 2026-10-09（周五）\n数据获取时间/数据源：2026-10-09 08:53:12 ET / tws_local（tools/tws_snapshot.py，clientId 7，只读；DSH 侧无 IBKR 插件 → 降级通道）\n· QQQ 快照（盘前实时）：last=752.08 / bid=752.00 / ask=752.06 / prev_close=747.58 / vol=1,034,493 → 较前收 +4.50（+0.60%）\n· 今日分钟线/日线为 10/08 完整交易日（open 753.97 / high 757.18 / low 743.23 / close 747.58 / vol 31,096,058）\n· 期权链：quote_type=FROZEN（上一交易日 16:00 收盘冻结价，50/50 合约双边有效，**非实时**）\n· IV 官方字段 / Greeks / NQ 期货 / Put-Call 量比：降级模式无此数据（IV 由冻结链反解，非 IBKR 官方字段）\nIV 标定：冻结链 put-call parity 隐含标的 S≈748.30（与 10/08 前收 747.58 一致 → 锚点可信）\nATM(748) 跨式 mid=5.58 → 反解年化 IV=17.84%（T=1/365）→ 1 日 σ=**0.9339%**（=6.99 点）\n⚠️ 冻结链锚在 748.30，比本机盘前现价 752.08 **低 3.78 点** → 直接用冻结 bid/ask 算成本会系统性高估\n→ expected_debit 一律用「锚定 σ 重定价到触发位」的模型值（沿用 10/08 口径），非冻结 mid\n期权墙摘要：**无墙数据**（tools/option_wall_scan.py 08:54 ET 运行成功 exit=0；盘前 call_vol=0 / put_vol=0，P/C 比 null）→ 本次支撑阻力全部由近一月日线 + 10/08 分钟线量价分布推导\n当日事件：非 FOMC 决议日、非 CPI/PPI/PCE、非非农、非四巫日\n今日事件：10:00 ET 密歇根大学消费者信心初值（Medium，预期 47.5 vs 前值 47.8）+ 同期通胀预期初值（预期 — vs 前值 4.6%）\n16:00 ET FOMC 委员 Collins 讲话（Low，盘后）\n事件日历来源：web_search **调用失败**（DeepSeek HTTP 402 Insufficient Balance）→ 按工具降级契约 L15 改用 curl 直取权威源：\n· 经济日历 https://nfs.faireconomy.media/ff_calendar_thisweek.json HTTP 200 ✓\n· FOMC 官方日历 https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm HTTP 200 ✓\n（核对 2026 全部会议：1/27-28、3/17-18*、4/28-29、6/16-17*、7/28-29、9/15-16*、10/27-28、12/8-9* → 今日非决议日，下次 10/27-28）",
+   "market": {
+    "spot_premarket": 752.08,
+    "daily_iv_pct": 0.93,
+    "expected_low": 745.06,
+    "expected_high": 759.1
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "rationale": "依据（全部为实报/可核对数据）：\n· 触发位 753.97 = 10/08 RTH 开盘价，同时是**量价分布的次级高量档**（754 档 4,342,060 股，\n  全日前 4 高），且为盘前 752.08 上方最近的结构性阻力。突破需**连续 2 根 1 分钟收盘**确认（不看刺破）。\n· 腿取 754C（最贴近触发位的整美元档）。模型定价（锚定 σ_1d=0.9339%、T=(16:00-10:00)/86400/365\n  =0.000685、年化 IV 17.84%）：754C 在 S=753.97 处 = **$140/张**，落在 $100–$240 区间中部，\n  无需引擎兜底换腿或多张 ⇒ 滑点与敞口最可控。\n· G3 自检（2026-10-09 B-58-b）：expected_debit×1.25 = 140×1.25 = **$175 ≤ max_debit 240** ✓\n· 空间：触发位→第一目标 756.92 为 2.95 点 = **0.391% ≥ 0.35%** ✓；盈亏比 ≈ 2.95/1.57 ≈ **1.9:1**\n· 间距：与看跌触发位 B(750.90) 夹缝 3.07 点 = **0.408% ≥ 0.3%** ✓\n· 适用市况 trend；按 prompt L45 即使判震荡市也不在配置层禁用（交 watcher G5b 机械闸门处置）。\n· 行权价合法性：754C 在 08:53:12 冻结链中**逐条核对存在**（K=754, right=C）且为整数档 ✓\n· ⚠️ 成本为**模型值**（冻结链锚点 748.30 低于现价 752.08，冻结 mid 不能直接当成交价）；\n  触发时 watcher 会用实时链反解 IV 重定价并取较大者作为上限基数。\n",
+     "pattern": "A",
+     "enabled": true,
+     "trigger_level": 753.97,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 754
+     },
+     "max_debit": 240,
+     "target_zone": [
+      756.92,
+      757.18
+     ],
+     "target": 756.92,
+     "invalid_level": 752.4,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "rationale": "依据：\n· 触发位 750.90：位于盘前 752.08 下方 1.18 点，是 **749–752 的次级支撑带**下沿；跌破即意味着\n  盘前 +0.60% 缺口开始被回补，且与看涨触发位 A(753.97) 保持 0.408% 夹缝（≥0.3%，避免双向绞肉）。\n· 腿取 750P（最贴近触发位整美元档）。模型定价：750P 在 S=750.90 处 = **$140/张**（ATM，时间价值最大），\n  落在 $100–$240 中部；若取 749P 仅 $59 → 低于 min_debit 100 会被引擎兜底换腿/加张，故不取。\n· G3 自检：140×1.25 = **$175 ≤ 240** ✓\n· 空间：触发位→第一目标 747.58（10/08 收盘 + 量价 POC 747 档 6,989,768 股，全日前 1 高量）= 3.32 点\n  = **0.442% ≥ 0.35%** ✓；盈亏比 ≈ 3.32/1.18 ≈ **2.8:1**\n· 第二目标 745.06 = 当日 1σ 下沿（752.08×(1−0.9339%)）。\n· 行权价合法性：750P 在冻结链中存在（K=750, right=P）且为整数档 ✓\n· 成本为模型值（同 A 说明）。\n",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 750.9,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": 750
+     },
+     "max_debit": 240,
+     "target_zone": [
+      747.58,
+      745.06
+     ],
+     "target": 747.58,
+     "invalid_level": 751.8,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认",
+     "rationale": "依据：\n· 触发位 749.00：位于 745–748 重支撑带（10/08 量价 POC=747 档 6,989,768 股）之上的整数支撑，\n  是「跌破快速收回」的合理观测点。\n· 【C 类专用定价口径（prompt L47）】C 的入场点可比触发位高出 anti_chase 上限（C 类 0.10%）⇒\n  debit **必须按 trigger×1.0010 = 749.00×1.0010 = 749.749** 定价，而非按 749.00 本身。\n  模型定价：750C 在 S=749.749 处 = **$140/张** → 自检 140×1.25 = **$175 ≤ 240** ✓（未越界）\n  （反面教训 9/29 C4：按触发位定价得 $148，实际成交 $195 +32% → 本栏已按最坏追价点定价）\n· 空间：触发位→第一目标 751.97（10/08 RTH VWAP 区）/753.97 = 2.97 点（至 753.97 为 4.97 点）；\n  至第一目标 2.97/749.00 = **0.397% ≥ 0.35%** ✓；盈亏比 ≈ 2.97/0.86 ≈ **3.5:1**（四类中最高）\n· 止损（prompt L40 硬性规则②）：标的 1 分钟收盘跌破 749.00 即离场，对应计划失效位 747.40\n  （≈−1.6 点），或权利金回撤 40%（$140→$84）。\n· 仓位纪律（硬性规则③）：左侧单仓位 ≤ 右侧单(A/B)一半 —— 本次受 contracts/单张金额约束，\n  执行时**优先降为 1 张并用价差替代**或直接跳过（见 ⑥纪律段）。\n· 行权价合法性：750C 在冻结链中存在（K=750, right=C）且为整数档 ✓\n",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 749.0,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": 750
+     },
+     "max_debit": 240,
+     "target_zone": [
+      751.97,
+      753.97
+     ],
+     "target": 751.97,
+     "invalid_level": 747.4,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破做空",
+     "rationale": "依据：\n· 触发位 756.92 = 10/05 日高，与 10/08 日高 757.18 / 10/07 日高 758.30 构成**阻力簇**，\n  是「上破后跌回」假突破的高质量观测点（区别于 A 的 753.97，避免与 A 共用同一点位反复触发）。\n· 腿取 756P（最贴近触发位整美元档）。模型定价：756P 在 S=756.92 处 = **$144/张** → 144×1.25 =\n  **$180 ≤ 240** ✓\n· 空间：触发位→第一目标 754.00 = 2.92 点 = **0.386% ≥ 0.35%** ✓（初稿取 754.54 仅 0.314%，\n  低于门槛 → 已按 prompt L51「照常布点」口径重选为 754.00 并保留该说明）\n· 止损：标的再次站上 756.92 并 1 分钟收盘确认（计划失效位 757.60）。\n· G5a 豁免：D 交易的正是「被反复戳又失败」的点位 ⇒ 反复穿越是特征不是噪声\n  （system.yaml stale_cross_exempt_patterns: [\"D\"] ✓）\n· 行权价合法性：756P 在冻结链中存在（K=756, right=P）且为整数档 ✓\n",
+     "pattern": "D",
+     "enabled": true,
+     "trigger_level": 756.92,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": 756
+     },
+     "max_debit": 240,
+     "target_zone": [
+      754.0,
+      755.0
+     ],
+     "target": 754.0,
+     "invalid_level": 757.6,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "横盘不交易。若价格全天困于 750.90–753.97 之间（width 0.408%，不足 1σ 7.03 点的 1/3）\n且未能连续 2 根 1 分钟收盘突破任一侧，则 A–D 均不满足触发条件 ⇒ 空仓。\n⚠️ 盘前 752.08 恰好落在 750.90–753.97 夹缝内，横盘概率不低 → A/B 的突破确认门槛\n（连续 2 根 1 分钟收盘）必须严格执行，不看刺破。\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 5
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
