@@ -1,12 +1,12 @@
 {
- "generated_at_et": "2026-10-09 07:29:34 ET",
- "generated_at_bj": "2026-10-09 19:29:34",
+ "generated_at_et": "2026-10-09 07:39:43 ET",
+ "generated_at_bj": "2026-10-09 19:39:43",
  "watcher": {
   "alive": true,
   "pid": 94841,
-  "uptime": "02:33:43",
+  "uptime": "02:43:52",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 9049,
+  "last_event_age_s": 9658,
   "last_event": {
    "ts": "2026-10-09T04:58:44.755915-04:00",
    "event": "market_data_reclaim",
@@ -25,7 +25,7 @@
   "online": true,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "97609"
+  "pid": "99541"
  },
  "mode": "paper_auto",
  "entry_window": [
@@ -33,5 +33,5 @@
   "15:30"
  ],
  "last_spot": null,
- "git_head": "1b251bc"
+ "git_head": "4479dbd"
 }
