@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-09 21:44 ET",
+ "generated_at": "2026-10-09 21:54 ET",
  "items": [
   {
    "id": "B-01",
@@ -420,6 +420,13 @@
    "status": "open",
    "priority": "P2 · 功能补齐",
    "note": "2026-10-09 开盘前实测 ✓"
+  },
+  {
+   "id": "B-64",
+   "title": "①硬止损基准应改为标的 invalid_level（权利金 % 对 0DTE 落在噪声里 ✗）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "2026-10-09 复盘立项 ✓"
   },
   {
    "id": "B-09",
