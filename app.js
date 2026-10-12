@@ -5,6 +5,8 @@ const DATA = "data/";
 let currentDay = null;
 
 async function fetchJSON(url) {
+  // 2026-10-12 ✓：所有数据请求带 cache-buster ⇒ 浏览器不会再用缓存里的旧 JSON ✗
+  url = url + (url.includes("?") ? "&" : "?") + "t=" + Date.now();
   // 加时间戳穿透 GitHub Pages CDN 缓存，保证拿到最新推送的数据
   const sep = url.includes("?") ? "&" : "?";
   const r = await fetch(`${url}${sep}_=${Date.now()}`, { cache: "no-store" });
@@ -139,8 +141,10 @@ function renderDay(day) {
     ? day.roundtrips.map((r) => {
         const pnlCls = r.pnl > 0 ? "pos" : r.pnl < 0 ? "neg" : "";
         const op = r.open || {}, cl = r.close || {};
-        const clPx = cl.price ?? (cl.proceeds != null ? (cl.proceeds / 100).toFixed(2) : null);
-        const opPx = op.price ?? (op.cost != null ? (op.cost / 100).toFixed(2) : null);
+        // 2026-10-12 修 ✓：回退换算必须含 qty ✗（原写 proceeds/100 ⇒ qty=2 时把 0.51 显示成 1.02 ✗）
+        const _q = Number(cl.qty ?? op.qty ?? 1) || 1;
+        const clPx = cl.price ?? (cl.proceeds != null ? (cl.proceeds / (100 * _q)).toFixed(2) : null);
+        const opPx = op.price ?? (op.cost != null ? (op.cost / (100 * _q)).toFixed(2) : null);
         // 2026-10-05：显示「开仓点位」（触发位）+ 腿构成 + 追价%，以及移动止盈「武装」事件
         // ⚠️ 本文件是看板前端的**源头**：launchd 的 sync_public() 每 2 分钟把它覆盖到看板仓库，
         //    所以改前端必须改这里，改镜像仓库会被立刻冲掉 ✗

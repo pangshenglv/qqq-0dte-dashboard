@@ -229,7 +229,7 @@
     "short_conid": null
    },
    "corrected_at": "2026-10-12T09:45:00-04:00",
-   "corrected_reason": "proceeds 漏乘 qty 修正 ✓（券商实成交 2.0@0.51 ⇒ 回收 $102）；pnl 按配对开仓成本 $132 重算 ⇒ −$30 ✓（前一次修正误用 close 事件里缺失的 cost ⇒ 已再修正 ✓）",
+   "corrected_reason": "proceeds 漏乘 qty 修正 ✓（券商实成交 2.0@0.51 ⇒ 回收 $102）；pnl 按配对开仓成本 $132 重算 ⇒ −$30 ✓（前一次修正误用 close 事件里缺失的 cost ⇒ 已再修正 ✓）｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）",
    "corrected_from": {
     "proceeds": 51.0,
     "pnl": -81.0,
@@ -238,7 +238,8 @@
    "corrected_from_2nd": {
     "proceeds": 102.0,
     "pnl": 102.0
-   }
+   },
+   "price": 0.51
   },
   {
    "ts": "2026-10-12T09:33:06.726925-04:00",
@@ -351,7 +352,9 @@
     "single": true,
     "long_conid": 929360620,
     "short_conid": null
-   }
+   },
+   "price": 0.94,
+   "corrected_reason": "｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）"
   }
  ],
  "roundtrips": [
@@ -396,7 +399,7 @@
      "short_conid": null
     },
     "corrected_at": "2026-10-12T09:45:00-04:00",
-    "corrected_reason": "proceeds 漏乘 qty 修正 ✓（券商实成交 2.0@0.51 ⇒ 回收 $102）；pnl 按配对开仓成本 $132 重算 ⇒ −$30 ✓（前一次修正误用 close 事件里缺失的 cost ⇒ 已再修正 ✓）",
+    "corrected_reason": "proceeds 漏乘 qty 修正 ✓（券商实成交 2.0@0.51 ⇒ 回收 $102）；pnl 按配对开仓成本 $132 重算 ⇒ −$30 ✓（前一次修正误用 close 事件里缺失的 cost ⇒ 已再修正 ✓）｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）",
     "corrected_from": {
      "proceeds": 51.0,
      "pnl": -81.0,
@@ -405,7 +408,8 @@
     "corrected_from_2nd": {
      "proceeds": 102.0,
      "pnl": 102.0
-    }
+    },
+    "price": 0.51
    },
    "pnl": -30.0,
    "open_ts": "2026-10-12T09:31:44.051189-04:00",
@@ -455,7 +459,9 @@
      "single": true,
      "long_conid": 929360620,
      "short_conid": null
-    }
+    },
+    "price": 0.94,
+    "corrected_reason": "｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）"
    },
    "pnl": -43.0,
    "open_ts": "2026-10-12T09:33:08.743690-04:00",
