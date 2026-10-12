@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-10-12 12:05:47 ET",
- "generated_at_bj": "2026-10-13 00:05:47",
+ "generated_at_et": "2026-10-12 12:07:54 ET",
+ "generated_at_bj": "2026-10-13 00:07:54",
  "watcher": {
   "alive": true,
   "pid": 34114,
-  "uptime": "01:35:09",
+  "uptime": "01:37:16",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 235,
+  "last_event_age_s": 107,
   "last_event": {
-   "ts": "2026-10-12T12:01:52.674694-04:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "alert",
-   "summary": "盘中方案刷新后无可交易形态（全部禁用），今日仅监控"
+   "ts": "2026-10-12T12:06:06.982564-04:00",
+   "event": "market_snapshot",
+   "state": "IDLE",
+   "spot": 747.77,
+   "lines": 6,
+   "pattern_quotes": {}
   }
  },
  "gateway": {
@@ -29,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 747.33,
+ "last_spot": 747.77,
  "git_head": "d0466fb"
 }
