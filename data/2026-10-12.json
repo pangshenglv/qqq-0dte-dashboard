@@ -118,7 +118,119 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-12T09:31:06.984160-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 749.07,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 749.07,
+   "level": 749.01
+  },
+  {
+   "ts": "2026-10-12T09:31:36.867322-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 749.07,
+   "gate": "G3-multiqty",
+   "passed": true,
+   "pattern": "C",
+   "per": 81.0,
+   "qty": 2,
+   "total": 162.0,
+   "note": "单腿换腿未达标 ⇒ 开 2 张凑足 $162（≥min_debit $100 ✓）"
+  },
+  {
+   "ts": "2026-10-12T09:31:39.612795-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 749.07,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 0.81,
+   "cap": 205.0,
+   "live_expected": 79.1,
+   "iv": 19.6
+  },
+  {
+   "ts": "2026-10-12T09:31:40.044345-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 749.07,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-12T09:31:40.045772-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 749.07,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 0.68,
+   "step": 0.01,
+   "attempt": 1,
+   "tag": "C",
+   "qty": 2,
+   "ask": 0.67,
+   "cap": 205.0,
+   "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-10-12T09:31:44.051189-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 748.3068,
+   "side": "open",
+   "pattern": "C",
+   "price": 0.66,
+   "cost": 132.0,
+   "qty": 2,
+   "legs": {
+    "long": 751.0,
+    "short": null,
+    "right": "C",
+    "single": true,
+    "long_conid": 929357732,
+    "short_conid": null
+   },
+   "_metrics": {
+    "ts": "2026-10-12T09:31:44.052249-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 748.3068,
+    "cost": 132.0,
+    "qty": 2,
+    "legs": {
+     "long": 751.0,
+     "short": null,
+     "right": "C",
+     "single": true,
+     "long_conid": 929357732,
+     "short_conid": null
+    },
+    "pattern": "C",
+    "level": 749.01,
+    "trig_close": 749.07,
+    "chase_pct": 0.008,
+    "vwap": 749.25,
+    "vwap_dev_pct": -0.1263,
+    "day_regime": "unknown",
+    "combo_bid": 0.8,
+    "combo_ask": 0.82,
+    "combo_mid": 0.81,
+    "leg_spread": 0.02,
+    "bar_vol": 207972.0,
+    "vol_mult": 20.23,
+    "level_cross": null
+   }
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
