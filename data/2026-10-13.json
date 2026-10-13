@@ -450,36 +450,51 @@
     "single": true,
     "long_conid": 929926097,
     "short_conid": null
-   },
-   "_metrics": {
-    "ts": "2026-10-13T10:28:38.057915-04:00",
-    "event": "entry_metrics",
-    "state": "POSITION",
-    "spot": 742.7,
-    "cost": 130.0,
-    "qty": 2,
-    "legs": {
-     "long": 741.0,
-     "short": null,
-     "right": "P",
-     "single": true,
-     "long_conid": 929926097,
-     "short_conid": null
-    },
-    "pattern": "D",
-    "level": 742.97,
-    "trig_close": 742.79,
-    "chase_pct": -0.0242,
-    "vwap": 742.27,
-    "vwap_dev_pct": 0.058,
-    "day_regime": "unknown",
-    "combo_bid": 0.63,
-    "combo_ask": 0.64,
-    "combo_mid": 0.64,
-    "leg_spread": 0.01,
-    "bar_vol": 29546.0,
-    "vol_mult": 0.58,
-    "level_cross": 3
+   }
+  },
+  {
+   "ts": "2026-10-13T10:32:11.179071-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 742.41,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 0.72
+  },
+  {
+   "ts": "2026-10-13T10:32:29.192496-04:00",
+   "event": "order_escalate",
+   "state": "EXITING",
+   "spot": 742.41,
+   "step": "L1→L2"
+  },
+  {
+   "ts": "2026-10-13T10:32:29.194256-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 742.41,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 0.67
+  },
+  {
+   "ts": "2026-10-13T10:32:31.195452-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 742.41,
+   "side": "close",
+   "pattern": "D",
+   "proceeds": 136.0,
+   "pnl": 6.0,
+   "realized": -23.0,
+   "qty": 2,
+   "legs": {
+    "long": 741.0,
+    "short": null,
+    "right": "P",
+    "single": true,
+    "long_conid": 929926097,
+    "short_conid": null
    }
   }
  ],
@@ -533,7 +548,57 @@
    "target": null,
    "chase_pct": 0.0686,
    "vwap": 742.25
+  },
+  {
+   "pattern": "D",
+   "open": {
+    "ts": "2026-10-13T10:28:38.057498-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 742.7,
+    "side": "open",
+    "pattern": "D",
+    "price": 0.65,
+    "cost": 130.0,
+    "qty": 2,
+    "legs": {
+     "long": 741.0,
+     "short": null,
+     "right": "P",
+     "single": true,
+     "long_conid": 929926097,
+     "short_conid": null
+    }
+   },
+   "close": {
+    "ts": "2026-10-13T10:32:31.195452-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 742.41,
+    "side": "close",
+    "pattern": "D",
+    "proceeds": 136.0,
+    "pnl": 6.0,
+    "realized": -23.0,
+    "qty": 2,
+    "legs": {
+     "long": 741.0,
+     "short": null,
+     "right": "P",
+     "single": true,
+     "long_conid": 929926097,
+     "short_conid": null
+    }
+   },
+   "pnl": 6.0,
+   "open_ts": "2026-10-13T10:28:38.057498-04:00",
+   "close_ts": "2026-10-13T10:32:31.195452-04:00",
+   "armed": null,
+   "level": 742.97,
+   "target": null,
+   "chase_pct": -0.0242,
+   "vwap": 742.27
   }
  ],
- "realized_pnl": -29.0
+ "realized_pnl": -23.0
 }
