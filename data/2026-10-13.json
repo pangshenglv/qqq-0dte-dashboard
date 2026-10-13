@@ -857,6 +857,56 @@
    "crossings": 4,
    "age_min": 50,
    "reason": "点位失效(穿越过多)"
+  },
+  {
+   "ts": "2026-10-13T14:13:06.090212-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 743.14,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "A",
+   "target": 744.2,
+   "level": 743.1,
+   "entry_ref": 743.14,
+   "remaining_pct": 0.143,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-10-13T14:13:06.092015-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 743.14,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 743.14,
+   "level": 743.1
+  },
+  {
+   "ts": "2026-10-13T14:13:14.155787-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 743.14,
+   "gate": "G3-recenter",
+   "attempt": 2,
+   "direction": "ITM",
+   "legs": "741.0C/NoneC",
+   "debit": 225.0,
+   "leg_spread": 0.06
+  },
+  {
+   "ts": "2026-10-13T14:13:25.116125-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 743.14,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.74,
+   "leg_spread": 0.01,
+   "cap": 95.0,
+   "note": "低于min_debit 且多张补齐不可行（每张 $74 × 0 = $0 > 上限 $95），recenter 失败"
   }
  ],
  "roundtrips": [

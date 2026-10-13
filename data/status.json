@@ -1,23 +1,23 @@
 {
- "generated_at_et": "2026-10-13 14:12:47 ET",
- "generated_at_bj": "2026-10-14 02:12:47",
+ "generated_at_et": "2026-10-13 14:14:51 ET",
+ "generated_at_bj": "2026-10-14 02:14:51",
  "watcher": {
   "alive": true,
   "pid": 5974,
-  "uptime": "01:43:19",
+  "uptime": "01:45:23",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 101,
+  "last_event_age_s": 86,
   "last_event": {
-   "ts": "2026-10-13T14:11:05.744484-04:00",
-   "event": "market_snapshot",
-   "state": "IDLE",
-   "spot": 743.0099,
-   "lines": 12,
-   "pattern_quotes": {
-    "A": 0.69,
-    "B": 0.07,
-    "C": 2.12
-   }
+   "ts": "2026-10-13T14:13:25.116125-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 743.14,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.74,
+   "leg_spread": 0.01,
+   "cap": 95.0,
+   "note": "低于min_debit 且多张补齐不可行（每张 $74 × 0 = $0 > 上限 $95），recenter 失败"
   }
  },
  "gateway": {
