@@ -1,24 +1,19 @@
 {
- "generated_at_et": "2026-10-13 10:26:21 ET",
- "generated_at_bj": "2026-10-13 22:26:21",
+ "generated_at_et": "2026-10-13 10:28:27 ET",
+ "generated_at_bj": "2026-10-13 22:28:27",
  "watcher": {
   "alive": true,
   "pid": 66924,
-  "uptime": "08:08:46",
+  "uptime": "08:10:52",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 16,
+  "last_event_age_s": 8,
   "last_event": {
-   "ts": "2026-10-13T10:26:05.369177-04:00",
-   "event": "market_snapshot",
-   "state": "IDLE",
-   "spot": 743.09,
-   "lines": 5,
-   "pattern_quotes": {
-    "A": 0.83,
-    "B": 0.2,
-    "C": 5.29,
-    "D": 0.56
-   }
+   "ts": "2026-10-13T10:28:19.652007-04:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "G3 换腿失败：新腿无有效报价（743P）✗"
   }
  },
  "gateway": {
