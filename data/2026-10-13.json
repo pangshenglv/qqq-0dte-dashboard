@@ -612,6 +612,19 @@
     "long_conid": 929926097,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-10-13T11:26:05.478148-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 740.89,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "B",
+   "level": 741.5,
+   "crossings": 4,
+   "age_min": 50,
+   "reason": "点位失效(穿越过多)"
   }
  ],
  "roundtrips": [
