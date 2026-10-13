@@ -1,24 +1,19 @@
 {
- "generated_at_et": "2026-10-13 12:03:01 ET",
- "generated_at_bj": "2026-10-14 00:03:01",
+ "generated_at_et": "2026-10-13 12:05:07 ET",
+ "generated_at_bj": "2026-10-14 00:05:07",
  "watcher": {
   "alive": true,
   "pid": 66924,
-  "uptime": "09:45:26",
+  "uptime": "09:47:32",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 115,
+  "last_event_age_s": 6,
   "last_event": {
-   "ts": "2026-10-13T12:01:06.147812-04:00",
-   "event": "market_snapshot",
-   "state": "IDLE",
-   "spot": 742.04,
-   "lines": 5,
-   "pattern_quotes": {
-    "A": 0.15,
-    "B": 0.32,
-    "C": 3.19,
-    "D": 1.53
-   }
+   "ts": "2026-10-13T12:05:00.787270-04:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "alert",
+   "summary": "盘中刷新未产出：daily_20261013_pm.yaml 停在 10:53 ET，该档 11:53 ET 触发后未更新 ✗（方案仍在用更早的点位）"
   }
  },
  "gateway": {
