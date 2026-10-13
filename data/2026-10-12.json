@@ -919,7 +919,7 @@
    "pattern": "C",
    "proceeds": 102.0,
    "pnl": -30.0,
-   "realized": 102.0,
+   "realized": -30.0,
    "qty": 2,
    "legs": {
     "long": 751.0,
@@ -940,7 +940,8 @@
     "proceeds": 102.0,
     "pnl": 102.0
    },
-   "price": 0.51
+   "price": 0.51,
+   "realized_fixed_from": 102.0
   },
   {
    "ts": "2026-10-12T09:33:06.726925-04:00",
@@ -1044,7 +1045,7 @@
    "pattern": "B",
    "proceeds": 94.0,
    "pnl": -43.0,
-   "realized": -124.0,
+   "realized": -73.0,
    "qty": 1,
    "legs": {
     "long": 747.0,
@@ -1055,7 +1056,8 @@
     "short_conid": null
    },
    "price": 0.94,
-   "corrected_reason": "｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）"
+   "corrected_reason": "｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）",
+   "realized_fixed_from": -124.0
   },
   {
    "ts": "2026-10-12T10:04:06.565182-04:00",
@@ -1202,7 +1204,7 @@
     "pattern": "C",
     "proceeds": 102.0,
     "pnl": -30.0,
-    "realized": 102.0,
+    "realized": -30.0,
     "qty": 2,
     "legs": {
      "long": 751.0,
@@ -1223,7 +1225,8 @@
      "proceeds": 102.0,
      "pnl": 102.0
     },
-    "price": 0.51
+    "price": 0.51,
+    "realized_fixed_from": 102.0
    },
    "pnl": -30.0,
    "open_ts": "2026-10-12T09:31:44.051189-04:00",
@@ -1264,7 +1267,7 @@
     "pattern": "B",
     "proceeds": 94.0,
     "pnl": -43.0,
-    "realized": -124.0,
+    "realized": -73.0,
     "qty": 1,
     "legs": {
      "long": 747.0,
@@ -1275,7 +1278,8 @@
      "short_conid": null
     },
     "price": 0.94,
-    "corrected_reason": "｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）"
+    "corrected_reason": "｜2026-10-12 补 price 字段（= proceeds/(100×qty) ✓，供看板直接显示单价 ✓）",
+    "realized_fixed_from": -124.0
    },
    "pnl": -43.0,
    "open_ts": "2026-10-12T09:33:08.743690-04:00",
