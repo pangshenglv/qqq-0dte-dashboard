@@ -118,7 +118,30 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-14T09:31:05.581192-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 738.35,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "C",
+   "level": 738.17,
+   "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  },
+  {
+   "ts": "2026-10-14T09:33:05.803363-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 737.6883,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "B",
+   "level": 738.17,
+   "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
