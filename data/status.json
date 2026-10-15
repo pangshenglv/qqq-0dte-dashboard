@@ -1,29 +1,19 @@
 {
- "generated_at_et": "2026-10-15 09:52:50 ET",
- "generated_at_bj": "2026-10-15 21:52:50",
+ "generated_at_et": "2026-10-15 09:54:58 ET",
+ "generated_at_bj": "2026-10-15 21:54:58",
  "watcher": {
   "alive": true,
   "pid": 5974,
-  "uptime": "01-21:23:22",
+  "uptime": "01-21:25:30",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 37,
+  "last_event_age_s": 79,
   "last_event": {
-   "ts": "2026-10-15T09:52:13.768872-04:00",
-   "event": "shadow_exit",
-   "state": "SHADOW",
-   "spot": 717.64,
-   "pattern": "C",
-   "reason": "①硬止损",
-   "value": 175.0,
-   "pnl_pct": -25.2,
-   "peak": 13.7,
-   "est_px": 1.74,
-   "est_proceeds": 174.0,
-   "modeled_pnl": -60.0,
-   "cost": 234.0,
-   "qty": 1,
-   "hold_min": 5.1,
-   "note": "影子单：未下单、未计入 realized ✓（仅供对比验证规则 ✓）"
+   "ts": "2026-10-15T09:53:39.225805-04:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "ℹ️ 空间偏紧的形态（按最坏追价衡量；实际追价通常仅 0.03~0.06%，未必不可交易）：B 触发718.60→目标715.00 空间0.501%（最坏追价下"
   }
  },
  "gateway": {
