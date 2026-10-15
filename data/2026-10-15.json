@@ -740,6 +740,19 @@
    "debit": 104.0,
    "planned_loss": 26.0,
    "remaining": 17.0
+  },
+  {
+   "ts": "2026-10-15T11:42:05.973850-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 724.45,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "A",
+   "level": 724.2,
+   "crossings": 3,
+   "age_min": 38,
+   "reason": "点位失效(穿越过多)"
   }
  ],
  "roundtrips": [
