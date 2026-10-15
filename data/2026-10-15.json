@@ -268,8 +268,156 @@
    "pattern": "C",
    "level": 718.6,
    "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
+  },
+  {
+   "ts": "2026-10-15T10:12:06.489089-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 721.11,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 721.17,
+   "level": 720.53
+  },
+  {
+   "ts": "2026-10-15T10:12:06.490911-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 721.11,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.06,
+   "cap": 220.0,
+   "live_expected": 90.6,
+   "iv": 34.2
+  },
+  {
+   "ts": "2026-10-15T10:12:06.638375-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 721.11,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-15T10:12:06.641102-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 721.11,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.07,
+   "step": 0.01,
+   "attempt": 1,
+   "tag": "A",
+   "qty": 1,
+   "ask": 1.06,
+   "cap": 220.0,
+   "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-10-15T10:12:18.652832-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 720.86,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.0,
+   "cost": 100.0,
+   "qty": 1,
+   "legs": {
+    "long": 725.0,
+    "short": null,
+    "right": "C",
+    "single": true,
+    "long_conid": 930404389,
+    "short_conid": null
+   }
+  },
+  {
+   "ts": "2026-10-15T10:13:35.442620-04:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 719.79,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 0.69
+  },
+  {
+   "ts": "2026-10-15T10:13:47.452816-04:00",
+   "event": "order_fill",
+   "state": "COOLDOWN",
+   "spot": 719.79,
+   "side": "close",
+   "pattern": "A",
+   "proceeds": 69.0,
+   "pnl": -31.0,
+   "realized": -31.0,
+   "qty": 1,
+   "legs": {
+    "long": 725.0,
+    "short": null,
+    "right": "C",
+    "single": true,
+    "long_conid": 930404389,
+    "short_conid": null
+   }
   }
  ],
- "roundtrips": [],
- "realized_pnl": 0
+ "roundtrips": [
+  {
+   "pattern": "A",
+   "open": {
+    "ts": "2026-10-15T10:12:18.652832-04:00",
+    "event": "order_fill",
+    "state": "POSITION",
+    "spot": 720.86,
+    "side": "open",
+    "pattern": "A",
+    "price": 1.0,
+    "cost": 100.0,
+    "qty": 1,
+    "legs": {
+     "long": 725.0,
+     "short": null,
+     "right": "C",
+     "single": true,
+     "long_conid": 930404389,
+     "short_conid": null
+    }
+   },
+   "close": {
+    "ts": "2026-10-15T10:13:47.452816-04:00",
+    "event": "order_fill",
+    "state": "COOLDOWN",
+    "spot": 719.79,
+    "side": "close",
+    "pattern": "A",
+    "proceeds": 69.0,
+    "pnl": -31.0,
+    "realized": -31.0,
+    "qty": 1,
+    "legs": {
+     "long": 725.0,
+     "short": null,
+     "right": "C",
+     "single": true,
+     "long_conid": 930404389,
+     "short_conid": null
+    }
+   },
+   "pnl": -31.0,
+   "open_ts": "2026-10-15T10:12:18.652832-04:00",
+   "close_ts": "2026-10-15T10:13:47.452816-04:00",
+   "armed": null,
+   "level": 720.53,
+   "target": null,
+   "chase_pct": 0.0888,
+   "vwap": 718.4
+  }
+ ],
+ "realized_pnl": -31.0
 }
