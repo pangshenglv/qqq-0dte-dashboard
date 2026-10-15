@@ -257,6 +257,17 @@
    "pattern": "C",
    "level": 718.6,
    "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  },
+  {
+   "ts": "2026-10-15T10:02:05.891425-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 719.36,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "C",
+   "level": 718.6,
+   "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
   }
  ],
  "roundtrips": [],
