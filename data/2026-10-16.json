@@ -623,6 +623,16 @@
     "long_conid": 902740476,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-10-16T12:02:05.918612-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 716.2,
+   "pattern": "B",
+   "result": "confirmed",
+   "close": 716.12,
+   "level": 716.3
   }
  ],
  "roundtrips": [

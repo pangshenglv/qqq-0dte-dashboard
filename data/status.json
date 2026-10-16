@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-10-16 12:00:09 ET",
- "generated_at_bj": "2026-10-17 00:00:09",
+ "generated_at_et": "2026-10-16 12:02:30 ET",
+ "generated_at_bj": "2026-10-17 00:02:30",
  "watcher": {
   "alive": true,
   "pid": 4538,
-  "uptime": "03:50:07",
+  "uptime": "03:52:28",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 36,
+  "last_event_age_s": 0,
   "last_event": {
-   "ts": "2026-10-16T11:59:32.860044-04:00",
+   "ts": "2026-10-16T12:02:30.201251-04:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
    "level": "info",
-   "summary": "ℹ️ 空间偏紧的形态（按最坏追价衡量；实际追价通常仅 0.03~0.06%，未必不可交易）：A 触发718.50→目标721.50 空间0.418%（最坏追价下"
+   "summary": "G3 换腿失败：新腿无有效报价（717P）✗"
   }
  },
  "gateway": {
@@ -29,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 717.2,
- "git_head": "add79ccd"
+ "last_spot": 716.07,
+ "git_head": "84fff346"
 }
