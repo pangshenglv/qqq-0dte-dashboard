@@ -239,7 +239,30 @@
    "enabled_count": 4
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-16T10:30:06.342976-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 720.33,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 720.43,
+   "level": 720.3
+  },
+  {
+   "ts": "2026-10-16T10:30:33.554444-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 720.33,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.72,
+   "leg_spread": 0.01,
+   "cap": 141.2,
+   "note": "低于min_debit 且多张补齐不可行（每张 $72 × 0 = $0 > 上限 $141），recenter 失败"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
