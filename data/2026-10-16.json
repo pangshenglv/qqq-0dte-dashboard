@@ -633,6 +633,18 @@
    "result": "confirmed",
    "close": 716.12,
    "level": 716.3
+  },
+  {
+   "ts": "2026-10-16T12:02:35.623247-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 716.2,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.94,
+   "leg_spread": 0.01,
+   "cap": 171.2,
+   "note": "低于min_debit 且多张补齐不可行（每张 $94 × 0 = $0 > 上限 $171），recenter 失败"
   }
  ],
  "roundtrips": [
