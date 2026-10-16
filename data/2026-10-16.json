@@ -383,6 +383,126 @@
     "long_conid": 902740520,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-10-16T11:02:07.471708-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 720.43,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 720.48,
+   "level": 720.3
+  },
+  {
+   "ts": "2026-10-16T11:02:07.901844-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 720.43,
+   "gate": "G3-recenter",
+   "attempt": 1,
+   "direction": "ITM",
+   "legs": "722.0C/NoneC",
+   "debit": 100.0,
+   "leg_spread": 0.02
+  },
+  {
+   "ts": "2026-10-16T11:02:07.902552-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 720.43,
+   "gate": "G3-recenter",
+   "passed": true,
+   "direction": "ITM",
+   "note": "723.0C/None → 722.0C/NoneC"
+  },
+  {
+   "ts": "2026-10-16T11:02:10.684243-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 720.43,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.0,
+   "cap": 141.2,
+   "live_expected": 59.2,
+   "iv": 23.2
+  },
+  {
+   "ts": "2026-10-16T11:02:10.694574-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 720.43,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-16T11:02:10.695788-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 720.43,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 0.93,
+   "step": 0.01,
+   "attempt": 1,
+   "tag": "C",
+   "qty": 1,
+   "ask": 0.92,
+   "cap": 141.2,
+   "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-10-16T11:02:12.699133-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 720.4,
+   "side": "open",
+   "pattern": "C",
+   "price": 0.91,
+   "cost": 91.0,
+   "qty": 1,
+   "legs": {
+    "long": 722.0,
+    "short": null,
+    "right": "C",
+    "single": true,
+    "long_conid": 902740476,
+    "short_conid": null
+   },
+   "_metrics": {
+    "ts": "2026-10-16T11:02:12.699412-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 720.4,
+    "cost": 91.0,
+    "qty": 1,
+    "legs": {
+     "long": 722.0,
+     "short": null,
+     "right": "C",
+     "single": true,
+     "long_conid": 902740476,
+     "short_conid": null
+    },
+    "pattern": "C",
+    "level": 720.3,
+    "trig_close": 720.48,
+    "chase_pct": 0.025,
+    "vwap": 722.16,
+    "vwap_dev_pct": -0.2436,
+    "day_regime": "trend",
+    "combo_bid": 0.99,
+    "combo_ask": 1.01,
+    "combo_mid": 1.0,
+    "leg_spread": 0.02,
+    "bar_vol": 65774.0,
+    "vol_mult": 0.93,
+    "level_cross": null
+   }
   }
  ],
  "roundtrips": [
