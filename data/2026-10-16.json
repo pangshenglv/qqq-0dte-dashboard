@@ -1,6 +1,123 @@
 {
  "date": "2026-10-16",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20261016_0907_80aaf980c1",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "09:07",
+   "generated_at": "09:07 ET",
+   "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 盘前方案 — 美东交易日 2026-10-16（周五）\n==============================================================================\n数据获取时间：2026-10-16 09:04–09:07 ET（本机 CST 21:04–21:07）\n数据源：tws_local（tools/tws_snapshot.py，clientId=7 只读）\n+ ad-hoc FROZEN 查询（clientId=9，reqMarketDataType(2) 后 reqTickers）\n期权报价性质：★ FROZEN 冻结价（2026-10-15 收盘），非实时 ★\n── 盘前 0DTE 无市场，实时 bid/ask 全为 -1；冻结通道返回 66/66 合约\n（tws_snapshot 自身 FROZEN 回退 0/50 失效；ad-hoc 通道取到 66/66 close）\n── 冻结只返回 settlement close，无 bid/ask，故 debit 均为模型推导值（见下）\n期权墙摘要（tools/option_wall_scan.py）：无墙数据\n（盘前无成交，call_vol=0 put_vol=0，pc_ratio=null，walls 全为 0 量）\n当日事件：非事件日。FOMC 决议 2026-10-27/28（非今日）；9月会议纪要已于 10-07 发布；\n今日无 USD 中/高冲击数据（仅 Import Prices 8:30 / 工业产出 9:15 / 财政赤字 14:00，\n均 Low 冲击）；CPI 10-14、PPI+零售 10-15 均已发布；四巫日不在今日。\n来源：federalreserve.gov（FOMC 日历 + 10月新闻页）、ForexFactory 日历 JSON（HTTP 200）\n\n★★★ 关键决策：A–D 全部 enabled: false ★★★\n原因（结构性资金约束 × 高权利金，非点位失效）：\n本周期资本上限 capital_cap=300 → max_debit=240、daily_max_loss=180\n（见 config/capital.yaml，2026-W41，累计 -265 后处于地板）。\n今日 ATM 隐含波动率 ≈ 17.7–18.1%（由冻结链反解 IV，smile 完整）⇒ 0DTE 近平值单腿\n在触发位的实价普遍 $243–$384/张，× G3 容差 1.25 后 $304–$480，**全部 > max_debit 240**。\n按 premarket_prompt.md 硬性要求「expected_debit × (1+容差) ≤ max_debit 不满足 ⇒ 一律\nenabled: false，绝不把越界形态写进 pm」，故 A–D 全部关闭，E 保持 enabled: true。\n⚠️ 这不是点位无效——所有触发位/目标位/失效位均已算出并保留在下方字段中，\n若资金上限恢复到 ≥ $400（max_debit ≥ 320），A–D 可按下述点位直接启用。\n==============================================================================",
+   "market": {
+    "spot_premarket": 726.33,
+    "daily_iv_pct": 1.14,
+    "expected_low": 718.05,
+    "expected_high": 734.61
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入 729",
+     "rationale": "【点位依据】R1=729 为 2026-10-15 盘中高点 729.43 与冻结链 729 行权价重合的阻力锚，\n且位于 200 分钟级成本区上沿。突破确认后第一目标 R3=731（10/14 盘高点 740.53 下跌后的\n首个前高密集带下沿），第二目标 734.61（+1σ 上沿）。\n【空间】729→731 = 0.275%，< 0.35% 阈值 → 按 2026-10-04 G5d 度量模式，空间偏紧仅标注、\n不因空间禁用（该阈值历史样本 r=-0.38~-0.43，与 P&L 负相关）。\n【定价】729C 在 S=729 处模型值 $329（由冻结链 729C=2.88 + 平价 delta 0.41 推导）。\n冻结价（10/15 收盘）下 729C 实价 = $288。\n【G3 闸门核对 ✗ 不通过】329 × 1.25 = $411 > max_debit 240 ⇒ 触发时必被 G3 拒单\n（口径：空挂）。按硬性要求置 enabled: false。\n【失效位】728 = 回落到突破前整理区下方，1 分钟收盘越破即证明突破失败。\n【单腿口径】仅 long 729C，1 张；买方风险上限 = 已付权利金。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 729,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 729
+     },
+     "max_debit": 240,
+     "target_zone": [
+      729.5,
+      731
+     ],
+     "target": 731,
+     "invalid_level": 728,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空 723",
+     "rationale": "【点位依据】S2=723 为 10/15 低点 715.43 与 10/14 低点 726.39 之间的次级结构位，\n且为冻结链 723 行权价密集档。第一目标 S3=721.5，第二目标 S4=719；\n719 接近 715.43 前低，为较强下沿。\n【空间】723→719 = 0.551%（OK）；仅取 721.5 则为 0.207%（偏紧）⇒ target 取 719。\n【定价★ 本届最接近合规者】722P 在 S=723 处模型值 $224，为本日全部形态中**最低** debit；\n但 224 × 1.25 = $280 > 240 ⇒ 仍被 G3 拒。写 expected_debit: 224 已如实反映，\n保留该形态是为了在资金上限回升时可直接启用（届时仅需 max_debit ≥ 280）。\n【G3 闸门核对 ✗ 不通过】224 × 1.25 = $280 > max_debit 240 ⇒ enabled: false。\n【失效位】725 = 收复 S1 分水岭即证明破位逻辑错误。\n【单腿口径】仅 long 722P，1 张。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 723,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": 722
+     },
+     "max_debit": 240,
+     "target_zone": [
+      721.5,
+      719
+     ],
+     "target": 719,
+     "invalid_level": 725,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入 725",
+     "rationale": "【点位依据】S1=725 为本日多空分水岭（现价 726.33 正上方 0.183%），\n也是 10/15 收盘前最后 30 分钟反复争夺的价位；收回确认后回攻 728（10/14-10/15 收盘区），\n再进 729（R1）。第一目标取 728（=10/15 收盘价 728.00，具体数字），空间 725→728 = 0.413%（OK）。\n【定价★ C 类专用口径】按 trigger_level × 1.0010 = 725.725（最坏追价点）定价，\n非按 725 定价（依据 9/29 C4 教训：按触发位定价 $148 实际成交 $195）。\n726C 在 S=725.725 处模型值 $296；冻结链 726C 实价 $236。\n【G3 闸门核对 ✗ 不通过】296 × 1.25 = $370 > max_debit 240 ⇒ enabled: false。\n【左侧纪律】禁止下跌途中接刀，必须等「1 分钟收盘重新站上 725」才入场；\n若必须体现左侧更轻——单腿 1 张已是最小单位，故按硬性规则③取更虚值一档（已用 726C 而非 725C，\n725C 需 $353 更贵），无效则置 enabled: false（本形态即此结果），禁用价差替代。\n【失效位】724 = 支撑完全失守，1 分钟收盘越破即证明回踩失败。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 725,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": 726
+     },
+     "max_debit": 240,
+     "target_zone": [
+      728,
+      729
+     ],
+     "target": 728,
+     "invalid_level": 724,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空 729",
+     "rationale": "【点位依据】与 A 共用 R1=729 锚点（假突破反手）。跌回后第一目标 S1=725（多空分水岭，\n空间 729→725 = 0.551% OK），第二目标 S2=723。\n【定价】729P 在 S=728.5（跌回阻力位下方）处模型值 $350；冻结链 729P 实价 $379。\n【G3 闸门核对 ✗ 不通过】350 × 1.25 = $437 > max_debit 240 ⇒ enabled: false。\n【失效位】730 = 再度站稳阻力上方并 15 分钟收盘确认，即证明反手做空错误。\n【纪律】首次假突破后反手需谨慎——同一价位第二次测试失败概率上升。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 729,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": 729
+     },
+     "max_debit": 240,
+     "target_zone": [
+      725,
+      723
+     ],
+     "target": 725,
+     "invalid_level": 730,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【不交易理由】本日 A–D 全部因资金上限（max_debit 240）低于当日 0DTE 权利金水平而关闭，\n无任何合规进场形态；且现价 726.33 距 S1=725 仅 0.183%、距 R1=729 仅 0.368%，\n处于极窄夹缝，开盘后大概率先做区间摆动，方向未明。\n【非事件日 ⇒ 事件后方案不适用】\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
