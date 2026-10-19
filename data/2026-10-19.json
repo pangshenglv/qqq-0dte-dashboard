@@ -860,6 +860,32 @@
     "long_conid": 931269965,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-10-19T12:03:06.412671-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 721.795,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "C",
+   "target": 719.9,
+   "level": 721.85,
+   "entry_ref": 721.88,
+   "remaining_pct": 0.274,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-10-19T12:03:06.413835-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 721.795,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 721.88,
+   "level": 721.85
   }
  ],
  "roundtrips": [
