@@ -137,7 +137,13 @@
    "snapshots": 5,
    "orders": 10,
    "realized_pnl": 27.0
+  },
+  {
+   "date": "2026-10-21",
+   "snapshots": 0,
+   "orders": 0,
+   "realized_pnl": 0
   }
  ],
- "updated": "2026-10-20 23:56:27 ET"
+ "updated": "2026-10-21 00:06:35 ET"
 }
