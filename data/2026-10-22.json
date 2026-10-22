@@ -621,6 +621,19 @@
    "pattern": "A",
    "vwap": 710.67,
    "reason": "VWAP 方位不符"
+  },
+  {
+   "ts": "2026-10-22T11:44:05.702989-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 708.09,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "C",
+   "level": 708.0,
+   "crossings": 11,
+   "age_min": 150,
+   "reason": "点位失效(穿越过多)"
   }
  ],
  "roundtrips": [
