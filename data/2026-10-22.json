@@ -235,7 +235,30 @@
    "placeholder": true
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-22T09:59:06.162516-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 714.85,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "A",
+   "level": 714.52,
+   "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  },
+  {
+   "ts": "2026-10-22T10:00:06.288037-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 714.105,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "D",
+   "level": 714.52,
+   "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
