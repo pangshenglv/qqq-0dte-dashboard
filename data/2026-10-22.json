@@ -751,6 +751,17 @@
    "crossings": 11,
    "age_min": 150,
    "reason": "点位失效(穿越过多)"
+  },
+  {
+   "ts": "2026-10-22T12:01:05.612757-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 709.97,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "A",
+   "level": 709.13,
+   "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
   }
  ],
  "roundtrips": [
