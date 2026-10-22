@@ -1,24 +1,29 @@
 {
- "generated_at_et": "2026-10-22 15:08:41 ET",
- "generated_at_bj": "2026-10-23 03:08:41",
+ "generated_at_et": "2026-10-22 15:10:46 ET",
+ "generated_at_bj": "2026-10-23 03:10:46",
  "watcher": {
   "alive": true,
   "pid": 1065,
-  "uptime": "07:35:47",
+  "uptime": "07:37:52",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 155,
+  "last_event_age_s": 123,
   "last_event": {
-   "ts": "2026-10-22T15:06:06.023502-04:00",
-   "event": "market_snapshot",
-   "state": "IDLE",
-   "spot": 702.86,
-   "lines": 19,
-   "pattern_quotes": {
-    "A": 0.03,
-    "B": 0.2,
-    "C": 0.74,
-    "D": 2.62
-   }
+   "ts": "2026-10-22T15:08:42.574041-04:00",
+   "event": "shadow_exit",
+   "state": "SHADOW",
+   "spot": 702.97,
+   "pattern": "C",
+   "reason": "②结构失效(703.37=触发位)",
+   "value": 76.0,
+   "pnl_pct": -25.5,
+   "peak": 7.8,
+   "est_px": 0.75,
+   "est_proceeds": 75.0,
+   "modeled_pnl": -27.0,
+   "cost": 102.0,
+   "qty": 1,
+   "hold_min": 14.6,
+   "note": "影子单：未下单、未计入 realized ✓（仅供对比验证规则 ✓）"
   }
  },
  "gateway": {
