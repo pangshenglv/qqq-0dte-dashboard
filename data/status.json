@@ -1,38 +1,24 @@
 {
- "generated_at_et": "2026-10-22 12:24:24 ET",
- "generated_at_bj": "2026-10-23 00:24:24",
+ "generated_at_et": "2026-10-22 12:26:29 ET",
+ "generated_at_bj": "2026-10-23 00:26:29",
  "watcher": {
   "alive": true,
   "pid": 1065,
-  "uptime": "04:51:30",
+  "uptime": "04:53:35",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 22,
+  "last_event_age_s": 23,
   "last_event": {
-   "ts": "2026-10-22T12:24:02.506203-04:00",
-   "event": "error",
+   "ts": "2026-10-22T12:26:05.977810-04:00",
+   "event": "market_snapshot",
    "state": "IDLE",
-   "spot": 709.565,
-   "type": "untradeable_shape",
-   "source": "pm_reload",
-   "shapes": [
-    {
-     "pattern": "B",
-     "level": 704.0,
-     "target": 700.0,
-     "space_pct": 0.568,
-     "worst_rem_pct": 0.319,
-     "need_pct": 0.6
-    },
-    {
-     "pattern": "D",
-     "level": 715.43,
-     "target": 711.64,
-     "space_pct": 0.53,
-     "worst_rem_pct": 0.28,
-     "need_pct": 0.6
-    }
-   ],
-   "note": "这些形态在任何合法追价点都过不了 G5d（触发位→目标空间不足）；应在方案里加大目标空间或把触发位挪到能容纳追价的位置"
+   "spot": 710.11,
+   "lines": 14,
+   "pattern_quotes": {
+    "A": 0.7,
+    "B": 0.1,
+    "C": 3.06,
+    "D": 3.58
+   }
   }
  },
  "gateway": {
@@ -48,6 +34,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 710.06,
+ "last_spot": 710.11,
  "git_head": "a4238870"
 }
