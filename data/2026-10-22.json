@@ -1121,6 +1121,17 @@
    "pattern": "C",
    "level": 706.63,
    "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
+  },
+  {
+   "ts": "2026-10-22T14:11:06.251040-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 704.4701,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "C",
+   "level": 704.47,
+   "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
   }
  ],
  "roundtrips": [
