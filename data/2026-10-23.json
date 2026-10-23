@@ -930,6 +930,17 @@
     "long_conid": 920301712,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-10-23T13:21:05.555977-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 706.0,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "C",
+   "level": 706.09,
+   "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
   }
  ],
  "roundtrips": [
