@@ -350,7 +350,131 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-10-26T10:19:06.467325-04:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 710.145,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 710.01,
+   "level": 709.55
+  },
+  {
+   "ts": "2026-10-26T10:19:06.469823-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 710.145,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.08,
+   "cap": 150.0,
+   "live_expected": 89.2,
+   "iv": 25.9
+  },
+  {
+   "ts": "2026-10-26T10:19:06.520087-04:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 710.145,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-10-26T10:19:06.521769-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 710.145,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.1,
+   "step": 0.01,
+   "attempt": 1,
+   "tag": "A",
+   "qty": 1,
+   "ask": 1.09,
+   "cap": 150.0,
+   "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-10-26T10:19:18.536141-04:00",
+   "event": "order_cancel",
+   "state": "SUBMITTING",
+   "spot": 710.36,
+   "attempt": 1,
+   "ladder": "L1",
+   "note": "本档 12s 未成交 ⇒ 抬价重试下一档 ✓"
+  },
+  {
+   "ts": "2026-10-26T10:19:19.540374-04:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 710.36,
+   "side": "BUY",
+   "ladder": "L2",
+   "limit": 1.17,
+   "step": 0.03,
+   "attempt": 2,
+   "tag": "A",
+   "qty": 1,
+   "ask": 1.14,
+   "cap": 150.0,
+   "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-10-26T10:19:21.544485-04:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 710.48,
+   "side": "open",
+   "pattern": "A",
+   "price": 1.15,
+   "cost": 114.99999999999999,
+   "qty": 1,
+   "legs": {
+    "long": 712.0,
+    "short": null,
+    "right": "C",
+    "single": true,
+    "long_conid": 933981875,
+    "short_conid": null
+   },
+   "_metrics": {
+    "ts": "2026-10-26T10:19:21.544791-04:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 710.48,
+    "cost": 115.0,
+    "qty": 1,
+    "legs": {
+     "long": 712.0,
+     "short": null,
+     "right": "C",
+     "single": true,
+     "long_conid": 933981875,
+     "short_conid": null
+    },
+    "pattern": "A",
+    "level": 709.55,
+    "trig_close": 710.01,
+    "chase_pct": 0.0648,
+    "vwap": 707.78,
+    "vwap_dev_pct": 0.3815,
+    "day_regime": "unknown",
+    "combo_bid": 1.08,
+    "combo_ask": 1.09,
+    "combo_mid": 1.08,
+    "leg_spread": 0.01,
+    "bar_vol": 70994.0,
+    "vol_mult": 1.06,
+    "level_cross": null
+   }
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
