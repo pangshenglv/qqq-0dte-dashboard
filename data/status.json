@@ -1,22 +1,19 @@
 {
- "generated_at_et": "2026-10-26 09:18:11 ET",
- "generated_at_bj": "2026-10-26 21:18:11",
+ "generated_at_et": "2026-10-26 09:20:17 ET",
+ "generated_at_bj": "2026-10-26 21:20:17",
  "watcher": {
   "alive": true,
   "pid": 78892,
-  "uptime": "02-03:24:17",
+  "uptime": "02-03:26:23",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 757,
+  "last_event_age_s": 33,
   "last_event": {
-   "ts": "2026-10-26T09:05:34.297865-04:00",
-   "event": "startup",
+   "ts": "2026-10-26T09:19:44.720195-04:00",
+   "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "port": 7497,
-   "accounts": [
-    "DUQ402112"
-   ],
-   "mode": "paper_auto"
+   "level": "info",
+   "summary": "watcher 进入交易时段（paper_auto），监控 0 个形态（无方案，仅监控）"
   }
  },
  "gateway": {
