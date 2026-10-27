@@ -129,6 +129,17 @@
    "pattern": "A",
    "level": 716.6,
    "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  },
+  {
+   "ts": "2026-10-27T10:32:06.029061-04:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 716.61,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "A",
+   "level": 716.6,
+   "reason": "盘中方案仍是盘前播种版（generated_at=09:07 ET ✗）"
   }
  ],
  "roundtrips": [],
