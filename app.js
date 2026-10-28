@@ -188,8 +188,13 @@ async function loadDayPicker() {
   sel.innerHTML = idx.days.slice().reverse().map((d) =>
     `<option value="${d.date}">${d.date}${d.orders ? " 📋" : ""}${d.realized_pnl ? ` (${d.realized_pnl > 0 ? "+" : ""}${d.realized_pnl})` : ""}</option>`
   ).join("");
+  // B-72（2026-10-28 ✓ 用户报「看板没数据」）：默认打开**最近有数据**的交易日，
+  //   而不是 idx.days 的最后一天 ✗ —— 10/28 AI 盘前任务未产出（snapshots=0/orders=0）
+  //   ⇒ 原逻辑打开当天 ⇒ 整页空白 ✗ ⇒ 用户以为看板坏了 ✓
+  const _withData = (idx.days || []).filter((d) => (d.snapshots || 0) > 0 || (d.orders || 0) > 0);
+  const _fallback = (_withData[_withData.length - 1] || idx.days[idx.days.length - 1] || {}).date;
   if (![...sel.options].some((o) => o.value === currentDay)) {
-    currentDay = sel.value = idx.days[idx.days.length - 1]?.date;
+    currentDay = sel.value = _fallback;
   } else sel.value = currentDay;
 }
 
@@ -201,7 +206,20 @@ async function refresh() {
     ]);
     renderStatus(st);
     renderDay(day);
-    $("#foot").innerHTML = `git ${esc(st.git_head || "-")} · entry window ${(st.entry_window || []).join("–")} ET · 数据由 dashboard_export.py 每 5 分钟推送`;
+    // B-72：若当前这天既无快照也无委托 ⇒ 顶部明确提示，并指向最近有数据的一天 ✓
+    //   （否则用户只会看到一片空白，以为看板坏了 ✗）
+    let _note = "";
+    if (((day.snapshots || []).length === 0) && ((day.order_events || []).length === 0)) {
+      let _last = null;
+      try {
+        const _idx = await fetchJSON(DATA + "index.json");
+        const _wd = (_idx.days || []).filter((d) => (d.snapshots || 0) > 0 || (d.orders || 0) > 0);
+        _last = _wd.length ? _wd[_wd.length - 1].date : null;
+      } catch (e) { /* 忽略：横幅是增强，不能因它让整页失败 ✗ */ }
+      _note = `<span class="err">⚠️ ${esc(day.date || currentDay || "")} 当日无方案/无委托（AI 盘前任务未产出）</span>`
+            + (_last && _last !== currentDay ? ` · 最近有数据：<a href="?day=${_last}">${_last}</a>` : "");
+    }
+    $("#foot").innerHTML = (_note ? _note + " · " : "") + `git ${esc(st.git_head || "-")} · entry window ${(st.entry_window || []).join("–")} ET · 数据由 dashboard_export.py 每 5 分钟推送`;
   } catch (e) {
     $("#foot").innerHTML = `<span class="err">加载失败: ${esc(e.message)}（数据可能尚未推送或网络问题）</span>`;
   }
