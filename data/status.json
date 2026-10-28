@@ -1,24 +1,24 @@
 {
- "generated_at_et": "2026-10-28 14:37:04 ET",
- "generated_at_bj": "2026-10-29 02:37:04",
+ "generated_at_et": "2026-10-28 14:39:08 ET",
+ "generated_at_bj": "2026-10-29 02:39:08",
  "watcher": {
   "alive": true,
   "pid": 73243,
-  "uptime": "02:37:43",
+  "uptime": "02:39:47",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 59,
+  "last_event_age_s": 62,
   "last_event": {
-   "ts": "2026-10-28T14:36:05.457708-04:00",
-   "event": "market_snapshot",
+   "ts": "2026-10-28T14:38:05.790711-04:00",
+   "event": "error",
    "state": "IDLE",
-   "spot": 724.72,
-   "lines": 5,
-   "pattern_quotes": {
-    "A": 1.4,
-    "B": 0.54,
-    "C": 4.3,
-    "D": 2.96
-   }
+   "spot": 725.29,
+   "type": "invalid_too_close",
+   "pattern": "A",
+   "invalid": 723.0,
+   "level": 724.73,
+   "gap_pct": 0.239,
+   "min_gap_pct": 0.25,
+   "note": "失效位离触发位过近 ⇒ 本笔不启用 ①a（标的止损），退回 ①b 权利金灾难线 ✓"
   }
  },
  "gateway": {
