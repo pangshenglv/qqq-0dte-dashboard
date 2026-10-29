@@ -1,12 +1,12 @@
 {
- "generated_at_et": "2026-10-29 06:28:38 ET",
- "generated_at_bj": "2026-10-29 18:28:38",
+ "generated_at_et": "2026-10-29 06:38:48 ET",
+ "generated_at_bj": "2026-10-29 18:38:48",
  "watcher": {
   "alive": true,
   "pid": 73243,
-  "uptime": "18:29:17",
+  "uptime": "18:39:27",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 52001,
+  "last_event_age_s": 52611,
   "last_event": {
    "ts": "2026-10-28T16:01:56.821521-04:00",
    "event": "notification_sent",
@@ -22,7 +22,7 @@
   "online": true,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "37095"
+  "pid": "72430"
  },
  "mode": "paper_auto",
  "entry_window": [
@@ -30,5 +30,5 @@
   "15:30"
  ],
  "last_spot": 723.31,
- "git_head": "3572c5cf"
+ "git_head": "f4f09856"
 }
