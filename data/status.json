@@ -1,19 +1,22 @@
 {
- "generated_at_et": "2026-10-30 09:04:26 ET",
- "generated_at_bj": "2026-10-30 21:04:26",
+ "generated_at_et": "2026-10-30 09:06:32 ET",
+ "generated_at_bj": "2026-10-30 21:06:32",
  "watcher": {
   "alive": true,
   "pid": 73243,
-  "uptime": "01-21:05:05",
+  "uptime": "01-21:07:11",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 61352,
+  "last_event_age_s": 59,
   "last_event": {
-   "ts": "2026-10-29T16:01:53.697147-04:00",
-   "event": "notification_sent",
+   "ts": "2026-10-30T09:05:32.755612-04:00",
+   "event": "startup",
    "state": "-",
    "spot": null,
-   "level": "info",
-   "summary": "当日数据已归档（QQQ 721 根 + 34 个期权合约）（收盘后终版）"
+   "port": 7497,
+   "accounts": [
+    "DUQ402112"
+   ],
+   "mode": "paper_auto"
   }
  },
  "gateway": {
@@ -29,6 +32,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 713.455,
+ "last_spot": null,
  "git_head": "042f94d6"
 }
