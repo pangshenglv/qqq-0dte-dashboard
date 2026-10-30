@@ -1,12 +1,12 @@
 {
- "generated_at_et": "2026-10-30 10:52:23 ET",
- "generated_at_bj": "2026-10-30 22:52:23",
+ "generated_at_et": "2026-10-30 10:54:42 ET",
+ "generated_at_bj": "2026-10-30 22:54:42",
  "watcher": {
   "alive": true,
   "pid": 73243,
-  "uptime": "01-22:53:02",
+  "uptime": "01-22:55:21",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 6410,
+  "last_event_age_s": 6549,
   "last_event": {
    "ts": "2026-10-30T09:05:32.755612-04:00",
    "event": "startup",
