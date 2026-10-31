@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-10-31 11:00:51 ET",
- "generated_at_bj": "2026-10-31 23:00:51",
+ "generated_at_et": "2026-10-31 11:05:28 ET",
+ "generated_at_bj": "2026-10-31 23:05:28",
  "watcher": {
   "alive": true,
   "pid": 73243,
-  "uptime": "02-23:01:30",
+  "uptime": "02-23:06:07",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 3351,
+  "last_event_age_s": 28,
   "last_event": {
-   "ts": "2026-10-31T10:05:00.617858-04:00",
+   "ts": "2026-10-31T11:05:00.110045-04:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
    "level": "alert",
-   "summary": "盘中刷新未产出：daily_20261031_pm.yaml 不存在（该档 09:53 ET 触发 ✗）"
+   "summary": "盘中刷新未产出：daily_20261031_pm.yaml 不存在（该档 10:53 ET 触发 ✗）"
   }
  },
  "gateway": {
@@ -30,5 +30,5 @@
   "15:30"
  ],
  "last_spot": null,
- "git_head": "e9b33e84"
+ "git_head": "7b677802"
 }
