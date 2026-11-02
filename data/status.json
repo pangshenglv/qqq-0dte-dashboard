@@ -1,19 +1,25 @@
 {
- "generated_at_et": "2026-11-02 09:29:44 ET",
- "generated_at_bj": "2026-11-02 22:29:44",
+ "generated_at_et": "2026-11-02 09:31:48 ET",
+ "generated_at_bj": "2026-11-02 22:31:48",
  "watcher": {
   "alive": true,
   "pid": 97159,
-  "uptime": "59:31",
+  "uptime": "01:01:35",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 217,
+  "last_event_age_s": 42,
   "last_event": {
-   "ts": "2026-11-02T09:26:06.169073-05:00",
-   "event": "market_snapshot",
-   "state": "IDLE",
-   "spot": 695.969,
-   "lines": 5,
-   "pattern_quotes": {}
+   "ts": "2026-11-02T09:31:06.020212-05:00",
+   "event": "shadow_entry",
+   "state": "SHADOW",
+   "spot": 694.99,
+   "pattern": "C",
+   "level": 695.0,
+   "qty": 1,
+   "ask": 1.68,
+   "bid": 1.66,
+   "modeled_cost": 168.0,
+   "blocked_by": "早于 10:00 ET（开盘头一小时不开新仓 ✓）",
+   "note": "被开仓时间窗拦下 ⇒ 记录「若开仓」的入场价，用于日后对比验证规则收益 ✓"
   }
  },
  "gateway": {
@@ -29,6 +35,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 695.969,
+ "last_spot": 694.99,
  "git_head": "8b3df6bb"
 }
