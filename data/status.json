@@ -1,19 +1,24 @@
 {
- "generated_at_et": "2026-11-02 10:29:31 ET",
- "generated_at_bj": "2026-11-02 23:29:31",
+ "generated_at_et": "2026-11-02 10:31:42 ET",
+ "generated_at_bj": "2026-11-02 23:31:42",
  "watcher": {
   "alive": true,
   "pid": 97159,
-  "uptime": "01:59:18",
+  "uptime": "02:01:29",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 150,
+  "last_event_age_s": 36,
   "last_event": {
-   "ts": "2026-11-02T10:27:00.695403-05:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "info",
-   "summary": "D 开仓成交 @ 0.83（成本 $166）"
+   "ts": "2026-11-02T10:31:06.193800-05:00",
+   "event": "market_snapshot",
+   "state": "IDLE",
+   "spot": 698.37,
+   "lines": 11,
+   "pattern_quotes": {
+    "A": 1.73,
+    "B": 0.21,
+    "C": 2.23,
+    "D": 0.84
+   }
   }
  },
  "gateway": {
@@ -29,6 +34,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 698.2187,
- "git_head": "29598eee"
+ "last_spot": 698.37,
+ "git_head": "ffda6f89"
 }
