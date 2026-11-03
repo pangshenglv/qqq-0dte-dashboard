@@ -351,7 +351,19 @@
    "placeholder": true
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-11-03T10:58:05.649117-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 687.61,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "A",
+   "level": 687.35,
+   "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
