@@ -245,6 +245,25 @@
    "pattern": "A",
    "level": 690.0,
    "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  },
+  {
+   "ts": "2026-11-04T10:10:05.957790-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 699.51,
+   "pattern": "A",
+   "result": "confirmed",
+   "close": 699.51,
+   "level": 699.43
+  },
+  {
+   "ts": "2026-11-04T10:10:05.959442-05:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 699.51,
+   "gate": "G1/G3",
+   "passed": false,
+   "reason": "无有效报价"
   }
  ],
  "roundtrips": [],
