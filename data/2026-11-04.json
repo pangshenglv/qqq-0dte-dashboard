@@ -727,6 +727,16 @@
     "long_conid": 940387045,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-11-04T13:43:06.833511-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 694.07,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 694.14,
+   "level": 694.02
   }
  ],
  "roundtrips": [
