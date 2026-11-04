@@ -264,6 +264,25 @@
    "gate": "G1/G3",
    "passed": false,
    "reason": "无有效报价"
+  },
+  {
+   "ts": "2026-11-04T10:45:06.256719-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 694.76,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 694.76,
+   "level": 694.6
+  },
+  {
+   "ts": "2026-11-04T10:45:06.257749-05:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 694.76,
+   "gate": "G1/G3",
+   "passed": false,
+   "reason": "无有效报价"
   }
  ],
  "roundtrips": [],
