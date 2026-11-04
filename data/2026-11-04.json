@@ -611,6 +611,31 @@
     "vol_mult": 0.94,
     "level_cross": null
    }
+  },
+  {
+   "ts": "2026-11-04T12:27:50.907162-05:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 696.215,
+   "side": "SELL",
+   "ladder": "L1",
+   "limit": 1.4
+  },
+  {
+   "ts": "2026-11-04T12:28:08.930363-05:00",
+   "event": "order_escalate",
+   "state": "EXITING",
+   "spot": 696.215,
+   "step": "L1→L2"
+  },
+  {
+   "ts": "2026-11-04T12:28:08.933107-05:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 696.215,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 1.35
   }
  ],
  "roundtrips": [],
