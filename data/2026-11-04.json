@@ -399,6 +399,19 @@
    "gate": "G1/G3",
    "passed": false,
    "reason": "无有效报价"
+  },
+  {
+   "ts": "2026-11-04T11:50:05.545662-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 694.73,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "A",
+   "level": 694.6,
+   "crossings": 3,
+   "age_min": 49,
+   "reason": "点位失效(穿越过多)"
   }
  ],
  "roundtrips": [],
