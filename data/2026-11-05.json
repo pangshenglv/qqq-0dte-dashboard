@@ -1036,6 +1036,33 @@
    "leg_spread": 0.02,
    "cap": 145.0,
    "note": "低于min_debit 且多张补齐不可行（每张 $94 × 0 = $0 > 上限 $145），recenter 失败"
+  },
+  {
+   "ts": "2026-11-05T13:11:05.907456-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 652.99,
+   "gate": "G5d",
+   "passed": false,
+   "measured": true,
+   "mode": "measure_only",
+   "pattern": "C",
+   "target": 655.0,
+   "level": 652.18,
+   "entry_ref": 652.85,
+   "remaining_pct": 0.329,
+   "reason": "G5d 条件命中（度量模式，不拒单）"
+  },
+  {
+   "ts": "2026-11-05T13:11:05.908182-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 652.99,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 652.85,
+   "level": 652.18,
+   "limit": 0.001
   }
  ],
  "roundtrips": [],
