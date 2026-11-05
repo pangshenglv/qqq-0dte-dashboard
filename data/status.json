@@ -1,46 +1,25 @@
 {
- "generated_at_et": "2026-11-05 09:30:16 ET",
- "generated_at_bj": "2026-11-05 22:30:16",
+ "generated_at_et": "2026-11-05 09:32:23 ET",
+ "generated_at_bj": "2026-11-05 22:32:23",
  "watcher": {
   "alive": true,
   "pid": 37927,
-  "uptime": "14:52",
+  "uptime": "16:59",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 202,
+  "last_event_age_s": 18,
   "last_event": {
-   "ts": "2026-11-05T09:26:53.984354-05:00",
-   "event": "error",
-   "state": "IDLE",
-   "spot": 683.48,
-   "type": "untradeable_shape",
-   "source": "pm_reload",
-   "shapes": [
-    {
-     "pattern": "A",
-     "level": 688.0,
-     "target": 691.43,
-     "space_pct": 0.499,
-     "worst_rem_pct": 0.248,
-     "need_pct": 0.6
-    },
-    {
-     "pattern": "B",
-     "level": 682.17,
-     "target": 678.93,
-     "space_pct": 0.475,
-     "worst_rem_pct": 0.226,
-     "need_pct": 0.6
-    },
-    {
-     "pattern": "D",
-     "level": 688.0,
-     "target": 685.0,
-     "space_pct": 0.436,
-     "worst_rem_pct": 0.187,
-     "need_pct": 0.6
-    }
-   ],
-   "note": "这些形态在任何合法追价点都过不了 G5d（触发位→目标空间不足）；应在方案里加大目标空间或把触发位挪到能容纳追价的位置"
+   "ts": "2026-11-05T09:32:05.620689-05:00",
+   "event": "shadow_entry",
+   "state": "SHADOW",
+   "spot": 679.9,
+   "pattern": "B",
+   "level": 682.17,
+   "qty": 1,
+   "ask": 2.86,
+   "bid": 2.83,
+   "modeled_cost": 286.0,
+   "blocked_by": "早于 10:00 ET（开盘头一小时不开新仓 ✓）",
+   "note": "被开仓时间窗拦下 ⇒ 记录「若开仓」的入场价，用于日后对比验证规则收益 ✓"
   }
  },
  "gateway": {
@@ -56,6 +35,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 683.43,
+ "last_spot": 680.71,
  "git_head": "6c2b98f3"
 }
