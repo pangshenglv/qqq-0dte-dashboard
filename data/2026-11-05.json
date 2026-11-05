@@ -490,6 +490,17 @@
    "close": 665.66,
    "level": 664.42,
    "limit": 0.001
+  },
+  {
+   "ts": "2026-11-05T10:12:05.355697-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 661.68,
+   "pattern": "B",
+   "result": "skip_chase",
+   "close": 661.74,
+   "level": 663.9,
+   "limit": 0.0025
   }
  ],
  "roundtrips": [],
