@@ -618,6 +618,17 @@
    "close": 661.74,
    "level": 663.9,
    "limit": 0.0025
+  },
+  {
+   "ts": "2026-11-05T11:14:05.178476-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 657.88,
+   "gate": "G5c",
+   "passed": false,
+   "pattern": "A",
+   "vwap": 658.52,
+   "reason": "VWAP 方位不符"
   }
  ],
  "roundtrips": [],
