@@ -912,6 +912,28 @@
    "spot": 655.85,
    "note": "改价后仍未成交，放弃",
    "pattern": "C"
+  },
+  {
+   "ts": "2026-11-05T12:37:05.856447-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 654.46,
+   "pattern": "B",
+   "result": "confirmed",
+   "close": 654.35,
+   "level": 654.9
+  },
+  {
+   "ts": "2026-11-05T12:37:19.371947-05:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 654.46,
+   "gate": "G3",
+   "passed": false,
+   "mid": 0.94,
+   "leg_spread": 0.02,
+   "cap": 145.0,
+   "note": "低于min_debit 且多张补齐不可行（每张 $94 × 0 = $0 > 上限 $145），recenter 失败"
   }
  ],
  "roundtrips": [],
