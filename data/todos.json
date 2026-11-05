@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-05 10:24 ET",
+ "generated_at": "2026-11-05 10:26 ET",
  "items": [
   {
    "id": "B-01",
@@ -480,6 +480,20 @@
   {
    "id": "B-74",
    "title": "看板线上不更新：ghfast.top 代理的 ref 视图卡死 ✗（2026-11-05 定位并修复 ✓）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-75",
+   "title": "开仓时间窗的总账可能已转负 ✗（2026-11-05 出现单日 −$1041 影子）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-76",
+   "title": "spot 冻结 25 分钟 + rt bar 静默 1597 秒 ✗（2026-11-05）",
    "status": "open",
    "priority": "P2 · 功能补齐",
    "note": ""
