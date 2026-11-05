@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-11-05 09:38:52 ET",
- "generated_at_bj": "2026-11-05 22:38:52",
+ "generated_at_et": "2026-11-05 09:42:17 ET",
+ "generated_at_bj": "2026-11-05 22:42:17",
  "watcher": {
   "alive": true,
   "pid": 37927,
-  "uptime": "23:28",
+  "uptime": "26:53",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 156,
+  "last_event_age_s": 35,
   "last_event": {
-   "ts": "2026-11-05T09:36:16.123088-05:00",
-   "event": "rt_resubscribe",
-   "state": "IDLE",
-   "spot": 679.69,
-   "silent_sec": 180.4,
-   "note": "rt bars 静默过久，已取消并重新订阅 ✓"
+   "ts": "2026-11-05T09:41:41.845823-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "alert",
+   "summary": "TWS 重连成功"
   }
  },
  "gateway": {
@@ -22,7 +22,7 @@
   "online": true,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "16259"
+  "pid": "41818"
  },
  "mode": "paper_auto",
  "entry_window": [
@@ -30,5 +30,5 @@
   "15:30"
  ],
  "last_spot": 679.69,
- "git_head": "6c2b98f3"
+ "git_head": "5511231e"
 }
