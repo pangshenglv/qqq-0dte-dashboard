@@ -1,19 +1,21 @@
 {
- "generated_at_et": "2026-11-05 10:00:21 ET",
- "generated_at_bj": "2026-11-05 23:00:21",
+ "generated_at_et": "2026-11-05 10:02:32 ET",
+ "generated_at_bj": "2026-11-05 23:02:32",
  "watcher": {
   "alive": true,
   "pid": 37927,
-  "uptime": "44:57",
+  "uptime": "47:08",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 27,
+  "last_event_age_s": 86,
   "last_event": {
-   "ts": "2026-11-05T09:59:53.380724-05:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "info",
-   "summary": "B 移动止盈已武装：峰值 +353.1%，回吐线 +300.0%（≈$1144）"
+   "ts": "2026-11-05T10:01:05.209400-05:00",
+   "event": "market_snapshot",
+   "state": "IDLE",
+   "spot": 666.63,
+   "lines": 2,
+   "pattern_quotes": {
+    "B": 13.28
+   }
   }
  },
  "gateway": {
@@ -29,6 +31,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 679.69,
+ "last_spot": 666.63,
  "git_head": "553f2bbb"
 }
