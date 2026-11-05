@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-11-05 09:57:07 ET",
- "generated_at_bj": "2026-11-05 22:57:07",
+ "generated_at_et": "2026-11-05 10:00:21 ET",
+ "generated_at_bj": "2026-11-05 23:00:21",
  "watcher": {
   "alive": true,
   "pid": 37927,
-  "uptime": "41:43",
+  "uptime": "44:57",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 41,
+  "last_event_age_s": 27,
   "last_event": {
-   "ts": "2026-11-05T09:56:25.567176-05:00",
+   "ts": "2026-11-05T09:59:53.380724-05:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "level": "alert",
-   "summary": "TWS 重连成功"
+   "level": "info",
+   "summary": "B 移动止盈已武装：峰值 +353.1%，回吐线 +300.0%（≈$1144）"
   }
  },
  "gateway": {
@@ -22,7 +22,7 @@
   "online": true,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "43807"
+  "pid": "44429"
  },
  "mode": "paper_auto",
  "entry_window": [
