@@ -1,27 +1,19 @@
 {
- "generated_at_et": "2026-11-05 13:27:45 ET",
- "generated_at_bj": "2026-11-06 02:27:45",
+ "generated_at_et": "2026-11-05 13:29:51 ET",
+ "generated_at_bj": "2026-11-06 02:29:51",
  "watcher": {
   "alive": true,
   "pid": 37927,
-  "uptime": "04:12:21",
+  "uptime": "04:14:27",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 0,
+  "last_event_age_s": 96,
   "last_event": {
-   "ts": "2026-11-05T13:27:44.915511-05:00",
-   "event": "order_submit",
-   "state": "SUBMITTING",
-   "spot": 652.4547,
-   "side": "BUY",
-   "ladder": "L4",
-   "limit": 1.9,
-   "step": 0.15,
-   "attempt": 4,
-   "tag": "C",
-   "qty": 1,
-   "ask": 1.75,
-   "cap": 217.5,
-   "mode": "marketable_limit"
+   "ts": "2026-11-05T13:28:15.694932-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "C 开仓未成交，已放弃"
   }
  },
  "gateway": {

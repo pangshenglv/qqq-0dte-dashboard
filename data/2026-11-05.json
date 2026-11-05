@@ -1187,6 +1187,48 @@
    "ask": 1.75,
    "cap": 217.5,
    "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-11-05T13:27:56.926073-05:00",
+   "event": "order_cancel",
+   "state": "SUBMITTING",
+   "spot": 652.37,
+   "attempt": 4,
+   "ladder": "L4",
+   "note": "本档 12s 未成交 ⇒ 抬价重试下一档 ✓"
+  },
+  {
+   "ts": "2026-11-05T13:27:57.929760-05:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 652.37,
+   "side": "BUY",
+   "ladder": "L5",
+   "limit": 2.06,
+   "step": 0.3,
+   "attempt": 5,
+   "tag": "C",
+   "qty": 1,
+   "ask": 1.76,
+   "cap": 217.5,
+   "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-11-05T13:28:09.942199-05:00",
+   "event": "order_cancel",
+   "state": "SUBMITTING",
+   "spot": 652.575,
+   "attempt": 5,
+   "ladder": "L5",
+   "note": "本档 12s 未成交 ⇒ 抬价重试下一档 ✓"
+  },
+  {
+   "ts": "2026-11-05T13:28:15.694516-05:00",
+   "event": "order_cancel",
+   "state": "IDLE",
+   "spot": 652.575,
+   "note": "改价后仍未成交，放弃",
+   "pattern": "C"
   }
  ],
  "roundtrips": [],
