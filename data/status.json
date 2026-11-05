@@ -1,46 +1,19 @@
 {
- "generated_at_et": "2026-11-05 09:54:59 ET",
- "generated_at_bj": "2026-11-05 22:54:59",
+ "generated_at_et": "2026-11-05 09:57:07 ET",
+ "generated_at_bj": "2026-11-05 22:57:07",
  "watcher": {
   "alive": true,
   "pid": 37927,
-  "uptime": "39:35",
+  "uptime": "41:43",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 58,
+  "last_event_age_s": 41,
   "last_event": {
-   "ts": "2026-11-05T09:54:01.222405-05:00",
-   "event": "error",
-   "state": "IDLE",
-   "spot": 679.69,
-   "type": "untradeable_shape",
-   "source": "pm_reload",
-   "shapes": [
-    {
-     "pattern": "A",
-     "level": 688.0,
-     "target": 691.43,
-     "space_pct": 0.499,
-     "worst_rem_pct": 0.248,
-     "need_pct": 0.6
-    },
-    {
-     "pattern": "B",
-     "level": 682.17,
-     "target": 678.93,
-     "space_pct": 0.475,
-     "worst_rem_pct": 0.226,
-     "need_pct": 0.6
-    },
-    {
-     "pattern": "D",
-     "level": 688.0,
-     "target": 685.0,
-     "space_pct": 0.436,
-     "worst_rem_pct": 0.187,
-     "need_pct": 0.6
-    }
-   ],
-   "note": "这些形态在任何合法追价点都过不了 G5d（触发位→目标空间不足）；应在方案里加大目标空间或把触发位挪到能容纳追价的位置"
+   "ts": "2026-11-05T09:56:25.567176-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "alert",
+   "summary": "TWS 重连成功"
   }
  },
  "gateway": {
@@ -49,7 +22,7 @@
   "online": true,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "43180"
+  "pid": "43807"
  },
  "mode": "paper_auto",
  "entry_window": [
