@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-11-06 15:58:45 ET",
- "generated_at_bj": "2026-11-07 04:58:45",
+ "generated_at_et": "2026-11-06 16:00:52 ET",
+ "generated_at_bj": "2026-11-07 05:00:52",
  "watcher": {
   "alive": true,
   "pid": 59262,
-  "uptime": "10:36:37",
+  "uptime": "10:38:44",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 746,
+  "last_event_age_s": 6,
   "last_event": {
-   "ts": "2026-11-06T15:46:19.055485-05:00",
+   "ts": "2026-11-06T16:00:45.905329-05:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "level": "info",
-   "summary": "当日交易时段结束"
+   "level": "alert",
+   "summary": "TWS 重连成功"
   }
  },
  "gateway": {
