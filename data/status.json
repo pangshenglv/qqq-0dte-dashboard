@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-11-06 16:03:03 ET",
- "generated_at_bj": "2026-11-07 05:03:03",
+ "generated_at_et": "2026-11-06 16:05:10 ET",
+ "generated_at_bj": "2026-11-07 05:05:10",
  "watcher": {
   "alive": true,
   "pid": 59262,
-  "uptime": "10:40:55",
+  "uptime": "10:43:02",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 137,
+  "last_event_age_s": 66,
   "last_event": {
-   "ts": "2026-11-06T16:00:45.905329-05:00",
+   "ts": "2026-11-06T16:04:03.312071-05:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "level": "alert",
-   "summary": "TWS 重连成功"
+   "level": "info",
+   "summary": "当日数据已归档（QQQ 723 根 + 34 个期权合约）（收盘后终版）"
   }
  },
  "gateway": {
