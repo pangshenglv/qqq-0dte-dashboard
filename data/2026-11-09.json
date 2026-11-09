@@ -555,31 +555,38 @@
    "enabled_count": 1
   },
   {
-   "file": "daily_20261109_1153_0076c1bb73_pm",
+   "file": "daily_20261109_1211_de4821c984_pm",
    "kind": "pm",
-   "label": "盘中刷新 11:53 ET",
-   "sort_key": "11:53",
-   "generated_at": "11:53 ET",
+   "label": "盘中刷新 12:11 ET",
+   "sort_key": "12:11",
+   "generated_at": "12:11 ET",
    "data_source": "tws_local",
-   "refresh_status": "placeholder",
-   "placeholder_hint": true,
-   "note": "⚠️ PLACEHOLDER 11:53 ET 落盘（取数前安全副本，正文仍为 10:53 档结论，待本轮重推覆盖）\n==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-09（周一）【10:53 ET 盘中刷新 · 第 2 档 · 降级档】\n触发：config/midday_prompt.md（每小时 :53 例行刷新）\n\n🔴【本轮结论：数据源不可用 ⇒ 无法从零重推 ⇒ A–D 全禁、照常出文件】\n依据 SPEC「数据降级方案」（行情降级段末句：TWS 也不可用时 A–D 全禁照常出文件）\n【数据获取时间 / 数据源】取数窗口 2026-11-09 10:53:00–10:59 ET，**全部失败**：\n· tools/tws_snapshot.py（clientId 7，只读，未用 clientId 42，未重启 watcher）\n→ 127.0.0.1:7497 TCP 0.00s 建连成功，但 API 握手后 **8 秒无任何响应**（挂死，不是拒绝连接）\n→ 进程 180 秒未返回，已终止；0 条快照 / 0 条 0DTE 期权链\n· 独立原始 socket 探针（10:55 / 10:59 ET 各 2 次）同样「TCP 通、API 不回」⇒ 网关模态对话框卡死\n· option_wall_scan（clientId 88）/ bars_dump / pm_analysis（clientId 8）走同一 API ⇒ 未执行（必挂）\n⇒ 现价、RTH 高/低、VWAP、0DTE 实报链、IV/1σ、期权墙 **本轮全部无数据**；不估算、不沿用冒充实报。\n\n【故障链（日志证据 ✓）】当地 09:56:05 ET watcher 连续记录 Error 1100（IBKR↔TWS 连接丢失）；\n09:59:26 ET 起 logs/spot_5s_20261109.csv 停写且末 3 行为同一重复值（数据流僵死）；\n10:02:41 ET 网关打开 \"Connecting to server...\" 帧，10:03:01 / 10:03:20 连开两个 \"IBKR Gateway\"\n模态对话框，此后 IBC 无任何 \"Click button\" 动作 ⇒ 与本仓库 runbook 记载的「2FA 对话框卡死」同指纹。\n⇒ 连带：watcher 自 09:56 起无任何新事件（**不会热加载本文件**）；\nsession_watchdog 实例自 09:58 起挂死（至 10:57 已 54 分钟），阻塞 launchd 后续每 5 分钟的健康检查\n⇒ 安全网与盯盘同时失效（这是本轮最严重的问题，优先于任何点位推导）。\n\n【今日状态】本日 **0 笔实盘成交、0 持仓**（09:35 的 A 被 ENTRY-WINDOW 拦下，仅记 shadow；09:36 影子单平仓\n为模型值，不入账本）⇒ 无在仓形态；已实现亏损 0 ⇒ G2 风险预算未消耗，但无数据即无合规方案。\n\n【恢复需人工（本任务无权执行）】① launchctl kickstart -k gui/$(id -u)/com.qqq.gateway\n② 立刻用 IBKR Mobile 批准 2FA（窗口 180 秒）并**登出 App** ③ kill 挂死的 session_watchdog\n④ 重启 watcher（tools/restart_watcher.py）—— 「不要重启 watcher」是本任务硬约束，故只报不做\n==============================================================================",
+   "refresh_status": "final",
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-09（周一）【11:53 ET 盘中刷新 · 第 3 档 · 降级档】\n刷新链路：DSH 自动化（每小时 :53）→ config/midday_prompt.md（权威版本）全文执行\n\n🔴【本轮结论：行情链路仍处挂死态 ⇒ 无法从零重推 ⇒ A–D 全禁、照常出文件】\n依据 SPEC「数据降级方案」末句：TWS 也不可用时 A–D 全部 enabled: false 并照常写出配置文件。\n⚠️ 本条是对步骤 A/B「每次必做」的**唯一豁免通道**（无数据即无结构），不是\"图省事写维持\"。\n\n【数据获取时间 / 数据源】本轮取数窗口 2026-11-09 11:53:00–12:09:40 ET，全部失败（均为只读通道）：\n① tools/tws_snapshot.py（clientId 7）—— 11:53 轮 100s 超时终止；12:00 轮**patient 重试 700s**（11.6 分钟）\n仍 0 字节产出 ⇒ 持仓/挂单/账户/成交/合约详情请求**全部 timeout**\n② 独立最小探针（clientId 7，/tmp/probe_time2.py）：TCP 建连**耗时 50s**（正常 <1s；11:53→11:58→12:03\n呈 16s→40s→50s 恶化），仅 `reqCurrentTime` 秒回（= IB 服务器时间可用）\n⇒ 但 `qualifyContracts(QQQ)` 挂死、positions/openOrders/accountUpdates/executions 全超时\n⇒ 判定：**会话层活着、数据层死了**（与 runbook「网关卡在 2FA 对话框」指纹完全一致）\n③ tools/option_wall_scan.py（clientId 88）走同一 API ⇒ 未执行（必挂）；无墙数据\n④ data/option_wall_latest.json 为 09:55 ET 旧档（已过期 2h16m）⇒ 仅作历史定位，禁止当实时\n⇒ 现价、RTH 高/低、VWAP、0DTE 实报链、IV/剩余 1σ、期权墙 **本轮全部无数据**；不估算、不沿用冒充实报。\n\n【故障链（日志证据 ✓）】\n· IBC 诊断日志 2026-11-09 23:02:41 CST(=10:02:41 ET) 出现 \"Connecting to server...\" 帧；\n23:03:01 / 23:03:20 CST(=10:03 ET) 连开两个 \"IBKR Gateway\" 模态对话框，此后 IBC **无任何\nClick button 动作**（最后一条有效动作是 22:48:02 CST 的 \"Click button: OK\"）⇒ 停在同一处 2 小时。\n· 同一日志反复出现 \"remove Client 7/8/13/42/51/88\"（客户端被踢），无一次成功取数。\n· watcher（pid 28497，**未重启**）最后一条事件 = 09:56:05 ET market_snapshot；此后静默 2h15m。\n· logs/spot_5s_20261109.csv 停写在 09:59:26 ET，末 3 行为同一重复值（行情流僵死）。\n⇒ 连带：watcher 不会热加载本文件（其会话循环已不动）；session_watchdog 同样挂死 ⇒ 告警也发不出。\n\n【今日状态】0 笔实盘成交、0 实盘持仓：今日日志仅有 09:35 shadow_entry / 09:36 shadow_exit（A 被\n10:00 前开仓窗拦下 ⇒ 只记影子、不入账本）；G3 拒单记录 data/g3_rejects.jsonl 今日 **0 条**。\n⚠️ 当前持仓**无法经 API 核实**（accountUpdates/positions 超时）⇒ 以 09:56 ET 前 watcher 全程 IDLE、\n且此后无任何 order_fill 事件为据，判定\"无在仓\"。若实际有仓，watcher 的退出五层不看本文件（不受影响 ✓）。\n\n【为什么不是\"今日收工\"而是\"待人工恢复后重推\"】风险预算（日 $180 / 单笔上限 $240）并未消耗，\n阻塞点是**取数**不是**额度** ⇒ 链路恢复后任何一档刷新都能合法从零重推；本档只负责\"不产出假方案\"。\n\n【恢复需人工（本任务硬约束禁止重启 watcher，故只报不做）】\n① `launchctl kickstart -k gui/$(id -u)/com.qqq.gateway`\n② **180 秒内**用 IBKR Mobile 批准 2FA\n③ 批准后**立刻登出/杀掉 IBKR Mobile**（App 登录会占用唯一行情会话 ⇒ Error 10197、报价全 NaN）\n④ 验证两项都过：`ib.reqCurrentTime()` 有返回 **且** QQQ bid/ask 为数字（docs/ib_gateway_runbook.md）\n⑤ 再 `tools/restart_watcher.py` 拉起 watcher（watchdog 已在挂死态，需一并清理）\n==============================================================================",
    "market": {
     "spot_last_verified": 673.045,
     "spot_last_verified_at": "09:59:26 ET",
+    "spot_age_minutes_at_write": 132,
     "rth_open": 662.63,
     "rth_high": 673.1,
     "rth_low": 662.02,
     "vwap_rth": 668.32,
     "stats_as_of": "09:53 ET",
-    "external_spot_ref": 677.83,
-    "external_spot_ref_note": "10:57 ET 第三方行情页（Futu Web），非 IB 实报链、未用于任何定价；仅提示价格已显著高于上一版全部触发位"
+    "rth_range_realized": 11.08,
+    "reachability_basis": "当日已实现振幅 11.08 点 ⇒ 规则 ①-b 的 1/3 阈值 ≈ 3.69 点；但**现价未知** ⇒ |触发位−现价| 无法计算 ⇒ ①-b 本轮不可判定",
+    "vwap_position": "降级模式无此数据（最后可核实：673.045 在 VWAP 668.32 上方约 0.71%）",
+    "volume": "降级模式无此数据",
+    "iv_sigma_remaining": "降级模式无此数据（无实报链 ⇒ 无法反解 IV；剩余到 16:00 约 3.8 小时）",
+    "option_wall": "无墙数据（option_wall_scan 走挂死网关；最近一次 09:55 ET 旧档已过期 2h16m）",
+    "external_spot_ref": null,
+    "external_spot_ref_note": "本轮**不引用**第三方参考价（Yahoo chart API 403、Nasdaq vendor 报错、stooq 页面不存在 ⇒ 无可核实来源）。上一档曾引 677.83（Futu 页面），本轮不沿用未复核数值。"
    },
    "regime_day": null,
    "scenarios": [
     {
      "name": "A-突破追多 673.20",
-     "rationale": "【本轮禁用：数据源不可用】本档数值为 09:53 版原值、**未重推**（禁止把未验证点位当本轮结论）。\n无实报链 ⇒ 无法核对 678C 是否仍合规、无法按 trigger×1.0025 重算 expected_debit、\n无法验证 target 与剩余 1σ 匹配 ⇒ 按硬性规则不得沿用旧腿。\n另：第三方参考价 677.83（10:57 ET，未用于定价）已高出本触发位 4.63 点，\n即便链路恢复也已属规则 ①-b 实质变化，必须重布点而非维持。\n",
+     "rationale": "【本轮禁用 · 数据源不可用】数值为 09:53 档原值、**未重推**（不得把未验证点位当本轮结论）。\n关键事实：最后可核实现价 673.045（09:59:26 ET）**距本触发位仅 0.155 点** ⇒ 行情中断当时该位正处于\n触发边缘；此后 2h12m 价格完全不可见 ⇒ 既不能确认它是否已被穿越、也无法按 ①「反复穿越 ≥3 次」作废。\n无实报链 ⇒ 678C 是否仍在链内、按 trigger×1.0025 重定价多少、target 与剩余 1σ 是否匹配，\n**三项全部无法核对** ⇒ 按硬性规则不得沿用旧腿布点。\n若下一档链路恢复：先按新的 A.d 摆动位清单重定触发位（禁止直接复活 673.20）。\n",
      "pattern": "A",
      "enabled": false,
      "trigger_level": 673.2,
@@ -599,7 +606,7 @@
     },
     {
      "name": "B-破位追空 668.30",
-     "rationale": "【本轮禁用：数据源不可用】本档为 09:53 版原值、**未重推**。661P 的 bid/ask 与 G3 上限\n（expected_debit×1.25 ≤ max_debit 240）无法用实报链复核；且触发位距现价已 >9 点，\n规则 ①-b 可达性判据无从计算 ⇒ 不得维持。\n",
+     "rationale": "【本轮禁用 · 数据源不可用】09:53 档原值、**未重推**。最后可核实现价（673.045）在本触发位上方\n4.75 点，此后价格不可见 ⇒ 可达性（①-b）与「是否已跌破」均不可判定。\n661P 的 bid/ask 与 G3 上限（expected_debit×1.25 ≤ max_debit 240）无法用实报链复核 ⇒ 不得维持。\n",
      "pattern": "B",
      "enabled": false,
      "trigger_level": 668.3,
@@ -619,7 +626,7 @@
     },
     {
      "name": "C-回踩确认 670.40",
-     "rationale": "【本轮禁用：数据源不可用】本档为 09:53 版原值、**未重推**。C 类必须按 trigger×1.0010 最坏追价点\n用实报单腿重定价（9/29 教训），本轮无链数据 ⇒ 无法重算 ⇒ 禁用。回踩位本身也须按新的 A.d\n摆动位清单重新识别（第三方参考价 677.83 已远高于 670.40，该位属「已成立区间」）。\n",
+     "rationale": "【本轮禁用 · 数据源不可用】09:53 档原值、**未重推**。C 类必须按 trigger×1.0010「最坏追价点」\n用实报单腿重定价（9/29 C4 教训：按触发位定价 $148、实成交 $195、9 分钟后 -$57）⇒ 无链即无法重算 ⇒ 禁用。\n另：回踩位本应来自本轮 A.d 的新鲜摆动位簇，670.40 属\"已成立区间\"，不得直接沿用。\n",
      "pattern": "C",
      "enabled": false,
      "trigger_level": 670.4,
@@ -639,7 +646,7 @@
     },
     {
      "name": "D-假突破做空 673.20",
-     "rationale": "【本轮禁用：数据源不可用】本档为 09:53 版原值、**未重推**。D 的失效位 676.00 已被第三方参考价\n677.83 越过（即便不计该参考值，10:57 的实价也必高于 09:53 的 672.27）⇒ 形态逻辑已破坏；\n且无实报链无法核对 668P 定价 ⇒ 双重不满足，禁用。\n",
+     "rationale": "【本轮禁用 · 数据源不可用】09:53 档原值、**未重推**。D 与 A 共用 673.20，而 09:59 现价已达 673.045\n⇒ 该位当时处于\"将破未破\"状态，D 的\"突破后 15 分钟内跌回\"判定窗口恰好落在**数据真空期**内\n⇒ 本档无从判断该形态是被证明还是被否证。\n668P 定价同样无法用实报链核对 ⇒ 禁用。\n",
      "pattern": "D",
      "enabled": false,
      "trigger_level": 673.2,
@@ -659,7 +666,7 @@
     },
     {
      "name": "E-横盘观望",
-     "rationale": "【本档唯一有效状态】数据源不可用 ⇒ 本轮不产出任何可执行形态，全档观望（不产生交易动作）。\n恢复后由下一档刷新（11:53 ET）从零重推 A–D；在此之前若 watcher 被人工恢复，\n因 A–D 均 disabled，系统保持 IDLE，不会用过期点位下单 —— 这是本轮刻意选择的安全态。\n",
+     "rationale": "【本档唯一有效状态】行情链路挂死 2h15m ⇒ 本轮不产出任何可执行形态，全档观望（不产生交易动作）。\n这是**刻意选择的安全态**：A–D 全 disabled ⇒ 即便 watcher 被人工拉起，系统也保持 IDLE，\n不会用 2 小时前的过期点位下单。链路恢复后由下一档刷新（12:53 ET）从零重推 A–D。\n",
      "pattern": "E",
      "enabled": true,
      "trigger_level": null,
@@ -673,8 +680,7 @@
      "regime": null
     }
    ],
-   "enabled_count": 1,
-   "placeholder": true
+   "enabled_count": 1
   }
  ],
  "order_events": [
