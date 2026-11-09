@@ -1073,6 +1073,139 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261109_1553_6b38442059_pm",
+   "kind": "pm",
+   "label": "盘中刷新 15:53 ET",
+   "sort_key": "15:53",
+   "generated_at": "15:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-09（周一）【14:53 ET 盘中刷新 · 第 6 档 · 降级档】\n触发：DSH 自动化（每小时 :53）→ config/midday_prompt.md（权威版本）全文执行\n\n🔴【本轮结论：今日收工 —— 数据层不可用（非额度、非规则问题）】\n本档**没有复读上一轮的探针**，用两条本质不同的路径重新取数，结论一致：\n① 14:53:37 ET（14:54:07 强杀，75s）tools/tws_snapshot.py --client-id 7 → **0 字节 stdout**\nstderr 指纹：positions / openOrders / completedOrders / accountUpdates(DUQ402112) / executions\n五条全部 timeout（与 11:53 / 12:53 / 13:53 完全同一签名）\n② 14:55:29 ET  改用 runbook 里「断线不重启」的官方通道自救：\nprintf 'RECONNECTACCOUNT\\n' → 127.0.0.1:7462（= promptsend Ctrl-Alt-R，**不是重启网关**）\nIBC 应答实证（logs/ibc-…_Monday.txt）：\n03:55:29 CommandServer received command: RECONNECTACCOUNT\n03:55:30 detected dialog entitled: IBKR Gateway; event=Opened → Click button: OK → **event=Closed**\n⇒ 那个挂了一下午的模态框**确实被点掉了**（这是本轮唯一的新事实）\n③ 14:55:56 ET（14:56:56 强杀，60s）模态框关闭后**重测**（同 clientId 7，只读）→ **又是同样 5 条 timeout、0 字节**\n⇒ 关键判别升级：**问题不在那个模态框**。框点掉、socket 收连接（IBC 日志每次都追加\n\"remove Client 7\"）、7497 仍在 LISTEN，但账户级请求无人处理；且自 09:48:02\n\"Login has completed\" 之后再无一条登录完成记录 ⇒ **登录会话本身已死**，\n只能真重启（launchctl kickstart + 180s 内手机 2FA 人工批准）。本任务禁止自行重启网关。\n\n【进程/端口拓扑（本轮实测，用于排除\"连错实例\"这一解释）】\n· java pid 96052（= ibcalpha.ibc.IbcGateway，etime 5h05m，09:47:52 ET 起，**此后未重启**）\n· LISTEN：*:7497（IB API）、127.0.0.1:7462（IBC CommandServer）——只有这一个实例，\n无 7496 / 4001 等第二套端口 ⇒ 不存在\"连到了别的网关\"的可能\n· launchd com.qqq.gateway：state=running，pid=96022，last exit 0\n\n【watcher / 行情流（只报不改：硬约束禁止重启 watcher）】\n· watcher pid 28497 存活（etime 2d22h，未重启 ✓），但循环自 09:56:05 ET 起静默 5h\n· logs/20261109.jsonl 69 行，末条 = 09:56:05 market_snapshot（spot 672.3）\n· 今日事件谱：reconnect 14 / error 5 / config_reload 9 / notification_sent 18 /\nmarket_snapshot 8 / gate_result 1 / shadow_entry 1 / shadow_exit 1 / trail_armed 1\n/ order_fill **0** ⇒ **账户零成交、零在仓**\n\n【外部备用源（本轮实测，全部失败，故不引入任何替代价）】\n· Yahoo chart API  → HTTP 403（返回\"Yahoo 服务不再对中国大陆开放\"页）\n· Stooq CSV        → HTTP 404\n· api.nasdaq.com   → fetch failed（连接层失败）\n⇒ external_spot_ref: null。即便拿到现价也无用：**无 0DTE 实报链 ⇒ 行权价与 debit 无一处可核**\n\n【恢复需人工（本任务禁止重启 watcher、禁止自行重启网关、禁止用 clientId 42）】\n① launchctl kickstart -k gui/$(id -u)/com.qqq.gateway\n② **180 秒内**用 IBKR Mobile 批准 2FA\n③ 批准后立刻登出/杀掉 IBKR Mobile（App 登录会抢占唯一行情会话 ⇒ Error 10197、报价全 NaN）\n④ 双验证：ib.reqCurrentTime() 有返回 **且** QQQ bid/ask 为数字（docs/ib_gateway_runbook.md）\n⑤ 再 tools/restart_watcher.py（watcher 与 session_watchdog 均处挂死态）\n⏰ 现在 14:58 ET，距 15:30 ET 强平仅 ~32 分钟 ⇒ 即便此刻恢复，\n今日也不宜再开新仓；恢复的真正价值是让**明日盘前**跑在正常链路上。\n==============================================================================",
+   "market": {
+    "spot_last_verified": 673.045,
+    "spot_last_verified_at": "09:59:26 ET",
+    "spot_age_minutes_at_write": 299,
+    "rth_open": 662.63,
+    "rth_high": 673.58,
+    "rth_low": 661.75,
+    "vwap_rth": 668.8883,
+    "stats_as_of": "09:59:26 ET（spot 流最后一个有效 tick；此后 299 分钟价格完全不可见）",
+    "rth_range_realized": 11.83,
+    "rth_range_note": "11.83 = 09:18–09:59 tick 段高 673.58 / 低 661.75；**不含 10:00 之后行情** ⇒ 对剩余时段无代表性",
+    "reachability_basis": "规则 ①-b 阈值按已实现振幅/3 ≈ 3.94 点；但现价未知 ⇒ |触发位−现价| 不可计算 ⇒ ①-b 本轮客观不可判定",
+    "vwap_position": "降级模式无此数据（最后可核实：673.045 在 VWAP 668.888 上方 4.16 点 / +0.62%）",
+    "volume": "降级模式无此数据",
+    "rth_volume": "降级模式无此数据",
+    "iv_sigma_remaining": "降级模式无此数据（无实报链 ⇒ 无法反解 IV；剩余到 16:00 约 62 分钟）",
+    "option_wall": "无墙数据（option_wall_scan 走同一账户级通道，本轮未再重试：其失败机理已被 ①②③ 三次实测锁定）； data/option_wall_latest.json 为 09:55 ET 旧档，已过期约 299 分钟，禁止当实时",
+    "swing_levels": "降级模式无此数据。09:18–09:59 tick 段（已过期 299 分钟）可核算：支撑 672.90(3 次, 672.87–672.94) / 671.75(2 次, 671.34–672.25) / 669.97(1 次) ; 阻力仅 673.58(1 次, 当日段高)。 ⚠️ 该清单只覆盖 09:59 之前的结构，10:00–14:58 的价格行为完全不可见 ⇒ **不得据此布点**， 也不满足本轮硬要求「≥3 档支撑 + ≥3 档阻力」（阻力侧只有 1 档可核算）。**不伪造补齐。**",
+    "external_spot_ref": null,
+    "external_spot_ref_note": "外部参考价不可得：Yahoo chart HTTP 403、Stooq CSV HTTP 404、api.nasdaq.com fetch failed （14:58 ET 实测）。即便取到也不用于布点 —— 无 0DTE 实报链时行权价与 debit 一律无法核价。",
+    "market_regime": "不可判定（无 10:00 之后数据；振幅/VWAP 缠绕次数/单边推进三项均无法计算）"
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-突破追多 673.20",
+     "rationale": "【本档禁用 · 数据源不可用】下列数值全部是 12:53 档遗留值，**本档未重推**（规矩：不得把未验证点位当本轮结论）。\n最后可核实现价 673.045（09:59:26 ET）距本触发位仅 0.155 点，此后 299 分钟价格不可见 ⇒ 既无法确认是否已穿越，也无法按规则①统计「反复穿越 ≥3 次」（需分钟线收盘）。\n无实报链 ⇒ 678C 是否仍在今日链内、按 trigger×1.0025 重定价多少、target 与剩余 1σ 是否匹配， 三项全部无法核对 ⇒ 禁止沿用旧腿布点。\n规则⑦ 保留条款：本档**未从 scenarios 删除**（A/B 只因数据不可用而禁用，不是因为市况）。\n下一档若链路恢复：先按新的 A.d 摆动位清单重定触发位，**禁止直接复活 673.20**（规则 ①-b 明文）。",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 673.2,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 678
+     },
+     "max_debit": 240,
+     "target_zone": [
+      675.5,
+      678.0
+     ],
+     "target": 678.0,
+     "invalid_level": 671.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-破位追空 668.30",
+     "rationale": "【本档禁用 · 数据源不可用】数值为 12:53 档遗留值，**未重推**。\n668.30 在 09:59 前 VWAP 668.888 下方，但 10:00 后行情不可见 ⇒ VWAP 早已可能移动，结构基础失效。\n无实报链 ⇒ 664P 现值、debit、剩余 1σ 匹配度均无法核对 ⇒ 不得布点。",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 668.3,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level",
+     "structure": "single_put",
+     "legs": {
+      "long": 664
+     },
+     "max_debit": 240,
+     "target_zone": [
+      665.0,
+      664.0
+     ],
+     "target": 664.0,
+     "invalid_level": 670.5,
+     "regime": "trend"
+    },
+    {
+     "name": "C-回踩确认 670.40",
+     "rationale": "【本档禁用 · 数据源不可用】数值为 12:53 档遗留值，**未重推**。\nC 类按 ⑥-b 必须用 trigger_level×1.0010 定价；无实报链 ⇒ 无法重算 ⇒ 写出去就是假数。\n另：C 与 B 的夹缝 668.30→670.40 仅 0.31%，本就贴着 0.3% 下限，须用新结构重估。",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 670.4,
+     "trigger_rule": "曾跌破 trigger_level 且当前1分钟K线收盘站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 675
+     },
+     "max_debit": 240,
+     "target_zone": [
+      673.0,
+      675.0
+     ],
+     "target": 675.0,
+     "invalid_level": 668.6,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破做空 673.20",
+     "rationale": "【本档禁用 · 数据源不可用】数值为 12:53 档遗留值，**未重推**。\n673.20 与 A 同点位（日内段高 673.58 下方）⇒ 缺实报链时 A/D 无法区分真假突破的定价差异。\n规则⑦ 保留条款已满足：未从 scenarios 删除，仅置 enabled:false 并写明是数据原因。",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 673.2,
+     "trigger_rule": "突破 trigger_level 后 1 分钟收盘回落至其下",
+     "structure": "single_put",
+     "legs": {
+      "long": 669
+     },
+     "max_debit": 240,
+     "target_zone": [
+      671.0,
+      669.0
+     ],
+     "target": 669.0,
+     "invalid_level": 675.5,
+     "regime": "range"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【本档唯一 enabled 形态 · 不产生任何交易动作】\nA–D 因数据层不可用全部禁用（SPEC 降级条款）；本档保留仅用于看板明示「系统在跑、但无可用数据」。\n⚠️ 本档 enabled:true **不代表**满足规则 ①-b 可交易性 —— ①-b 要求「至少一个可开仓形态可达且可核价」， 本轮该条件**客观不可满足**（现价未知、行权价无法核对）。请勿把 E 误读为「有方案可下单」。\n规则⑤ 尾盘条款：14:53 档本应「只保留盈亏比最优的形态」，但无实报链 ⇒ 连 RR 都算不出 ⇒ 保留 0 个。 链路恢复后：由下一档（15:53）或明日盘前重新执行 A→B→C→D 全流程，不在本档追加。",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [
