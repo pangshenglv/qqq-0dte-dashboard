@@ -811,6 +811,136 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261109_1359_c3db6dbfd0_pm",
+   "kind": "pm",
+   "label": "盘中刷新 13:59 ET",
+   "sort_key": "13:59",
+   "generated_at": "13:59 ET",
+   "data_source": "tws_local",
+   "refresh_status": "final",
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-09（周一）【13:53 ET 盘中刷新 · 第 5 档 · 降级档】\n触发：DSH 自动化（每小时 :53）→ config/midday_prompt.md（权威版本）全文执行\n\n🔴【本轮结论：今日收工 —— 数据层不可用（非额度、非规则问题）】\n连续第 3 档（11:53 / 12:53 / 13:53）在同一子目标上失败。本轮**未复读上一轮探针**，\n改用两条本质不同的路径重新验证，结论一致且证据更强（见下）。\n\n【本轮独立取数全程记录（全部只读；未用 clientId 42；未重启 watcher）】\n① 13:54 ET  tools/tws_snapshot.py --client-id 7  → **0 字节 stdout**，70s 后强杀\nstderr 指纹：positions / openOrders / completedOrders / accountUpdates(DUQ402112) / executions 全 timeout\n② 13:57 ET  同工具换 --client-id 8（排除\"7 号被我方残留占用\"这一解释）→ **同一批 timeout**\n⚠️ 说明：13:54 那轮强杀后 7 号一度被网关判为 \"clientId 7 already in use\"，\n但我方**不再重试 7 号**、改 8 号做对照，因此该残留不影响结论。\n③ 13:58 ET  tools/option_wall_scan.py（clientId 88）→ 30s 内同一批账户级 timeout ⇒ **无墙数据**\n⇒ 关键判别：**失败发生在账户级请求（positions/openOrders/accountUpdates/executions）**，\n而 connect() 每次都成功 ⇒ 不是行情农场、不是订阅权限、不是 clientId 冲突，\n而是 **IB Gateway 应用层停摆：套接字被接受，请求无人处理**。\n\n【根因证据（比前两档更硬：拿到了 dialogs 时间线）】\n$HOME/kimi/ibc/logs/ibc-3.24.2_GATEWAY-10.50_Monday.txt\n· 09:48:02 ET  \"Login has completed\" ✓（今日登录本来是成功的）\n· 10:02:41 ET  \"detected frame entitled: Connecting to server...; event=Opened\"  ← 掉线起点\n· 10:03:01 ET  \"detected dialog entitled: IBKR Gateway; event=Opened\"  ✗ 模态框\n· 10:03:20 ET  同标题对话框再次 Opened（IBC 无法清除 ⇒ 卡死）\n⇒ 与 watcher 侧证词**完全对齐**：09:59:26 ET spot 流停写、09:56:05 最后一条 market_snapshot 后静默\n⇒ 单一环节故障：Gateway 进程（java pid 96052，起于 09:47:52 ET，此后未重启）\n\n【watcher / 行情流（只报不改：硬约束禁止重启 watcher）】\n· watcher pid 28497 存活（etime 2 天 21 小时，未重启 ✓），但循环已静默 4h03m\n· logs/20261109.jsonl 共 69 行，末条 = 09:56:05 ET market_snapshot（spot 672.3）\n· 今日事件谱：reconnect 14 / error 5 / config_reload 9 / market_snapshot 8 / gate_result 1\n+ shadow_entry 1 / shadow_exit 1（影子单不入账本）/ order_fill **0**\n· 09:53:18 的 config_reload 历史证明热加载链路本身是好的（A:修正@664.6 等 4 条）⇒ 只要网关恢复即可自动接管\n\n【⚠️ 本轮自曝操作事故（已恢复，无残留影响）】\n13:53 ET 我写占位版时用了 `sed ... file > file` 同文件重定向 ⇒ **pm.yaml 被截断为 0 字节**（约 40 秒）。\n· 立即从同目录备份 /tmp/prev_pm_baseline.yaml（13863 B，写前已 cp）回滚，sha 级内容与 13:05 版一致 ✓\n· 影响评估：watcher 循环自 09:56 已死，日志无 config_reload / 无解析错误 ⇒ **未被观测到、无热加载副作用** ✓\n· 已改为「先写临时文件再 os.replace 原子替换」，后续档位不会再犯\n\n【今日实盘状态：0 成交 / 0 在仓】\n· 唯一 gate_result：09:35:05 ENTRY-WINDOW 拦截 A@664.6（早于 10:00 ET 不开新仓）→ 影子单 09:36 平\n· data/g3_rejects.jsonl 最后修改 11-06 ⇒ **今日 0 条 G3 拒单**（规则⑧ 闭环：无待整改形态）\n· positions/accountUpdates 本轮 timeout ⇒ 以「无 order_fill + 无账本 + 09:56 前全程 IDLE」判定无在仓；\n若有仓，watcher 五层退出不读本文件（触发/失效位已固化在 pos 记录）⇒ 不受影响 ✓\n\n【风险预算：一分未用（阻塞点不是钱）】\nconfig/capital.yaml：capital_cap 300 / max_debit 240 / daily_max_loss 180（applied_week 2026-W44）\n今日 0 成交 ⇒ 日亏 180 未用、单笔上限 240 未用 ⇒ **不存在\"预算放不下\"的问题**，\n收工原因是**拿不到 0DTE 实报链 ⇒ 行权价与 debit 一律无法核价**（规则⑥ 红线：禁止用估算值冒充）。\n⚠️ 今早 daily.yaml 的 risk.daily_max_loss 写 150，与 capital.yaml 180 不一致 ⇒ 按「risk 段原样照抄」保留 150，\n该不一致留收盘后统一，本档不擅改。\n\n【规则 ①-b 与 SPEC 降级条款的冲突处理（明示，不掩饰）】\n①-b 要求「至少一个 enabled 形态触发位可达」；本轮无现价、无分钟线 ⇒ |触发位−现价| 无法计算 ⇒ 不可判定。\nSPEC「若脚本也连不上 TWS：写明失败原因，当日 A–D 全部 enabled:false 并照常写出配置文件」是唯一豁免通道，\n本档据此执行。**这不是按规则布点得出的\"可用方案\"，而是无数据下的合规停机**——\n前两档已连续如此，若下一档仍拿不到数据，请按 blockers 人工恢复，不要期待自动化自愈。\n\n【恢复需人工（本任务禁止重启 watcher / 禁止自行重启网关）】\n① launchctl kickstart -k gui/$(id -u)/com.qqq.gateway\n② **180 秒内**用 IBKR Mobile 批准 2FA\n③ 批准后立刻登出/杀掉 IBKR Mobile（App 登录会抢占唯一行情会话 ⇒ Error 10197、报价全 NaN）\n④ 双验证：ib.reqCurrentTime() 有返回 **且** QQQ bid/ask 为数字（docs/ib_gateway_runbook.md）\n⑤ 再 tools/restart_watcher.py（watcher 与 session_watchdog 均处挂死态）\n==============================================================================",
+   "market": {
+    "spot_last_verified": 673.045,
+    "spot_last_verified_at": "09:59:26 ET",
+    "spot_age_minutes_at_write": 240,
+    "rth_open": 662.63,
+    "rth_high": 673.58,
+    "rth_low": 661.75,
+    "vwap_rth": 668.8883,
+    "stats_as_of": "09:59:26 ET（spot 流最后有效 tick；此后 4 小时价格完全不可见）",
+    "rth_range_realized": 11.83,
+    "rth_range_note": "11.83 = 09:18–09:59 tick 段高 673.58 / 低 661.75；不含 10:00 之后行情 ⇒ 该振幅对剩余时段无代表性",
+    "reachability_basis": "规则 ①-b 的 1/3 阈值 ≈ 3.94 点（11.83/3），但现价未知 ⇒ |触发位−现价| 不可计算 ⇒ ①-b 本轮不可判定",
+    "vwap_position": "降级模式无此数据（最后可核实：673.045 在 VWAP 668.888 上方 4.16 点 / +0.62%）",
+    "volume": "降级模式无此数据",
+    "iv_sigma_remaining": "降级模式无此数据（无实报链 ⇒ 无法反解 IV；剩余到 16:00 约 2 小时）",
+    "option_wall": "无墙数据（option_wall_scan clientId 88，30s 内账户级 timeout）；data/option_wall_latest.json 为 09:55 ET 旧档，已过期 4h04m，禁止当实时",
+    "swing_levels": "降级模式无此数据。09:18–09:59 tick 段（已过期 4h）可核算：支撑 672.90(3次,672.87–672.94) / 671.75(2次,671.34–672.25) / 669.97(1次)；阻力仅 673.58(1次，当日段高)。⚠️ 该清单只覆盖 09:59 之前的结构，10:00–13:53 的价格行为完全不可见 ⇒ **不得据此布点**，也不满足『≥3 档支撑 + ≥3 档阻力』的本轮硬要求（阻力侧只有 1 档可核算）",
+    "external_spot_ref": null,
+    "external_spot_ref_note": "外部参考价不可得：Yahoo chart API HTTP 403、Stooq CSV HTTP 404（13:58 ET 实测）。即便取到也不用于布点——无 0DTE 实报链时行权价与 debit 一律无法核价"
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-突破追多 673.20",
+     "rationale": "【本轮禁用 · 数据源不可用】数值为 12:53 档原值，**本档未重推**（不得把未验证点位当本轮结论）。\n最后可核实现价 673.045（09:59:26 ET）距本触发位仅 0.155 点；此后 4h 价格完全不可见\n⇒ 无法确认是否已穿越，也无法按规则①「反复穿越 ≥3 次」作废（该判定需分钟线收盘，无数据）。\n无实报链 ⇒ 678C 是否仍在今日链内、按 trigger×1.0025 重定价多少、target 与剩余 1σ 是否匹配，\n三项全部无法核对 ⇒ 禁止沿用旧腿布点。\n若下一档链路恢复：先按新的 A.d 摆动位清单重定触发位，**禁止直接复活 673.20**（规则 ①-b 明文）。",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 673.2,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 678
+     },
+     "max_debit": 240,
+     "target_zone": [
+      675.5,
+      678.0
+     ],
+     "target": 678.0,
+     "invalid_level": 671.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-破位追空 668.30",
+     "rationale": "【本轮禁用 · 数据源不可用】数值为 12:53 档原值，**未重推**。\n668.30 位于 09:59 前 VWAP 668.888 下方，但 10:00 后行情不可见 ⇒ VWAP 早已可能移动，结构基础失效。\n无实报链 ⇒ 664P 现值、debit、剩余 1σ 匹配度均无法核对 ⇒ 不得布点。",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 668.3,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level",
+     "structure": "single_put",
+     "legs": {
+      "long": 664
+     },
+     "max_debit": 240,
+     "target_zone": [
+      665.0,
+      664.0
+     ],
+     "target": 664.0,
+     "invalid_level": 670.5,
+     "regime": "trend"
+    },
+    {
+     "name": "C-回踩确认 670.40",
+     "rationale": "【本轮禁用 · 数据源不可用】数值为 12:53 档原值，**未重推**。\nC 类按 ⑥-b 必须用 trigger_level×1.0010 定价；无实报链 ⇒ 无法重算 ⇒ 写出去就是假数。\n另：C 与 B 的触发位夹缝 = 668.30→670.40 仅 0.31%，本就贴着 0.3% 下限，需用新结构重估。",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 670.4,
+     "trigger_rule": "曾跌破 trigger_level 且当前1分钟K线收盘站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 675
+     },
+     "max_debit": 240,
+     "target_zone": [
+      673.0,
+      675.0
+     ],
+     "target": 675.0,
+     "invalid_level": 668.6,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破做空 673.20",
+     "rationale": "【本轮禁用 · 数据源不可用】数值为 12:53 档原值，**未重推**。\n673.20 与 A 同点位（日内高点 673.58 下方）⇒ 缺实报链时 A/D 无法区分真假突破的定价差异。\n规则⑦ 保留条款已满足：本档**未从 scenarios 删除**，仅置 enabled:false 并写明是数据原因。",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 673.2,
+     "trigger_rule": "突破 trigger_level 后 1 分钟收盘回落至其下",
+     "structure": "single_put",
+     "legs": {
+      "long": 669
+     },
+     "max_debit": 240,
+     "target_zone": [
+      671.0,
+      669.0
+     ],
+     "target": 669.0,
+     "invalid_level": 675.5,
+     "regime": "range"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【本档唯一 enabled 形态 · 不产生交易动作】\nA–D 因数据层不可用全部禁用（SPEC 降级条款）；本档保留用于看板明示「系统在跑、但无可用数据」。\n⚠️ 本档 enabled:true **不代表**满足规则 ①-b 可交易性 —— ①-b 要求的是「至少一个可开仓形态可达」，\n本轮该条件客观不可满足（现价未知）。请勿把 E 误读为「有方案可下单」。\n链路恢复后：由下一档刷新重新执行 A→B→C→D 全流程，不在本档追加。",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1
   }
  ],
  "order_events": [
