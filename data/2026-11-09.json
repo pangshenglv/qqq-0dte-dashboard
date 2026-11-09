@@ -553,6 +553,128 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261109_1153_0076c1bb73_pm",
+   "kind": "pm",
+   "label": "盘中刷新 11:53 ET",
+   "sort_key": "11:53",
+   "generated_at": "11:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "⚠️ PLACEHOLDER 11:53 ET 落盘（取数前安全副本，正文仍为 10:53 档结论，待本轮重推覆盖）\n==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-09（周一）【10:53 ET 盘中刷新 · 第 2 档 · 降级档】\n触发：config/midday_prompt.md（每小时 :53 例行刷新）\n\n🔴【本轮结论：数据源不可用 ⇒ 无法从零重推 ⇒ A–D 全禁、照常出文件】\n依据 SPEC「数据降级方案」（行情降级段末句：TWS 也不可用时 A–D 全禁照常出文件）\n【数据获取时间 / 数据源】取数窗口 2026-11-09 10:53:00–10:59 ET，**全部失败**：\n· tools/tws_snapshot.py（clientId 7，只读，未用 clientId 42，未重启 watcher）\n→ 127.0.0.1:7497 TCP 0.00s 建连成功，但 API 握手后 **8 秒无任何响应**（挂死，不是拒绝连接）\n→ 进程 180 秒未返回，已终止；0 条快照 / 0 条 0DTE 期权链\n· 独立原始 socket 探针（10:55 / 10:59 ET 各 2 次）同样「TCP 通、API 不回」⇒ 网关模态对话框卡死\n· option_wall_scan（clientId 88）/ bars_dump / pm_analysis（clientId 8）走同一 API ⇒ 未执行（必挂）\n⇒ 现价、RTH 高/低、VWAP、0DTE 实报链、IV/1σ、期权墙 **本轮全部无数据**；不估算、不沿用冒充实报。\n\n【故障链（日志证据 ✓）】当地 09:56:05 ET watcher 连续记录 Error 1100（IBKR↔TWS 连接丢失）；\n09:59:26 ET 起 logs/spot_5s_20261109.csv 停写且末 3 行为同一重复值（数据流僵死）；\n10:02:41 ET 网关打开 \"Connecting to server...\" 帧，10:03:01 / 10:03:20 连开两个 \"IBKR Gateway\"\n模态对话框，此后 IBC 无任何 \"Click button\" 动作 ⇒ 与本仓库 runbook 记载的「2FA 对话框卡死」同指纹。\n⇒ 连带：watcher 自 09:56 起无任何新事件（**不会热加载本文件**）；\nsession_watchdog 实例自 09:58 起挂死（至 10:57 已 54 分钟），阻塞 launchd 后续每 5 分钟的健康检查\n⇒ 安全网与盯盘同时失效（这是本轮最严重的问题，优先于任何点位推导）。\n\n【今日状态】本日 **0 笔实盘成交、0 持仓**（09:35 的 A 被 ENTRY-WINDOW 拦下，仅记 shadow；09:36 影子单平仓\n为模型值，不入账本）⇒ 无在仓形态；已实现亏损 0 ⇒ G2 风险预算未消耗，但无数据即无合规方案。\n\n【恢复需人工（本任务无权执行）】① launchctl kickstart -k gui/$(id -u)/com.qqq.gateway\n② 立刻用 IBKR Mobile 批准 2FA（窗口 180 秒）并**登出 App** ③ kill 挂死的 session_watchdog\n④ 重启 watcher（tools/restart_watcher.py）—— 「不要重启 watcher」是本任务硬约束，故只报不做\n==============================================================================",
+   "market": {
+    "spot_last_verified": 673.045,
+    "spot_last_verified_at": "09:59:26 ET",
+    "rth_open": 662.63,
+    "rth_high": 673.1,
+    "rth_low": 662.02,
+    "vwap_rth": 668.32,
+    "stats_as_of": "09:53 ET",
+    "external_spot_ref": 677.83,
+    "external_spot_ref_note": "10:57 ET 第三方行情页（Futu Web），非 IB 实报链、未用于任何定价；仅提示价格已显著高于上一版全部触发位"
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-突破追多 673.20",
+     "rationale": "【本轮禁用：数据源不可用】本档数值为 09:53 版原值、**未重推**（禁止把未验证点位当本轮结论）。\n无实报链 ⇒ 无法核对 678C 是否仍合规、无法按 trigger×1.0025 重算 expected_debit、\n无法验证 target 与剩余 1σ 匹配 ⇒ 按硬性规则不得沿用旧腿。\n另：第三方参考价 677.83（10:57 ET，未用于定价）已高出本触发位 4.63 点，\n即便链路恢复也已属规则 ①-b 实质变化，必须重布点而非维持。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 673.2,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 678
+     },
+     "max_debit": 240,
+     "target_zone": [
+      675.5,
+      678.0
+     ],
+     "target": 678.0,
+     "invalid_level": 671.0,
+     "regime": "trend"
+    },
+    {
+     "name": "B-破位追空 668.30",
+     "rationale": "【本轮禁用：数据源不可用】本档为 09:53 版原值、**未重推**。661P 的 bid/ask 与 G3 上限\n（expected_debit×1.25 ≤ max_debit 240）无法用实报链复核；且触发位距现价已 >9 点，\n规则 ①-b 可达性判据无从计算 ⇒ 不得维持。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 668.3,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": 661
+     },
+     "max_debit": 240,
+     "target_zone": [
+      665.5,
+      664.0
+     ],
+     "target": 664.0,
+     "invalid_level": 670.6,
+     "regime": "trend"
+    },
+    {
+     "name": "C-回踩确认 670.40",
+     "rationale": "【本轮禁用：数据源不可用】本档为 09:53 版原值、**未重推**。C 类必须按 trigger×1.0010 最坏追价点\n用实报单腿重定价（9/29 教训），本轮无链数据 ⇒ 无法重算 ⇒ 禁用。回踩位本身也须按新的 A.d\n摆动位清单重新识别（第三方参考价 677.83 已远高于 670.40，该位属「已成立区间」）。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 670.4,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": 675
+     },
+     "max_debit": 240,
+     "target_zone": [
+      673.0,
+      674.5
+     ],
+     "target": 674.5,
+     "invalid_level": 668.3,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破做空 673.20",
+     "rationale": "【本轮禁用：数据源不可用】本档为 09:53 版原值、**未重推**。D 的失效位 676.00 已被第三方参考价\n677.83 越过（即便不计该参考值，10:57 的实价也必高于 09:53 的 672.27）⇒ 形态逻辑已破坏；\n且无实报链无法核对 668P 定价 ⇒ 双重不满足，禁用。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 673.2,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": 668
+     },
+     "max_debit": 240,
+     "target_zone": [
+      670.4,
+      669.0
+     ],
+     "target": 669.0,
+     "invalid_level": 676.0,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【本档唯一有效状态】数据源不可用 ⇒ 本轮不产出任何可执行形态，全档观望（不产生交易动作）。\n恢复后由下一档刷新（11:53 ET）从零重推 A–D；在此之前若 watcher 被人工恢复，\n因 A–D 均 disabled，系统保持 IDLE，不会用过期点位下单 —— 这是本轮刻意选择的安全态。\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [
