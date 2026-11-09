@@ -1,25 +1,29 @@
 {
- "generated_at_et": "2026-11-09 09:35:35 ET",
- "generated_at_bj": "2026-11-09 22:35:35",
+ "generated_at_et": "2026-11-09 09:37:48 ET",
+ "generated_at_bj": "2026-11-09 22:37:48",
  "watcher": {
   "alive": true,
   "pid": 28497,
-  "uptime": "02-17:05:29",
+  "uptime": "02-17:07:42",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 30,
+  "last_event_age_s": 86,
   "last_event": {
-   "ts": "2026-11-09T09:35:05.815240-05:00",
-   "event": "shadow_entry",
+   "ts": "2026-11-09T09:36:21.468712-05:00",
+   "event": "shadow_exit",
    "state": "SHADOW",
-   "spot": 665.695,
+   "spot": 666.25,
    "pattern": "A",
-   "level": 664.6,
+   "reason": "③峰值回吐(P=23%)",
+   "value": 202.0,
+   "pnl_pct": 10.4,
+   "peak": 23.0,
+   "est_px": 2.01,
+   "est_proceeds": 201.0,
+   "modeled_pnl": 18.0,
+   "cost": 183.0,
    "qty": 1,
-   "ask": 1.83,
-   "bid": 1.82,
-   "modeled_cost": 183.0,
-   "blocked_by": "早于 10:00 ET（开盘头一小时不开新仓 ✓）",
-   "note": "被开仓时间窗拦下 ⇒ 记录「若开仓」的入场价，用于日后对比验证规则收益 ✓"
+   "hold_min": 1.3,
+   "note": "影子单：未下单、未计入 realized ✓（仅供对比验证规则 ✓）"
   }
  },
  "gateway": {
@@ -35,6 +39,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 662.11,
+ "last_spot": 666.72,
  "git_head": "ee2b1c71"
 }
