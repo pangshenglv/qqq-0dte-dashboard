@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-10 10:20 ET",
+ "generated_at": "2026-11-10 10:23 ET",
  "items": [
   {
    "id": "B-01",
@@ -511,6 +511,34 @@
    "status": "open",
    "priority": "P2 · 功能补齐",
    "note": "检测已加 ✓，根因待查"
+  },
+  {
+   "id": "B-79",
+   "title": "watcher 休眠空转、连续两天不进会话 ✗（2026-11-10 发现）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": "看门狗已补判据 ✓"
+  },
+  {
+   "id": "B-80",
+   "title": "重连后不重订期权 ticker ⇒ lines 掉到 1 ✗（2026-11-10）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-81",
+   "title": "方案文件 YAML 语法错误 ⇒ pm_reload_failed ✗（2026-11-06）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-82",
+   "title": "平仓全部档位未成交（2026-11-06 12:39）✗",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
   },
   {
    "id": "B-09",
