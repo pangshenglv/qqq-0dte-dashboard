@@ -1,19 +1,22 @@
 {
- "generated_at_et": "2026-11-10 10:18:40 ET",
- "generated_at_bj": "2026-11-10 23:18:40",
+ "generated_at_et": "2026-11-10 10:20:52 ET",
+ "generated_at_bj": "2026-11-10 23:20:52",
  "watcher": {
   "alive": true,
   "pid": 35535,
-  "uptime": "01:38",
+  "uptime": "03:50",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 18,
+  "last_event_age_s": 111,
   "last_event": {
-   "ts": "2026-11-10T10:18:21.841986-05:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "info",
-   "summary": "C 开仓成交 @ 1.32（成本 $132）"
+   "ts": "2026-11-10T10:19:00.771704-05:00",
+   "event": "market_data_reclaim",
+   "state": "IDLE",
+   "spot": 750.0,
+   "before": 2,
+   "after": 3,
+   "released": 0,
+   "resubscribed": 1,
+   "reason": "recenter L2"
   }
  },
  "gateway": {
