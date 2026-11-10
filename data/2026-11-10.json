@@ -814,6 +814,15 @@
     "vol_mult": 0.58,
     "level_cross": null
    }
+  },
+  {
+   "ts": "2026-11-10T10:29:43.137196-05:00",
+   "event": "order_submit",
+   "state": "EXITING",
+   "spot": 676.105,
+   "side": "SELL",
+   "ladder": "L2",
+   "limit": 0.67
   }
  ],
  "roundtrips": [],
