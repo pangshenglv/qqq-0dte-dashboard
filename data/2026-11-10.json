@@ -2,6 +2,22 @@
  "date": "2026-11-10",
  "snapshots": [
   {
+   "file": "daily_20261110_0000_2bf780098d_pm.yaml",
+   "error": "yaml 解析失败: while scanning an alias\n  in \"<unicode string>\", line 110, column 11:\n        note: **主支撑**。14:16–14:45 的 30 分钟横盘底（1 ...",
+   "note": "⚠️ 本份快照 YAML 解析失败（已跳过，不影响其它档 ✓）",
+   "sort_key": "00:00",
+   "kind": "pm",
+   "label": "（解析失败）",
+   "scenarios": [],
+   "enabled_count": 0,
+   "generated_at": "",
+   "refresh_status": "error",
+   "placeholder_hint": false,
+   "market": null,
+   "regime_day": null,
+   "data_source": null
+  },
+  {
    "file": "daily_20261110_0904_f4b490cd37",
    "kind": "premarket",
    "label": "盘前方案",
