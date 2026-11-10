@@ -2161,6 +2161,17 @@
    "pattern": "D",
    "level": 671.5,
    "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
+  },
+  {
+   "ts": "2026-11-10T14:09:06.791502-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 672.2001,
+   "gate": "G5c",
+   "passed": false,
+   "pattern": "A",
+   "vwap": 673.42,
+   "reason": "VWAP 方位不符"
   }
  ],
  "roundtrips": [
