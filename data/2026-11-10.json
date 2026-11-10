@@ -2294,6 +2294,17 @@
     "long_conid": 941430218,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-11-10T14:34:06.663624-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 672.215,
+   "gate": "G5c",
+   "passed": false,
+   "pattern": "A",
+   "vwap": 673.37,
+   "reason": "VWAP 方位不符"
   }
  ],
  "roundtrips": [
