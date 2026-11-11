@@ -385,20 +385,20 @@
    "enabled_count": 1
   },
   {
-   "file": "daily_20261111_1153_8ea8290399_pm",
+   "file": "daily_20261111_1208_12e17055be_pm",
    "kind": "pm",
-   "label": "盘中刷新 11:53 ET",
-   "sort_key": "11:53",
-   "generated_at": "11:53 ET（11:53 档刷新占位；深度重推进行中）",
+   "label": "盘中刷新 12:08 ET",
+   "sort_key": "12:08",
+   "generated_at": "12:08 ET（11:53 档刷新；数据源故障降级档·第 3 档；今日收工）",
    "data_source": "tws_local",
-   "refresh_status": "placeholder",
-   "placeholder_hint": true,
-   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-11（周三·退伍军人节 Veterans Day，债市休市/股市照常）\n【本档性质】**10:53 ET 盘中刷新 · 数据源故障降级档（本日第 2 档故障档）**\n⇒ 结论：**今日收工**。A–D 全部 enabled: false，理由 = 无任何实时数据，\n步骤 A（扫盘 + 摆动位清单量化）与步骤 B（从零推导）在物理上无法执行；\n任何点位 / 行权价 / target / expected_debit 写出来都是编造 ✗。\n==============================================================================\n【本次取数尝试（10:53 档，全部实测，非推断）】\n① tools/tws_snapshot.py（clientId 7，只读）10:53:25 → 10:55:55 ET，**150s 硬超时终止（exit 142）**，\nstdout **0 字节**；stderr 逐条：\npositions request timed out / open orders request timed out /\ncompleted orders request timed out / account updates for DUQ402112 request timed out /\nexecutions request timed out\n⇒ TCP 能连（未报「TWS 连接失败」），但 **IB Gateway 应用层仍无响应**（与 09:53 档同一签名）\n② tools/option_wall_scan.py 10:56:18 → 10:57:08 ET，**50s 硬超时终止**，stdout 0 字节，\n同样 5 条 request timed out ⇒ **无墙数据**（08:57 盘前快照已过期约 2 小时，不参与决策）\n③ tools/pm_analysis.py（clientId 8）**未执行**：其入参 --levels/--strikes 必须来自步骤 A.d 的摆动位清单，\n本档取不到 1 分钟线 ⇒ 无合法入参；强行调用只会再空耗一次超时（不产生新信息）\n④ 网关侧（IBC 日志 /Users/lps/kimi/ibc/logs/ibc-3.24.2_GATEWAY-10.50_Wednesday.txt）：\n09:20:33 \"Login Messages\" 模态框 → 09:28/09:38/09:44/09:59/10:14/10:36 反复 \"Connecting to server...\"；\n**10:39:45 再次 \"Connecting to server...\"，10:39:50 弹出 \"IBKR Gateway\" 模态框**（仍卡在登录/授权环节）\n⑤ 另一条只读通道（session_watchdog，独立取 SPY）**也已停摆**：logs/session_watchdog.log 最后一行\n09:25:15 ET（此前每 5 分钟一条；09:20:14 尚报「健康 ✓ 行情正常（SPY=757.10）」）⇒ 全链路冻结\n==============================================================================\n【watcher 侧状态（重要：本档热加载会排队）】\n· logs/20261111.jsonl 最后一条 = 09:52:55.758 \"rt_resubscribe, silent_sec=1623.6\"\n→ 09:56 / 10:01 / 10:06 … 的 5 分钟 market_snapshot **全部缺失**，主循环自 09:52:55 起阻塞 **>64 分钟**\n· ps -p 35535 → STAT=S, %CPU=0.0, TIME=3:26 ⇒ 阻塞在等待网关响应的 API 调用上（未崩溃、未退出）\n· logs/spot_5s_20261111.csv：最后写入 **09:53:31**；09:40 之后**去重只有 1 个值（687.9500）**（全文件 569 行）\n⇒ 结论：**本档写入后 watcher 不会立即生效**（主循环卡死，mtime 热加载排在其后）；\n网关恢复后它会先解阻塞、再按 mtime 加载本档并 alert「全部禁用，今日仅监控」。\n==============================================================================\n【在场持仓】**无** —— logs/20261111.jsonl 全天 0 条 fill/open/close/order（grep 计数 0），state 恒为 IDLE；\nA/B/C/D 全部 in_position: false；风险预算未动用（capital.yaml: max_debit 240 / daily_max_loss 180，全数可用）\n==============================================================================\n【剩余时段事件核查】10:53–15:53 ET（本档 10:57 ET 重核）\n来源：web_search（DeepSeek 检索本次 10:57 ET 调用成功）→ jin10《2026年11月11日 周三》财经日历全文\n· 美国相关事件**全在盘前**：02:00 10Y 国债竞拍 / 02:30 施密德 / 04:30 鲍曼 / 07:30 保尔森\n· 剩余时段列表内只有欧洲事件：15:00 德国 10 月 CPI 终值、17:45 拉加德论坛（与 QQQ 收盘后或无关）\n⇒ **剩余时段无美国数据、无 Fed 讲话、无 14:00 FOMC**\n· FOMC：非决议日（federalreserve.gov/monetarypolicy/fomccalendars.htm 核对 2026 全年；\n下一次 **2026-12-08/09**）⇒ 今日无 14:00 声明 / 14:30 发布会\n· 假日：Veterans Day —— 债市休市（无拍卖）、股市照常；四巫日 12-18；非农 11-06 已过\n· 盘外催化：NVDA Q3 FY27 财报 11-17 17:00 ET（下周二），不计入今日盘中\n⇒ 事件面：**非事件日**。但本档结论由数据源故障决定，事件面不参与取舍。\n==============================================================================\n【恢复路径（本任务无权执行，需人工）】\n① launchctl kickstart -k gui/$(id -u)/com.qqq.gateway\n② 180s 内用 IBKR Mobile 批准 2FA，随后立即登出 Mobile（防会话冲突）\n③ 双验证：只读快照恢复双边报价 + watcher 日志 state 不再冻结（当前卡在 09:52:55）\n④ 网关解阻塞后 watcher 会自行解冻；如仍未恢复再用 tools/restart_watcher.py（本任务禁止重启 watcher ✓）\n⑤ 数据恢复后需**人工重跑一次盘中刷新**（本档不可自动复活：档案点位全部基于 08:59 盘前结构，已过期）\n==============================================================================",
+   "refresh_status": "final",
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-11（周三·退伍军人节 Veterans Day，债市休市/股市照常）\n【本档性质】**11:53 档盘中刷新 · 数据源故障降级档（本日第 3 档故障档）**\n⇒ 结论：**今日收工**。A–D 全部 enabled: false，理由 = 无实时价、无 1 分钟线、无 0DTE 链\n⇒ 步骤 A（扫盘 + 摆动位量化）与步骤 B（从零推导）在物理上无法执行，任何写出的点位/行权价/dobit 都是编造。\n⇒ 因此**不写任何新点位**（也未沿用早盘 688.56 / 685.50 / 683.09 ✗），并**不以「只剩一个不可达形态」收尾** ✓：\n四形态全部显式禁用 + E 档「今日收工」，amber 状态对看板可见 ✓。\n==============================================================================\n【数据获取时间/数据源（全部实测，12:04 ET 收尾）】\n11:53:00 ET 幂等检查：旧档 generated_at = \"10:53 ET\" < 本次触发 11:53 ⇒ 本轮未被其他 Session 执行过 ✓\n11:53:35 ET 先按 B-39 落盘占位版（refresh_status = placeholder）✓，再深度重推。\n尝试 1｜11:53–11:57 ET `tools/tws_snapshot.py`（clientId 7，只读）：>240s 零输出，进程被移入后台后终止。\n尝试 2｜11:58 ET 裸 socket 探 127.0.0.1:7497：TCP connect 0.00s 成功，但 8s 内**无任何 API 握手回包**。\n尝试 3｜12:00 ET ib_async 只读探测（clientId 9，readonly=True, timeout=20）：\n⇒ 服务端**回了应用层错误** `Error 326: Unable to connect as the client id is already in use`（clientId 9 被占）\n⇒ 证明**网关进程活着、API socket 在应答**；但该连接随即 `Peer closed connection` + `TimeoutError`。\n尝试 4｜12:00–12:04 ET 重跑 `tools/tws_snapshot.py`（clientId 7，只读），连上后**逐项超时**（原文）：\n`positions request timed out` / `open orders request timed out` / `completed orders request timed out`\n/ `account updates for DUQ402112 request timed out` / `executions request timed out`\n⇒ 会话在线但**服务端一律不响应**（事件循环阻塞），属网关应用层故障，不是行情判断。\n本地冻结证据（可复核）：\n· logs/spot_5s_20261111.csv 最后写入 **09:53:31**，09:40 后去重仅 1 个值 687.9500（冻结残值，不可作现价）\n· logs/20261111.jsonl 最后事件 **09:52:55 rt_resubscribe**（silent_sec 1623.6，rt bars 自 09:20 静默）\n· logs/session_watchdog.log 最后一行 **09:25:15**（独立 watchdog 同步停摆）\n· logs/launchd.wrapper.log 反复 `Error 300 Can't find EId with tickerId:1215/1216/1217`（实时订阅已失效）\n· IBC 日志 ibc-3.24.2_GATEWAY-10.50_Wednesday.txt：10:20 ET 完成登录配置后 6 次 `Connecting to server...`\n重连（10:28/10:38/10:44/10:58/11:14/11:36 ET），**10:39 ET 弹出 \"IBKR Gateway\" 模态框后无任何进展**\n⇒ 网关卡在模态框，API 事件循环被阻塞（与尝试 4 的「请求全超时」完全吻合）。\n⇒ 数据源判定：**tws_local 不可用**，本档 data_status = no_data_gateway_blocked。全程**未**用 clientId 42、\n未重启 watcher、未改任何工具代码，取数只走只读通道 ✓。\n==============================================================================\n【为什么不是「预算放不下」】（规则 ⑦ 的区分，不许混为一谈）\nconfig/capital.yaml 当前值：capital_cap 300 / max_debit **240** / daily_max_loss **180**（applied_week 2026-W44）\n本日 0 成交、0 gate_result、0 条 fill ⇒ 风险预算**完整未动用**。\n收工的真实理由是**没有价、没有链 ⇒ 任何组合无法定价、无法验证、无法判定可达性**（规则 ①-b 的分子分母双双为 null）。\n==============================================================================\n【已排查/已排除（避免下一档重复烧时间）】\n✗ 不是 clientId 冲突：换 clientId 9 仍超时（326 只解释了 9 被占，不解释 7 的请求超时）\n✗ 不是端口错：7497 在 LISTEN（lsof 实测，JavaAppli 66099），且应用层能回 Error 326\n✗ 不是本机网络断：web_search 正常返回（见事件段），IB 连接亦建立成功\n✗ 不是 watcher 配置问题：watcher 进程仍在（PID 35535），只是其行情订阅自 09:20 起静默\n⇒ 唯一未验证且**本任务无权执行**的路径 = 重启网关（需人工 2FA 批准），见下。\n==============================================================================\n【恢复路径（本任务无权执行，需人工）】\n① launchctl kickstart -k gui/$(id -u)/com.qqq.gateway\n② 180s 内用 IBKR Mobile 批准 2FA，随后立即登出 Mobile（防会话冲突）\n③ 双验证：只读快照恢复双边报价 + watcher 日志 state 不再冻结（当前冻结在 09:52:55）\n④ 网关解阻塞后 watcher 自行解冻；仍不行再用 tools/restart_watcher.py（**本任务禁止重启 watcher** ✓）\n⑤ 数据恢复后需**人工重跑一次盘中刷新**——本档不自动复活（本档没有任何可复用点位）\n==============================================================================",
    "market": {
     "spot": null,
-    "spot_note": "无实时价。logs/spot_5s_20261111.csv 最后写入 09:53:31；09:40 后去重仅 1 个值 687.9500（冻结残值）⇒ 不可作现价",
+    "spot_note": "无实时价。logs/spot_5s_20261111.csv 最后写入 09:53:31，09:40 后去重仅 1 个值 687.9500（冻结残值）⇒ 不可作现价，也不用它算任何距离",
     "prev_close": 674.76,
-    "prev_close_note": "取 08:59 盘前档存档值（+1.90% 跳空高开），本档无法复核",
+    "prev_close_note": "取 08:59 盘前档存档值（+1.90% 跳空高开），本档无数据可复核",
     "rth_open": null,
     "rth_high": null,
     "rth_low": null,
@@ -406,29 +406,32 @@
     "vwap": null,
     "amplitude_pct": null,
     "regime": "unknown",
-    "regime_note": "无 RTH 数据 ⇒ 趋势/震荡不可判定（禁止按 08:59 盘前结构 684.73/688.56/683.09 推定）",
+    "regime_note": "无 RTH 1 分钟线（自 09:20 静默）⇒ 趋势/震荡不可判定；禁止按 08:59 盘前结构（684.73/688.56/683.09）推定",
     "daily_iv_pct": null,
     "remaining_sigma": null,
-    "remaining_sigma_note": "期权链无响应（tws_snapshot 150s 零输出）⇒ 无法反解 IV、无法折算剩余 1σ",
+    "remaining_sigma_note": "0DTE 链无响应（两次 tws_snapshot 全超时）⇒ 无 ATM 跨式 mid、无 IV 可反解 ⇒ 折算不出剩余 1σ",
+    "atm_straddle": null,
+    "atm_call_iv_pct": null,
+    "atm_put_iv_pct": null,
     "put_call_ratio": null,
     "put_call_ratio_note": "降级模式无此数据（08:57 盘前快照为 11/10 累计量，与今日 RTH 无关）",
     "nq_futures": "降级模式无此数据",
     "greeks": "降级模式无此数据",
     "hv": "降级模式无此数据",
     "iv_percentile": "降级模式无此数据",
-    "option_wall": "无墙数据（本档 10:56 实测扫描 50s 超时失败；08:57 盘前快照已过期，不参与决策）",
+    "option_wall": "无墙数据（本档未成功执行 option_wall_scan：其依赖同一 API 会话，实测请求全超时；08:57 盘前墙表已过期，不参与决策）",
     "swing_levels": [],
-    "swing_levels_note": "步骤 A.d 无法执行 —— 09:26 之后没有 1 分钟线（rt bars 自 09:26 静默，jsonl 09:52:55 后主循环阻塞），\n给不出任何「（价位, 触及次数, 区间）」三元组，也就凑不出 ≥3 档支撑 + ≥3 档阻力。\n🚫 严禁沿用 08:59 盘前档的 688.56 / 685.50 / 683.09 当作今日 RTH 摆动位（那是盘前结构，RTH 后已作废且无法复核）。\n"
+    "swing_levels_note": "步骤 A.d【无法执行】：09:20 之后没有 1 分钟线，给不出任何「（价位, 触及次数, 区间）」三元组，\n凑不出 ≥3 档支撑 + ≥3 档阻力。\n🚫 严禁沿用 08:59 盘前档的 688.56 / 685.50 / 683.09 当作今日 RTH 摆动位（盘前结构，RTH 后已作废且无法复核）。\n⇒ 本档 swing_levels 留空 [] 并在 data_status 明示失败原因，而非填假数。\n"
    },
    "regime_day": null,
    "scenarios": [
     {
      "name": "A-右侧突破（禁用·无数据）",
-     "rationale": "【禁用理由：数据源故障，不是结构衰减】trigger_level 688.56 是 08:59 盘前高，本档**未重推、未复核**：\n09:26 后没有 1 分钟线 ⇒ 无法验证它是否仍有效、是否已被 RTH 穿越 ≥3 次（规则① 无法执行），\n也算不出 |触发位−现价| 与 振幅/3 的比值（规则①-b 无法执行）。\nexpected_debit / target / invalid_level 一并留空 —— 网关无响应取不到 0DTE 链，写任何数字都是编造 ✗。\n690 腿为整数档且取自 08:59 实报链，但已被 0DTE 链失效覆盖（theta 已衰减 2 小时），**不可照抄启用**。\n",
+     "rationale": "【禁用原因 = 无数据，非市况判断】规则⑦ 只允许「点位失效/结构破坏」作禁用理由，本档属**更上游**的\n「连点位都算不出来」：现价 null、振幅 null、剩余 1σ null ⇒ 无法判定可达性（规则 ①-b 无从核对）、\n无法定 target（无 ATR / 无墙表 / 无摆动位）、无法定价 expected_debit（无链）。\n⇒ 不写触发位（trigger_level: null）而不是沿用早盘 688.56：早盘高点是 08:26 盘前结构，RTH 后已不可复核；\n若保留数字，watcher 的 unlock_breakouts 会在 range→trend 翻转时用该陈旧点位**自动解禁**，\n在冻结行情下等于盲开 ⇒ 故显式置 null（watcher 对 disabled 条目不构建模型；万一解禁路径被触发，build_scenario 抛错并被 catch 记录 ✓）。\nlegs.long=690 仅为「08:59 实报链存档档位（整数、当时在链内）」的历史留痕，**本档不启用、不参与监控** ✓。\n【恢复后如何重估】按 midday_prompt 步骤 A→B→C→D 全量重推，不得复活本档。\n",
      "pattern": "A",
      "enabled": false,
-     "trigger_level": 688.56,
-     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level（本档无点位，规则不适用）",
      "structure": "single_call",
      "legs": {
       "long": 690
@@ -441,11 +444,11 @@
     },
     {
      "name": "B-右侧跌破（禁用·无数据）",
-     "rationale": "【禁用理由：数据源故障】683.09 = 08:59 盘前低，本档未重推。无 RTH 低点、无量能、无现价 ⇒\n规则①（反复穿越 ≥3 次即作废）与 ①-b（可达性）**均无法判定** ⇒ 不可交易。\n按规则⑦：A/B 不得因「市况不符」禁用 —— 本档禁用理由是**点位失效/不可验证类**，不违反⑦。\n",
+     "rationale": "【禁用原因 = 无数据】与 A 同源：无 1 分钟线 ⇒ 无支撑簇、无量能中位数 ⇒ 触发位与「量能放大」判据都无法成立。\nlegs.long=680 同属 08:59 存档留痕，不启用。\n⚠️ 特别说明：本档**没有**用「曾触发过」作废任何形态（今日 0 成交、0 条 fill、0 条 gate_result）✓。\n",
      "pattern": "B",
      "enabled": false,
-     "trigger_level": 683.09,
-     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大（本档无点位，规则不适用）",
      "structure": "single_put",
      "legs": {
       "long": 680
@@ -458,11 +461,11 @@
     },
     {
      "name": "C-左侧回踩（禁用·无数据）",
-     "rationale": "【禁用理由：数据源故障】C 类 ⑥-b 定价口径要求把 trigger_level × 1.0010 代入实时链，验证 debit 落在\n$100–$192（G3 容差 ×1.25 ≤ max_debit 240）；本档链取数失败 ⇒ 无法确认 688C 是否仍是首个合规档，\n也无法取到 C 类「跌破后重新站上」判定所需的 1 分钟收盘序列（09:26 起整段缺失）。\n",
+     "rationale": "【禁用原因 = 无数据】C 类要求「先跌破再收复」的 1 分钟收盘序列，无 bars ⇒ 连触发条件都无法定义；\n且 ⑥-b 要求按 trigger×1.0010 重定价，无链 ⇒ 无法验证 debit 落在 $100–250 内。\nlegs.long=688 为 08:59 存档留痕，不启用。\n",
      "pattern": "C",
      "enabled": false,
-     "trigger_level": 685.5,
-     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "trigger_level": null,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上（本档无点位，规则不适用）",
      "structure": "single_call",
      "legs": {
       "long": 688
@@ -475,11 +478,11 @@
     },
     {
      "name": "D-假突破反手（禁用·无数据）",
-     "rationale": "【禁用理由：数据源故障】D 依赖「突破后 15 分钟内的 1 分钟收盘」序列，而该序列自 09:26 起整段缺失\n⇒ 即便价格恢复，缺口期间发生的穿越与回落也无法回溯判定，D 的算术前提不成立。\n",
+     "rationale": "【禁用原因 = 无数据】D 依赖「突破后 15 分钟内的收回序列」，同样需要 bars 与实时价；无数据 ⇒ 无法布点。\n昨日/早盘档里 A 与 D 共用同一点位的互斥口径在本档**不适用**（A、D 均无点位）。\n",
      "pattern": "D",
      "enabled": false,
-     "trigger_level": 688.56,
-     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "trigger_level": null,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方（本档无点位，规则不适用）",
      "structure": "single_put",
      "legs": {
       "long": 686
@@ -491,10 +494,10 @@
      "regime": "unknown"
     },
     {
-     "name": "E-今日收工",
-     "rationale": "【今日收工（本日第 2 档故障档）】依据 midday_prompt 数据获取节：「若脚本也连不上 TWS：写明失败原因，\n当日 A–D 全部 enabled: false 并照常写出配置文件」。现况是 **IB Gateway 应用层无响应 + watcher 主循环阻塞\n64 分钟 + 独立 watchdog 也停摆**，属基础设施故障，不是行情判断。\n处置：今日不再产生任何交易动作；A–D 全部禁用，watcher 转入「仅监控」。\n⚠️ 风险预算（max_debit 240 / daily_max_loss 180）虽完整未动用，但**「预算放不下就收工」（规则⑦）不是本档理由**\n—— 真正理由是**没有价、没有链 ⇒ 任何组合都无法定价与验证**；两者不可混为一谈。\n⚠️ 恢复后**不能靠本档自动复活**：所有档案点位都基于 08:59 盘前结构。需人工在实时数据恢复后手动重跑盘中刷新。\n",
+     "name": "E-今日收工（数据源故障）",
+     "rationale": "【今日收工 · 本日第 3 档故障档】依据 midday_prompt 数据获取节：「若脚本也连不上 TWS：写明失败原因，\n当日 A–D 全部 enabled: false 并照常写出配置文件」。\n现况：网关 API 会话在线但**所有请求（positions/orders/account/executions/market data）一律超时**，\n本地行情自 09:20 ET 静默、spot 冻结在 09:53:31 的 687.95、watchdog 09:25 停摆、IBC 已 6 次重连并卡在模态框。\n这是**基础设施故障**，不是行情判断，也不是「风险预算放不下」（max_debit 240 / daily_max_loss 180 完整未动用）。\n处置：今日不再产生任何交易动作；watcher 转入「仅监控」，**不重启**（禁止）。\n⚠️ 明确不做的三件事：① 不用 687.95 残值当现价算距离 ✗；② 不用早盘点位充数 ✗；③ 不写任何未在实报链核对过的行权价 ✗。\n⚠️ 恢复后本档**不会自动复活**：所有可复用信息都已作废，需人工重跑一次盘中刷新。\n",
      "pattern": "E",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": null,
      "trigger_rule": null,
      "structure": null,
@@ -506,8 +509,7 @@
      "regime": null
     }
    ],
-   "enabled_count": 1,
-   "placeholder": true
+   "enabled_count": 0
   }
  ],
  "order_events": [],
