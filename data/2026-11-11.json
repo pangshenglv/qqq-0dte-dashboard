@@ -383,6 +383,131 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261111_1153_8ea8290399_pm",
+   "kind": "pm",
+   "label": "盘中刷新 11:53 ET",
+   "sort_key": "11:53",
+   "generated_at": "11:53 ET（11:53 档刷新占位；深度重推进行中）",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-11（周三·退伍军人节 Veterans Day，债市休市/股市照常）\n【本档性质】**10:53 ET 盘中刷新 · 数据源故障降级档（本日第 2 档故障档）**\n⇒ 结论：**今日收工**。A–D 全部 enabled: false，理由 = 无任何实时数据，\n步骤 A（扫盘 + 摆动位清单量化）与步骤 B（从零推导）在物理上无法执行；\n任何点位 / 行权价 / target / expected_debit 写出来都是编造 ✗。\n==============================================================================\n【本次取数尝试（10:53 档，全部实测，非推断）】\n① tools/tws_snapshot.py（clientId 7，只读）10:53:25 → 10:55:55 ET，**150s 硬超时终止（exit 142）**，\nstdout **0 字节**；stderr 逐条：\npositions request timed out / open orders request timed out /\ncompleted orders request timed out / account updates for DUQ402112 request timed out /\nexecutions request timed out\n⇒ TCP 能连（未报「TWS 连接失败」），但 **IB Gateway 应用层仍无响应**（与 09:53 档同一签名）\n② tools/option_wall_scan.py 10:56:18 → 10:57:08 ET，**50s 硬超时终止**，stdout 0 字节，\n同样 5 条 request timed out ⇒ **无墙数据**（08:57 盘前快照已过期约 2 小时，不参与决策）\n③ tools/pm_analysis.py（clientId 8）**未执行**：其入参 --levels/--strikes 必须来自步骤 A.d 的摆动位清单，\n本档取不到 1 分钟线 ⇒ 无合法入参；强行调用只会再空耗一次超时（不产生新信息）\n④ 网关侧（IBC 日志 /Users/lps/kimi/ibc/logs/ibc-3.24.2_GATEWAY-10.50_Wednesday.txt）：\n09:20:33 \"Login Messages\" 模态框 → 09:28/09:38/09:44/09:59/10:14/10:36 反复 \"Connecting to server...\"；\n**10:39:45 再次 \"Connecting to server...\"，10:39:50 弹出 \"IBKR Gateway\" 模态框**（仍卡在登录/授权环节）\n⑤ 另一条只读通道（session_watchdog，独立取 SPY）**也已停摆**：logs/session_watchdog.log 最后一行\n09:25:15 ET（此前每 5 分钟一条；09:20:14 尚报「健康 ✓ 行情正常（SPY=757.10）」）⇒ 全链路冻结\n==============================================================================\n【watcher 侧状态（重要：本档热加载会排队）】\n· logs/20261111.jsonl 最后一条 = 09:52:55.758 \"rt_resubscribe, silent_sec=1623.6\"\n→ 09:56 / 10:01 / 10:06 … 的 5 分钟 market_snapshot **全部缺失**，主循环自 09:52:55 起阻塞 **>64 分钟**\n· ps -p 35535 → STAT=S, %CPU=0.0, TIME=3:26 ⇒ 阻塞在等待网关响应的 API 调用上（未崩溃、未退出）\n· logs/spot_5s_20261111.csv：最后写入 **09:53:31**；09:40 之后**去重只有 1 个值（687.9500）**（全文件 569 行）\n⇒ 结论：**本档写入后 watcher 不会立即生效**（主循环卡死，mtime 热加载排在其后）；\n网关恢复后它会先解阻塞、再按 mtime 加载本档并 alert「全部禁用，今日仅监控」。\n==============================================================================\n【在场持仓】**无** —— logs/20261111.jsonl 全天 0 条 fill/open/close/order（grep 计数 0），state 恒为 IDLE；\nA/B/C/D 全部 in_position: false；风险预算未动用（capital.yaml: max_debit 240 / daily_max_loss 180，全数可用）\n==============================================================================\n【剩余时段事件核查】10:53–15:53 ET（本档 10:57 ET 重核）\n来源：web_search（DeepSeek 检索本次 10:57 ET 调用成功）→ jin10《2026年11月11日 周三》财经日历全文\n· 美国相关事件**全在盘前**：02:00 10Y 国债竞拍 / 02:30 施密德 / 04:30 鲍曼 / 07:30 保尔森\n· 剩余时段列表内只有欧洲事件：15:00 德国 10 月 CPI 终值、17:45 拉加德论坛（与 QQQ 收盘后或无关）\n⇒ **剩余时段无美国数据、无 Fed 讲话、无 14:00 FOMC**\n· FOMC：非决议日（federalreserve.gov/monetarypolicy/fomccalendars.htm 核对 2026 全年；\n下一次 **2026-12-08/09**）⇒ 今日无 14:00 声明 / 14:30 发布会\n· 假日：Veterans Day —— 债市休市（无拍卖）、股市照常；四巫日 12-18；非农 11-06 已过\n· 盘外催化：NVDA Q3 FY27 财报 11-17 17:00 ET（下周二），不计入今日盘中\n⇒ 事件面：**非事件日**。但本档结论由数据源故障决定，事件面不参与取舍。\n==============================================================================\n【恢复路径（本任务无权执行，需人工）】\n① launchctl kickstart -k gui/$(id -u)/com.qqq.gateway\n② 180s 内用 IBKR Mobile 批准 2FA，随后立即登出 Mobile（防会话冲突）\n③ 双验证：只读快照恢复双边报价 + watcher 日志 state 不再冻结（当前卡在 09:52:55）\n④ 网关解阻塞后 watcher 会自行解冻；如仍未恢复再用 tools/restart_watcher.py（本任务禁止重启 watcher ✓）\n⑤ 数据恢复后需**人工重跑一次盘中刷新**（本档不可自动复活：档案点位全部基于 08:59 盘前结构，已过期）\n==============================================================================",
+   "market": {
+    "spot": null,
+    "spot_note": "无实时价。logs/spot_5s_20261111.csv 最后写入 09:53:31；09:40 后去重仅 1 个值 687.9500（冻结残值）⇒ 不可作现价",
+    "prev_close": 674.76,
+    "prev_close_note": "取 08:59 盘前档存档值（+1.90% 跳空高开），本档无法复核",
+    "rth_open": null,
+    "rth_high": null,
+    "rth_low": null,
+    "rth_volume": null,
+    "vwap": null,
+    "amplitude_pct": null,
+    "regime": "unknown",
+    "regime_note": "无 RTH 数据 ⇒ 趋势/震荡不可判定（禁止按 08:59 盘前结构 684.73/688.56/683.09 推定）",
+    "daily_iv_pct": null,
+    "remaining_sigma": null,
+    "remaining_sigma_note": "期权链无响应（tws_snapshot 150s 零输出）⇒ 无法反解 IV、无法折算剩余 1σ",
+    "put_call_ratio": null,
+    "put_call_ratio_note": "降级模式无此数据（08:57 盘前快照为 11/10 累计量，与今日 RTH 无关）",
+    "nq_futures": "降级模式无此数据",
+    "greeks": "降级模式无此数据",
+    "hv": "降级模式无此数据",
+    "iv_percentile": "降级模式无此数据",
+    "option_wall": "无墙数据（本档 10:56 实测扫描 50s 超时失败；08:57 盘前快照已过期，不参与决策）",
+    "swing_levels": [],
+    "swing_levels_note": "步骤 A.d 无法执行 —— 09:26 之后没有 1 分钟线（rt bars 自 09:26 静默，jsonl 09:52:55 后主循环阻塞），\n给不出任何「（价位, 触及次数, 区间）」三元组，也就凑不出 ≥3 档支撑 + ≥3 档阻力。\n🚫 严禁沿用 08:59 盘前档的 688.56 / 685.50 / 683.09 当作今日 RTH 摆动位（那是盘前结构，RTH 后已作废且无法复核）。\n"
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破（禁用·无数据）",
+     "rationale": "【禁用理由：数据源故障，不是结构衰减】trigger_level 688.56 是 08:59 盘前高，本档**未重推、未复核**：\n09:26 后没有 1 分钟线 ⇒ 无法验证它是否仍有效、是否已被 RTH 穿越 ≥3 次（规则① 无法执行），\n也算不出 |触发位−现价| 与 振幅/3 的比值（规则①-b 无法执行）。\nexpected_debit / target / invalid_level 一并留空 —— 网关无响应取不到 0DTE 链，写任何数字都是编造 ✗。\n690 腿为整数档且取自 08:59 实报链，但已被 0DTE 链失效覆盖（theta 已衰减 2 小时），**不可照抄启用**。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 688.56,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 690
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "unknown"
+    },
+    {
+     "name": "B-右侧跌破（禁用·无数据）",
+     "rationale": "【禁用理由：数据源故障】683.09 = 08:59 盘前低，本档未重推。无 RTH 低点、无量能、无现价 ⇒\n规则①（反复穿越 ≥3 次即作废）与 ①-b（可达性）**均无法判定** ⇒ 不可交易。\n按规则⑦：A/B 不得因「市况不符」禁用 —— 本档禁用理由是**点位失效/不可验证类**，不违反⑦。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 683.09,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": 680
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "unknown"
+    },
+    {
+     "name": "C-左侧回踩（禁用·无数据）",
+     "rationale": "【禁用理由：数据源故障】C 类 ⑥-b 定价口径要求把 trigger_level × 1.0010 代入实时链，验证 debit 落在\n$100–$192（G3 容差 ×1.25 ≤ max_debit 240）；本档链取数失败 ⇒ 无法确认 688C 是否仍是首个合规档，\n也无法取到 C 类「跌破后重新站上」判定所需的 1 分钟收盘序列（09:26 起整段缺失）。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 685.5,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": 688
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "unknown"
+    },
+    {
+     "name": "D-假突破反手（禁用·无数据）",
+     "rationale": "【禁用理由：数据源故障】D 依赖「突破后 15 分钟内的 1 分钟收盘」序列，而该序列自 09:26 起整段缺失\n⇒ 即便价格恢复，缺口期间发生的穿越与回落也无法回溯判定，D 的算术前提不成立。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 688.56,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": 686
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "unknown"
+    },
+    {
+     "name": "E-今日收工",
+     "rationale": "【今日收工（本日第 2 档故障档）】依据 midday_prompt 数据获取节：「若脚本也连不上 TWS：写明失败原因，\n当日 A–D 全部 enabled: false 并照常写出配置文件」。现况是 **IB Gateway 应用层无响应 + watcher 主循环阻塞\n64 分钟 + 独立 watchdog 也停摆**，属基础设施故障，不是行情判断。\n处置：今日不再产生任何交易动作；A–D 全部禁用，watcher 转入「仅监控」。\n⚠️ 风险预算（max_debit 240 / daily_max_loss 180）虽完整未动用，但**「预算放不下就收工」（规则⑦）不是本档理由**\n—— 真正理由是**没有价、没有链 ⇒ 任何组合都无法定价与验证**；两者不可混为一谈。\n⚠️ 恢复后**不能靠本档自动复活**：所有档案点位都基于 08:59 盘前结构。需人工在实时数据恢复后手动重跑盘中刷新。\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [],
