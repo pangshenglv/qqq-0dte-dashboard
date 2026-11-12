@@ -1,24 +1,54 @@
 {
- "generated_at_et": "2026-11-12 13:53:11 ET",
- "generated_at_bj": "2026-11-13 02:53:11",
+ "generated_at_et": "2026-11-12 13:55:25 ET",
+ "generated_at_bj": "2026-11-13 02:55:25",
  "watcher": {
   "alive": true,
   "pid": 8008,
-  "uptime": "04:34:03",
+  "uptime": "04:36:17",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 125,
+  "last_event_age_s": 121,
   "last_event": {
-   "ts": "2026-11-12T13:51:05.806409-05:00",
-   "event": "market_snapshot",
+   "ts": "2026-11-12T13:53:23.866140-05:00",
+   "event": "error",
    "state": "IDLE",
-   "spot": 688.46,
-   "lines": 5,
-   "pattern_quotes": {
-    "A": 0.17,
-    "B": 0.68,
-    "C": 0.49,
-    "D": 2.35
-   }
+   "spot": 688.19,
+   "type": "untradeable_shape",
+   "source": "pm_reload",
+   "shapes": [
+    {
+     "pattern": "A",
+     "level": 692.1,
+     "target": 694.56,
+     "space_pct": 0.355,
+     "worst_rem_pct": 0.105,
+     "need_pct": 0.6
+    },
+    {
+     "pattern": "B",
+     "level": 687.7,
+     "target": 685.2,
+     "space_pct": 0.364,
+     "worst_rem_pct": 0.114,
+     "need_pct": 0.6
+    },
+    {
+     "pattern": "C",
+     "level": 689.9,
+     "target": 692.75,
+     "space_pct": 0.413,
+     "worst_rem_pct": 0.313,
+     "need_pct": 0.45
+    },
+    {
+     "pattern": "D",
+     "level": 692.1,
+     "target": 689.25,
+     "space_pct": 0.412,
+     "worst_rem_pct": 0.162,
+     "need_pct": 0.6
+    }
+   ],
+   "note": "这些形态在任何合法追价点都过不了 G5d（触发位→目标空间不足）；应在方案里加大目标空间或把触发位挪到能容纳追价的位置"
   }
  },
  "gateway": {
@@ -35,5 +65,5 @@
   "15:30"
  ],
  "last_spot": 688.46,
- "git_head": "48e6eb60"
+ "git_head": "ada76321"
 }
