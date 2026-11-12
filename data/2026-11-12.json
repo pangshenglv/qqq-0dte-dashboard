@@ -1479,6 +1479,104 @@
     "long_conid": 941435859,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-11-12T14:12:05.162633-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 689.6099,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 689.62,
+   "level": 689.6
+  },
+  {
+   "ts": "2026-11-12T14:12:05.163545-05:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 689.6099,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.13,
+   "cap": 207.5,
+   "live_expected": 112.6,
+   "iv": 33.4
+  },
+  {
+   "ts": "2026-11-12T14:12:05.184476-05:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 689.6099,
+   "gate": "G4",
+   "passed": true,
+   "margin": "?",
+   "commission": "?",
+   "warning": ""
+  },
+  {
+   "ts": "2026-11-12T14:12:05.185395-05:00",
+   "event": "order_submit",
+   "state": "SUBMITTING",
+   "spot": 689.6099,
+   "side": "BUY",
+   "ladder": "L1",
+   "limit": 1.15,
+   "step": 0.01,
+   "attempt": 1,
+   "tag": "C",
+   "qty": 1,
+   "ask": 1.14,
+   "cap": 207.5,
+   "mode": "marketable_limit"
+  },
+  {
+   "ts": "2026-11-12T14:12:07.189056-05:00",
+   "event": "order_fill",
+   "state": "POSITION",
+   "spot": 689.62,
+   "side": "open",
+   "pattern": "C",
+   "price": 1.15,
+   "cost": 114.99999999999999,
+   "qty": 1,
+   "legs": {
+    "long": 690.0,
+    "short": null,
+    "right": "C",
+    "single": true,
+    "long_conid": 939930874,
+    "short_conid": null
+   },
+   "_metrics": {
+    "ts": "2026-11-12T14:12:07.189536-05:00",
+    "event": "entry_metrics",
+    "state": "POSITION",
+    "spot": 689.62,
+    "cost": 115.0,
+    "qty": 1,
+    "legs": {
+     "long": 690.0,
+     "short": null,
+     "right": "C",
+     "single": true,
+     "long_conid": 939930874,
+     "short_conid": null
+    },
+    "pattern": "C",
+    "level": 689.6,
+    "trig_close": 689.62,
+    "chase_pct": 0.0029,
+    "vwap": 688.51,
+    "vwap_dev_pct": 0.1609,
+    "day_regime": "trend",
+    "combo_bid": 1.12,
+    "combo_ask": 1.14,
+    "combo_mid": 1.13,
+    "leg_spread": 0.02,
+    "bar_vol": 24855.0,
+    "vol_mult": 0.56,
+    "level_cross": null
+   }
   }
  ],
  "roundtrips": [
