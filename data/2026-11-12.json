@@ -1552,6 +1552,179 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261112_1553_7787363bf0_pm",
+   "kind": "pm",
+   "label": "盘中刷新 15:53 ET",
+   "sort_key": "15:53",
+   "generated_at": "15:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "盘中刷新 14:53 ET（第 6/7 档）· 从零重推\n数据源：tools/tws_snapshot.py（clientId 7，14:53:35 EST，REALTIME 49/50 双边）\ntools/pm_analysis.py（clientId 8，14:54:48 / 14:56:17 / 14:57:01 EST）\n事件源：web_search（金十 2026-11-12 事件表）+ FOMC 官方日历",
+   "market": {
+    "spot": 688.25,
+    "spot_at": "14:57:01 ET pm_analysis last 688.25（snapshot 14:53:35 bid 688.19 / ask 688.23）",
+    "prev_close": 690.38,
+    "change_pct": -0.31,
+    "open_0930": 680.29,
+    "day_high": 694.56,
+    "day_high_at": "11:20 ET",
+    "day_low": 679.83,
+    "day_low_at": "09:31 ET",
+    "day_range": 14.73,
+    "day_range_pct": 2.17,
+    "gap": "跳空低开 −1.46%（690.38→680.29）；09:30–11:20 单边收复并创高 694.56",
+    "vwap": 688.5,
+    "vwap_basis": "325 根 1min（09:30–14:56，典型价×量）加权；pm_analysis 14:56:17 ET",
+    "spot_vs_vwap": -0.25,
+    "volume_rth": 18119842,
+    "volume_snapshot": 27702734,
+    "volume_note": "volume_rth = 1min 量累加（RTH 325 根）；snapshot.volume（27.70M）为 IB 全量口径，不可混用",
+    "regime": "range_after_afternoon_breakdown",
+    "regime_basis": "watcher 日级 day_regime 仍判 trend（rng 14.73/680.29=2.17% > range_pct 0.6%）；但 12:30 后的实际结构是 689.61–692.67 高位震荡 → 13:45 破位 → 14:30 起 687.18–688.93 窄幅基座，故本档按 range 布点（突破型 A 保留在 scenarios 由 G5b 机械闸门管理）",
+    "swing_levels": {
+     "supports": [
+      {
+       "price": 687.2,
+       "touches": 0,
+       "range": "687.18–687.45（14:31 低 687.18 / 14:41 低 687.45；12:30 后 0 次收盘穿越）"
+      },
+      {
+       "price": 686.5,
+       "touches": 0,
+       "range": "686.40–686.60（12:30 后 0 次穿越；全日 13 次）"
+      },
+      {
+       "price": 685.0,
+       "touches": 9,
+       "range": "684.73–685.00（10:30 段低 684.73；全日 9 次穿越）"
+      }
+     ],
+     "resistances": [
+      {
+       "price": 688.9,
+       "touches": 9,
+       "range": "688.90–688.93（14:30 段高 688.93；12:30 后 9 次穿越 → 已退化）"
+      },
+      {
+       "price": 690.1,
+       "touches": 8,
+       "range": "690.09–690.20（14:00 段高；12:30 后 8 次穿越 → 已退化）"
+      },
+      {
+       "price": 692.0,
+       "touches": 4,
+       "range": "691.55–692.67（12:30 段高 692.67；13:30 段高 691.55）"
+      }
+     ]
+    },
+    "swing_note": "①计数口径：pm_analysis --since 12:30（对齐 G5a「点位创建后」语义），括号内披露全日计数。触及次数 = 1min 收盘穿越次数，非抽样估算",
+    "remaining_1sigma": 3.0,
+    "remaining_1sigma_basis": "ATM 688 跨式 mid = 1.35+1.16 = 2.51（14:53 实报）→ 1σ = 2.51/0.7979 ≈ 3.15（66min）；至 15:00 剩 60min 按 √(60/66) 折算 = 3.00",
+    "wall": "期权墙本轮未取（工具链属独立任务，B-39 禁止本档开发/重构工具）→ 无墙数据"
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入 692.00",
+     "rationale": "【结构依据】12:30–13:45 的高位震荡上沿为 691.55–692.67（全天 cross 691.5 18 次、692.0 4 次），\n13:45 后连续破位，14:30 起价格被压到 687.18–688.93 基座。若尾盘重新上攻，唯一「干净」的档位在 692.00 之上。\n【可交易性】触发位距现价 3.75，仅勉强在 amp/3=4.91 内，但已是 1σ(60min)=3.00 的 1.25 倍；\n即便触发，target 694.50（space 0.361% ✓）还需再涨 2.5，尾盘 theta 下不可能完成。\n【结论】按规则⑦保留在 scenarios 不删除，置 enabled:false，理由为①点位失效 + G3 越界。",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 692.0,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 690
+     },
+     "max_debit": 240,
+     "target_zone": [
+      694.5,
+      694.56
+     ],
+     "target": 694.5,
+     "invalid_level": 689.9,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空 686.40",
+     "rationale": "【结构依据】主支撑 687.20 之下最近的结构是 686.40–686.60（12:30 后 0 次穿越、全日 13 次），再下一档 684.73。\n【算术】686P mid 0.52 @ spot 688.21；chase = 686.40×0.9975 = 684.76（该点含 1.24 内在，重定价 ≈$164）；\ntarget 684.00（space 2.40/686.40 = 0.350% ✓），invalid 688.30（0.277% ✓）。\n【结论】空间与 invalid 合规，但 RR 0.53 + 触发价处 debit 不足 $100，按④/⑤置 false。",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 686.4,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level",
+     "structure": "single_put",
+     "legs": {
+      "long": 686
+     },
+     "max_debit": 240,
+     "target_zone": [
+      684.0,
+      684.3
+     ],
+     "target": 684.0,
+     "invalid_level": 688.3,
+     "regime": "trend"
+    },
+    {
+     "name": "C-回踩确认买入 687.20",
+     "rationale": "【结构依据】687.20 = 14:30 起基座的地板（14:31 低 687.18、14:41 低 687.45），12:30 后 0 次收盘穿越\n（全日 11 次）—— 是真实地板而非绞肉带。现价 688.25 高于此 1.05，回踩确认可及。\n【合规定量】target 689.70（space 2.50/687.20 = 0.364% ≥ 0.35% ✓，落在 688.93/690.09 双阻力之下的可及区间）；\ninvalid 685.40（距触发 0.262% ≥ 0.25% ✓）；1σ(60min)=3.00 → 目标需求 2.50 = 0.83σ ✓。\n【腿与成本】687C mid 1.97 @ spot 688.21（实报）；C 类按 trigger×1.0010 = 687.89 定价 ≈$175\n（在 $120–200 目标区 ✓）；175×1.25 = 219 ≤ max_debit 240 ✓（G3 合规）。\n【RR】target 689.70 处 687C ≈ 2.75（+$100）；invalid 685.40 处 ≈ 0.40（−$135）→ RR ≈ 0.74，本档最优。\n【夹缝】A/B/D 均已禁用，无对向触发位同时激活的绞肉机风险。",
+     "pattern": "C",
+     "enabled": true,
+     "trigger_level": 687.2,
+     "trigger_rule": "曾跌破 trigger_level 且当前 1 分钟收盘站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 687
+     },
+     "max_debit": 240,
+     "target_zone": [
+      689.7,
+      689.9
+     ],
+     "target": 689.7,
+     "invalid_level": 685.4,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空 688.90",
+     "rationale": "【结构依据】688.90–688.93 是 14:30 段上沿，但 12:30–14:00 之间已被反复穿越 9 次（690.09 8 次），\n属「被穿烂的边界」，假突破反手的结构前提不成立。\n【算术】688P mid 1.16 @ spot 688.21；chase = 688.90×0.9975 = 688.12 → ≈$145；\ntarget 687.20 仅 0.247% 空间（< 0.35%），且跌到 687.20 时 688P 时间价值归零 → ≈$95（−$50），\ninvalid 690.30 处 ≈$45（−$100）→ RR 0.50 且胜负不对称。\n【结论】按① + ④ + ⑤ 三重理由置 false。",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 688.9,
+     "trigger_rule": "假突破：冲高越过 trigger_level 后 2 根 1 分钟收盘回落其下",
+     "structure": "single_put",
+     "legs": {
+      "long": 688
+     },
+     "max_debit": 240,
+     "target_zone": [
+      687.2,
+      687.5
+     ],
+     "target": 687.2,
+     "invalid_level": 690.3,
+     "regime": "range"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": null,
+     "pattern": "E",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [
