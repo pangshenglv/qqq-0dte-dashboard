@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-12 11:30 ET",
+ "generated_at": "2026-11-12 11:32 ET",
  "items": [
   {
    "id": "B-01",
@@ -536,6 +536,27 @@
   {
    "id": "B-82",
    "title": "平仓全部档位未成交（2026-11-06 12:39）✗",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-83",
+   "title": "看门狗把「查询失败」当「有仓位」⇒ 永远不敢动手 ✗（2026-11-12 发现并修复 ✓）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-84",
+   "title": "reconnect 刷屏：单次网关故障写 1179 条日志 ✗（2026-11-12）",
+   "status": "open",
+   "priority": "P2 · 功能补齐",
+   "note": ""
+  },
+  {
+   "id": "B-85",
+   "title": "spot 冻结导致价格失真 $10 ✗（2026-11-12）",
    "status": "open",
    "priority": "P2 · 功能补齐",
    "note": ""
