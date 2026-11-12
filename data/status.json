@@ -1,54 +1,19 @@
 {
- "generated_at_et": "2026-11-12 13:10:04 ET",
- "generated_at_bj": "2026-11-13 02:10:04",
+ "generated_at_et": "2026-11-12 13:12:16 ET",
+ "generated_at_bj": "2026-11-13 02:12:16",
  "watcher": {
   "alive": true,
   "pid": 8008,
-  "uptime": "03:50:56",
+  "uptime": "03:53:08",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 149,
+  "last_event_age_s": 8,
   "last_event": {
-   "ts": "2026-11-12T13:07:35.238351-05:00",
-   "event": "error",
-   "state": "IDLE",
-   "spot": 690.12,
-   "type": "untradeable_shape",
-   "source": "pm_reload",
-   "shapes": [
-    {
-     "pattern": "A",
-     "level": 692.1,
-     "target": 694.56,
-     "space_pct": 0.355,
-     "worst_rem_pct": 0.105,
-     "need_pct": 0.6
-    },
-    {
-     "pattern": "B",
-     "level": 687.7,
-     "target": 685.2,
-     "space_pct": 0.364,
-     "worst_rem_pct": 0.114,
-     "need_pct": 0.6
-    },
-    {
-     "pattern": "C",
-     "level": 689.9,
-     "target": 692.75,
-     "space_pct": 0.413,
-     "worst_rem_pct": 0.313,
-     "need_pct": 0.45
-    },
-    {
-     "pattern": "D",
-     "level": 692.1,
-     "target": 689.25,
-     "space_pct": 0.412,
-     "worst_rem_pct": 0.162,
-     "need_pct": 0.6
-    }
-   ],
-   "note": "这些形态在任何合法追价点都过不了 G5d（触发位→目标空间不足）；应在方案里加大目标空间或把触发位挪到能容纳追价的位置"
+   "ts": "2026-11-12T13:12:08.099057-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "C 开仓成交 @ 1.12（成本 $112）"
   }
  },
  "gateway": {
@@ -64,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 690.68,
- "git_head": "3e0bcc9d"
+ "last_spot": 689.67,
+ "git_head": "f52dd0c9"
 }
