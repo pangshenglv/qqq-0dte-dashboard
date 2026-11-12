@@ -925,6 +925,138 @@
     }
    ],
    "enabled_count": 0
+  },
+  {
+   "file": "daily_20261112_1253_7b36b7e2d6_pm",
+   "kind": "pm",
+   "label": "盘中刷新 12:53 ET",
+   "sort_key": "12:53",
+   "generated_at": "12:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-12（周四）| 11:53 ET 盘中刷新（当日第 3 次）\n【本档性质：数据故障型全禁用 — A-D 全部 enabled: false】\n与 09:53 / 10:53 两档的区别：**本轮不是\"完全无数据\"，而是\"部分数据 + 数据层已死\"**。\n· 本地 5s 行情（logs/spot_5s_20261112.csv）在 11:51:56 ET 后冻结，spot 恒为 691.88；\n但 watcher 主循环仍活着（12:01:06 仍写 market_snapshot）⇒ 不是进程阻塞，是行情源静默。\n· API 层本轮做了分层验证（比 10:53 档的证据更硬）：\n① 11:53:07  tools/tws_snapshot.py  clientId 7   等待 ~5min 无任何输出 → 终止\n② 11:58:10  tools/bars_dump.py     clientId 8   等待 ~3min 无任何输出 → 终止\n③ 12:01:20  探针 clientId 13 → 网关回 Error 326「client id already in use」\n（= 前两次挂死进程仍占着 7/8，**不是网关不回话**）\n④ 12:01:42  探针 clientId 21 → **CONNECTED 0.5s, serverVersion=178,\nreqCurrentTime = 2026-11-12 17:01:42Z（=12:01:42 ET）** ⇒ 会话层 API 正常\n→ 紧接着 qualifyContracts(QQQ) 挂死 >25s\n⑤ 12:02:46  探针 clientId 22 → 绕过 contract details，直接用 conId 320227571\n请求 reqHistoricalData(\"1 D\",\"1 min\",\"TRADES\") → 挂死 >28s，未返回任何 bar\n⇒ 定论：**IB 网关会话在线、契约/历史/行情（数据农场）侧全无响应**。\n不是端口没开、不是 clientId 冲突、不是登录框（登录框是 09:18 那一轮，已随 11:25 重启消失）。\n【网关时间线（外部证据）】\n· IBC 日志：旧实例 00:25:43 CST(=11:25:43 ET)「Closing / IBC returned exit status 0」\n· launcher.log：新实例 00:29:17 CST(=11:29:17 ET) PostAuthenticate 完成，pid 22364\n· watcher：11:28:41 / 11:29:36 两次「TWS 重连成功」，11:29:36 起有行情；\n11:51:56 后行情再次静默 ⇒ 重启后只维持了 **22 分钟**有效数据，同型故障复发。\n· 旧故障（09:18–11:26）症状是登录框；本次症状是「会话在、数据层死」—— 同族、不同点位。\n【轮次取数（正式取数 3 次 + 定位探针 3 次；全部只读 clientId，未用 42，未重启 watcher）】\n见上 ①–⑤；11:53:07 / 11:58:10 两次为正式取数，12:01 / 12:02 两次为分层定位。\n【本档能给出的真实数据（全部来自本地 5s 行情，非估算、非沿用早盘）】\n· 最后有效价 691.88 @11:51:56 ET；同时刻 VWAP 687.95\n· 当日 RTH 开 680.29｜高 692.91（11:29:36 复牌后首分钟实价）｜低 680.0078｜昨收 690.38\n· 当日振幅 12.90（1.90%）；振幅/3 = 4.30 ⇒ 可达区间 [687.58, 696.18]（仅结构预演用）\n· 数据缺口：09:35:19–11:29:36（网关故障，无任何 5s 数据）；11:51:56 之后（源静默）\n【禁止事项（本轮已遵守）】未用估算值充实行权价/debit；未沿用早盘 680 时代点位当\"维持\"；\n未把不可成交形态伪装成可用方案；未重启 watcher；未用 clientId 42。",
+   "market": {
+    "spot_last_valid": 691.88,
+    "spot_at": "11:51:56 ET（最后一笔有效 tick；12:03 ET 复核仍为 691.88，静默 12 分钟）",
+    "stale": true,
+    "vwap_last_valid": 687.95,
+    "prev_close": 690.38,
+    "change_pct": 0.22,
+    "open_0930": 680.29,
+    "day_high": 692.91,
+    "day_high_at": "11:29:36 ET",
+    "day_low": 680.0078,
+    "day_low_at": "09:31 ET",
+    "day_range": 12.9,
+    "day_range_pct": 1.9,
+    "gap": "跳空低开 -1.47%（690.38→680.29），11:29 复牌后单边收复至 691.88，呈 V 形",
+    "rth_volume": 455,
+    "volume_note": "仅统计 09:31–09:35 与 11:29–11:52 两段有数据的 5s 快照条数（455 条），非真实成交量；真实成交量需 TWS bars ⇒ 降级模式无此数据",
+    "data_gap": "09:35:19–11:29:36 无 5s 数据；11:51:56 之后源静默",
+    "regime": "trend_up_day_post_freeze_unknown",
+    "regime_basis": "09:30–11:52：680.29→692.91 单边推进 +12.62 点、VWAP 由 680.9 抬到 687.95、价格始终在 VWAP 上方 ⇒ 趋势上行日；11:52 后无数据 ⇒ 当前 regime 不可判定"
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入 693.00",
+     "rationale": "【步骤 B 从零推导】触发位取主阻力 691.85 与日内高 692.91 之上 1 档（693.00），符合「突破型取主阻力之上」；\ntarget 695.43 满足 ≥ 触发位×0.35%(=2.43)；|693.00−691.88| = 1.12 ≤ 振幅/3(=4.30)\n⇒ **结构层可达性达标，是本轮四个候选里唯一达标的**。\n【为何仍 disabled】可达 ≠ 可交易：没有链就无法证明 692C 有报价、debit 落在 $100–240、\nG5d 追价后是否还剩 0.35% 空间。10/02 的「假档位致 watcher 崩溃 32 分钟」与\n10/01 的「保留不可达点位空转一整天」两个教训指向同一件事：**没链就别上线**。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 693.0,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 692
+     },
+     "max_debit": 240,
+     "target_zone": [
+      695.43,
+      696.18
+     ],
+     "target": 695.43,
+     "invalid_level": 691.8,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空 689.50",
+     "rationale": "触发位取本段最低簇 689.78 下方 0.28 = 689.50；target 687.09 满足 689.50×0.35% = 2.41。\n但 691.25 / 690.80 / 690.08 三档支撑叠在头顶 1 点内，跌破 689.50 前要先连破三簇，\n这种「台阶式」结构做空的实际盈亏比通常最差（10/02 就出过 A space 0.359% 但 RR 仅 0.25 的同型问题）。\n无链无法用 g5d_rr_analysis 复核 RR ⇒ 不得上线。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 689.5,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": 689
+     },
+     "max_debit": 240,
+     "target_zone": [
+      687.09,
+      686.9
+     ],
+     "target": 687.09,
+     "invalid_level": 691.3,
+     "regime": "trend"
+    },
+    {
+     "name": "C-回踩确认买入 690.80",
+     "rationale": "690.80 是 11:33/11:51 双底、且为主支撑，是当前结构最硬的一档，符合「回踩确认取主支撑」。\ntarget 693.53 越过主阻力 691.85 与日内高 692.91，空间 2.73 = 0.40% ✓。\n【短板】C 与 A 的触发位间距 693.00−690.80 = 2.20 = 0.32%，勉强过 0.3%；\n而 C 类入场还要再抬 0.10% 追价 ⇒ 实际夹缝进一步收窄。无链无法验证追价后的 debit ⇒ 禁用。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 690.8,
+     "trigger_rule": "曾跌破 trigger_level 后 1 分钟收盘重新站上（收回确认，禁止下跌途中接刀）",
+     "structure": "single_call",
+     "legs": {
+      "long": 690
+     },
+     "max_debit": 240,
+     "target_zone": [
+      693.53,
+      695.43
+     ],
+     "target": 693.53,
+     "invalid_level": 689.6,
+     "regime": "range"
+    },
+    {
+     "name": "D-假突破反手做空 692.91",
+     "rationale": "692.91 = 当日最高，作假突破锚点结构合理；target 取主支撑 690.80，空间 2.11 = 0.30%，\n**低于 0.35% 门槛** ⇒ 按 G5d 度量模式本应在 name 标注「空间偏紧」。\n但更根本的问题是 regime 不可判定 + 市况闸门暂停，两个前置条件都不成立 ⇒ 直接禁用。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 692.91,
+     "trigger_rule": "上破 trigger_level 后 15 分钟内跌回其下方（1分钟收盘确认）",
+     "structure": "single_put",
+     "legs": {
+      "long": 692
+     },
+     "max_debit": 240,
+     "target_zone": [
+      690.8,
+      689.5
+     ],
+     "target": 690.8,
+     "invalid_level": 693.8,
+     "regime": "range"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": null,
+     "pattern": "E",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 0,
+   "placeholder": true
   }
  ],
  "order_events": [],
