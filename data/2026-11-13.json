@@ -354,48 +354,33 @@
    "enabled_count": 0
   },
   {
-   "file": "daily_20261113_1153_8105f54262_pm",
+   "file": "daily_20261113_1203_5ee95bb397_pm",
    "kind": "pm",
-   "label": "盘中刷新 11:53 ET",
-   "sort_key": "11:53",
-   "generated_at": "11:53 ET",
+   "label": "盘中刷新 12:03 ET",
+   "sort_key": "12:03",
+   "generated_at": "12:03 ET",
    "data_source": "tws_local",
-   "refresh_status": "placeholder",
-   "placeholder_hint": true,
-   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-13（周五）· **盘中 10:53 刷新档（final）**\n【本档性质】**数据故障型全禁用档（A–E 全部 enabled: false）· 今日收工**\n【本档结论 = 今日无方案】不是「看空/看多」，是「取不到任何行情」⇒ 数据缺失日不交易。\n依据 midday_prompt.md【数据获取】末条：「若脚本也连不上 TWS：写明失败原因，\n当日 A–D 全部 enabled: false 并照常写出配置文件」✓\n依据父级硬规则 7：「不要把不可成交的形态当作可用方案」⇒ 今日收工 ✓\n==============================================================================\n【本档执行口径（2026-10-01 对齐 SPEC §4.2 第 14 条）】\n每次刷新都**独立从零推导**（步骤 A 独立扫盘 + 步骤 B 从零布点），再与上一版对比决定写什么。\n本档已完整执行 A → B → C → D；A 的取数环节**三通道全部失败** ⇒ 无价格结构可推导。\n防抖只约束「写什么」：本档写「维持全禁用」，但**不是**因为「上一版就这样」\n⇒ 是重新取数失败后的独立结论 ✓\n==============================================================================\n【数据获取时间 / 数据源（本轮 = 10:53–11:04 ET）】\n· clientId 7  tools/tws_snapshot.py（只读）→ 运行 >180s 挂起、stdout 0 字节 ⇒ SIGTERM 终止\nstderr: positions / open orders / completed orders / account updates for DUQ402112 /\nexecutions —— 五类请求全部 request timed out\n· clientId 23  一次性只读探针（readonly，75s 硬闹钟）→ connect 20s 成功、accounts 回 DUQ402112、\nreqCurrentTime OK（10:58:48 ET）⇒ **会话层活着**；但开工即收 2110/2103/2107/2157，\nqualifyContracts(QQQ) 永久挂起（secdef farm broken）⇒ 合约定义层不可用\n· clientId 25  已知 conId 320227571 直取（绕过 qualify，45s 硬闹钟）→ reqCurrentTime OK 11:00:42 ET，\nreqHistoricalData(QQQ, 1 min, 1 D) **25s 内无任何回包 ⇒ 挂起至闹钟**\n· tools/option_wall_scan.py 本档未运行：其依赖 reqTickers 行情，前两条通道已证明行情层零回包，\n重跑只会复制超时并多占一条会话 ⇒ 如实标注「无墙数据」\n（data/option_wall_latest.json mtime = 11/12 13:55 ET，属**残值**，禁止参与推导）\n· 未使用：clientId 42（盯盘进程）｜IBKR 插件（DSH 侧不存在）｜任何外部/昨日报价凑方案\n【IB 错误事件直取（非转述，10:58:27–10:59:42 ET）】\n2110 Connectivity between Trader Workstation and server is broken（上游断链）\n2103 Market data farm connection is broken: hfarm\n2107 HMDS data farm connection is inactive but should be available upon demand (apachmds)\n2157 Sec-def data farm connection is broken: secdefhk\n2151 Positions info is not available yet\n⇒ 与 08:53 / 09:23 / 09:53 三次探测**同一失败面**，至 10:58 ET **四小时未自愈**\n【三条不做】\n① 不拿 11/12 收盘 687.18 当今日现价 ✗  ② 不沿用早盘/11-12 点位充数 ✗\n③ 不写任何未经实报链核对的整数行权价 ✗\n==============================================================================",
+   "refresh_status": "final",
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-13（周五）· **盘中 11:53 刷新档（final）**\n【本档性质】**数据链路中断型全禁用档（A–E 全部 enabled: false）· 今日收工**\n【与上一档（11:04 ET）的本质差异】不是重复贴结论：\n① 三通道在本档**全部本轮实跑失败**（不引用上一档结论）；\n② 新增一处上一档未识别的**独立故障**——watcher 主循环僵死 2h46m，\n即\"方案层不可写\"之外还叠加\"执行层不可读\"，证据见 watcher_wedge 段；\n③ 回包异常逐条记录（2110/2103/2107/2157/2151 + connect 40.03s），供复盘定位上游断链时点。\n【恢复判据（两者同时满足才算行情层回来）】\nreqHistoricalData(QQQ, 1 min, 1 D) 返回 >0 根 **且** qualifyContracts 不再挂死\n⇒ 由后续 :53 档重做步骤 A–D；未满足前**不得布点**（禁止用估算值/前日点位凑数）。\n【三条不做】① 不拿 11/12 收盘 687.18 当今日现价 ✗ ② 不沿用早盘/11-12 点位充数 ✗\n③ 不写任何未经实报链核对的整数行权价 ✗\n==============================================================================",
    "market": {
     "spot": null,
-    "spot_note": "10:53–11:06 ET 三通道取数未取得任何报价（2110 上游断链 + hist 25s 无回包）；不拿 11/12 的 687.18 充当今日现价",
-    "prev_close": null,
-    "prev_close_note": "本档未取到可复核的当日基准价；11/12 收盘 687.18 仅作背景，不参与任何计算",
+    "spot_note": "三通道本轮均无报价（reqMktData 无 tick / snapshot 0 字节）；不拿 11/12 的 687.18 充当今日现价",
+    "prev_close": 687.18,
+    "prev_close_note": "11/12 收盘（watcher 日志 2026-11-12T16:01:13 ET spot=687.18），**仅作背景，不参与任何计算**",
     "rth_open": null,
     "rth_high": null,
     "rth_low": null,
     "rth_volume": null,
     "vwap": null,
-    "vwap_position": "降级模式无此数据",
     "regime": "unknown",
-    "regime_note": "0 根 1 分钟线 ⇒ 趋势/震荡不可判定；禁止按 11/12 或早盘结构推定",
-    "daily_iv_pct": null,
-    "expected_low": null,
-    "expected_high": null,
-    "atm_straddle": null,
-    "expected_range_note": "无 0DTE 链 ⇒ 无 ATM 跨式 mid、无 IV 可反解 ⇒ 剩余时间 1σ 算不出；不写模型估值冒充",
-    "put_call_ratio": null,
-    "put_call_ratio_note": "降级模式无此数据",
-    "nq_futures": "降级模式无此数据（不使用任何非 TWS 实报报价参与定价）",
-    "greeks": "降级模式无此数据",
-    "hv": "降级模式无此数据",
-    "iv_percentile": "降级模式无此数据",
-    "option_wall": "无墙数据（本档未运行 option_wall_scan：其依赖 reqTickers，行情层已证零回包；latest.json 为 11/12 13:55 ET 残值）",
-    "swing_levels": [],
-    "swing_levels_note": "0 根分钟线 ⇒ 给不出任何 (价位, 触及次数, 区间) 三元组 ⇒ 留空 []；早盘点位与 11/12 点位（683.56 / 680.00 / 675.50）一律不沿用"
+    "regime_note": "0 根 1 分钟线 ⇒ 趋势/震荡不可判定；禁止按 11/12 或早盘结构推定"
    },
    "regime_day": null,
    "scenarios": [
     {
      "name": "A-右侧突破（禁用·无数据）",
-     "rationale": "【10:53 刷新：禁用原因 = 数据源故障（2110 上游断链），非市况判断】\n无现价、无 1 分钟线、无 0DTE 链 ⇒ 触发位/行权价/target/invalid/expected_debit 五项全部无法生成。\n按【数据获取】末条一律置 false，禁止留占位符、禁止用 11/12 点位充数。\nA 类行权价必须来自实报链（整数档逐条核对）并落在 debit $120–200；本档无链 ⇒ 写任何数字都是编造。\n另：规则⑦ 要求「不得仅因市况禁用突破型」—— 本档 regime 仍为 trend，watcher G5b 闸门保留；禁用原因是数据不可得，不是市况。\n",
+     "rationale": "【禁用原因 = 数据源故障，非市况判断】无现价、无 1 分钟线、无 0DTE 链 ⇒ 触发位/行权价/target/\ninvalid_level/expected_debit 五项全部无法生成。A 类行权价必须来自实报链且为整美元档、debit 落在\n$120–200 —— 本档无链 ⇒ 写任何数字都是编造，故留 null。\n依规则⑦：regime 仍保留 trend、不因市况禁用（禁用理由只有\"数据不可得\"一条）。\n",
      "pattern": "A",
      "enabled": false,
      "trigger_level": null,
@@ -410,7 +395,7 @@
     },
     {
      "name": "B-右侧跌破（禁用·无数据）",
-     "rationale": "【10:53 刷新：禁用原因 = 数据源故障（hist 25s 无回包 / 无 tick）】\n无 bars ⇒ 无支撑簇、无量能中位数 ⇒「跌破 + 量能放大（≥ 前 30 根中位 ×5）」判据不成立；\n无链 ⇒ 无法核对 put 腿整数档与 debit 区间。置 false。\n",
+     "rationale": "同 A：无结构可布点。B 为突破型，按规则⑦不得仅因市况禁用 —— 本档 regime 保留 trend，\nwatcher G5b 闸门保留；禁用理由是行情层不可用，触发时也不可能拿到实时链定价。\n",
      "pattern": "B",
      "enabled": false,
      "trigger_level": null,
@@ -424,8 +409,8 @@
      "regime": "trend"
     },
     {
-     "name": "C-左侧回踩（禁用·无数据）",
-     "rationale": "【10:53 刷新：禁用原因 = 数据源故障（hist 25s 无回包 / 无 tick）】\nC 类要求「先跌破再收复」的 1 分钟收盘序列，无 bars ⇒ 触发条件无法定义；\n⑥-b 要求按 trigger × 1.0010 重定价并落在 $100–200，无链 ⇒ 无法核验。置 false。\n",
+     "name": "C-回踩确认（禁用·无数据）",
+     "rationale": "C 类需按 trigger_level × 1.0010 的最坏追价点定价（⑥-b），无触发位 ⇒ 无定价基准；\n亦无法用实报链核对整美元档（⑥ 红线）⇒ 留 null，不布点。\n",
      "pattern": "C",
      "enabled": false,
      "trigger_level": null,
@@ -439,8 +424,8 @@
      "regime": "any"
     },
     {
-     "name": "D-假突破反手（禁用·无数据）",
-     "rationale": "【10:53 刷新：禁用原因 = 数据源故障】\nD 依赖「突破后 15 分钟内收回」序列 + 实时价 ⇒ 无法布点；15 分钟观察窗需要连续分钟线，本档 0 根。置 false。\n",
+     "name": "D-假突破回落（禁用·无数据）",
+     "rationale": "D 类依赖\"突破后 15 分钟内回落\"的分时结构判定；本档 0 根分钟线 ⇒ 结构不存在，\n连\"是否已突破\"都无从判断 ⇒ 禁用。\n",
      "pattern": "D",
      "enabled": false,
      "trigger_level": null,
@@ -455,7 +440,7 @@
     },
     {
      "name": "E-横盘观望（数据源故障）",
-     "rationale": "【今日收工 · 10:53 复核仍无数据】按【数据获取】末条「数据缺失日不交易」：A–D 全禁用 + E 一并置 false，\n让 watcher 走「方案全禁用」分支并升 alert 级通知（SPEC §4.1 复盘改进 #1）——\n这正是数据故障应有的可见性，而不是静默空转。\n",
+     "rationale": "【今日不交易】A–D 全禁用 + E 一并置 false，让 watcher 走「方案全禁用」分支并升 alert 级通知\n（SPEC §4.1 复盘改进 #1）—— 数据故障必须有可见性，而不是静默空转。\n⚠️ 本档额外风险：watcher 主循环本身已僵死（见 watcher_wedge），该 alert 同样发不出来 ⇒\n需在看板/人工侧确认可见性，不能只依赖 watcher 通知。\n",
      "pattern": "E",
      "enabled": false,
      "trigger_level": null,
@@ -469,8 +454,7 @@
      "regime": null
     }
    ],
-   "enabled_count": 0,
-   "placeholder": true
+   "enabled_count": 0
   }
  ],
  "order_events": [],
