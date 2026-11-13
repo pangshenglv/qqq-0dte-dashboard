@@ -691,18 +691,18 @@
    "enabled_count": 0
   },
   {
-   "file": "daily_20261113_1453_e4a833e3af_pm",
+   "file": "daily_20261113_1453_6c81ab5f63_pm",
    "kind": "pm",
    "label": "盘中刷新 14:53 ET",
    "sort_key": "14:53",
    "generated_at": "14:53 ET",
    "data_source": "tws_local",
-   "refresh_status": "placeholder",
-   "placeholder_hint": true,
-   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-13（周五）· **盘中 14:53 刷新档（placeholder · 深度重推进行中）**\n【本档性质】**数据链路未恢复型全禁用档（A–E 全部 enabled: false）· 今日收工**\n【口径】midday_prompt.md（2026-10-01 重构版）：每档独立完整执行步骤 A→B→C→D，\n**不是**对上一版做\"维持/禁用\"处置。本轮 A/B 已完整执行，结论仍是\"无实报数据 ⇒ 无法布点\"，\n且**未**拿早盘/11-12 点位顶替（10/01 只剩一个不可达 A@744.5 的事故不再重演）。\n【与上一档（触发 12:53 / 13:02 ET 写入）的本质差异 —— 不是复制粘贴】\n① 三通道在本档**全部本轮重新实跑**（clientId 7 / 8 / 88），两次独立 kill 计时，未引用上一档运行结果；\n② 新增**本档独有的分层定位证据**：本档探针（clientId 31, readonly）证明**会话时钟层活着**\n（reqCurrentTime = 13:57:16 ET 且与真实时间一致）而**合约定义层挂死**（qualifyContracts 60s 无返回）\n⇒ 把\"整条 API 死了\"细化为\"登录/合约层未就绪，session 通道正常\"，与 IBC PRELOGON 时间线互相印证；\n③ 新增**热加载通道失效的直接证据**：本档 13:53 落 placeholder 后，watcher 日志仍停在 09:15:05、\nconfig_reload 计数仍为 0 ⇒ 即便写出可成交方案也不会被载入（上一档只能从 CPU 时间推断僵死）。\n【恢复判据（两者同时满足才算行情层回来）】\nreqHistoricalData(QQQ, 1 min, 1 D) 返回 >0 根 **且** qualifyContracts 不再挂死\n⇒ 由后续 :53 档重做步骤 A–D；未满足前**不得布点**（禁止估算值/前日点位凑数）。\n【三条不做】① 不拿 11/12 收盘 687.18 当今日现价 ✗ ② 不沿用早盘/11-12 点位充数 ✗\n③ 不写任何未经实报链核对的整数行权价 ✗\n==============================================================================",
+   "refresh_status": "final",
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-13（周五）· **盘中 14:53 刷新档（final）**\n【本档性质】**数据链路未恢复型全禁用档（A–E 全部 enabled: false）· 今日收工**\n【口径】midday_prompt.md（2026-10-01 重构版）：本档独立完整执行步骤 A→B→C→D，\n**不是**对上一版做\"维持/禁用\"处置；也未拿早盘/11-12 点位顶替（10/01 只剩不可达 A@744.5 的事故不重演）。\n【本档与上一档（触发 13:53）的本质差异 —— 四条本档独有实测，非复制粘贴】\n① 取数通道**五类全部本轮重新实跑**（clientId 7 / 8 / 88 / 33 / 35），计时逐条落档；\n② **新增分层恶化证据**：13:53 档 connect 尚可快速返回，本档 14:55 的 pm_analysis 直接\n在 `connectAsync → apiStart` 抛 **TimeoutError**（连不上，不只是行情层死）；\n14:58 的 conId 探针虽 connect 成功但**恰好卡在 60.0s 超时边界**才返回 ⇒ 会话层正在继续劣化；\n③ **新增绕层验证**：用**已知 conId 320227571 直连** reqHistoricalData，完全绕开挂死的\nqualifyContracts 合约定义层 —— 结果仍是 `Timeout` + `Error 366 No historical data query found`\n⇒ 证明\"拿不到 bars\"**不是** qualify 卡住造成的假象，而是行情农场本身未注册请求；\n④ **修正上一档的时间线口径错误**：IBC 冷启动 18:30:06 CST = **05:30:06 ET**（上一档写成 06:30 ET，\n时差算错 1 小时，同一档内 loginFail 又写 05:42 ET 自相矛盾）⇒ 故障已持续 **9h23m**（非 7h29m）。\n【恢复判据（两者同时满足才算行情层回来）】\nreqHistoricalData(QQQ, 1 min, 1 D) 返回 >0 根 **且** qualifyContracts 不再挂死\n⇒ 本档两者**均未满足**（bars=0 / Error 366；qualify 30s 无返回）⇒ 不得布点。\n【三条不做】① 不拿 11/12 收盘 687.18 当今日现价 ✗ ② 不沿用早盘/11-12 点位充数 ✗\n③ 不写任何未经实报链核对的整数行权价 ✗\n==============================================================================",
    "market": {
     "spot": null,
-    "spot_note": "本档三条取数通道 + 一条只读探针全部无报价（stdout 0 字节 / reqMktData 无 tick）；不拿 11/12 的 687.18 充当今日现价",
+    "spot_note": "本档五层探测（clientId 7/8/88/33/35）全部无报价（stdout 0 字节 / reqMktData 全 nan）；不拿 11/12 的 687.18 充当今日现价",
     "prev_close": 687.18,
     "prev_close_note": "11/12 收盘（watcher 日志 2026-11-12T16:01:13 ET spot=687.18），**仅作背景，不参与任何计算**",
     "rth_open": null,
@@ -714,7 +714,7 @@
     "regime_note": "0 根 1 分钟线 ⇒ 趋势/震荡不可判定；禁止按 11/12 或早盘结构推定",
     "swing_levels": [],
     "swing_levels_note": "步骤 A.d 无法满足：0 根 1 分钟线，无（价位, 触及次数, 区间）三元组可给；不顶替、不编造",
-    "option_wall": "无墙数据（option_wall_scan 本轮 stdout 0 字节、缓存为 11/12 13:55 ET 残值，已禁用）",
+    "option_wall": "无墙数据（option_wall_scan 本档 stdout 0 字节；缓存 11/12 13:55 ET 残值已禁用）",
     "daily_iv_pct": null,
     "expected_low": null,
     "expected_high": null,
@@ -731,7 +731,7 @@
    "scenarios": [
     {
      "name": "A-右侧突破（禁用·无数据）",
-     "rationale": "【禁用原因 = 数据源故障，非市况判断】无现价、无 1 分钟线、无 0DTE 链 ⇒ 触发位/行权价/target/invalid_level/expected_debit 五项全部无法生成。A 类行权价必须来自实报链且为整美元档、debit 落在 $120–200 —— 本档无链 ⇒ 写任何数字都是编造，故留 null。依规则⑦：regime 仍保留 trend、不因市况禁用（禁用理由只有「数据不可得」一条，保留 watcher G5b 闸门）。",
+     "rationale": "【禁用原因 = 数据源故障，非市况判断】无现价、无 1 分钟线、无 0DTE 链 ⇒ 触发位/行权价/target/invalid_level/expected_debit 五项全部无法生成。A 类行权价必须来自实报链且为整美元档、debit 落在 $120–200 —— 本档无链 ⇒ 写任何数字都是编造，故留 null。依规则⑦：regime 仍保留 trend、不因市况禁用（禁用理由只有\"数据不可得\"一条，保留 watcher G5b 闸门）。",
      "pattern": "A",
      "enabled": false,
      "trigger_level": null,
@@ -776,7 +776,7 @@
     },
     {
      "name": "D-假突破反手（禁用·无数据）",
-     "rationale": "D 类依赖「突破后 15 分钟内回落」的分时结构判定；本档 0 根分钟线 ⇒ 结构不存在，连「是否已突破」都无从判断 ⇒ 禁用。",
+     "rationale": "D 类依赖\"突破后 15 分钟内回落\"的分时结构判定；本档 0 根分钟线 ⇒ 结构不存在，连\"是否已突破\"都无从判断；且 15 分钟观察窗在剩余 37 分钟内也已不可完成 ⇒ 禁用。",
      "pattern": "D",
      "enabled": false,
      "trigger_level": null,
@@ -791,7 +791,7 @@
     },
     {
      "name": "E-横盘观望（数据源故障）",
-     "rationale": "【今日不交易】A–D 全禁用 + E 一并置 false，让 watcher 走「方案全禁用」分支并升 alert 级通知（SPEC §4.1 复盘改进 #1）—— 数据故障必须有可见性，而不是静默空转。⚠️ 本档额外风险：watcher 与 watchdog 均已僵死（见 watcher_wedge / watchdog_wedge），该 alert 同样发不出来 ⇒ 必须由人工/看板侧确认可见性。",
+     "rationale": "【今日不交易】A–D 全禁用 + E 一并置 false，让 watcher 走\"方案全禁用\"分支并升 alert 级通知（SPEC §4.1 复盘改进 #1）—— 数据故障必须有可见性，而不是静默空转。⚠️ 本档额外风险：watcher 与 watchdog 均已僵死（见 watcher_wedge / watchdog_wedge），该 alert 同样发不出来 ⇒ 必须由人工/看板侧确认可见性。",
      "pattern": "E",
      "enabled": false,
      "trigger_level": null,
@@ -805,8 +805,7 @@
      "regime": null
     }
    ],
-   "enabled_count": 0,
-   "placeholder": true
+   "enabled_count": 0
   }
  ],
  "order_events": [],
