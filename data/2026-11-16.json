@@ -421,145 +421,227 @@
    "enabled_count": 1
   },
   {
-   "file": "daily_20261116_1053_c24b1ab4c4_pm",
+   "file": "daily_20261116_1053_34d66ae3ce_pm",
    "kind": "pm",
    "label": "盘中刷新 10:53 ET",
    "sort_key": "10:53",
    "generated_at": "10:53 ET",
    "data_source": "tws_local",
-   "refresh_status": "placeholder",
-   "placeholder_hint": true,
-   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-16（周一）· **盘中刷新档 09:53 ET**\n\n【本档性质】🔴 数据故障档（data outage）—— 不是「维持」，也不是「今日无机会」\n根因：IBKR 上游「异 IP 活跃会话」⇒ Error 162 ⇒ 全数据通道零返回。\n这和 08:53 那轮（B-13 同一文案）不是同一次事故：那次 09:21 自愈；这次连实时 tick 一起断。\n\n【故障时间线（机器日志原文，非推测）】\n· 09:36:05 / 09:41:04 / 09:46:00 ET  watcher market_snapshot 正常（spot 667.72 / 669.20 / 670.29）\n· 09:43:08 ET  最后一次**价格变化**（670.29）；此后 5s tape 恒定不变 = 行情已死\n· 09:43:24 ET  watcher: \"rt bars 持续静默，切换 tick 流聚合\"（tick_fallback）\n· 09:49:22 ET  Socket disconnect；09:49:48 \"今日无历史K线返回\"（backfill_failed）\n· 09:49:51 ET  重连成功（数据仍空）\n· 09:55 ET     IB Gateway 崩溃 → IBC 自动重启（新 PID 67579）；09:55:34 登录完成、7497 起监听\n· 09:55:22 ET  watcher 再次 Socket disconnect → 09:55:48 backfill 又失败 → 09:55:51 重连 ok\n· 09:53–09:59 ET 本档四次只读探测，三通道全空（见 data_health.probes）\n\n【三通道探测结果（本档实测，clientId 7/8 + 墙扫描）】\n· tools/tws_snapshot.py      ok:true 但 snapshot 全 null｜today_1min.bars=0｜0DTE 链 0/0 有效\n· tools/pm_analysis.py       bars_rth=0｜prev_close null｜8 个合约 bid/ask/mid 全 null\n· tools/option_wall_scan.py  spot=0.0｜call_vol=0｜put_vol=0｜walls=[] （无墙数据）\n· stderr 均报：Error 162 Historical Market Data Service error message:\nTrading TWS session is connected from a different IP address\n⇒ 与 docs/backlog.md B-13 同一文案；已知根因 = 同账户在 IBKR Mobile / 另一 TWS 有活跃会话\n\n【为什么不写点位（口径依据）】\n· 规则 ⑥「行权价必须用实报链取」+ ⑥-c「expected_debit 必填」⇒ 链 0/0 时**任何**形态都写不出\n可核对的行权价与 debit；硬写就是编造 ⇒ 触碰「禁止编造行情数据」红线。\n· 步骤 A.e「剩余时间 1σ」需 ATM 跨式实报 mid 反解 IV ⇒ 本档 0 个有效期权报价 ⇒ 无法折算。\n· 步骤 A.d 要求当日**分时**结构 ≥3 支撑 + ≥3 阻力；当日 1 分钟线 0 根，只有 09:30–09:43 的\n13 分钟 tick 片段 ⇒ 不足以量化全时段摆动位（片段见 market.tape_fragment，已标注不可用）。\n· 依 midday_prompt.md L68 故障兜底：**A–D 全部 enabled:false，照常写出配置文件** ✓\n（这不是规则 ①-b 意义上的「全禁用收尾」——①-b 的前提是\"有数据可重布点\"，本档是数据源整体失效）\n\n【机会成本 = 0 分钟】watcher 的 no_entries_before_time = 10:00 ET ⇒ 09:53 档本就不允许开新仓；\n且 require_first_pm 要求 refresh_status=final 才放行 ⇒ 本档禁用不额外掐掉任何可交易窗口。\n下一档 10:53 ET 若数据恢复，必须**从零完整重推**（不得沿用本档，也不得沿用 09:25 盘前点位）。\n==============================================================================",
+   "refresh_status": "final",
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-16（周一）· **盘中刷新档 10:53 ET**\n\n【本档性质】✅ 数据已恢复档 —— 从零完整重推（步骤 A→B→C→D 全做）\n09:53 档为 Error 162 数据故障（A–D 全禁用、无点位）；本档 10:30:07 ET 通道恢复后重做。\n\n【恢复时间线（机器日志原文）】\n· 10:17:29 / 10:23:29 / 10:29:30 ET  Socket disconnect ×3（Error 162 余波）\n· 10:30:07 ET  watcher `backfill` 成功：bars=60、vwap=667.61 ⇒ VWAP/穿越/市况闸门全部预热 ✓\n· 10:31:05 ET  `regime_day`：trend｜range_pct 1.35｜vwap_crossings 3\n· 10:53:39 ET  本档取数：tws_snapshot ok=true，链 **50/50 双边 REALTIME**、今日 1 分钟线 85 根 ✓\n· 11:01:32 ET  tools/bars_dump.py 返回 0 根；11:01:54 ET tws_snapshot 全 null（通道再次抖动）\n⇒ 本档**以 10:54:31 ET 的完整链 + 10:55:22 ET 的 86 根分钟线为唯一报价依据**，\n11:01 的两次空返回只作数据健康披露，**未用任何估算值顶替**（见 data_health）\n\n【本档结论一句话】09:53 档的\"全禁用\"作废：现价 668.67 已从日内低点 663.07 反弹 5.6 点、\n站上 VWAP 667.27；按**当前分时结构**重布 A/B/C/D 四形态，全部有实报腿、全部合规、RR 0.55~1.00。\n==============================================================================",
    "market": {
-    "spot": null,
-    "spot_note": "无实时价。最后有效 tick = 670.29 @ 09:43:08 ET（watcher 本地 5s tape 原文）；此后恒定 = 行情静默，不得当现价用",
-    "last_valid_tick": 670.29,
-    "last_valid_tick_at": "09:43:08 ET",
-    "rth_open": 670.83,
-    "rth_open_note": "09:30:02 ET tape 首笔（13 分钟片段，非完整 RTH 口径）",
-    "rth_high": 671.41,
-    "rth_low": 666.8,
-    "tape_range_pts": 4.61,
-    "tape_range_pct": 0.691,
-    "tape_window": "09:30:02–09:43:08 ET（158 个 5s tick；此后静默 ⇒ 非全时段结构）",
-    "vwap_tape": 668.94,
-    "vwap_note": "watcher 在 09:43 时点算出的 VWAP（源其自身 tape），非当前口径；本档不复算",
+    "spot": 668.67,
+    "spot_at": "11:01 ET（watcher 5s tape 原文；10:56 为 668.35）",
+    "spot_note": "定价用的期权链 spot_ref = 667.61 @10:54:31 ET；现价与链基准差 +1.06 点（0.16%），所有 expected_debit 均按 trigger_level 重定价、不依赖现价 ⇒ 该差额只影响可达性判定，不影响报价合法性",
     "prev_close": 679.89,
-    "prev_close_note": "09:21 ET 盘前快照原值（本档未复取，通道为空）",
-    "gap": -8.36,
-    "daily_iv_pct": null,
-    "daily_iv_pct_note": "降级模式无此数据（无期权报价 ⇒ 无法反解 IV / 剩余 1σ）",
-    "expected_low": null,
-    "expected_high": null,
-    "atm_straddle": null,
-    "atm_straddle_note": "降级模式无此数据",
+    "rth_open": 671.04,
+    "rth_high": 672.15,
+    "rth_high_at": "09:45 ET",
+    "rth_low": 663.07,
+    "rth_low_at": "10:26 ET",
+    "rth_range": 9.08,
+    "rth_range_pct": 1.37,
+    "gap": -8.85,
+    "gap_pct": -1.3,
+    "gap_note": "跳空低开后最低 663.07（-2.49%），10:26 后 V 型反弹 5.6 点；缺口回补位仍远在 679.89（+1.68%）",
+    "volume_rth_1min": 9183440,
+    "volume_snapshot": 13117121,
+    "volume_note": "RTH 分时口径 9,183,440（86 根 1 分钟求和）｜快照累计 13,117,121（含盘前）",
+    "vwap": 667.272,
+    "vwap_note": "由 86 根 1 分钟典型价加权实算（watcher 自身 10:30 回填值 667.61 略有差异，以本档实算为准）",
+    "vwap_position": "现价 668.67 位于 VWAP 上方 +1.40 点（+0.21%）⇒ 日内多空已翻多；10:26 低点后 2 次收盘上穿 VWAP",
+    "regime": "trend",
+    "regime_basis": "振幅 1.37% > 0.6% 阈值 ⇒ 非震荡日（watcher 10:31 自判 trend，range_pct 1.35、crossings 3）；单边下杀 672.15→663.07 后单边上攻 ⇒ 趋势市（双向皆可，非缠绕）",
+    "daily_iv_pct": 0.957,
+    "daily_iv_basis": "ATM 668 跨式实报 mid = C 2.27 + P 2.83 = 5.10 点 ⇒ 剩余 1σ = 5.10/0.7979 = 6.39 点 = 0.957%（由实报 mid 反解，非模型估值；10:54:31 ET 链、剩余 5.09 小时至 16:00）",
+    "expected_low": 662.28,
+    "expected_high": 675.06,
+    "expected_range_basis": "668.67 × (1 ± 0.957%)；与 ATM 跨式隐含一致",
+    "atm_straddle": 5.1,
+    "iv_smile_note": "按链逐档反解：call 侧 iv 16.5%~18.7%、put 侧 17.7%~21.9%（put 偏斜约 +2 个波动点，符合跳空低开后的下行保护需求）",
     "put_call_ratio": "降级模式无此数据",
+    "put_call_ratio_note": "tws_snapshot 链只含 bid/ask/mid/last，无成交量 ⇒ 不给量比，禁止估算",
     "nq_futures": "降级模式无此数据",
+    "iv_percentile": "降级模式无此数据",
     "greeks": "降级模式无此数据",
     "hv": "降级模式无此数据",
     "option_wall": "无墙数据",
-    "tape_fragment": {
-     "note": "⚠️ 仅供故障复盘：09:30–09:43 的 5s tick 驻留带（0.4 聚类），**不是**步骤 A.d 的摆动位清单，**不得**用作触发位/失效位",
-     "bands": [
+    "option_wall_note": "option_wall_scan.py 10:57 ET 实跑：ok:true 但 spot=0.0、walls=[]（成交量为 0）⇒ 无墙数据，未编造",
+    "swings": {
+     "note": "步骤 A.d 本档量化：5 根窗口极值 + 0.4 美元聚类（tools/swing_levels.py，源 86 根分钟线）；\"触及\"= 摆动极值命中次数，\"bar覆盖\"= 1 分钟 K 线 [low,high] 覆盖该价的根数（衡量驻留强度）",
+     "support": [
       {
-       "price": 668.4,
-       "ticks": 26
+       "price": 668.28,
+       "zone": "668.20–668.40",
+       "swing_touches": 1,
+       "bar_cov": 15,
+       "at": "09:55 回踩低点（现价正下方第一簇）"
       },
       {
-       "price": 669.2,
-       "ticks": 22
+       "price": 667.61,
+       "zone": "667.27–667.61",
+       "swing_touches": 1,
+       "bar_cov": 9,
+       "at": "09:41 低点 + 当日 VWAP 667.27 同处"
       },
       {
-       "price": 668.8,
-       "ticks": 21
+       "price": 666.43,
+       "zone": "666.27–666.60",
+       "swing_touches": 2,
+       "bar_cov": 9,
+       "at": "09:35 与 10:49 双触"
       },
       {
-       "price": 669.6,
-       "ticks": 14
+       "price": 665.36,
+       "zone": "665.17–665.55",
+       "swing_touches": 2,
+       "bar_cov": 27,
+       "at": "10:00 与 10:45 双触（驻留最密集）"
       },
       {
-       "price": 668.0,
-       "ticks": 14
+       "price": 664.15,
+       "zone": "663.88–664.67",
+       "swing_touches": 6,
+       "bar_cov": 10,
+       "at": "10:07/10:12/10:16/10:21/10:37/10:41 六触 ← 主支撑"
       },
       {
-       "price": 670.0,
-       "ticks": 13
-      },
-      {
-       "price": 671.2,
-       "ticks": 9
+       "price": 663.07,
+       "zone": "663.00–663.20",
+       "swing_touches": 1,
+       "bar_cov": 1,
+       "at": "10:26 当日最低"
       }
      ],
-     "extremes": "high 671.41 @ 09:39:23｜low 666.80 @ 09:35:27｜末值 670.29 @ 09:43:08"
-    }
+     "resistance": [
+      {
+       "price": 669.1,
+       "zone": "669.00–669.20",
+       "swing_touches": 1,
+       "bar_cov": 14,
+       "at": "09:49 反弹高点（现价正上方第一簇 = 主阻力）"
+      },
+      {
+       "price": 670.41,
+       "zone": "670.40–670.50",
+       "swing_touches": 1,
+       "bar_cov": 14,
+       "at": "09:57 反弹高点"
+      },
+      {
+       "price": 670.97,
+       "zone": "670.90–671.00",
+       "swing_touches": 1,
+       "bar_cov": 8,
+       "at": "09:50 反弹高点（与 670.41 构成 670.4–671.0 压制带）"
+      },
+      {
+       "price": 671.53,
+       "zone": "671.50–671.70",
+       "swing_touches": 1,
+       "bar_cov": 5,
+       "at": "09:39 反抽高点；并与 11/13 前日低点 671.68 重合"
+      },
+      {
+       "price": 672.15,
+       "zone": "672.10–672.20",
+       "swing_touches": 1,
+       "bar_cov": 1,
+       "at": "09:45 当日最高"
+      }
+     ]
+    },
+    "gap_fill_target": 679.89,
+    "gap_fill_note": "缺口回补位 679.89 距现价 +1.68% = 1.75σ ⇒ 本档不可作为目标（超出剩余 1σ）"
    },
    "regime_day": null,
    "scenarios": [
     {
-     "name": "A-右侧突破（禁用·数据故障）",
-     "rationale": "【禁用 = 数据源整体失效，不是市况判断】\n① 当日 1 分钟线 0 根 ⇒ 无法按 A.d 定位\"主阻力之上\"的突破位；\n② 0DTE 链 0/0 有效报价 ⇒ 无法按⑥逐腿核对行权价、无法按⑥-c 算 expected_debit；\n③ 无 ATM 跨式 mid ⇒ 无剩余 1σ ⇒ 无法校验 target 可达性。\n任一不满足即不得写出（红线：行权价必须实报可核对）。\n【09:30–09:43 片段（不可用）】high 671.41、末值 670.29；但行情已静默 16 分钟以上，片段价不构成\"当前结构\"。\n",
+     "name": "A-右侧突破 669.15",
+     "rationale": "【结构】669.10 = 09:49 反弹高点 = 现价正上方最近的一簇（主阻力，bar 覆盖 14 根）；2 连收盘站上 = 突破该簇，去摸 670.4–671.0 压制带 → 671.53（11/13 前日低点）→ 675。\n【目标】675.40 = 缺口下沿首道压制（整数关 675，早盘档同一位），距触发位 6.25 点 = 0.934% ≥ 0.35% ✓、= 0.98σ ≤ 剩余 1σ 6.39 ✓（规则⑤：≥ 1σ/2 = 3.20 ✓）。\n【单腿】673C：按 ⑥-c 多头追价方向取 669.15×1.0025 = 670.82 重定价 ⇒ mid 1.557 = $156（$120–200 目标区间内）；G3 上限 156×1.25 = $195 ≤ max_debit 240 ✓（capital.yaml）；链上 673C 实报 bid 0.66 / ask 0.67（spread 0.01 ≤ 0.30 ✓）；触发位处实价约 $103（≥ min_debit 100 ✓，见 selfcheck 容错说明）。\n【RR】目标 675.40 处 1h 估值 $270 / 2h $305；失效位 667.20 处 $6 ⇒ RR 0.76~1.00。\n【止损】标的 1 分钟收盘跌破 667.20（= VWAP 667.27 与 09:41 低点 667.61 双双失守，-0.291% ≥ invalid_min_gap 0.25%）；或权利金灾难线 -45%；最迟 15:30 ET 清仓。\n【VWAP】现价与触发位均在 VWAP 上方 ⇒ 满足 vwap_filter（突破型须顺 VWAP 方位）✓\n【事件】12:00 ET Warsh 讲话：11:30 后不新开、11:45 前清仓。\n",
      "pattern": "A",
-     "enabled": false,
-     "trigger_level": null,
+     "enabled": true,
+     "trigger_level": 669.15,
      "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
      "structure": "single_call",
-     "legs": {},
+     "legs": {
+      "long": 673
+     },
      "max_debit": 240,
-     "target_zone": [],
-     "target": null,
-     "invalid_level": null,
+     "target_zone": [
+      673.4,
+      675.4
+     ],
+     "target": 675.4,
+     "invalid_level": 667.2,
      "regime": "trend"
     },
     {
-     "name": "B-右侧跌破（禁用·数据故障）",
-     "rationale": "【禁用原因同 A：无分钟线 / 无链 / 无 IV】。片段 low 666.80 @ 09:35:27 是本档唯一可指的下游位置，\n但那是 24 分钟前的历史，不能当今日支撑锚点（A.d 明令禁止沿用旧结构）。\n",
+     "name": "B-跌破追空 666.30",
+     "rationale": "【结构】666.43 = 09:35 与 10:49 双触低点簇（区间 666.27–666.60）。跌破 = 反弹结构破坏，下方依次 665.36（bar 覆盖 27 根，驻留最密）→ 664.15（六触主支撑）→ 663.07（当日低点）。\n【目标】660.00 = 剩余 1σ 下沿（668.67-6.39 = 662.28，取整至 660 整数关且低于 11/09 低点 662.02），距触发位 6.30 点 = 0.946% ✓、= 0.99σ ≤ 6.39 ✓。第一目标区分批 662.02。\n【单腿】662P：按 ⑥-c 空头追价方向取 666.30×0.9975 = 664.63 重定价 ⇒ mid 1.601 = $160；G3 上限 160×1.25 = $200 ≤ 240 ✓；链上 662P 实报 bid 0.78 / ask 0.79（spread 0.01 ✓）；触发位处实价约 $110（≥ min_debit 100 ✓）。\n【RR】目标 660.00 处 1h $246 / 2h $288；失效位 668.90 处 $5 ⇒ RR 0.55~0.82。\n【止损】标的 1 分钟收盘收复 668.90（= 夺回主阻力 669.10 下沿，+0.390% ≥ 0.25%）即离场；或 -45% 灾难线。\n【VWAP】触发时价格必在 VWAP（667.27）下方 ⇒ 满足 vwap_filter ✓\n",
      "pattern": "B",
-     "enabled": false,
-     "trigger_level": null,
+     "enabled": true,
+     "trigger_level": 666.3,
      "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
      "structure": "single_put",
-     "legs": {},
+     "legs": {
+      "long": 662
+     },
      "max_debit": 240,
-     "target_zone": [],
-     "target": null,
-     "invalid_level": null,
+     "target_zone": [
+      662.02,
+      660.0
+     ],
+     "target": 660.0,
+     "invalid_level": 668.9,
      "regime": "trend"
     },
     {
-     "name": "C-左侧回踩确认（禁用·数据故障）",
-     "rationale": "【禁用原因同 A】。C 的入场价距触发位只允许 0.10%（anti_chase 按形态覆盖），无实时报价时\n连\"是否已追高\"都无法判定 ⇒ 强行布点必被 G3 拒或成交在错误价位（9/29 C4 教训）。\n",
+     "name": "C-回踩确认 664.20",
+     "rationale": "【结构】664.15 = 主支撑（六触：10:07/10:12/10:16/10:21/10:37/10:41，区间 663.88–664.67）。跌破后 1 分钟收盘重新站上 = 「假破底 + 收回」的左侧确认，做向 667.61（VWAP 簇）→ 669.10 的反抽。不接下跌途中的刀：必须等收盘站上才算触发。\n【目标】669.10 = 主阻力，距触发位 4.90 点 = 0.738% ✓、= 0.77σ ✓。第一目标区分批 667.60。\n【单腿】667C：按 ⑥-b C 类专用口径取 664.20×1.0010 = 664.86 最坏追价点重定价 ⇒ mid 1.621 = $162；G3 上限 162×1.25 = $202.5 ≤ 240 ✓；链上 667C 实报 bid 2.78 / ask 2.80（spread 0.02 ✓）；触发位处实价约 $139（≥ 100 ✓）。\n【RR】目标 669.10 处 1h $248 / 2h $287；失效位 662.30 处 $14 ⇒ RR 0.58~0.84。\n【止损】标的 1 分钟收盘跌破 662.30（= 当日低点 663.07 下方 0.77，-0.286% ≥ 0.25%）⇒ 六触支撑彻底失效；或 -45% 灾难线。\n【可达性】距现价 4.47 点 > 振幅/3（3.03）⇒ 本档不可即时触发，属右侧预留（规则①-b 由 A/B/D 满足）。\n",
      "pattern": "C",
-     "enabled": false,
-     "trigger_level": null,
+     "enabled": true,
+     "trigger_level": 664.2,
      "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
      "structure": "single_call",
-     "legs": {},
+     "legs": {
+      "long": 667
+     },
      "max_debit": 240,
-     "target_zone": [],
-     "target": null,
-     "invalid_level": null,
+     "target_zone": [
+      667.6,
+      669.1
+     ],
+     "target": 669.1,
+     "invalid_level": 662.3,
      "regime": "any"
     },
     {
-     "name": "D-假突破反手（禁用·数据故障）",
-     "rationale": "【禁用原因同 A】。D 依赖\"突破后 15 分钟内回跌\"的分钟级判定；无分钟线即无法武装，\n且 D 的 put 腿在 671 附近需 ~658 档，而本次实报链 0/0 —— 连档位存在性都无法确认。\n",
+     "name": "D-假突破反手 671.60",
+     "rationale": "【结构】671.53 = 09:39 反抽高点，且与 11/13 前日低点 671.68 重合 = 今日全上午被反复拒绝的上沿；671.60 突破后再跌回 = 假突破反手，做向 666.43（双触）→ 665.36 的回撤。\n【目标】665.40 = 665.36 支撑簇（bar 覆盖 27 根），距触发位 6.20 点 = 0.923% ✓、= 0.97σ ✓。\n【单腿】668P：按 ⑥-c 空头追价方向取 671.60×0.9975 = 669.92 重定价 ⇒ mid 1.703 = $170；G3 上限 170×1.25 = $212.5 ≤ 240 ✓；链上 668P 实报 bid 2.81 / ask 2.84（spread 0.03 ✓）；触发位处实价约 $115（≥ 100 ✓）。\n【RR】目标 665.40 处 1h $287 / 2h $322；失效位 673.60 处 $8 ⇒ RR 0.72~0.93（本档最优）。\n【止损】标的 1 分钟收盘升破 673.60（= 日高 672.15 上方 1.45，+0.298% ≥ 0.25%）⇒ 突破为真、假突破假设作废；或 -45%。\n【注意】D 豁免 G5a（stale_cross_exempt_patterns），本位被反复戳是其特征而非噪声 ✓\n",
      "pattern": "D",
-     "enabled": false,
-     "trigger_level": null,
+     "enabled": true,
+     "trigger_level": 671.6,
      "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
      "structure": "single_put",
-     "legs": {},
+     "legs": {
+      "long": 668
+     },
      "max_debit": 240,
-     "target_zone": [],
-     "target": null,
-     "invalid_level": null,
+     "target_zone": [
+      666.43,
+      665.4
+     ],
+     "target": 665.4,
+     "invalid_level": 673.6,
      "regime": "any"
     },
     {
-     "name": "E-不交易（本档生效）",
-     "rationale": "【本档唯一有效结论】数据通道故障（Error 162：历史行情与实时 tick 双断）⇒ 09:53 档不交易。\n可在 10:53 档重新布点的恢复条件（三者须同时满足）：\n  ① 任一通道能取到**当日 RTH 分钟线**（bars > 0）；\n  ② 0DTE 链能取到双边报价（valid_quotes ≥ 20 且 quote_type 非空）；\n  ③ 能由 ATM 跨式实报 mid 反解出剩余 1σ。\n恢复前即使 watcher 收到触发信号也没有报价可用 ⇒ 任何 enabled 形态都是空挂。\n",
+     "name": "E-不交易条件",
+     "rationale": "【本档不适用「全禁用」】A/B/C/D 四形态均已 armed，E（横盘观望）置 false 以免与四形态语义冲突。\n【人工观望条件】① 价格在 667.27（VWAP）–669.10 之间反复穿越且未触发任一形态 ⇒ 不追；② 11:30–12:30 ET 事件窗口内不新开（12:00 Warsh 讲话）；③ 12:30 后由 11:53 档重估。\n",
      "pattern": "E",
-     "enabled": true,
+     "enabled": false,
      "trigger_level": null,
      "trigger_rule": null,
      "structure": null,
@@ -571,8 +653,7 @@
      "regime": null
     }
    ],
-   "enabled_count": 1,
-   "placeholder": true
+   "enabled_count": 4
   }
  ],
  "order_events": [],
