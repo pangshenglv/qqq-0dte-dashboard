@@ -419,6 +419,160 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261116_1053_c24b1ab4c4_pm",
+   "kind": "pm",
+   "label": "盘中刷新 10:53 ET",
+   "sort_key": "10:53",
+   "generated_at": "10:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-16（周一）· **盘中刷新档 09:53 ET**\n\n【本档性质】🔴 数据故障档（data outage）—— 不是「维持」，也不是「今日无机会」\n根因：IBKR 上游「异 IP 活跃会话」⇒ Error 162 ⇒ 全数据通道零返回。\n这和 08:53 那轮（B-13 同一文案）不是同一次事故：那次 09:21 自愈；这次连实时 tick 一起断。\n\n【故障时间线（机器日志原文，非推测）】\n· 09:36:05 / 09:41:04 / 09:46:00 ET  watcher market_snapshot 正常（spot 667.72 / 669.20 / 670.29）\n· 09:43:08 ET  最后一次**价格变化**（670.29）；此后 5s tape 恒定不变 = 行情已死\n· 09:43:24 ET  watcher: \"rt bars 持续静默，切换 tick 流聚合\"（tick_fallback）\n· 09:49:22 ET  Socket disconnect；09:49:48 \"今日无历史K线返回\"（backfill_failed）\n· 09:49:51 ET  重连成功（数据仍空）\n· 09:55 ET     IB Gateway 崩溃 → IBC 自动重启（新 PID 67579）；09:55:34 登录完成、7497 起监听\n· 09:55:22 ET  watcher 再次 Socket disconnect → 09:55:48 backfill 又失败 → 09:55:51 重连 ok\n· 09:53–09:59 ET 本档四次只读探测，三通道全空（见 data_health.probes）\n\n【三通道探测结果（本档实测，clientId 7/8 + 墙扫描）】\n· tools/tws_snapshot.py      ok:true 但 snapshot 全 null｜today_1min.bars=0｜0DTE 链 0/0 有效\n· tools/pm_analysis.py       bars_rth=0｜prev_close null｜8 个合约 bid/ask/mid 全 null\n· tools/option_wall_scan.py  spot=0.0｜call_vol=0｜put_vol=0｜walls=[] （无墙数据）\n· stderr 均报：Error 162 Historical Market Data Service error message:\nTrading TWS session is connected from a different IP address\n⇒ 与 docs/backlog.md B-13 同一文案；已知根因 = 同账户在 IBKR Mobile / 另一 TWS 有活跃会话\n\n【为什么不写点位（口径依据）】\n· 规则 ⑥「行权价必须用实报链取」+ ⑥-c「expected_debit 必填」⇒ 链 0/0 时**任何**形态都写不出\n可核对的行权价与 debit；硬写就是编造 ⇒ 触碰「禁止编造行情数据」红线。\n· 步骤 A.e「剩余时间 1σ」需 ATM 跨式实报 mid 反解 IV ⇒ 本档 0 个有效期权报价 ⇒ 无法折算。\n· 步骤 A.d 要求当日**分时**结构 ≥3 支撑 + ≥3 阻力；当日 1 分钟线 0 根，只有 09:30–09:43 的\n13 分钟 tick 片段 ⇒ 不足以量化全时段摆动位（片段见 market.tape_fragment，已标注不可用）。\n· 依 midday_prompt.md L68 故障兜底：**A–D 全部 enabled:false，照常写出配置文件** ✓\n（这不是规则 ①-b 意义上的「全禁用收尾」——①-b 的前提是\"有数据可重布点\"，本档是数据源整体失效）\n\n【机会成本 = 0 分钟】watcher 的 no_entries_before_time = 10:00 ET ⇒ 09:53 档本就不允许开新仓；\n且 require_first_pm 要求 refresh_status=final 才放行 ⇒ 本档禁用不额外掐掉任何可交易窗口。\n下一档 10:53 ET 若数据恢复，必须**从零完整重推**（不得沿用本档，也不得沿用 09:25 盘前点位）。\n==============================================================================",
+   "market": {
+    "spot": null,
+    "spot_note": "无实时价。最后有效 tick = 670.29 @ 09:43:08 ET（watcher 本地 5s tape 原文）；此后恒定 = 行情静默，不得当现价用",
+    "last_valid_tick": 670.29,
+    "last_valid_tick_at": "09:43:08 ET",
+    "rth_open": 670.83,
+    "rth_open_note": "09:30:02 ET tape 首笔（13 分钟片段，非完整 RTH 口径）",
+    "rth_high": 671.41,
+    "rth_low": 666.8,
+    "tape_range_pts": 4.61,
+    "tape_range_pct": 0.691,
+    "tape_window": "09:30:02–09:43:08 ET（158 个 5s tick；此后静默 ⇒ 非全时段结构）",
+    "vwap_tape": 668.94,
+    "vwap_note": "watcher 在 09:43 时点算出的 VWAP（源其自身 tape），非当前口径；本档不复算",
+    "prev_close": 679.89,
+    "prev_close_note": "09:21 ET 盘前快照原值（本档未复取，通道为空）",
+    "gap": -8.36,
+    "daily_iv_pct": null,
+    "daily_iv_pct_note": "降级模式无此数据（无期权报价 ⇒ 无法反解 IV / 剩余 1σ）",
+    "expected_low": null,
+    "expected_high": null,
+    "atm_straddle": null,
+    "atm_straddle_note": "降级模式无此数据",
+    "put_call_ratio": "降级模式无此数据",
+    "nq_futures": "降级模式无此数据",
+    "greeks": "降级模式无此数据",
+    "hv": "降级模式无此数据",
+    "option_wall": "无墙数据",
+    "tape_fragment": {
+     "note": "⚠️ 仅供故障复盘：09:30–09:43 的 5s tick 驻留带（0.4 聚类），**不是**步骤 A.d 的摆动位清单，**不得**用作触发位/失效位",
+     "bands": [
+      {
+       "price": 668.4,
+       "ticks": 26
+      },
+      {
+       "price": 669.2,
+       "ticks": 22
+      },
+      {
+       "price": 668.8,
+       "ticks": 21
+      },
+      {
+       "price": 669.6,
+       "ticks": 14
+      },
+      {
+       "price": 668.0,
+       "ticks": 14
+      },
+      {
+       "price": 670.0,
+       "ticks": 13
+      },
+      {
+       "price": 671.2,
+       "ticks": 9
+      }
+     ],
+     "extremes": "high 671.41 @ 09:39:23｜low 666.80 @ 09:35:27｜末值 670.29 @ 09:43:08"
+    }
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破（禁用·数据故障）",
+     "rationale": "【禁用 = 数据源整体失效，不是市况判断】\n① 当日 1 分钟线 0 根 ⇒ 无法按 A.d 定位\"主阻力之上\"的突破位；\n② 0DTE 链 0/0 有效报价 ⇒ 无法按⑥逐腿核对行权价、无法按⑥-c 算 expected_debit；\n③ 无 ATM 跨式 mid ⇒ 无剩余 1σ ⇒ 无法校验 target 可达性。\n任一不满足即不得写出（红线：行权价必须实报可核对）。\n【09:30–09:43 片段（不可用）】high 671.41、末值 670.29；但行情已静默 16 分钟以上，片段价不构成\"当前结构\"。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {},
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破（禁用·数据故障）",
+     "rationale": "【禁用原因同 A：无分钟线 / 无链 / 无 IV】。片段 low 666.80 @ 09:35:27 是本档唯一可指的下游位置，\n但那是 24 分钟前的历史，不能当今日支撑锚点（A.d 明令禁止沿用旧结构）。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {},
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认（禁用·数据故障）",
+     "rationale": "【禁用原因同 A】。C 的入场价距触发位只允许 0.10%（anti_chase 按形态覆盖），无实时报价时\n连\"是否已追高\"都无法判定 ⇒ 强行布点必被 G3 拒或成交在错误价位（9/29 C4 教训）。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {},
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手（禁用·数据故障）",
+     "rationale": "【禁用原因同 A】。D 依赖\"突破后 15 分钟内回跌\"的分钟级判定；无分钟线即无法武装，\n且 D 的 put 腿在 671 附近需 ~658 档，而本次实报链 0/0 —— 连档位存在性都无法确认。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {},
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "E-不交易（本档生效）",
+     "rationale": "【本档唯一有效结论】数据通道故障（Error 162：历史行情与实时 tick 双断）⇒ 09:53 档不交易。\n可在 10:53 档重新布点的恢复条件（三者须同时满足）：\n  ① 任一通道能取到**当日 RTH 分钟线**（bars > 0）；\n  ② 0DTE 链能取到双边报价（valid_quotes ≥ 20 且 quote_type 非空）；\n  ③ 能由 ATM 跨式实报 mid 反解出剩余 1σ。\n恢复前即使 watcher 收到触发信号也没有报价可用 ⇒ 任何 enabled 形态都是空挂。\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [],
