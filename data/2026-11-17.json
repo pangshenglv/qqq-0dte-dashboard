@@ -794,6 +794,164 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261117_1253_b58b70e702_pm",
+   "kind": "pm",
+   "label": "盘中刷新 12:53 ET",
+   "sort_key": "12:53",
+   "generated_at": "12:53 ET",
+   "data_source": "none_ib_gateway_down",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-17（周二）｜**11:53 ET 盘中刷新档（final · 数据中断）**\n【本档性质】09:53–15:53 每小时刷新序列第 3 轮（11:53 落盘）。\n步骤 A（独立扫盘）/ B（从零推导）**无法执行**：IB Gateway 自 11:10 ET 起登录失败，\n11:18 ET 起 API 完全失联（证据见 data_outage）。无现价 / 无 1 分钟线 / 无 0DTE 实报链 / 无墙数据。\n⇒ 按 config/midday_prompt.md【数据获取】末条硬约束执行：\n「若脚本也连不上 TWS：写明失败原因，当日 A–D 全部 enabled: false 并照常写出配置文件」\n⇒ 本档 **不新布点、不沿用旧点位交易**；四个形态全部 disabled，标注为占位。\n⚠️ **今日收工**（在网关恢复前不应有任何新开仓）；下一档 12:53 若数据恢复则从零重推。\n【为何不是「继续用 11:06 档点位」】11:06 档的 656.20 / 650.20 / 653.40 是基于 11:03 的实报结构；\n11:18 之后盘面（含 11:18 的 C 触发）已无任何可核实数据 ⇒ 沿用等于用**不可验证的旧结构**去下单，\n违反【硬性规则】①-b 与「禁止用估算值冒充实报」。宁可空仓到下一档。\n【取数尝试记录（本轮 11:53–11:59 ET）】\n· tools/tws_snapshot.py（clientId 7，只读）→ 运行 >240 秒无任何输出，判定挂死并终止\n· /tmp/probe_ib.py（clientId 9，只读）→ ib.connect(timeout=10) **70 秒仍未返回**（TCP 能连、握手不回）\n· 未用 clientId 42、未重启 watcher、未改任何工具代码、未连 IBKR 插件\n==============================================================================",
+   "market": {
+    "data_available": false,
+    "note": "以下数值为**末次可核实**快照（11:03 档实报链 + 11:16/11:18 watcher 日志），非当下报价；11:18 之后行情未知",
+    "spot_last_verified": 655.84,
+    "spot_last_verified_at": "11:18:05 ET（watcher 日志 market_snapshot / trigger_hit）",
+    "spot_at": "11:03:17 ET 实报快照 654.33（0DTE 链 put-call 平价反解 654.17，差 0.16 ⇒ 当时链内一致）",
+    "prev_close": 661.75,
+    "gap": 1.31,
+    "gap_note": "开盘 663.06（高开 +1.31）→ 09:42 高 663.36 → 10:54 低 646.64（−2.53%）→ 11:02 V 型反弹至 655.36；11:18 之后无数据",
+    "rth_open": 663.06,
+    "rth_high": 663.36,
+    "rth_low": 646.64,
+    "rth_high_time": "09:42",
+    "rth_low_time": "10:54",
+    "day_range": 16.72,
+    "day_range_pct": 2.53,
+    "vwap": 655.93,
+    "vwap_note": "11:03 自算 VWAP 655.93（Σ(典型价×量)/Σ量）；11:18 后无数据、不可推断现值",
+    "daily_iv_pct": 1.39,
+    "daily_iv_basis": "11:03 ATM 655 跨式实报 mid 7.24 点 ⇒ 全日 1σ 9.07 点（C 58.5% / P 61.2% 反解）；**11:18 后无数据，未重算**",
+    "remaining_1sigma": "降级模式无此数据",
+    "remaining_1sigma_basis": "无实时链 ⇒ 无法按剩余时间重算 1σ；沿用 11:03 档的 7.90 点仅作历史参考，**不得用于本档布点**",
+    "option_wall": "无墙数据",
+    "option_wall_note": "本轮 option_wall_scan.py 未执行（网关失联，无法取量墙）；11:02 档历史值：put 650(107,190)/645(94,913)，call 660(84,815)/665(84,274) —— 仅存档，不用于决策",
+    "nq_futures": "降级模式无此数据",
+    "iv_percentile": "降级模式无此数据",
+    "greeks": "降级模式无此数据",
+    "put_call_ratio": "降级模式无此数据",
+    "support": [
+     653.24,
+     651.57,
+     650.21,
+     648.43,
+     646.64
+    ],
+    "resistance": [
+     654.53,
+     655.03,
+     656.32,
+     658.18,
+     659.61,
+     661.38,
+     662.79
+    ],
+    "structure_basis": "支撑/阻力为 11:03 档基于 09:30–11:03 的 94 根 1 分钟线量化结果（5 根窗口极值 + 0.4 聚类 + 触及 episode 计数）。**本档未做新的摆动位量化**（无 11:18 后的 1 分钟线）⇒ 不得据此布点",
+    "pivot": 655.93
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-暂停·网关失联",
+     "rationale": "【为何禁用】不是结构失效，而是**无法验证当下结构**：11:53 无现价、无链、无墙。\ntrigger_level 656.20 及其腿 662C 均为 11:06 档的历史值，**仅作占位**，不得成交。\n【恢复条件】下一档（12:53）若网关已登录且 tws_snapshot 正常返回 ⇒ 按步骤 A/B 从零重推（禁止直接复用本行数值）。\n【历史依据】11:06 档判定 656.20 = VWAP 655.93 上方 0.27 + 656.32–656.89 台阶下沿（暴跌前平台）。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 656.2,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": 662
+     },
+     "max_debit": 240,
+     "target_zone": [
+      658.18,
+      660.2
+     ],
+     "target": 660.2,
+     "invalid_level": 654.5,
+     "regime": "trend"
+    },
+    {
+     "name": "B-暂停·网关失联",
+     "rationale": "【为何禁用】同上：无实时行情 ⇒ 不可评估可达性与空间，按 prompt 硬约束禁用。\n【今日实际表现】B 是本日唯一成交形态：10:11:09 开 652P @1.15，10:32:13 平 @1.26 = **+$11**（realized 11）。\n【恢复条件】下一档数据恢复后从零重推。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 650.2,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": 642
+     },
+     "max_debit": 240,
+     "target_zone": [
+      646.64,
+      645.5
+     ],
+     "target": 645.5,
+     "invalid_level": 652.2,
+     "regime": "trend"
+    },
+    {
+     "name": "C-暂停·网关失联",
+     "rationale": "【为何禁用·并且这是本日最关键的一条】11:18:05 C@653.40 已 confirmed 且通过 G1-G3（mid 1.22 / cap 161.2），\n但 watcher 随后冻结，**再未写出 order_submit / order_cancel** ⇒ 该笔从未完成下单链路（详见 data_outage.open_order_risk）。\nin_position 记为 false 的依据：logs 无 order_fill；但网关失联期间无法复核 IBKR 端 ⇒ 恢复后必须人工核对。\n【恢复条件】下一档数据恢复后从零重推；若人工核对确认已成交，则本形态为在仓状态、由 watcher 五层退出接管。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 653.4,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": 660
+     },
+     "max_debit": 240,
+     "target_zone": [
+      658.18,
+      658.6
+     ],
+     "target": 658.6,
+     "invalid_level": 651.6,
+     "regime": "any"
+    },
+    {
+     "name": "D-暂停·网关失联",
+     "rationale": "【为何禁用】无实时行情，与 A/B/C 同因。trigger_level 656.20 为 11:06 档历史值，仅作占位。\n【因「触发过」而禁用？】不是——本档禁用理由是数据中断（规则① 的 fresh-cross 语义未被援引）。\n【恢复条件】下一档从零重推。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 656.2,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": 647
+     },
+     "max_debit": 240,
+     "target_zone": [
+      650.74,
+      650.8
+     ],
+     "target": 650.8,
+     "invalid_level": 657.9,
+     "regime": "any"
+    },
+    {
+     "name": "E-今日收工",
+     "rationale": "【不交易条件（本档唯一生效的形态）】IB Gateway 11:10 ET 登录失败、11:18 起 API 全断 ⇒ **今日收工**。\n在网关恢复登录、IBKR 端挂单/持仓被人工核对、且下一档 pm 重新产出 final 之前，**不应有任何新开仓**。\n【为什么不「凑一个可用形态」】硬性规则①-b 要求「至少一个 enabled 形态的触发位距现价 ≤ 当日振幅/3」；\n现价本身已不可核实（末次 655.84 @11:18），任何布点都属编造 ⇒ 用伪点位满足可交易性要求，是更严重的红线。\n【时间闸】15:30 ET 强平；14:15 ET 后不开新仓（沿用）。\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [
