@@ -1434,6 +1434,15 @@
    "cap": 161.2,
    "live_expected": 66.8,
    "iv": 46.5
+  },
+  {
+   "ts": "2026-11-17T13:58:10.012791-05:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 655.84,
+   "gate": "G4",
+   "passed": false,
+   "reason": "Socket disconnect"
   }
  ],
  "roundtrips": [
