@@ -953,162 +953,227 @@
    "enabled_count": 1
   },
   {
-   "file": "daily_20261117_1353_53215b0f4a_pm",
+   "file": "daily_20261117_1353_f59a97e518_pm",
    "kind": "pm",
    "label": "盘中刷新 13:53 ET",
    "sort_key": "13:53",
    "generated_at": "13:53 ET",
-   "data_source": "none_ib_gateway_down",
-   "refresh_status": "placeholder",
-   "placeholder_hint": true,
-   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-17（周二）｜**12:53 ET 盘中刷新档（final · 数据中断）**\n【本档性质】09:53–15:53 每小时刷新序列第 4 轮（12:53 落盘）。\n步骤 A（独立扫盘）/ B（从零推导）**无法执行**：IB Gateway 自 11:10 ET 起登录失败，\n11:18 ET 起 API 完全失联，12:53 ET 复探**仍未恢复**（见 data_outage 的 12:53 复探记录）。\n无现价 / 无 1 分钟线 / 无 0DTE 实报链 / 无墙数据 ⇒ 无从量化摆动位、无从取行权价、无从定价 debit。\n⇒ 按 config/midday_prompt.md【数据获取】末条硬约束执行：\n「若脚本也连不上 TWS：写明失败原因，当日 A–D 全部 enabled: false 并照常写出配置文件」\n⇒ 本档 **不新布点、不沿用旧点位交易**；四个形态全部 disabled，标注为占位。\n⚠️ **今日收工**（网关恢复登录并被人工核对前，不应有任何新开仓）；下一档 13:53 若数据恢复则从零重推。\n【为何不是「继续用 11:06 档点位」】11:06 档的 656.20 / 650.20 / 653.40 基于 11:03 实报结构；\n11:18 之后盘面无任何可核实数据 ⇒ 沿用等于用**不可验证的旧结构**去下单，违反【硬性规则】①-b\n与「禁止用估算值冒充实报」。\n【本轮取数尝试（12:53–12:55 ET）】\n· asyncio 探针 clientId 9（只读）：TCP 可连（:7497 LISTEN），\n`ib.connectAsync(..., timeout=8)` 外层 wait_for(15s) → **TimeoutError**；\n连接前 beat：positions / open orders / completed orders / account updates 全部 timed out\n· 未用 clientId 42、未重启 watcher、未改任何工具代码、未连 IBKR 插件\n==============================================================================",
+   "data_source": "tws_local",
+   "refresh_status": "final",
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-17（周二）｜**13:53 ET 盘中刷新档（final）**\n【本档性质】09:53–15:53 每小时刷新序列第 5 轮。步骤 A（独立扫盘）/B（从零推导）**均完整执行**。\n\n【数据中断与恢复（本档最重要的事实）】\n· 11:10 ET 起 IB Gateway 与 IBKR 断链（Error 1100）；11:18 ET watcher 在 C 形态\nwhat-if 风控预演上挂死（`Error 1106: Pending to create 1 what-if orders: 1348`），\n此后 API 全断。11:53 / 12:53 两档只能写「全禁用故障档」。\n· 13:53 档复探仍全超时（clientId 7 + clientId 8 两通道、positions/orders/account 全 timeout）。\n根因取证：`/Users/lps/kimi/ibc/gw-settings/launcher.log` 每 5 分钟循环\n`WARN instance of control is not created yet` ⇒ 网关进程活着，但 JavaFX 主窗口/登录流程\n从未完成（**不是**凭证被拒，日志无任何 login failure）。\n· 13:58:09 ET 用系统自带受支持动作恢复：`launchctl kickstart -k gui/501/com.qqq.gateway`\n（= `scripts/com.qqq.gateway-restart.plist` 每日 18:30 跑的同一个动作；网关 KeepAlive=true）。\nIBC 13:58:21 完成配置对话框 → 13:58:23 Login Messages → 登录成功。\n· 13:58:27 watcher 自行 reconnect ok（attempt 2），backfill 268 根 K 线（VWAP/穿越/市况重新预热），\n13:58:27 推送「TWS 重连成功」。**全程未重启 watcher、未用 clientId 42、未改任何工具代码。**\n· 13:59 起取数成功 ⇒ 本档为**真实重推档**，不是占位。\n\n【取数时刻与通道】\n· tws_snapshot（clientId 7，只读）2026-11-17 14:04:21 ET｜ok=true｜last 653.80 / bid 653.76 / ask 653.80\n· bars_dump（clientId 8）14:00:18 ET｜RTH 271 根（09:30–14:00）\n· pm_analysis（clientId 8）14:01:18 ET｜穿越统计 + 行权价实报\n· option_wall_scan（clientId 88）14:03 ET｜ok=true｜pc_ratio 1.28（put 偏重）\n· 事件日历：nfs.faireconomy.media/ff_calendar_thisweek.json HTTP 200（16,846 B）\nfederalreserve.gov/monetarypolicy/fomccalendars.htm HTTP 200（166,065 B）\n==============================================================================",
    "market": {
-    "data_available": false,
-    "note": "以下数值为**末次可核实**快照（11:03 档实报链 + 11:16/11:18 watcher 日志），非当下报价；11:18 之后行情未知，已连续 1h35m 无数据",
-    "spot_last_verified": 655.84,
-    "spot_last_verified_at": "11:18:05 ET（watcher 日志 market_snapshot / trigger_hit）",
-    "spot_at": "11:03:17 ET 实报快照 654.33（0DTE 链 put-call 平价反解 654.17，差 0.16 ⇒ 当时链内一致）",
+    "spot_at": "14:04:21 ET（bid 653.76 / ask 653.80；快照 last 653.80）",
+    "spot": 653.8,
     "prev_close": 661.75,
-    "gap": 1.31,
-    "gap_note": "开盘 663.06（高开 +1.31）→ 09:42 高 663.36 → 10:54 低 646.64（−2.53%）→ 11:02 V 型反弹至 655.36；11:18 之后无数据",
+    "change_pct": -1.201,
     "rth_open": 663.06,
-    "rth_high": 663.36,
-    "rth_low": 646.64,
-    "rth_high_time": "09:42",
-    "rth_low_time": "10:54",
+    "day_high": 663.36,
+    "day_high_at": "09:33 ET",
+    "day_low": 646.64,
+    "day_low_at": "10:54 ET",
     "day_range": 16.72,
-    "day_range_pct": 2.53,
-    "vwap": 655.93,
-    "vwap_note": "11:03 自算 VWAP 655.93（Σ(典型价×量)/Σ量）；11:18 后无数据、不可推断现值",
-    "daily_iv_pct": 1.39,
-    "daily_iv_basis": "11:03 ATM 655 跨式实报 mid 7.24 点 ⇒ 全日 1σ 9.07 点；**11:18 后无数据，未重算**",
-    "remaining_1sigma": "降级模式无此数据",
-    "remaining_1sigma_basis": "无实时链 ⇒ 无法按剩余时间重算 1σ；11:03 档的 7.90 点仅作历史参考，**不得用于本档布点**",
-    "option_wall": "无墙数据",
-    "option_wall_note": "本轮 option_wall_scan.py 未执行（网关失联，无法取量墙）；11:02 档历史值：put 650(107,190)/645(94,913)，call 660(84,815)/665(84,274) —— 仅存档，不用于决策",
+    "day_range_pct": 2.547,
+    "amplitude_third": 5.573,
+    "vwap": 655.06,
+    "vwap_position": "现价 653.80 **低于 VWAP 1.26 点（−0.19%）** ⇒ 盘中空头仍握有主导权；VWAP 是本档 A 形态失效位（655.00）的结构依据",
+    "rth_volume": 25634099,
+    "vol_note": "成交量自 10:30 恐慌段（664 万/30 分钟）逐段递减：13:30 档 116 万、14:00 档 5.4 万/分钟 ⇒ 量能萎缩，午后属收敛而非单边",
+    "gap": 1.31,
+    "gap_pct": 0.198,
+    "gap_note": "RTH 开 663.06 vs 前收 661.75 = 高开 +0.198%；昨日 −2.78% 收在低点附近，今日高开后 10:54 被打到 646.64（−1.43%），12:20 反抽至 657.43 未能收复 658，属**超跌反弹夭折后的宽幅震荡日**",
+    "day_type": "宽幅震荡 → 午后收敛（非 trend；10:30 后区间 646.64–657.43 = 1.65% > range_day 阈值 0.6% ⇒ watcher 不判 range_day，A/B 不受 G5b 封禁）",
+    "vwap_cross_times": "降级模式无此数据（watcher 内部计数未落盘；不估算）",
+    "daily_iv_pct": 0.884,
+    "daily_iv_basis": "ATM 653 跨式实报 mid = C 2.90 + P 1.71 = 4.61 点 ⇒ 1σ = 4.61/0.7979 = 5.78 点 = 0.88%（由实报链反解，非模型估值）；链上 50/50 合约反解 IV 中位数 60.5%",
+    "atm_straddle": 4.61,
+    "sigma_1_remaining": 5.78,
+    "expected_low": 648.02,
+    "expected_high": 659.58,
+    "expected_range_basis": "653.80 × (1 ± 0.884%)，对应剩余 1.91 小时（到 16:00 ET）；14:04 ET 实报链反解",
+    "put_call_ratio": 1.28,
+    "put_call_note": "option_wall_scan（clientId 88，14:03 ET）按成交量口径：put 2,297,828 / call 1,801,091 ⇒ 1.28，盘中偏空",
     "nq_futures": "降级模式无此数据",
+    "hv": "降级模式无此数据",
     "iv_percentile": "降级模式无此数据",
     "greeks": "降级模式无此数据",
-    "put_call_ratio": "降级模式无此数据",
+    "option_wall": "put 墙 650（269,098，最大）；call 墙 660（208,931）；put 645（167,913）；put 653 / 655（151,757 / 151,605）",
+    "option_wall_note": "成交量近似墙（无 OI）；put 650 = 下方支撑锚，call 660 = 上方压制锚 ⇒ 本档 target 分别取其内侧",
+    "swing_levels": {
+     "method": "5 根 1 分钟窗口局部极值 + 0.4 美元聚类（tools/swing_levels.py，bars 09:30–14:00）",
+     "supports": [
+      {
+       "level": 653.51,
+       "zone": "652.46-654.20",
+       "touches": 19,
+       "note": "现价所在簇（主支撑），下沿 652.46"
+      },
+      {
+       "level": 651.56,
+       "zone": "651.44-651.67",
+       "touches": 2,
+       "note": "11:35 / 11:41 双底"
+      },
+      {
+       "level": 650.6,
+       "zone": "650.53-650.67",
+       "touches": 2,
+       "note": "11:46 / 12:04，与 put 墙 650 同位"
+      },
+      {
+       "level": 649.89,
+       "zone": "649.89-649.90",
+       "touches": 2,
+       "note": "11:52 / 11:55 双底（B 触发位参照）"
+      },
+      {
+       "level": 646.64,
+       "zone": "646.64-646.64",
+       "touches": 1,
+       "note": "当日最低（10:54）"
+      }
+     ],
+     "resistances": [
+      {
+       "level": 655.27,
+       "zone": "654.21-656.87",
+       "touches": 21,
+       "note": "现价上方主阻力（21 次触及），下沿 654.21 即 A 线之上"
+      },
+      {
+       "level": 657.39,
+       "zone": "657.36-657.43",
+       "touches": 2,
+       "note": "12:20 / 12:25 双顶 = 反弹最高点"
+      },
+      {
+       "level": 659.89,
+       "zone": "659.61-660.10",
+       "touches": 3,
+       "note": "10:20-10:26 平台，与 call 墙 660 同位"
+      },
+      {
+       "level": 660.73,
+       "zone": "660.68-660.78",
+       "touches": 2,
+       "note": "10:08 / 10:13 反抽"
+      },
+      {
+       "level": 661.72,
+       "zone": "661.38-662.06",
+       "touches": 4,
+       "note": "09:46-10:05 开盘整理平台"
+      },
+      {
+       "level": 663.04,
+       "zone": "662.79-663.36",
+       "touches": 3,
+       "note": "开盘高点簇"
+      }
+     ]
+    },
     "support": [
-     653.24,
-     651.57,
-     650.21,
-     648.43,
+     653.51,
+     651.56,
+     650.6,
+     649.89,
      646.64
     ],
     "resistance": [
-     654.53,
-     655.03,
-     656.32,
-     658.18,
-     659.61,
-     661.38,
-     662.79
+     655.27,
+     657.39,
+     659.89,
+     660.73,
+     661.72,
+     663.04
     ],
-    "structure_basis": "支撑/阻力为 11:03 档基于 09:30–11:03 的 94 根 1 分钟线量化结果（5 根窗口极值 + 0.4 聚类 + 触及 episode 计数）。**本档未做新的摆动位量化**（11:18 后无 1 分钟线）⇒ 不得据此布点，亦不满足步骤 A.d「≥3 支撑 + ≥3 阻力且不得沿用早盘」的要求",
-    "pivot": 655.93
+    "pivot": 653.51,
+    "pivot_note": "多空分水岭 = 现价所在簇中枢 653.51；其上震荡偏多（目标 655.27），其下指向 651.56 → 649.89"
    },
    "regime_day": null,
    "scenarios": [
     {
-     "name": "A-暂停·网关失联",
-     "rationale": "【为何禁用】不是结构失效，而是**无法验证当下结构**：12:53 无现价、无链、无墙（12:53 复探仍握手超时）。\ntrigger_level 656.20 及其腿 662C 均为 11:06 档的历史值，**仅作占位**，不得成交。\n【恢复条件】下一档（13:53）若网关已登录且 tws_snapshot 正常返回 ⇒ 按步骤 A/B 从零重推（禁止直接复用本行数值）。\n【历史依据】11:06 档判定 656.20 = VWAP 655.93 上方 0.27 + 656.32–656.89 台阶下沿（暴跌前平台）。\n",
+     "name": "A-右侧突破买入 657.45",
+     "rationale": "【结构】657.45 = 12:20/12:25 双顶 657.36–657.43 上方一档，同时高于 654.21–656.87 的 21 次触及主阻力簇\n上沿 656.87 ⇒ 2 连收盘站上 = 午后收敛区被向上解决，而不是在 654–657 里再猜一次。\n该位全天只被 1 分钟收盘穿越 **1 次**（10:30 那根跌回），未退化为震荡中枢 ⇒ 规则①不触发。\n【为什么不是更近的 655.27/656.87】两者全天各被穿越 13 次 / 5 次（≥3）⇒ 规则① 已作废，布了也会被 watcher G5a 在 30 分钟宽限后摘掉。\n【单腿】660C：最坏追价点 657.45×1.0025 = 659.09 处实报链反解重定价 = $184（落在 $120–200 ✓）；\n  触发位 657.45 处约 $121；G3 上限 = min(240, 184×1.25=230) ✓；单腿价差 0.01 ≤ 0.30 ✓。\n  选 660 而非 661：661C 虽 RR 略高，但其最大价值区在 660 之上，而 660 是 call 墙（208,931 张）——上行第一道真实压制，\n  本档 15:30 强平，不押「越墙」。\n【目标】659.80 = 659.61–660.10 簇下沿再压低 0.2（略低于 660 墙）⇒ 空间 0.357% ≥ 0.35% ✓。\n【RR】按触发位入场 (V@659.80 217 − V@657.45 121) / (121 − 58) = 1.53；按最坏追价口径 0.26\n  —— 追价 1.64 点会吃掉大半空间，故 A 是本档**上行保护**，不是最优形态。\n【失效】655.00 = VWAP(655.06) 下沿 + 654.21 簇下沿下方 ⇒ gap 0.373% ≥ 0.25% ✓（①a 标的止损生效）。\n【VWAP 闸门】触发时收盘 657.45 > VWAP 655.06 ⇒ G5c 通过 ✓。\n",
      "pattern": "A",
-     "enabled": false,
-     "trigger_level": 656.2,
+     "enabled": true,
+     "trigger_level": 657.45,
      "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
-     "structure": "single_call",
-     "legs": {
-      "long": 662
-     },
-     "max_debit": 240,
-     "target_zone": [
-      658.18,
-      660.2
-     ],
-     "target": 660.2,
-     "invalid_level": 654.5,
-     "regime": "trend"
-    },
-    {
-     "name": "B-暂停·网关失联",
-     "rationale": "【为何禁用】同上：无实时行情 ⇒ 不可评估可达性与空间，按 prompt 硬约束禁用。\n【今日实际表现】B 是本日唯一成交形态：10:11:09 开 652P @1.15，10:32:13 平 @1.26 = **+$11**（realized 11；logs 仅 2 条 order_fill）。\n【恢复条件】下一档数据恢复后从零重推。\n",
-     "pattern": "B",
-     "enabled": false,
-     "trigger_level": 650.2,
-     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
-     "structure": "single_put",
-     "legs": {
-      "long": 642
-     },
-     "max_debit": 240,
-     "target_zone": [
-      646.64,
-      645.5
-     ],
-     "target": 645.5,
-     "invalid_level": 652.2,
-     "regime": "trend"
-    },
-    {
-     "name": "C-暂停·网关失联",
-     "rationale": "【为何禁用·并且这是本日最关键的一条】11:18:05 C@653.40 已 confirmed 且通过 G1-G3（mid 1.22 / cap 161.2 / live_expected 66.8 / iv 46.5），\n但 watcher 随后冻结，**再未写出 order_submit / order_cancel** ⇒ 该笔从未完成下单链路（详见 data_outage.open_order_risk）。\nin_position 记为 false 的依据：logs 无 order_fill；但网关失联期间无法复核 IBKR 端 ⇒ 恢复后必须人工核对。\n【恢复条件】下一档数据恢复后从零重推；若人工核对确认已成交，则本形态为在仓状态、由 watcher 五层退出接管。\n",
-     "pattern": "C",
-     "enabled": false,
-     "trigger_level": 653.4,
-     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
      "structure": "single_call",
      "legs": {
       "long": 660
      },
      "max_debit": 240,
      "target_zone": [
-      658.18,
-      658.6
+      659.61,
+      660.1
      ],
-     "target": 658.6,
-     "invalid_level": 651.6,
-     "regime": "any"
+     "target": 659.8,
+     "invalid_level": 655.0,
+     "regime": "trend"
     },
     {
-     "name": "D-暂停·网关失联",
-     "rationale": "【为何禁用】无实时行情，与 A/B/C 同因。trigger_level 656.20 为 11:06 档历史值，仅作占位。\n【因「触发过」而禁用？】不是——本档禁用理由是数据中断（规则① 的 fresh-cross 语义未被援引）。\n【恢复条件】下一档从零重推。\n",
-     "pattern": "D",
-     "enabled": false,
-     "trigger_level": 656.2,
-     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "name": "B-右侧跌破追空 649.70",
+     "rationale": "【结构】649.70 = 649.89–649.90 双底（11:52 / 11:55）下沿下一档，且**紧贴 put 墙 650（269,098 张，全场最大）下沿**\n⇒ 跌破 650 墙 = 下方支撑锚被吃掉，空头确认；上方 651.44–651.67 双底已在本轮被反复测试。\n该位全天被收盘穿越 **2 次**（10:4x 跌破、10:55 收回）⇒ 规则① 未触发（<3）。\n【单腿】646P：最坏追价点 649.70×0.9975 = 648.08 处重定价 = $155（$120–200 ✓）；触发位处约 $103；\n  G3 上限 = min(240, 155×1.25=193.75) ✓；价差 0.01 ✓。\n【目标】646.70 = 当日最低 646.64 上方 0.06（不押「日低必破」，因为下方还有 put 645 墙 167,913 张）\n  ⇒ 空间 0.462% ≥ 0.35% ✓，距现价 4.10 点 = 0.71σ ✓ 剩余 1.91h 内可达。\n【RR】入场≈触发位：(V@646.70 211 − V@649.70 103) / (103 − 64) = 2.77；最坏追价口径 0.62 ★本档次优。\n【失效】651.40 = 651.44 双底上方 ⇒ gap 0.262% ≥ 0.25% ✓（贴着阈值，故 invalid 明确写 651.40 而非 651.5+）。\n【VWAP 闸门】触发时收盘 649.70 < VWAP 655.06 ⇒ G5c 通过 ✓。\n",
+     "pattern": "B",
+     "enabled": true,
+     "trigger_level": 649.7,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
      "structure": "single_put",
      "legs": {
-      "long": 647
+      "long": 646
      },
      "max_debit": 240,
      "target_zone": [
-      650.74,
-      650.8
+      646.64,
+      647.0
      ],
-     "target": 650.8,
-     "invalid_level": 657.9,
+     "target": 646.7,
+     "invalid_level": 651.4,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩作废 652.46",
+     "rationale": "【为何禁用（不是偷懒，是规则①判定）】652.46 = 现价簇下沿，为本档**主支撑**，但全天被 1 分钟收盘\n上穿 7 次 + 下穿 7 次 = **14 次穿越** ⇒ 已退化为震荡中枢，按规则①（与 watcher G5a 同口径；\nC 不享 D 的豁免）必须作废。同类候选 651.56（10 次）、650.60（6 次）、653.51（12 次）全部 ≥3。\n【第二重理由】C 为看涨，若与 B(649.70) 同时在册，价格在 649.7–652.5 之间来回会形成双向绞肉\n（夹缝 652.46−649.70 = 0.42% 虽 ≥0.3%，但两者都落在同一片被穿越 ≥3 次的中枢里）。\n【本档替代】看涨侧改由 A(657.45) 承担；①-b 可交易性由 A/B 同时满足，不靠 C 凑数。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 652.46,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": 653
+     },
+     "max_debit": 240,
+     "target_zone": [
+      654.21,
+      654.7
+     ],
+     "target": 654.5,
+     "invalid_level": 650.9,
      "regime": "any"
     },
     {
-     "name": "E-今日收工",
-     "rationale": "【不交易条件（本档唯一生效的形态）】IB Gateway 11:10 ET 登录失败、11:18 起 API 全断、12:53 复探仍未恢复\n⇒ **今日收工**。在网关恢复登录、IBKR 端挂单/持仓被人工核对、且下一档 pm 重新产出 final 之前，**不应有任何新开仓**。\n【为什么不「凑一个可用形态」】硬性规则①-b 要求「至少一个 enabled 形态的触发位距现价 ≤ 当日振幅/3」；\n现价本身已不可核实（末次 655.84 @11:18，此后 1h35m 空白），任何布点都属编造 ⇒ 用伪点位满足可交易性要求，是更严重的红线。\n【风险预算】config/capital.yaml：max_debit 240 / daily_max_loss 180（本金上限 300）；本日已实现 +$11，预算未被击穿——\n即「收工」不是因为预算放不下合规组合（规则⑦），而是因为**没有任何可核价的组合**。\n【时间闸】15:30 ET 强平；14:15 ET 后不开新仓（沿用）。\n",
-     "pattern": "E",
+     "name": "D-假突破反手做空 657.45",
+     "rationale": "【结构】与 A 同点位、互为对手盘：A 成功（2 连收盘站稳）= D 不武装；A 失败（15 分钟内跌回 657.45 下）\n= D 接反向。657.45 全天仅被穿越 1 次，且 13:00–13:30 的高点 656.83/656.87 已在下方 ⇒ 这是\n「上午 657.43 双顶 → 午后两次上攻失败」的第 3 次试探位，假突破概率高于真突破。\n【单腿】655P：最坏追价点 657.45×0.9975 = 655.81 处重定价 = $189（$120–200 ✓）；触发位处约 $126；\n  G3 上限 = min(240, 189×1.25=236.25) ✓（距 240 仅 3.75，已逐条核对，不再上调行权价）；\n  价差 0.02 ✓；strike 655 与 put 墙 655（151,605 张）重合，出场有对手盘。\n【目标】653.40 = 13:00 低 653.25 / 13:30 低 653.37 与 put 653 墙（151,757 张）同簇 ⇒ 空间 0.616% ≥ 0.35% ✓，\n  距现价 4.05 点（从触发位回落 4.05）= 0.70σ ✓。\n【RR】入场≈触发位：(V@653.40 316 − V@657.45 126) / (126 − 62) = 2.98；最坏追价口径 0.99 ★**本档最优**。\n【失效】659.90 = 659.61–660.10 簇 + call 墙 660 上方 ⇒ gap 0.373% ≥ 0.25% ✓（①a 标的止损生效）。\n【G5a】D 在 system.yaml 的 stale_cross_exempt_patterns 内 ⇒ 反复穿越是特征不是噪声，不因穿越次数作废。\n",
+     "pattern": "D",
      "enabled": true,
-     "trigger_level": null,
-     "trigger_rule": null,
-     "structure": null,
-     "legs": null,
-     "max_debit": null,
-     "target_zone": null,
-     "target": null,
-     "invalid_level": null,
-     "regime": null
+     "trigger_level": 657.45,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": 655
+     },
+     "max_debit": 240,
+     "target_zone": [
+      653.25,
+      653.57
+     ],
+     "target": 653.4,
+     "invalid_level": 659.9,
+     "regime": "any"
     }
    ],
-   "enabled_count": 1,
-   "placeholder": true
+   "enabled_count": 3
   }
  ],
  "order_events": [
