@@ -465,6 +465,17 @@
    "pattern": "C",
    "level": 661.75,
    "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  },
+  {
+   "ts": "2026-11-17T09:59:06.264304-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 661.895,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "C",
+   "level": 661.75,
+   "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
   }
  ],
  "roundtrips": [],
