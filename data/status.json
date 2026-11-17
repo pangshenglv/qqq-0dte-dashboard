@@ -1,29 +1,25 @@
 {
- "generated_at_et": "2026-11-17 09:39:23 ET",
- "generated_at_bj": "2026-11-17 22:39:23",
+ "generated_at_et": "2026-11-17 09:41:41 ET",
+ "generated_at_bj": "2026-11-17 22:41:41",
  "watcher": {
   "alive": true,
   "pid": 8352,
-  "uptime": "20:42",
+  "uptime": "23:00",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 140,
+  "last_event_age_s": 35,
   "last_event": {
-   "ts": "2026-11-17T09:37:03.490471-05:00",
-   "event": "shadow_exit",
+   "ts": "2026-11-17T09:41:06.098938-05:00",
+   "event": "shadow_entry",
    "state": "SHADOW",
-   "spot": 659.94,
+   "spot": 661.99,
    "pattern": "C",
-   "reason": "①灾难止损(权利金)",
-   "value": 86.0,
-   "pnl_pct": -45.9,
-   "peak": 0.6,
-   "est_px": 0.86,
-   "est_proceeds": 86.0,
-   "modeled_pnl": -73.0,
-   "cost": 159.0,
+   "level": 661.75,
    "qty": 1,
-   "hold_min": 6.0,
-   "note": "影子单：未下单、未计入 realized ✓（仅供对比验证规则 ✓）"
+   "ask": 1.15,
+   "bid": 1.14,
+   "modeled_cost": 115.0,
+   "blocked_by": "早于 10:00 ET（开盘头一小时不开新仓 ✓）",
+   "note": "被开仓时间窗拦下 ⇒ 记录「若开仓」的入场价，用于日后对比验证规则收益 ✓"
   }
  },
  "gateway": {
@@ -39,6 +35,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 661.52,
+ "last_spot": 661.99,
  "git_head": "7cd56e44"
 }
