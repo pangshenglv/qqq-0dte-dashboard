@@ -940,6 +940,28 @@
     "long_conid": 941723659,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-11-17T11:18:05.349921-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 655.84,
+   "pattern": "C",
+   "result": "confirmed",
+   "close": 653.79,
+   "level": 653.4
+  },
+  {
+   "ts": "2026-11-17T11:18:05.352839-05:00",
+   "event": "gate_result",
+   "state": "PRE_CHECK",
+   "spot": 655.84,
+   "gate": "G1-G3",
+   "passed": true,
+   "mid": 1.22,
+   "cap": 161.2,
+   "live_expected": 66.8,
+   "iv": 46.5
   }
  ],
  "roundtrips": [
