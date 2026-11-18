@@ -1,22 +1,19 @@
 {
- "generated_at_et": "2026-11-18 09:12:58 ET",
- "generated_at_bj": "2026-11-18 22:12:58",
+ "generated_at_et": "2026-11-18 09:15:08 ET",
+ "generated_at_bj": "2026-11-18 22:15:08",
  "watcher": {
   "alive": true,
-  "pid": 8352,
-  "uptime": "23:54:17",
+  "pid": 47914,
+  "uptime": "00:01",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 445,
+  "last_event_age_s": 1,
   "last_event": {
-   "ts": "2026-11-18T09:05:32.900514-05:00",
-   "event": "startup",
+   "ts": "2026-11-18T09:15:07.291316-05:00",
+   "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "port": 7497,
-   "accounts": [
-    "DUQ402112"
-   ],
-   "mode": "paper_auto"
+   "level": "alert",
+   "summary": "今日无 daily.yaml，仅监控不交易"
   }
  },
  "gateway": {
