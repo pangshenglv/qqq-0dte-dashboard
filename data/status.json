@@ -1,25 +1,19 @@
 {
- "generated_at_et": "2026-11-18 09:57:08 ET",
- "generated_at_bj": "2026-11-18 22:57:08",
+ "generated_at_et": "2026-11-18 09:59:22 ET",
+ "generated_at_bj": "2026-11-18 22:59:22",
  "watcher": {
   "alive": true,
   "pid": 47914,
-  "uptime": "42:01",
+  "uptime": "44:15",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 3,
+  "last_event_age_s": 81,
   "last_event": {
-   "ts": "2026-11-18T09:57:05.788573-05:00",
-   "event": "shadow_entry",
-   "state": "SHADOW",
-   "spot": 658.27,
-   "pattern": "C",
-   "level": 656.95,
-   "qty": 1,
-   "ask": 1.51,
-   "bid": 1.5,
-   "modeled_cost": 151.0,
-   "blocked_by": "早于 10:00 ET（开盘头一小时不开新仓 ✓）",
-   "note": "被开仓时间窗拦下 ⇒ 记录「若开仓」的入场价，用于日后对比验证规则收益 ✓"
+   "ts": "2026-11-18T09:58:00.888338-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "C 移动止盈已武装：峰值 +20.5%，回吐线 +12.3%（≈$170）"
   }
  },
  "gateway": {
