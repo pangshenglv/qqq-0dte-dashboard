@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-11-18 09:15:08 ET",
- "generated_at_bj": "2026-11-18 22:15:08",
+ "generated_at_et": "2026-11-18 09:17:17 ET",
+ "generated_at_bj": "2026-11-18 22:17:17",
  "watcher": {
   "alive": true,
   "pid": 47914,
-  "uptime": "00:01",
+  "uptime": "02:10",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 1,
+  "last_event_age_s": 52,
   "last_event": {
-   "ts": "2026-11-18T09:15:07.291316-05:00",
+   "ts": "2026-11-18T09:16:25.273276-05:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
-   "level": "alert",
-   "summary": "今日无 daily.yaml，仅监控不交易"
+   "level": "info",
+   "summary": "watcher 进入交易时段（paper_auto），监控 0 个形态（无方案，仅监控）"
   }
  },
  "gateway": {
@@ -22,7 +22,7 @@
   "online": true,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "23251"
+  "pid": "48102"
  },
  "mode": "paper_auto",
  "entry_window": [
