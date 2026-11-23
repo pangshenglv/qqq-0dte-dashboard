@@ -1,24 +1,19 @@
 {
- "generated_at_et": "2026-11-23 10:51:00 ET",
- "generated_at_bj": "2026-11-23 23:51:00",
+ "generated_at_et": "2026-11-23 10:53:32 ET",
+ "generated_at_bj": "2026-11-23 23:53:32",
  "watcher": {
   "alive": true,
   "pid": 25174,
-  "uptime": "02-18:19:05",
+  "uptime": "02-18:21:37",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 295,
+  "last_event_age_s": 1,
   "last_event": {
-   "ts": "2026-11-23T10:46:05.344357-05:00",
-   "event": "market_snapshot",
-   "state": "IDLE",
-   "spot": 652.51,
-   "lines": 10,
-   "pattern_quotes": {
-    "A": 1.65,
-    "B": 0.43,
-    "C": 6.96,
-    "D": 0.89
-   }
+   "ts": "2026-11-23T10:53:31.268404-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "ℹ️ 空间偏紧的形态（按最坏追价衡量；实际追价通常仅 0.03~0.06%，未必不可交易）：A 触发653.30→目标656.30 空间0.459%（最坏追价下"
   }
  },
  "gateway": {
@@ -34,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 652.51,
- "git_head": "04b32607"
+ "last_spot": 652.3,
+ "git_head": "9daed10e"
 }
