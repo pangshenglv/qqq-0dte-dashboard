@@ -1,19 +1,24 @@
 {
- "generated_at_et": "2026-11-23 09:54:10 ET",
- "generated_at_bj": "2026-11-23 22:54:10",
+ "generated_at_et": "2026-11-23 09:56:21 ET",
+ "generated_at_bj": "2026-11-23 22:56:21",
  "watcher": {
   "alive": true,
   "pid": 25174,
-  "uptime": "02-17:22:15",
+  "uptime": "02-17:24:26",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 0,
+  "last_event_age_s": 15,
   "last_event": {
-   "ts": "2026-11-23T09:54:10.268232-05:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "info",
-   "summary": "C 移动止盈已武装：峰值 +22.0%，回吐线 +13.2%（≈$216）"
+   "ts": "2026-11-23T09:56:06.226985-05:00",
+   "event": "market_snapshot",
+   "state": "IDLE",
+   "spot": 647.95,
+   "lines": 5,
+   "pattern_quotes": {
+    "A": 1.48,
+    "B": 0.49,
+    "C": 2.92,
+    "D": 2.24
+   }
   }
  },
  "gateway": {
@@ -29,6 +34,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 647.105,
+ "last_spot": 647.95,
  "git_head": "5a57098b"
 }
