@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-11-23 10:07:21 ET",
- "generated_at_bj": "2026-11-23 23:07:21",
+ "generated_at_et": "2026-11-23 10:09:30 ET",
+ "generated_at_bj": "2026-11-23 23:09:30",
  "watcher": {
   "alive": true,
   "pid": 25174,
-  "uptime": "02-17:35:26",
+  "uptime": "02-17:37:35",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 69,
+  "last_event_age_s": 42,
   "last_event": {
-   "ts": "2026-11-23T10:06:11.610044-05:00",
+   "ts": "2026-11-23T10:08:48.045222-05:00",
    "event": "notification_sent",
    "state": "-",
    "spot": null,
    "level": "info",
-   "summary": "盘中方案已刷新：A:在仓跳过；D:修正@650.8；B:修正@643.05；C:修正@638.0"
+   "summary": "D 开仓成交 @ 1.4（成本 $140）"
   }
  },
  "gateway": {
