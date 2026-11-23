@@ -2388,6 +2388,19 @@
     "long_conid": 943815745,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-11-23T14:38:05.975802-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 649.41,
+   "gate": "G5a",
+   "passed": false,
+   "pattern": "C",
+   "level": 649.23,
+   "crossings": 6,
+   "age_min": 96,
+   "reason": "点位失效(穿越过多)"
   }
  ],
  "roundtrips": [
