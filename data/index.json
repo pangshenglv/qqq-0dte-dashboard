@@ -267,9 +267,9 @@
   {
    "date": "2026-11-24",
    "snapshots": 4,
-   "orders": 11,
-   "realized_pnl": 0
+   "orders": 13,
+   "realized_pnl": -53.0
   }
  ],
- "updated": "2026-11-24 10:41:48 ET"
+ "updated": "2026-11-24 10:44:02 ET"
 }
