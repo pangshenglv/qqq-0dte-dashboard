@@ -1,20 +1,20 @@
 {
- "generated_at_et": "2026-11-24 16:01:49 ET",
- "generated_at_bj": "2026-11-25 05:01:49",
+ "generated_at_et": "2026-11-24 16:03:57 ET",
+ "generated_at_bj": "2026-11-25 05:03:57",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "06:44:02",
+  "uptime": "06:46:10",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 35,
+  "last_event_age_s": 14,
   "last_event": {
-   "ts": "2026-11-24T16:01:13.549591-05:00",
+   "ts": "2026-11-24T16:03:43.678975-05:00",
    "event": "error",
    "state": "IDLE",
    "spot": 634.885,
    "type": "archive_failed",
    "detail": "reqHistoricalData 返回 0 根（连接可能已死 / 历史数据服务不可用）",
-   "attempt": 1,
+   "attempt": 2,
    "attempts": 3,
    "pass_": "final"
   }
