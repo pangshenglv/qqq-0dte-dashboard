@@ -291,7 +291,19 @@
    "enabled_count": 5
   }
  ],
- "order_events": [],
+ "order_events": [
+  {
+   "ts": "2026-11-24T09:45:05.514898-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 639.415,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "D",
+   "level": 640.2,
+   "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  }
+ ],
  "roundtrips": [],
  "realized_pnl": 0
 }
