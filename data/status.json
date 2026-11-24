@@ -1,30 +1,25 @@
 {
- "generated_at_et": "2026-11-24 14:55:00 ET",
- "generated_at_bj": "2026-11-25 03:55:01",
+ "generated_at_et": "2026-11-24 14:57:10 ET",
+ "generated_at_bj": "2026-11-25 03:57:10",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "05:37:13",
+  "uptime": "05:39:23",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 86,
+  "last_event_age_s": 64,
   "last_event": {
-   "ts": "2026-11-24T14:53:34.068886-05:00",
-   "event": "error",
-   "state": "IDLE",
-   "spot": 637.05,
-   "type": "untradeable_shape",
-   "source": "pm_reload",
-   "shapes": [
-    {
-     "pattern": "A",
-     "level": 640.44,
-     "target": 643.39,
-     "space_pct": 0.461,
-     "worst_rem_pct": 0.21,
-     "need_pct": 0.6
-    }
-   ],
-   "note": "这些形态在任何合法追价点都过不了 G5d（触发位→目标空间不足）；应在方案里加大目标空间或把触发位挪到能容纳追价的位置"
+   "ts": "2026-11-24T14:56:05.960245-05:00",
+   "event": "shadow_entry",
+   "state": "SHADOW",
+   "spot": 635.58,
+   "pattern": "B",
+   "level": 636.55,
+   "qty": 1,
+   "ask": 1.07,
+   "bid": 1.06,
+   "modeled_cost": 107.0,
+   "blocked_by": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）",
+   "note": "被开仓时间窗拦下 ⇒ 记录「若开仓」的入场价，用于日后对比验证规则收益 ✓"
   }
  },
  "gateway": {
@@ -40,6 +35,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 636.9,
+ "last_spot": 635.58,
  "git_head": "d78d90a4"
 }

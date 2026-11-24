@@ -2136,6 +2136,17 @@
     "long_conid": 944119614,
     "short_conid": null
    }
+  },
+  {
+   "ts": "2026-11-24T14:56:05.959975-05:00",
+   "event": "gate_result",
+   "state": "IDLE",
+   "spot": 635.58,
+   "gate": "ENTRY-WINDOW",
+   "passed": false,
+   "pattern": "B",
+   "level": 636.55,
+   "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
   }
  ],
  "roundtrips": [
