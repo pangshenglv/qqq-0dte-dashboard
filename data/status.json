@@ -1,29 +1,19 @@
 {
- "generated_at_et": "2026-11-24 09:53:08 ET",
- "generated_at_bj": "2026-11-24 22:53:08",
+ "generated_at_et": "2026-11-24 09:55:22 ET",
+ "generated_at_bj": "2026-11-24 22:55:22",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "35:21",
+  "uptime": "37:35",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 95,
+  "last_event_age_s": 110,
   "last_event": {
-   "ts": "2026-11-24T09:51:33.315617-05:00",
-   "event": "shadow_exit",
-   "state": "SHADOW",
-   "spot": 642.6,
-   "pattern": "A",
-   "reason": "③峰值回吐(P=31%)",
-   "value": 154.0,
-   "pnl_pct": 16.7,
-   "peak": 31.1,
-   "est_px": 1.52,
-   "est_proceeds": 152.0,
-   "modeled_pnl": 20.0,
-   "cost": 132.0,
-   "qty": 1,
-   "hold_min": 4.5,
-   "note": "影子单：未下单、未计入 realized ✓（仅供对比验证规则 ✓）"
+   "ts": "2026-11-24T09:53:31.528794-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "盘中方案已刷新：A:修正@640.2；B:修正@632.5；C:修正@635.0；D:修正@640.2"
   }
  },
  "gateway": {
