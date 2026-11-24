@@ -555,6 +555,17 @@
    "pattern": "A",
    "level": 640.2,
    "reason": "早于 10:00 ET（开盘头一小时不开新仓 ✓）"
+  },
+  {
+   "ts": "2026-11-24T10:08:05.894031-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 637.965,
+   "pattern": "D",
+   "result": "skip_chase",
+   "close": 637.62,
+   "level": 640.2,
+   "limit": 0.0025
   }
  ],
  "roundtrips": [],
