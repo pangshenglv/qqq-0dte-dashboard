@@ -1,19 +1,23 @@
 {
- "generated_at_et": "2026-11-24 10:44:02 ET",
- "generated_at_bj": "2026-11-24 23:44:02",
+ "generated_at_et": "2026-11-24 10:46:12 ET",
+ "generated_at_bj": "2026-11-24 23:46:12",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "01:26:15",
+  "uptime": "01:28:25",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 44,
+  "last_event_age_s": 7,
   "last_event": {
-   "ts": "2026-11-24T10:43:18.250458-05:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "alert",
-   "summary": "已平仓 C：-53（当日 -53）"
+   "ts": "2026-11-24T10:46:05.380851-05:00",
+   "event": "market_snapshot",
+   "state": "IDLE",
+   "spot": 633.75,
+   "lines": 11,
+   "pattern_quotes": {
+    "A": 0.15,
+    "C": 0.54,
+    "D": 3.04
+   }
   }
  },
  "gateway": {
@@ -29,6 +33,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 635.935,
+ "last_spot": 633.75,
  "git_head": "85d93229"
 }
