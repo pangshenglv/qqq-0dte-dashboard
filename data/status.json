@@ -1,28 +1,25 @@
 {
- "generated_at_et": "2026-11-25 09:15:58 ET",
- "generated_at_bj": "2026-11-25 22:15:58",
+ "generated_at_et": "2026-11-25 09:18:13 ET",
+ "generated_at_bj": "2026-11-25 22:18:13",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "23:58:11",
+  "uptime": "01-00:00:26",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 624,
+  "last_event_age_s": 12,
   "last_event": {
-   "ts": "2026-11-25T09:05:34.309374-05:00",
-   "event": "startup",
+   "ts": "2026-11-25T09:18:00.199708-05:00",
+   "event": "error",
    "state": "-",
    "spot": null,
-   "port": 7497,
-   "accounts": [
-    "DUQ402112"
-   ],
-   "mode": "paper_auto"
+   "type": "ConnectionError",
+   "detail": "连接失败: Socket disconnect"
   }
  },
  "gateway": {
   "host": "127.0.0.1",
   "port": 7497,
-  "online": true,
+  "online": false,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
   "pid": "78141"
@@ -33,5 +30,5 @@
   "15:30"
  ],
  "last_spot": null,
- "git_head": "b50fa4bf"
+ "git_head": "9befb044"
 }
