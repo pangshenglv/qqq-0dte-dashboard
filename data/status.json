@@ -1,19 +1,29 @@
 {
- "generated_at_et": "2026-11-25 09:58:39 ET",
- "generated_at_bj": "2026-11-25 22:58:39",
+ "generated_at_et": "2026-11-25 10:00:49 ET",
+ "generated_at_bj": "2026-11-25 23:00:49",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "01-00:40:52",
+  "uptime": "01-00:43:02",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 56,
+  "last_event_age_s": 27,
   "last_event": {
-   "ts": "2026-11-25T09:57:42.445083-05:00",
-   "event": "notification_sent",
-   "state": "-",
-   "spot": null,
-   "level": "info",
-   "summary": "A 移动止盈已武装：峰值 +21.0%，回吐线 +12.6%（≈$161）"
+   "ts": "2026-11-25T10:00:21.745022-05:00",
+   "event": "shadow_exit",
+   "state": "SHADOW",
+   "spot": 618.261462,
+   "pattern": "A",
+   "reason": "③峰值回吐(P=97%)",
+   "value": 241.0,
+   "pnl_pct": 68.5,
+   "peak": 96.5,
+   "est_px": 2.39,
+   "est_proceeds": 239.0,
+   "modeled_pnl": 96.0,
+   "cost": 143.0,
+   "qty": 1,
+   "hold_min": 3.3,
+   "note": "影子单：未下单、未计入 realized ✓（仅供对比验证规则 ✓）"
   }
  },
  "gateway": {
