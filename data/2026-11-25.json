@@ -652,6 +652,150 @@
     }
    ],
    "enabled_count": 0
+  },
+  {
+   "file": "daily_20261125_1153_7f8f5f8672_pm",
+   "kind": "pm",
+   "label": "盘中刷新 11:53 ET",
+   "sort_key": "11:53",
+   "generated_at": "11:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-25（周三）· 10:53 盘中刷新档\n\n【本档身份】10:53 ET 刷新（第 2 档）。按 midday_prompt.md 新口径从零重推：\n步骤 A（扫盘 + 摆动位量化）已执行，但**数据源故障**（IB error 162）导致\n0DTE 期权链 0 条有效报价 ⇒ 步骤 B 的行权价/debit/1σ 无法取得。\n\n【结论】**数据源故障降级档**：A–D 全部 enabled: false（SPEC 第 68 行口径）。\n唯一几何可达形态为 C@608.9（距现价 2.27 点，门限 3.85 点），但因无实报链无法定价，\n按「禁止用估算值充实行权价/debit」一并禁用，等下一档（11:53 ET）数据恢复后重推。\n\n【数据获取时间 / 来源】2026-11-25 10:54:28–10:57:52 ET（7 次只读尝试，clientId 7/8）\n· 失败：error 162「Trading TWS session is connected from a different IP address」\n· 结构退化数据：watcher 5s spot 流，最后有效 tick 10:51:46 ET = 611.17（已冻结 5 分钟）\n· 未使用 clientId 42（盯盘进程）、未重启 watcher、未调用 IBKR 插件（DSH 侧不存在）\n\n【摆动位清单（5 秒 spot 聚合 1 分钟，94 根，09:23–10:56；无成交量）】\n阻力：616.92(10 次，含 10:11–10:18 静默平台的重复计数 ⚠️) / 612.10(3) / 612.84(1)\n/ 614.86(1) / 618.18(1) / 618.65(1) / 619.38(1)\n支撑：611.08 区间 610.91–611.17(3) / 609.88 区间 609.51–610.14(6) / 607.83(1)\nRTH：开 617.46 / 高 619.38(10:00) / 低 607.83(09:45) / 最后 611.17；振幅 11.55（1/3 = 3.85）\n注：VWAP 只能用 watcher 侧读数 612.99（10:51:46），非独立复算 ⇒ 标注为降级值\n\n【期权墙】**无墙数据**（option_wall_scan 今日仍因 Option 非整数档 can't be hashed 崩溃，\ndata/option_wall_latest.json 停留 11/24 昨日链 ⇒ 不可复用）\n==============================================================================",
+   "market": {
+    "spot": 611.17,
+    "spot_note": "最后有效实报 tick：10:51:46 ET（watcher 5s spot 流）；10:51:46 之后 5 分钟无更新 ⇒ 本档所有价位判断都以 611.17 为基准，并标注「可能已过期」",
+    "prev_close": 638.1,
+    "open": 617.46,
+    "high": 619.38,
+    "high_time": "10:00",
+    "low": 607.83,
+    "low_time": "09:45",
+    "last": 611.17,
+    "amplitude": 11.55,
+    "amplitude_note": "RTH 振幅 = 619.38 − 607.83 = **11.55 点（1.89%）**；规则①-b 的 1/3 振幅 = **3.85 点**",
+    "change_pct": -4.22,
+    "gap": -20.64,
+    "gap_note": "跳空低开 −20.64 点（−3.23%）；09:45 砸出 607.83 后反抽至 10:00 的 619.38（+11.55 点），随后回落至 611.17（−8.21 点，−1.33%），呈「深 V 后二次回落」结构",
+    "vwap": 612.99,
+    "vwap_note": "**降级值**：取自 watcher 侧 10:51:46 读数，非独立复算（本次无成交量数据，无法实算 VWAP）",
+    "rth_volume": null,
+    "rth_volume_note": "降级模式无此数据（历史 K 线请求被 error 162 拒绝）",
+    "atm_straddle": null,
+    "daily_iv_basis": "降级模式无此数据（0DTE 期权链 0 条有效报价，无法反解 IV / 1σ）",
+    "daily_iv_pct": null,
+    "expected_high": null,
+    "expected_low": null,
+    "expected_range_basis": "降级模式无此数据",
+    "day_regime": "unknown（数据源故障，无法判定趋势/震荡；最后 40 分钟为 619.38 → 611.17 的回落）",
+    "greeks": "降级模式无此数据",
+    "hv": "降级模式无此数据",
+    "iv_percentile": "降级模式无此数据",
+    "nq_futures": "降级模式无此数据",
+    "put_call_ratio": "降级模式无此数据",
+    "data_quality": "degraded_outage"
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入 620.9",
+     "rationale": "【数据源故障 · 禁用】TWS API 自 10:14 ET 起持续返回 error 162（Historical Market Data Service: Trading TWS session is connected from a different IP address），历史 K 线/期权链/快照全部取不到 → 无法核 debit、无法核剩余 1σ、无法核 0.35% 目标空间。另：最后实报现价 611.17（10:51:46 ET）距 620.9 达 +9.73 点 = 当日振幅 11.55 的 0.84 倍，远超可交易性门限（振幅/3 = 3.85）→ 即使数据恢复也属不可达，本档维持禁用。",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": 620.9,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level 且量能放大",
+     "structure": "single_call",
+     "legs": {
+      "long": 630
+     },
+     "max_debit": 240,
+     "target_zone": [
+      622.5,
+      625.0
+     ],
+     "target": 625.0,
+     "invalid_level": 619.2,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空 615.2",
+     "rationale": "【数据源故障 · 禁用】现价 611.17 距 615.2 为 +4.03 点（0.66%），略超可交易性门限 3.85 点；且 TWS API 故障导致期权链无报价、无法核 debit/expected_debit → 禁用。",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": 615.2,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": 605
+     },
+     "max_debit": 240,
+     "target_zone": [
+      612.4,
+      610.45
+     ],
+     "target": 610.45,
+     "invalid_level": 617.8,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入 608.9",
+     "rationale": "【数据源故障 · 禁用（本档唯一可达形态）】现价 611.17 距 608.9 仅 −2.27 点（0.37%），在可交易性门限 3.85 点内 ✓，是本档唯一满足规则 ①-b 的形态；但 TWS API 故障（error 162）使 0DTE 期权链全部无报价（610C/P、611C/P mid 均为 null），无法按规则 ⑥ 取实报行权价、无法算 expected_debit（规则 ⑥-c 要求按追价方向 ×1.0025 定价）→ 依硬约束「连不上 TWS ⇒ A–D 全部 enabled: false」，不得用估算值充数。恢复条件：TWS 重新登录/API 恢复后由下一档（11:53 ET）重推。",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": 608.9,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上（anti_chase 0.10%）",
+     "structure": "single_call",
+     "legs": {
+      "long": 617
+     },
+     "max_debit": 240,
+     "target_zone": [
+      611.9,
+      613.6
+     ],
+     "target": 613.6,
+     "invalid_level": 606.6,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空 625",
+     "rationale": "【数据源故障 · 禁用】现价 611.17 距 625.0 为 +13.83 点 = 振幅的 1.20 倍，属不可达；且期权链无报价，无法核 debit → 禁用。",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": 625.0,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": 616
+     },
+     "max_debit": 240,
+     "target_zone": [
+      622.5,
+      619.3
+     ],
+     "target": 619.3,
+     "invalid_level": 627.2,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【数据源故障 · 禁用】E 为「横盘观望」占位槽（无触发位），本档数据源故障（IB error 162）下不设任何新仓，等数据恢复后由下一档重推。",
+     "pattern": "E",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 0,
+   "placeholder": true
   }
  ],
  "order_events": [
