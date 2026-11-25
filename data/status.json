@@ -1,19 +1,22 @@
 {
- "generated_at_et": "2026-11-25 09:04:55 ET",
- "generated_at_bj": "2026-11-25 22:04:55",
+ "generated_at_et": "2026-11-25 09:07:19 ET",
+ "generated_at_bj": "2026-11-25 22:07:19",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "23:47:08",
+  "uptime": "23:49:32",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 61121,
+  "last_event_age_s": 105,
   "last_event": {
-   "ts": "2026-11-24T16:06:13.838542-05:00",
-   "event": "notification_sent",
+   "ts": "2026-11-25T09:05:34.309374-05:00",
+   "event": "startup",
    "state": "-",
    "spot": null,
-   "level": "alert",
-   "summary": "收盘终版归档连续 3 次失败，0DTE 数据过期不可再生 —— 请人工补档（RuntimeError: reqHistoricalData 返回 0 根（连接可"
+   "port": 7497,
+   "accounts": [
+    "DUQ402112"
+   ],
+   "mode": "paper_auto"
   }
  },
  "gateway": {
@@ -29,6 +32,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 634.885,
- "git_head": "94366f38"
+ "last_spot": null,
+ "git_head": "b50fa4bf"
 }
