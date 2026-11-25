@@ -1,29 +1,19 @@
 {
- "generated_at_et": "2026-11-25 10:00:49 ET",
- "generated_at_bj": "2026-11-25 23:00:49",
+ "generated_at_et": "2026-11-25 10:03:06 ET",
+ "generated_at_bj": "2026-11-25 23:03:06",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "01-00:43:02",
+  "uptime": "01-00:45:19",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 27,
+  "last_event_age_s": 79,
   "last_event": {
-   "ts": "2026-11-25T10:00:21.745022-05:00",
-   "event": "shadow_exit",
-   "state": "SHADOW",
-   "spot": 618.261462,
-   "pattern": "A",
-   "reason": "③峰值回吐(P=97%)",
-   "value": 241.0,
-   "pnl_pct": 68.5,
-   "peak": 96.5,
-   "est_px": 2.39,
-   "est_proceeds": 239.0,
-   "modeled_pnl": 96.0,
-   "cost": 143.0,
-   "qty": 1,
-   "hold_min": 3.3,
-   "note": "影子单：未下单、未计入 realized ✓（仅供对比验证规则 ✓）"
+   "ts": "2026-11-25T10:01:46.811445-05:00",
+   "event": "notification_sent",
+   "state": "-",
+   "spot": null,
+   "level": "info",
+   "summary": "实时bar服务异常，已切换 tick 降级聚合（B-20：降为 info，非告警）"
   }
  },
  "gateway": {
@@ -39,6 +29,6 @@
   "09:30",
   "15:30"
  ],
- "last_spot": 614.4,
- "git_head": "232948b9"
+ "last_spot": 617.0199,
+ "git_head": "d7ec99b1"
 }
