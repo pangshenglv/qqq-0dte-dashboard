@@ -544,6 +544,17 @@
    "pattern": "D",
    "level": 616.69,
    "reason": "盘中方案是占位版/状态未知（refresh_status='placeholder' ✗，需 final ✓）"
+  },
+  {
+   "ts": "2026-11-25T10:21:05.604240-05:00",
+   "event": "trigger_hit",
+   "state": "IDLE",
+   "spot": 611.17,
+   "pattern": "C",
+   "result": "skip_chase",
+   "close": 611.05,
+   "level": 608.9,
+   "limit": 0.001
   }
  ],
  "roundtrips": [],
