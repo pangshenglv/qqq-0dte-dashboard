@@ -1,18 +1,18 @@
 {
- "generated_at_et": "2026-11-26 15:38:31 ET",
- "generated_at_bj": "2026-11-27 04:38:31",
+ "generated_at_et": "2026-11-26 15:40:40 ET",
+ "generated_at_bj": "2026-11-27 04:40:40",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "02-06:20:44",
+  "uptime": "02-06:22:53",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 12,
+  "last_event_age_s": 7,
   "last_event": {
-   "ts": "2026-11-26T15:38:18.790384-05:00",
+   "ts": "2026-11-26T15:40:32.283959-05:00",
    "event": "reconnect",
    "state": "IDLE",
    "spot": null,
-   "attempt": 4,
+   "attempt": 2,
    "error": "[Errno 61] Connect call failed ('127.0.0.1', 7497)"
   }
  },
@@ -22,7 +22,7 @@
   "online": false,
   "process": "IB Gateway (IBC)",
   "launchd_loaded": true,
-  "pid": "35496"
+  "pid": "37148"
  },
  "mode": "paper_auto",
  "entry_window": [
