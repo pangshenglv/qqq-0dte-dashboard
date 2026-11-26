@@ -1,6 +1,133 @@
 {
  "date": "2026-11-26",
- "snapshots": [],
+ "snapshots": [
+  {
+   "file": "daily_20261126_0853_5e538d8ca9",
+   "kind": "premarket",
+   "label": "盘前方案",
+   "sort_key": "08:53",
+   "generated_at": "08:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": null,
+   "placeholder_hint": false,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-26（周四）· 08:53 ET 盘前档\n\n第1行｜数据获取时间 / 数据源：2026-11-26 08:53:10 ET 与 08:55:40 ET（两次独立尝试）\ndata_source = tws_local（降级通道），实际结果 = **三通道全灭，无任何行情取回**\n第2行｜期权墙摘要：**无墙数据**。data/option_wall_latest.json 停在 2026-11-24 15:03 ET\n（spot 634.54 / P-C 1.19 / call_vol 2,227,387 / put_vol 2,642,744；top call 640C 325,493、\ntop put 635P 278,660）—— 那是 **11/24 到期链**，已过期 2 个交易日，今日不可复用。\n第3行｜当日事件：**全天无 US 经济数据 —— 银行假日（感恩节）**。今日不是 FOMC 日\n（2026 决议日 01/27-28、03/17-18、04/28-29、06/16-17、07/28-29、09/15-16、10/27-28、12/08-09）。\n\n【结论】今日 **美股全天休市（Thanksgiving Day）** ⇒ 无 RTH、无 0DTE 到期链、无任何可交易窗口。\nA–D 全部 enabled: false；E 为不交易立场。\n本档禁用**不是**数据故障的兜底表演，而是两条互相独立、各自充分的硬事实叠加：\n① **交易日不存在**（Nasdaq 全天 Closed）—— 即使有数据，也没有市场；\n② **数据源三通道全灭**（下述证据）—— 即使有市场，也拿不到实报。\n任一成立即禁止布点；两条同时成立 ⇒ 不存在任何应急布点空间。\n⚠️ 特别声明：本档**没有**用「现价 ± 若干点」造任何行权价，**没有**把 11/25 的旧数字\n改写成本档实报，也**没有**把工具故障写成「无事件」。三项均为明文红线。\n\n【数据源故障证据链】\n· tools/tws_snapshot.py（clientId 7，只读）×2 → ConnectionRefusedError(61) 127.0.0.1:7497\n· tools/option_wall_scan.py                → ConnectionRefusedError(61) 127.0.0.1:7497\n· lsof -nP -iTCP -sTCP:LISTEN → 7497 / 7496 / 4001 / 4002 **均无监听**；\nIB Gateway 进程 67031 存活但仅监听 7462（IBC CommandServer）⇒ **从未进入登录后状态**\n· 根因（gw-settings/launcher.log 于 21:53:46–21:54:16 实时写入，非历史推断）：\nERROR Cannot write to socket hdc1.ibllc.com:4001 (SSL) ... javax.net.ssl.SSLHandshakeException:\nRemote host terminated the handshake\nERROR Error sending request: Remote host terminated the handshake\nWARN  instance of control is not created yet\ngw-settings/loginFailFrequency.txt = 12 次登录失败\n⇒ JVM 侧 TLS 握手被上游/中间设备重置（JVM 走本机代理 127.0.0.1:7897，jts.ini\nHttpProxyHost/HttpProxyPort；该代理端口实测 OPEN、curl 访问外网 HTTP 200 ⇒ 代理本身存活）。\n**属网络/认证链路故障，非本任务配置问题，需人工换节点后重启网关**。\n· 硬约束遵守情况：**未重启 watcher、未使用 clientId 42、未调用 IBKR 插件（DSH 侧不存在）、\n未改动任何工具脚本、未改动 system.yaml / capital.yaml**；本档只写 config 下两个文件。\n· 最后可用的**真实行情**：2026-11-25 10:51:46 ET @ **611.29**\n（本档独立复算 logs/spot_5s_20261125.csv：3,975 个 tick；其中 10:51:51→15:45:12 共 2,933 个\n611.17 同值为断流冻结复读，另有 10:08:17→10:20:26 共 143 个 616.92 同值冻结窗；\n剔除后有效段 09:23:40–10:51:46，高 619.38 / 低 607.83 / VWAP 末值 612.988）\n⇒ 距此刻已 **22 小时 04 分**，且今日无交易 ⇒ **不得作为今日 spot**，Market 段填「无数据」。\n\n【休市依据（三源交叉，均已实取，非推算）】\na) 美联储官方 K.8《Holidays Observed by the Federal Reserve System 2026》\n→ https://www.federalreserve.gov/aboutthefed/k8.htm  HTTP 200\n→ \"Thanksgiving Day: November 26\"（2026 列）\nb) Nasdaq 假日表（交易所侧，逐条含日期，ET Now 转载）\n→ https://www.etnownews.com/about/holiday-calendar/us-stock-market-holidays  HTTP 200\n→ \"26-Nov-26 | Thursday | Thanksgiving Day | Closed (full day) (Nasdaq)\"\n→ \"27-Nov-26 | Friday | Day After Thanksgiving (Black Friday) | Early close (1:00 pm ET) (Nasdaq)\"\nc) Forex Factory 本周日历 → https://nfs.faireconomy.media/ff_calendar_thisweek.json  HTTP 200\n→ {\"date\":\"2026-11-26T08:00:00-05:00\",\"country\":\"USD\",\"impact\":\"Holiday\",\"title\":\"Bank Holiday\"}\n→ 本日 USD 条目仅此一条\n事件日历工具：web_search 已实际调用（返回 8 条来源，含 nasdaqtrader / Fidelity / 美联储；\n其中未给出可直接引用的逐日表格 ⇒ 追加 web_fetch + curl 直取上述 a/b/c 三源做交叉核对）。\n==============================================================================",
+   "market": {
+    "spot_premarket": "无数据（休市：2026-11-26 Thanksgiving，Nasdaq 全天 Closed；且 TWS API 端口未开放）",
+    "daily_iv_pct": "降级模式无此数据",
+    "expected_low": "降级模式无此数据",
+    "expected_high": "降级模式无此数据",
+    "sigma_1": "降级模式无此数据",
+    "atm_straddle": "降级模式无此数据",
+    "nq_futures": "降级模式无此数据（本账户无期货行情权限，且今日假日）",
+    "hv": "降级模式无此数据",
+    "iv_percentile": "降级模式无此数据",
+    "greeks": "降级模式无此数据",
+    "put_call_ratio": "降级模式无此数据",
+    "option_wall": "无墙数据",
+    "option_wall_note": "data/option_wall_latest.json 停在 2026-11-24 15:03 ET（spot 634.54，11/24 到期链）⇒ 已过期 2 个交易日，不可复用；本轮 option_wall_scan.py 连接阶段即 errno 61 失败。",
+    "data_quality": "no_data",
+    "1sigma_note": "**无法计算，且按纪律拒绝给估算值**。1σ = 日度 IV × spot × 常数，今日三项输入全缺： 无 spot（休市）、无链（errno 61）、无 IV（无链不可反解）。用 11/25 的旧 IV 乘今日假想 spot 属「用估算值冒充实报」，明文禁止。⇒ expected_low / expected_high 留「降级模式无此数据」。",
+    "last_known_reference": {
+     "caveat": "以下为 2026-11-25 最后一次真实数据，仅供人工恢复链路后对账用；本档未用它计算任何点位。",
+     "last_real_tick": 611.29,
+     "last_real_tick_at": "2026-11-25 10:51:46 ET（此后 2,933 个 tick 冻结复读 611.17 至 15:45:12）",
+     "prev_close_20261125": 638.1,
+     "open_20261125": 617.1,
+     "high_20261125_valid_segment": 619.38,
+     "low_20261125_valid_segment": 607.83,
+     "vwap_20261125_last": 612.998,
+     "source": "logs/spot_5s_20261125.csv（本档独立复算，3,975 tick / 有效段 1,041 tick）"
+    }
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "rationale": "【禁用 · 双重硬理由，与「算不出」无关，是「对象不存在」】①今日 Nasdaq 全天休市， 根本没有 1 分钟 K 线可供突破、也没有今日到期合约可供买入 ⇒ A 形态的**触发客体与交易客体 同时不存在**。②即使忽略休市，TWS 三通道也全灭（errno 61），拿不到任何实报链 ⇒ 行权价 与 expected_debit 无合法来源。按 premarket_prompt 行权价合法性硬校验（必须是整数且能在实报链 中逐条核对到），无链即不得写出任何行权价 ⇒ 只能 null + disabled。 ③规则⑦（震荡市不得禁用突破型）**不适用**：该规则约束的是「有交易日、仅市况不利」的情形， 今日不是交易日，不存在被机械闸门处置的对象。⇒ 这是事实判定，不是风险偏好。",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "rationale": "【禁用】与 A 同一双重理由（无交易日 + 无实报链）。补充：B 所需的「量能放大」判据在休市日 无 tick 可算；「跌破」所需的支撑位亦无当日价格定义。不写估算行权价、不写估算 debit。",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "rationale": "【禁用】C 的定价口径要求按 trigger_level × 1.0010（最坏追价点）反算单腿 debit，且结果必须落在 100–240 区间；今日无 trigger_level、无实报链 ⇒ 整条计算链无输入。9/29 C4 的反面教训（按触发位 定价 148、实际成交 195、9 分钟止损 −57）在此**不可能发生**，因为没有触发位可定。 C 类「左侧更轻」的仓位纪律今日同样不适用（无仓可开）。禁止用价差替代 —— 本档连价差也没写。",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "rationale": "【禁用】D 依赖「突破—跌回」的 15 分钟时间窗，休市日无 bar 序列 ⇒ 前提不成立； 且同样无实报链 ⇒ 无合法行权价。G5a 对 D 的豁免（repeated crossings 是特征而非噪声） 今日无需启用，因为没有点位可设。",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【不交易 · 全时段】今日唯一正确动作是不交易：无交易日 + 无数据源。E 的 enabled: true 仅表示 「不交易」这一立场有效（watcher 只认 pattern A–D，E 不产生任何下单路径）。 下一交易日 11/27 半日市（13:00 ET 收）必须从零重推，禁止以本档任何 null/旧值作起点。",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1
+  }
+ ],
  "order_events": [],
  "roundtrips": [],
  "realized_pnl": 0
