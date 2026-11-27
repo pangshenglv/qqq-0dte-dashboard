@@ -1,19 +1,19 @@
 {
- "generated_at_et": "2026-11-27 16:28:51 ET",
- "generated_at_bj": "2026-11-28 05:28:52",
+ "generated_at_et": "2026-11-27 16:39:06 ET",
+ "generated_at_bj": "2026-11-28 05:39:06",
  "watcher": {
   "alive": true,
-  "pid": 56832,
-  "uptime": "03-07:11:04",
+  "pid": 40748,
+  "uptime": "08:56",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 1235,
+  "last_event_age_s": 535,
   "last_event": {
-   "ts": "2026-11-27T16:08:16.763755-05:00",
-   "event": "notification_sent",
+   "ts": "2026-11-27T16:30:10.797314-05:00",
+   "event": "startup",
    "state": "-",
    "spot": null,
-   "level": "alert",
-   "summary": "收盘终版归档连续 3 次失败，0DTE 数据过期不可再生 —— 请人工补档（AttributeError: 'Watcher' object has no at"
+   "note": "24h 常驻模式启动",
+   "mode": "paper_auto"
   }
  },
  "gateway": {
@@ -29,5 +29,5 @@
   "15:30"
  ],
  "last_spot": null,
- "git_head": "e817b9e8"
+ "git_head": "16247775"
 }
