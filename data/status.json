@@ -1,18 +1,18 @@
 {
- "generated_at_et": "2026-11-27 14:41:15 ET",
- "generated_at_bj": "2026-11-28 03:41:15",
+ "generated_at_et": "2026-11-27 14:43:23 ET",
+ "generated_at_bj": "2026-11-28 03:43:23",
  "watcher": {
   "alive": true,
   "pid": 56832,
-  "uptime": "03-05:23:28",
+  "uptime": "03-05:25:36",
   "command": "/Users/lps/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/python/.venv/bin/python3 -u watcher.py",
-  "last_event_age_s": 9,
+  "last_event_age_s": 3,
   "last_event": {
-   "ts": "2026-11-27T14:41:06.604614-05:00",
+   "ts": "2026-11-27T14:43:20.265502-05:00",
    "event": "reconnect",
    "state": "IDLE",
    "spot": null,
-   "attempt": 4,
+   "attempt": 2,
    "error": "[Errno 61] Connect call failed ('127.0.0.1', 7497)"
   }
  },
