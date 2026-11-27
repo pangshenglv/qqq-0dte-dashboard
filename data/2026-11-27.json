@@ -505,6 +505,134 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261127_1253_10c520e5d3_pm",
+   "kind": "pm",
+   "label": "盘中刷新 12:53 ET",
+   "sort_key": "12:53",
+   "generated_at": "12:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-27（周五·半日市）· 11:53 ET 盘中刷新档（第 3/7 波）\n\n第1行｜数据获取时间 / 数据源：2026-11-27 11:53–11:56 ET 重新实跑三通道 → **第三档连续 errno 61**；\ndata_source = tws_local（降级通道，不可用）。本轮**未继承上一档结论**，逐路重跑并新增证据：\n· tools/tws_snapshot.py --client-id 7 → ConnectionRefusedError(61) 127.0.0.1:7497\n· tools/pm_analysis.py --levels 611 612 613 --strikes 612 613 614 → 同一 errno 61\n· tools/option_wall_scan.py → 同一 errno 61\n· lsof -nP -iTCP -sTCP:LISTEN | grep 7497/7496/4001/4002 → **无监听**；nc -z 7497/7496 → **CLOSED**\n· ps aux | grep ibgateway → **无进程**\n· 【本轮新增关键事实】IBC 日志本轮尾部显示网关在 **11:16:52 ET 又试了一次登录**：\n\"Login dialog WINDOW_OPENED: LoginState is LOGGED_OUT\" → \"Login attempt: 1\"\n→ \"Too many failed login attempts. Please wait 2 minutes & 53 seconds\"\n→ \"IBC returned exit status 143\" → \"autorestart file not found: full authentication will be required\"\n→ launchd.out.log 同报 \"IBC terminated by SIGTERM\" / \"GATEWAY 10.50 has finished\"（11:19 ET）\n⇒ 与 10:53 档（10:17 ET exit 143）相比：**又跑了一轮、又失败、又被 SIGTERM**，循环在自旋但不自愈。\n· 【本轮新增】gw-settings/loginFailFrequency.txt mtime = 11:14 ET，计数 **仍为 87**（与 10:53 档同值）\n⇒ 失败计数没再涨，说明卡点是「必须完整认证（2FA）」这道门，不是重试次数用完。\n· 【本轮新增】IBC config.ini 与 config.ini.bak.20261127_231344（11:13 ET 备份）**逐字节相同**\n⇒ 11:13 ET 那次触碰**没有改动任何配置**，不是「改配置改坏了」，是认证门槛。\n· 独立旁证（watcher 自身，非本方调用）：logs/20261127.jsonl 共 **1,314** 行（10:53 档为 790 行 → +524），\n'spot' 非空计数 = **0**；event 分布 reconnect 1,138 / notification_sent 128 / error 41 /\nconfig_reload 6 / wake_late 1；gate/order/entry/exit/fill 类事件 = **0**；\n末条 11:54:48 ET 通知「TWS 断线，重连失败，持续重试」。\n第2行｜期权墙摘要：**无墙数据**。data/option_wall_latest.json mtime 仍为 Nov 25 04:03（= ET 11-24 15:03，\n11/24 到期链，spot 634.54），已过期 3 个交易日；本轮扫描在连接阶段失败，文件未变。\n第3行｜当日事件：**非 FOMC 日**（Fed 官方日历本轮 HTTP 200 / 166,359 B，2026 决议日实取为\n01/28、03/18、04/29、06/17、07/29、09/16、10/28 —— 11 月无会期）；**半日市 13:00 ET 收盘**\n（Fidelity 2026 假日表本轮 HTTP 200 / 310,475 B，页内命中 \"November 27\" + \"1:00 p.m. ET close\"）；\n剩余时段（11:53–13:00）USD 中/高冲击事件 = **0 条**（Forex Factory 本周 JSON 本轮 HTTP 200 / 10,455 B：\n今日 USD 仅 2 条、均 Low、均 08:30 ET 且已发布）。\n真正的硬约束是 **13:00 ET 提前收盘**：自本轮起剩余可交易 **1 小时 07 分**。\n\n【本轮结论】「今日收工」—— 但**理由是「输入与执行双断」，不是「今天没机会」**：\n① 数据侧：三通道第三档仍 errno 61，无 spot / 无今日 0DTE 实报链 / 无 IV ⇒ 步骤 A.d 的摆动位聚类\n需要 1 分钟 bar 序列，取得 0 条 ⇒ 无法列出 ≥3 支撑 + ≥3 阻力，A/B/C/D 的触发位与行权价**均无合法来源**。\n② 执行侧（本轮重点补充，比 10:53 档更硬）：watcher 自身 1,314 行日志、**spot 非空 0 条**、重连 1,138 次\n⇒ 即使我在方案层写出点位，**执行器也是盲的**：它拿不到实时价、无法判定触发、无法定价、无法下单。\n把可交易形态写进 pm 只会制造「看起来有方案」的假象 —— 那正是 10/01 空转到收盘的同款失效。\n③ 时间侧（本轮新增量化）：剩余 67 分钟 < watcher 的 time_stop 45 分钟 + 「2 根 1 分钟确认」+ 30 分钟形态冷却，\n任何此刻新布的点位，确认后剩余可持有时间不足 20 分钟 ⇒ 即使数据恢复，也只剩「立即触发」这一种可能。\n④ 风险预算侧：今日零成交、风险预算 240 全额未用（不是预算不足导致收工）。\n⇒ 按 midday_prompt 明文分支「若脚本也连不上 TWS：写明失败原因，当日 A–D 全部 enabled: false 并照常写出配置文件」执行。\n⚠️ 本档**没有**用 11/25 的 611.29 冒充今日 spot；**没有**用「现价 ± 若干点」造行权价；\n**没有**把工具故障写成「无事件」；**没有**因为「看起来没变」跳过 A/B —— A/B 被执行过，只是因为\n输入为空而无法产出点位，这一步的空缺已在 pre_write_selfcheck.rule_1b 里逐项披露。\n==============================================================================",
+   "market": {
+    "spot_intraday": "无数据（TWS API 7497 未监听：clientId 7/8 与 option_wall_scan 均 errno 61）",
+    "daily_iv_pct": "降级模式无此数据",
+    "expected_low": "降级模式无此数据",
+    "expected_high": "降级模式无此数据",
+    "sigma_1": "降级模式无此数据",
+    "atm_straddle": "降级模式无此数据",
+    "nq_futures": "降级模式无此数据（本账户无期货行情权限，且今日数据通路中断）",
+    "hv": "降级模式无此数据",
+    "iv_percentile": "降级模式无此数据",
+    "greeks": "降级模式无此数据",
+    "put_call_ratio": "降级模式无此数据",
+    "option_wall": "无墙数据",
+    "option_wall_note": "data/option_wall_latest.json 为 11/24 到期链（ET 2026-11-24 15:03，spot 634.54），已过期 3 个交易日 ⇒ 不可复用；本轮扫描 errno 61，文件 mtime 仍为 Nov 25 04:03。",
+    "swing_levels": "降级模式无此数据（无 1 分钟 bar 序列，摆动位聚类无从执行；禁止用 11/25 旧结构代替今日结构）",
+    "swing_levels_deviation": "硬性要求①要求「≥3 档支撑 + ≥3 档阻力，每档含价位/触及次数/区间」。本轮 1 分钟 bar 取得 0 条， 聚类输入不存在 ⇒ **无法产出，且拒绝用 11/25 旧结构或估算价顶替**（顶替即是红线「估算值冒充实报」）。 此处为明文降级，不是省略；一旦数据恢复，A.d 必须照样补出 ≥3+3 档。",
+    "data_quality": "no_data",
+    "1sigma_note": "**无法计算，且拒绝给估算值**。1σ 需要日度 IV × spot × 常数三项，本轮 spot 缺、链缺、IV 不可反解， 且**剩余时间只有 67 分钟**（13:00 ET 收盘），即使有 IV 也须按 67 分钟折算而非全天 —— 全天 1σ 会系统性高估。 ⇒ expected_low / expected_high / sigma_1 全部留「降级模式无此数据」。",
+    "last_known_reference": {
+     "caveat": "以下为 2026-11-25 最后一次真实数据；本档未用它计算任何点位，也不得作为今日 spot。",
+     "last_real_tick": 611.29,
+     "last_real_tick_at": "2026-11-25 10:51:46 ET",
+     "prev_close_20261125": 638.1,
+     "open_20261125": 617.1,
+     "high_20261125_valid_segment": 619.38,
+     "low_20261125_valid_segment": 607.83,
+     "vwap_20261125_last": 612.998
+    }
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "rationale": "【禁用 · 理由是「输入不存在」，不是「算不出」，也不是「沿用上一档」】\n① 步骤 B 已执行：A 的触发位应取 A.d 的「主阻力之上」。A.d 需 1 分钟 bar 序列聚类，本轮取得 0 条\n   ⇒ 主阻力未定义 ⇒ 触发位无来源。本轮**没有**因「看起来没变」跳过 B，而是 B 的输入为空。\n② 行权价红线要求「整数 + 今日到期实报链逐条核对」，本轮无链 ⇒ 无合法行权价；\n   若强写「现价 ± 若干点」即 2026-10-02 导致 watcher 构造期 ValueError 崩溃的同款违规。\n③ 执行器盲区（比 10:53 档更硬的证据）：watcher 自身 1,314 行、spot 非空 0、重连 1,138 次\n   ⇒ 触发判定所需的实时价不存在，写点位等于写一个永不触发的幻影。\n④ 时间不可行：剩余 67 分钟 < 45 分钟 time_stop + 2 根确认 + 30 分钟冷却\n   ⇒ 确认成立后剩余持有窗口 < 20 分钟，0DTE 尾段 theta 不允许这种敞口。\n⑤ expected_debit 需按 trigger_level×1.0025 定价，trigger 为 null ⇒ 无从计算，留 null 而非造数。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "rationale": "【禁用】与 A 同一根因（触发位/行权价/执行器/时间四项全缺）。补充：\n① B 的「量能放大」判据需要前 30 根 1 分钟中位量作基准，本轮无 bar ⇒ 连触发条件都无法定义。\n② 结构提示（非点位）：11/25 大幅下挫（prev_close 638.10），11/26 休市，今日半日市 13:00 收盘\n   ⇒ 缺口方向不确定 + 可交易时长仅 67 分钟，突破型所需的「2 根确认 + 45 分钟时间止损」\n   在剩余窗口内毫无缓冲。\n③ 规则⑦（震荡市不得禁用 A/B）不适用：它约束「有数据、仅市况不利」的情形，前提是存在可布点位\n   供 watcher 的 G5b 处置；本轮方案层无点位，G5b 无处置对象。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "rationale": "【禁用】C 的定价口径要求按 trigger_level × 1.0010 反算单腿 debit 并落在 100–240 区间\n（9/29 C4 教训：按触发位定价 148、实际成交 195、9 分钟止损 −57）。本轮无 trigger_level、无实报链\n⇒ 输入为空，口径无从施加；且无 bar 序列 ⇒ 「曾跌破 + 收盘站上」的确认条件无法计算。\n另：C 的用途本是抓「急跌后首根站回」，需要当日低点簇 —— A.d 产不出，C 也就无从谈起。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "rationale": "【禁用】D 依赖「先突破、再于 15 分钟内跌回」的今日时间序列，且需与 A 共用阻力锚点；\n本轮无 bar、无锚点、无实报链 ⇒ 前提不成立。D 与 A 共用触发位本就存在双向绞肉风险，\n无数据日连这个风险都不该被创造。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【不交易 · 剩余全时段（11:53–13:00 ET）· 即「今日收工」】\n三条独立理由，任一成立即足以收工，本轮三条同时成立：\n① 输入为空：三通道第三档 errno 61 → 无 spot / 无链 / 无 IV → A.d、行权价、target、debit 全无来源。\n② 执行器盲区：watcher 1,314 行、spot 非空 0、重连 1,138 次 ⇒ 即使有方案也无法判触发、无法定价、无法下单。\n③ 时间不够：剩余 67 分钟 < time_stop 45 + 2 根确认 + 30 分钟冷却 ⇒ 确认后剩余窗口 < 20 分钟。\nE 的 enabled: true 仅表达「不交易」立场（watcher 只认 pattern A–D，E 不产生任何下单路径）。\n若盘中人工恢复网关：须重跑完整盘中流程（新 spot / 新链 / 新 IV / 按剩余分钟重算 1σ / flat_by ≤ 12:45 ET），\n**不得**把本档任何 null 或 11/25 旧值当起点。\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [],
