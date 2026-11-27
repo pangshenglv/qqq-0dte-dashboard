@@ -126,6 +126,133 @@
     }
    ],
    "enabled_count": 1
+  },
+  {
+   "file": "daily_20261127_0953_774e8ba985_pm",
+   "kind": "pm",
+   "label": "盘中刷新 09:53 ET",
+   "sort_key": "09:53",
+   "generated_at": "09:53 ET",
+   "data_source": "tws_local",
+   "refresh_status": "placeholder",
+   "placeholder_hint": true,
+   "note": "==============================================================================\nQQQ 0DTE 方案 — 美东交易日 2026-11-27（周五）· 08:53 ET 盘前档\n\n第1行｜数据获取时间 / 数据源：2026-11-27 08:53–08:57 ET；data_source = tws_local（降级通道）\n结论：**三通道全部失败，无任何行情取回**。根因与修法见下方 gateway_rca 段。\n· tools/tws_snapshot.py（clientId 7，venv python）→ ConnectionRefusedError(61) 127.0.0.1:7497\n· ad-hoc clientId 9（reqMarketDataType(2)+reqTickers 冻结通道）→ 同一 errno 61：\n端口未打开，TCP 层就失败，**根本走不到 frozen 那一步**（不是「冻结价也取不到」，是「连不上」）\n· tools/option_wall_scan.py → 同一 errno 61，退出码 1\n· lsof -nP -iTCP -sTCP:LISTEN → 仅 127.0.0.1:7462（IBC CommandServer），7497/7496/4001/4002 全无监听\n第2行｜期权墙摘要：**无墙数据**。data/option_wall_latest.json 停在 2026-11-25 04:03:50 CST\n（= ET 2026-11-24 15:03；spot 634.54 / P-C 1.19 / call_vol 2,227,387 / put_vol 2,642,744；\ntop call 640C 325,493、top put 635P 278,660）—— 那是 **11/24 到期链**，已过期 3 个交易日，\n今日不可复用。本轮 option_wall_scan.py 在连接阶段即失败，落盘文件 mtime 与 md5 均未变（410770b8…）。\n第3行｜当日事件：**非 FOMC 日、非四巫日**；今日仅 2 条 Low 冲击 USD 数据（08:30 ET 已发布）；\n**半日市 —— Nasdaq 官方假日表：Early Close | November 27, 2026 | 1:00 p.m.**\n⇒ 0DTE 到期随 13:00 ET 收盘提前（不是 16:00），这是今日全部时间参数的硬边界。\n\n【结论】今日 **不可布点**。这不是「休市」——11/27 是**正常交易日（半日市）**，市场开着、\n0DTE 真实到期；缺的是**我们这一侧的数据通路**。两者性质不同，严禁混写。\npremarket_prompt「行权价合法性硬校验」要求行权价必须是整数且**能在实报链中逐条核对到**；\n今日 spot / 0DTE 链 / IV 三项输入全缺 ⇒ 无法产生任何合法行权价、任何合法 expected_debit\n⇒ A–D 全部 enabled: false；E 为「不交易」立场。\n⚠️ 本档**没有**用「现价 ± 若干点」造任何行权价；**没有**把 11/25 的旧点位改写成今日实报；\n**没有**把工具故障写成「无事件」。三项均为明文红线。\n==============================================================================",
+   "market": {
+    "spot_premarket": "无数据（TWS API 7497 未监听：clientId 7 与 clientId 9 均 errno 61，REALTIME/FROZEN 两条通道都未建立）",
+    "daily_iv_pct": "降级模式无此数据",
+    "expected_low": "降级模式无此数据",
+    "expected_high": "降级模式无此数据",
+    "sigma_1": "降级模式无此数据",
+    "atm_straddle": "降级模式无此数据",
+    "nq_futures": "降级模式无此数据（本账户无期货行情权限，且今日数据通路中断）",
+    "hv": "降级模式无此数据",
+    "iv_percentile": "降级模式无此数据",
+    "greeks": "降级模式无此数据",
+    "put_call_ratio": "降级模式无此数据",
+    "option_wall": "无墙数据",
+    "option_wall_note": "data/option_wall_latest.json 为 11/24 到期链（ET 2026-11-24 15:03，spot 634.54），已过期 3 个交易日 ⇒ 不可复用；本轮扫描 errno 61，文件 md5 未变。",
+    "data_quality": "no_data",
+    "1sigma_note": "**无法计算，且拒绝给估算值**。1σ = 日度 IV × spot × 常数：今日 spot 缺、链缺、IV 不可反解， 三项输入全无。用 11/25 的旧 IV 乘假想 spot 属「用估算值冒充实报」，明文禁止。 ⇒ expected_low / expected_high / sigma_1 全部留「降级模式无此数据」。",
+    "last_known_reference": {
+     "caveat": "以下为 2026-11-25 最后一次真实数据；本档未用它计算任何点位，也不得作为今日 spot。",
+     "last_real_tick": 611.29,
+     "last_real_tick_at": "2026-11-25 10:51:46 ET",
+     "prev_close_20261125": 638.1,
+     "open_20261125": 617.1,
+     "high_20261125_valid_segment": 619.38,
+     "low_20261125_valid_segment": 607.83,
+     "vwap_20261125_last": 612.998,
+     "source": "config/daily_20261126.yaml 的 last_known_reference（内含 logs/spot_5s_20261125.csv 复算记录）"
+    }
+   },
+   "regime_day": null,
+   "scenarios": [
+    {
+     "name": "A-右侧突破买入",
+     "rationale": "【禁用 · 理由是「输入不存在」，不是「算不出」】\n① A 需要三样东西：可核实的阻力位、整数行权价的今日 0DTE 合约、按触发位算出的单腿 debit。\n   今日三者同时缺失：无 spot（无法定义盘前位置与缺口）、无链（无整数档可核对）、无 IV（无法定价）。\n② 若强行布点，唯一出路是「现价 ± 若干点」推算行权价 —— 这正是 2026-10-02 导致\n   watcher 抛 ValueError: can't be hashed、系统停摆 32 分钟的违规写法，明文红线。\n③ 规则「震荡市不得禁用突破型 A/B」**不适用**：该规则约束的是「有交易日、仅市况不利」的情形，\n   要求靠 watcher 的 G5b 闸门盘中处置。今日问题在**方案层无数据可布**，不是市况判断；\n   没有点位，G5b 也没有处置对象。\n④ 半日市附加约束：即使有数据，今日 0DTE 于 13:00 ET 到期，可交易窗口只有 09:30–13:00（3.5 小时），\n   突破型形态的「2 根 1 分钟收盘确认 + 45 分钟时间止损」在午后无缓冲，须重算 flat_by（见 session_constraints）。\n",
+     "pattern": "A",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价站上 trigger_level",
+     "structure": "single_call",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "B-右侧跌破追空",
+     "rationale": "【禁用】与 A 同一根因。补充两点：\n① B 判据要求「量能放大」，而今日无分钟线 ⇒ 量能基准（前 30 根中位）不存在，连触发条件都无法定义；\n② 今日结构背景提示（非点位，仅方向性风险）：11/25 全市场大幅下挫（prev_close 638.10 → 收 611 附近，\n   −4.2%~−4.8% 区间），11/26 休市无价格发现。**长假缺口 + 两日信息真空**会让开盘缺口方向极不确定，\n   这正是「无数据日绝不布点」最该被遵守的一天 —— 布点即等于用 11/25 的旧结构赌 11/27 的缺口。\n",
+     "pattern": "B",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "连续2根1分钟K线收盘价跌破 trigger_level 且量能放大",
+     "structure": "single_put",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "trend"
+    },
+    {
+     "name": "C-左侧回踩确认买入",
+     "rationale": "【禁用】C 的定价口径要求按 trigger_level × 1.0010（最坏追价点）反算单腿 debit，且结果须落在\n100–240 区间（9/29 C4 教训：按触发位定价 148、实际成交 195、9 分钟止损 −57）。\n今日无 trigger_level、无实报链 ⇒ 输入为空，口径无从施加。\nC 类「左侧更轻」的仓位纪律（取更虚值腿或 enabled:false）今日**恰好落到后者**：\n单腿 1 张已是最小单位，无数据即取 enabled: false ✓，未用价差替代 ✗。\n",
+     "pattern": "C",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格跌破 trigger_level 后1分钟K线收盘重新站上",
+     "structure": "single_call",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "D-假突破反手做空",
+     "rationale": "【禁用】D 依赖「先突破、再于 15 分钟内跌回」的时间序列，且需要与 A 共用一个阻力锚点。\n今日无 bar 序列、无锚点 ⇒ 前提不成立；同样无实报链 ⇒ 无合法行权价。\n另：D 与 A 共用触发位时会形成双向绞肉风险，无数据日连这个风险都不该被创造出来。\n",
+     "pattern": "D",
+     "enabled": false,
+     "trigger_level": null,
+     "trigger_rule": "价格收盘突破 trigger_level 后15分钟内1分钟K线收盘跌回下方",
+     "structure": "single_put",
+     "legs": {
+      "long": null
+     },
+     "max_debit": 240,
+     "target_zone": [],
+     "target": null,
+     "invalid_level": null,
+     "regime": "any"
+    },
+    {
+     "name": "E-横盘观望",
+     "rationale": "【不交易 · 全时段】今日唯一正确动作是不交易：数据通路中断（三通道 errno 61），\n而机器可读方案的行权价红线要求实报链核对 ⇒ 零合法点位。\nE 的 enabled: true 仅表示「不交易」立场有效（watcher 只认 pattern A–D，E 不产生任何下单路径）。\n若盘中人工恢复网关，应**重新跑一次完整盘前流程**（新 spot / 新链 / 新 IV / 重算 1σ 与 flat_by 12:45 上下），\n而不是把本档任何 null 或 11/25 旧值当起点。\n",
+     "pattern": "E",
+     "enabled": true,
+     "trigger_level": null,
+     "trigger_rule": null,
+     "structure": null,
+     "legs": null,
+     "max_debit": null,
+     "target_zone": null,
+     "target": null,
+     "invalid_level": null,
+     "regime": null
+    }
+   ],
+   "enabled_count": 1,
+   "placeholder": true
   }
  ],
  "order_events": [],
